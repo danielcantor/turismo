@@ -35,7 +35,7 @@ class ProductController extends Controller
 
         return redirect()->route('productos.create')->with('success','Producto creado correctamente');
     }
-    
+
     public function edit(Request $request, $id)
     {   
         $validated = $request->validate([
@@ -51,6 +51,7 @@ class ProductController extends Controller
             'product_description' => $validated['product_description'],
             'product_price' => $validated['product_price']
         ]);
+        
         return redirect()->route('productos.edit')->with('success','Producto editado correctamente');
     }
     public function delete(string $id)

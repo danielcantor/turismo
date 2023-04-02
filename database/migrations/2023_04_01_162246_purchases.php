@@ -16,13 +16,11 @@ class Purchases extends Migration
         //make a purchases table
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('user_id')->unsigned()->index()->nullable();
-            $table->bigInterger('purchase_code')->unsigned()->index()->nullable();
+            $table->unsignedInteger('user_id')->unsigned()->index()->nullable();
+            $table->unsignedInteger('purchase_code')->unsigned()->index()->nullable();
             $table->string('total_price');
             $table->string('payment_method');
             $table->string('payment_status');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('purchase_code')->references('id')->on('shopping')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -35,11 +33,6 @@ class Purchases extends Migration
      */
     public function down()
     {
-        Schema::table('purchases', function(Blueprint $table)
-        {
-            $table->dropForeign('purchases_product_id_foreign');
-            $table->dropForeign('purchases_user_id_foreign');
-        });
 
         Schema::dropIfExists('purchases');
     

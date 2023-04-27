@@ -1,5 +1,56 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
-@charset "UTF-8"; /*!
+@import url(https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap);
+@font-face {
+    font-family: 'cherolinaregular';
+    src: url(/fonts/cherolina-webfont.woff2?b4a7630c579cdf69e3d78b5056194434) format('woff2'),
+         url(/fonts/cherolina-webfont.woff?f516e6e156ca837761d48ac4f5902eea) format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.navbar-expand-xl .navbar-nav .nav-link {
+    display: inline-block;
+    color:#9683ec;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    background-image: linear-gradient(#f18701, #f18701);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s;
+    background-position: 0 calc(100% - 0px)
+}
+.title-custom {
+    color:#2e005d;
+    background-image: linear-gradient(#2e005d, #2e005d);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 calc(100% - 0px)
+}
+.title-custom.border-custom {
+    background-size: 43% 2px;
+    transform-origin:100% 50%;
+}
+.navbar-expand-xl .navbar-nav .nav-link:hover:not(.active) {
+    color:#f18701;
+    background-size: 100% 1px;
+}
+.navbar-expand-xl .navbar-nav .nav-link.active {
+    color:#f18701;
+    background-size: 100% 1px;
+    transform-origin:100% 50%;
+}
+footer  {
+    font-family: 'Raleway', sans-serif;
+}
+.shadow-image {
+    box-shadow: 90px -89px 0px -75px rgba(241,135,1,1);
+    -webkit-box-shadow: 90px -89px 0px -75px rgba(241,135,1,1);
+    -moz-box-shadow: 90px -89px 0px -75px rgba(241,135,1,1);
+}	
+@charset "UTF-8";
+/*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
  * Copyright 2011-2022 Twitter, Inc.

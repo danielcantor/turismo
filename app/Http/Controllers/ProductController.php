@@ -7,9 +7,17 @@ use Illuminate\View\View;
 use App\Models\Product;
 class ProductController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $products = Product::all();
+        $type = $request->query('type');
+
+        if ($type == 'nacional') {
+            $products = Product::where('product_type', 1)->get();
+        } elseif ($type == 'internacional') {
+            $products = Product::where('product_type', 2)->get();
+        } else {
+            $products = Product::all();
+        }
 
         return view('productos.index')->with('products', $products);
     }

@@ -9,15 +9,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 </head>
 <body>
-    @foreach ($products as $p)
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ $p->name }}</h5>
-        <p class="card-text">{{ $p->product_description }}</p>
-        <a href="#" class="btn btn-primary">{{ $p->product_price }}</a>
-      </div>
+    <div id="app">
+        <div class="container">
+          <header-component></header-component>
+            <div class="row">
+                @foreach ($products as $product)
+                    <producto-component :product="{{ $product }}"></producto-component>
+                @endforeach
+            </div>
+        </div>
     </div>
-    @endforeach
+
+    <script src="{{ mix('js/app.js') }}"></script> <!-- Asegúrate de tener la ruta correcta a tu archivo JavaScript -->
 </body>
 </html>

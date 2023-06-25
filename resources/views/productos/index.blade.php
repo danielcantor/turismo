@@ -20,6 +20,6 @@
         </div>
     </div>
 
-    <script src="{{ mix('js/app.js') }}"></script> <!-- Asegúrate de tener la ruta correcta a tu archivo JavaScript -->
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

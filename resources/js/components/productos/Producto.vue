@@ -35,8 +35,5 @@
     },
   };
   </script>
-  
-  <style scoped>
-  /* Estilos CSS específicos del componente aquí */
-  </style>
+
   

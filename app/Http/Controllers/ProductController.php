@@ -21,21 +21,43 @@ class ProductController extends Controller
 
         return view('productos.index')->with('products', $products);
     }
-    public function create(): View
+    public function store(Request $request)
     {
-        return view('productos.create');
+        $validated = $request->validate([
+            'product_name' => 'required',
+            'product_description' => 'required',
+            'product_price' => 'required|numeric|min:0',
+            'product_image' => 'image'
+        ]);
+    
+        $product = new Product();
+    
+        $product->product_name = $validated['product_name'];
+        $product->product_description = $validated['product_description'];
+        $product->product_price = $validated['product_price'];
+        $product->product_type = $request->input('product_type');
+    
+        if ($request->hasFile('product_image')) {
+            $imagePath = $request->file('product_image')->store('images', 'public');
+            $product->product_image = $imagePath;
+        }
+    
+        $product->save();
+    
+        return redirect()->route('productos.create')->with('success', 'Producto creado correctamente');
     }
+    
     public function save(Request $request){
 
         $validated = $request->validate([
-            'product_title' => 'required',
+            'product_name' => 'required',
             'product_description' => 'required',
             'product_price' => 'required|numeric|min:0'
         ]);
 
         $product = new Product();
 
-        $product->product_title = $validated['product_title'];
+        $product->product_name = $validated['product_name'];
         $product->product_description = $validated['product_description'];
         $product->product_price = $validated['product_price'];
 
@@ -43,11 +65,14 @@ class ProductController extends Controller
 
         return redirect()->route('productos.create')->with('success','Producto creado correctamente');
     }
-
+    public function create()
+    {
+        return view('productos.create');
+    }    
     public function edit(Request $request, $id)
     {   
         $validated = $request->validate([
-            'product_title' => 'required',
+            'product_name' => 'required',
             'product_description' => 'required',
             'product_price' => 'required|numeric|min:0'
         ]);
@@ -55,7 +80,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         $product->update([
-            'product_title' => $validated['product_title'],
+            'product_name' => $validated['product_name'],
             'product_description' => $validated['product_description'],
             'product_price' => $validated['product_price']
         ]);

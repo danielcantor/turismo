@@ -19,3 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 //Route::middleware('auth:sanctum')->post('/productos', [ProductController::class, 'store']);
 Route::post('/productos', [ProductController::class, 'store']);
+Route::middleware('auth:api')->group(function () {
+    Route::delete('/productos/{id}', 'ProductController@destroy')->name('productos.destroy');
+    Route::put('productos/{id}/activar', 'ProductController@activar')->name('productos.activar');
+});

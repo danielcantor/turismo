@@ -20,7 +20,8 @@ class Products extends Migration
             $table->string('product_price');
             $table->string('product_description');
             $table->integer('product_type');
-            $table->string('product_image');
+            $table->string('product_image')->nullable();
+            $table->tinyInteger('product_activate')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

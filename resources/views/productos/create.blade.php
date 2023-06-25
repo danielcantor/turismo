@@ -12,7 +12,12 @@
         <header-component></header-component>
         <div class="card col-md-10 mx-auto mt-5" style="padding: 15px">
             <h3 class="mx-auto mt-5">Crear nuevo producto:</h3>
-            <form action="{{ route('productos.store') }}" method="POST" enctype="multipart/form-data" @submit.prevent="submitForm">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <form action="{{ route('productos.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="product_name">Título del producto:</label>
@@ -85,7 +90,6 @@
             axios.post('/productos', formData)
                 .then(response => {
                     alert('Producto guardado correctamente');
-                    // Reiniciar los campos del formulario
                     this.productName = '';
                     this.productPrice = '';
                     this.productDescription = '';
@@ -93,7 +97,6 @@
                     this.productImage = null;
                 })
                 .catch(error => {
-                    // Error al guardar el producto
                     alert('Error al guardar el producto');
                     console.error(error);
                 });

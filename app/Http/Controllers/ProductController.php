@@ -46,7 +46,12 @@ class ProductController extends Controller
     
         return redirect()->route('productos.create')->with('success', 'Producto creado correctamente');
     }
-    
+    public function modificar()
+    {
+        $products = Product::all();
+
+        return view('productos.modificar', compact('products'));
+    }
     public function save(Request $request){
 
         $validated = $request->validate([
@@ -87,12 +92,24 @@ class ProductController extends Controller
         
         return redirect()->route('productos.edit')->with('success','Producto editado correctamente');
     }
-    public function delete(string $id)
+    public function destroy($id)
     {
         $product = Product::findOrFail($id);
-
         $product->delete();
 
-        return redirect()->route('productos.edit')->with('success','Producto eliminado.');
+        return response()->json(['message' => 'Producto eliminado correctamente']);
+    }
+    public function activar(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        $newStatus = $request->input('product_activate');
+        $product->product_activate = $newStatus;
+        $product->save();
+        return response()->json(['message' => 'Estado del producto actualizado correctamente']);
+    }
+    public function show(){
+        $products = Product::all();
+
+        return view('productos.modificar', compact('products'));
     }
 }

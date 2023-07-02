@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,6 +14,13 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
-    .sass('resources/sass/app.scss', 'public/css');
-
+    .sass('resources/sass/app.scss', 'public/css')
+    .webpackConfig({
+        resolve: {
+           extensions: ['.js', '.vue', '.json'],
+           alias: {
+              'laracasts/flash': path.resolve(__dirname, 'node_modules/laracasts/flash/src/Flash.js')
+           }
+        }
+     });
 mix.browserSync('127.0.0.1:8000');

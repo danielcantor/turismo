@@ -3,9 +3,6 @@
       <div class="card" style="width: 320px;">
         <div class="card-body">
           <h5 class="card-title">Iniciar sesión</h5>
-          <div v-if="flashMessage" :class="flashMessageClass" class="alert alert-dismissible">
-            {{ flashMessage }}
-          </div>
           <form @submit.prevent="handleSubmit">
             <div class="form-group">
               <label for="email">Email</label>
@@ -55,7 +52,7 @@
                         title: 'Success!',
                         text: 'Login successful. Redirecting...',
                         icon: 'success',
-                        timer: 2000, // Adjust the duration as needed
+                        timer: 2000,
                         showConfirmButton: false
                     })
                 }else if(response.data.message == "inv"){
@@ -63,7 +60,7 @@
                         title: 'Error!',
                         text: 'Error...',
                         icon: 'error',
-                        timer: 2000, // Adjust the duration as needed
+                        timer: 2000,
                         showConfirmButton: false
                     })
                 }

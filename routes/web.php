@@ -23,6 +23,9 @@ Route::get('/crearProducto', function () {
 Route::get('/login', function(){
     return view('users.login');
 });
+Route::get('/register', function(){
+    return view('users.register');
+});
 Route::post('/productos', [ProductController::class, 'store'])->name('productos.store');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::resource('/productos', ProductController::class);

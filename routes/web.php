@@ -17,6 +17,7 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('index');
 });
+
 Route::get('/crearProducto', function () {
     return view('productos.create');
 });
@@ -26,8 +27,19 @@ Route::get('/login', function(){
 Route::get('/register', function(){
     return view('users.register');
 });
+
 Route::post('/productos', [ProductController::class, 'store'])->name('productos.store');
 Route::post('/login', [UserController::class, 'login'])->name('login');
+
+Route::get('/nosotros', function () {
+    return view('nosotros');
+});
+Route::get('/turismo', function () {
+    return view('turismo');
+});
+Route::get('/contacto', function () {
+    return view('contacto');
+});
 Route::resource('/productos', ProductController::class);
 //Route::get('/productos/modificar', [ProductController::class, 'modificar'])->name('productos.modificar');
 //Route::delete('/productos/{id}', 'ProductosController@destroy')->name('productos.destroy');

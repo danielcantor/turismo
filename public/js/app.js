@@ -5520,7 +5520,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {}
@@ -34669,10 +34668,6 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("p", { staticClass: "align-middle fw-light mb-0" }, [
             _vm._v("PV-2023-87417235-APN-DRAV#MTYD "),
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "align-middle fw-light mb-0" }, [
-            _vm._v("EVT - Leg 14.641 - Disp 102/2011"),
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "align-middle fw-light mb-0" }, [

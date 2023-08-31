@@ -41,7 +41,6 @@
                 <hr>
                 <p class=" mb-0 fw-light">Cynthia Garske </p>
                 <p class="align-middle fw-light mb-0">PV-2023-87417235-APN-DRAV#MTYD </p>
-                <p class="align-middle fw-light mb-0">EVT - Leg 14.641 - Disp 102/2011</p>
                 <p class="align-middle fw-light mb-0"> Si necesita hacer un reclamo puede hacerlo ingresando <a class="text-decoration-none text-info" href="https://www.argentina.gob.ar/servicio/presentar-una-denuncia-contra-una-agencia-de-viajes" target="_blank" rel="noopener noreferrer">aca</a> </p>
                 <p class="align-middle fw-light mb-0"><a href="https://www.argentina.gob.ar/economia/comercio/defensadelconsumidor" target="_blank" rel="noopener noreferrer">Dirección Nacional de Defensa del Consumidor</a></p>
                 <p class="align-middle fw-light mb-0"><a href="https://autogestion.produccion.gob.ar/consumidores" target="_blank" rel="noopener noreferrer">Defensa de las y los Consumidores. Para reclamos ingrese aquí</a></p>

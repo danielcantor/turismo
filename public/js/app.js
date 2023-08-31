@@ -5518,6 +5518,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {}
@@ -34668,25 +34671,75 @@ var staticRenderFns = [
             _vm._v("PV-2023-87417235-APN-DRAV#MTYD "),
           ]),
           _vm._v(" "),
-          _c(
-            "p",
-            { staticClass: "list-group-item mb-0 align-middle fw-light" },
-            [
-              _vm._v(" Si necesita hacer un reclamo puede hacerlo ingresando "),
-              _c(
-                "a",
-                {
-                  staticClass: "text-decoration-none text-light",
-                  attrs: {
-                    href: "https://www.argentina.gob.ar/servicio/presentar-una-denuncia-contra-una-agencia-de-viajes",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                  },
+          _c("p", { staticClass: "align-middle fw-light mb-0" }, [
+            _vm._v("EVT - Leg 14.641 - Disp 102/2011"),
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "align-middle fw-light mb-0" }, [
+            _vm._v(" Si necesita hacer un reclamo puede hacerlo ingresando "),
+            _c(
+              "a",
+              {
+                staticClass: "text-decoration-none text-info",
+                attrs: {
+                  href: "https://www.argentina.gob.ar/servicio/presentar-una-denuncia-contra-una-agencia-de-viajes",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
                 },
-                [_vm._v("aca")]
-              ),
-            ]
-          ),
+              },
+              [_vm._v("aca")]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "align-middle fw-light mb-0" }, [
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "https://www.argentina.gob.ar/economia/comercio/defensadelconsumidor",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                },
+              },
+              [_vm._v("Dirección Nacional de Defensa del Consumidor")]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "align-middle fw-light mb-0" }, [
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "https://autogestion.produccion.gob.ar/consumidores",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                },
+              },
+              [
+                _vm._v(
+                  "Defensa de las y los Consumidores. Para reclamos ingrese aquí"
+                ),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "align-middle fw-light mb-0" }, [
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "https://buenosaires.gob.ar/defensaconsumidor/direccion-general",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                },
+              },
+              [
+                _vm._v(
+                  "Dirección General de Defensa y Protección al Consumidor"
+                ),
+              ]
+            ),
+          ]),
         ]),
       ]),
     ])

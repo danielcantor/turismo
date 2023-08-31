@@ -9,13 +9,15 @@ import ProductoComponent from './components/productos/Producto.vue';
 import LoginComponent from './components/users/Login.vue';
 import RegisterComponent from './components/users/Register.vue';
 import ItemComponent from './components/main/Item.vue';
+import ContactoComponent from './components/contact/Index.vue';
 Vue.component('index-component', IndexComponent);
 Vue.component('header-component', HeaderComponent);
 Vue.component('footer-component', FooterComponent);
 Vue.component('producto-component', ProductoComponent);
 Vue.component('login-component', LoginComponent);
 Vue.component('register-component', RegisterComponent);
-Vue.component('item-component', ItemComponent);
+Vue.component('item', ItemComponent);
+Vue.component('contacto-component', ContactoComponent);
 const app = new Vue({
     el: '#app',
 });

@@ -10,7 +10,7 @@
 <body>
     <div id="app">
         <header-component></header-component>
-
+        <contacto-component></contacto-component>
         <footer-component></footer-component>    
     </div>
     

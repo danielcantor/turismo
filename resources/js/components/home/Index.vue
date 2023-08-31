@@ -11,18 +11,23 @@
             <div class="row justify-content-center">
                 <div class="col-12 mb-5">
                     <h4 class="text-center lh-1" style="color:#2e005d"> 
-                        <p class='mb-0' style="font-family:cherolinaregular;font-size:3.9rem;">Programas</p> 
-                        <p class="fw-bolder" style="font-family:poppins;font-size:3.3rem;">Destacados</p> 
+                        <p class="fw-bolder" style="font-family:poppins;font-size:3.3rem;">Destinos</p> 
                     </h4>
                 </div>
                 <div class="col-12 col-xl-3 col-md-4 text-center">
-                    <a href="#"><img src="/img/home/nacio.jpg" class="p-3 border" alt=""></a>    
+                    <a href="#"><img src="/img/home/escapadas.jpg" class="p-3 border" alt=""></a>    
                 </div>
                 <div class="col-12 col-xl-3 col-md-4 text-center">
-                    <a href="#"><img src="/img/home/inter.jpg" class="p-3 border" alt=""></a>   
+                    <a href="#"><img src="/img/home/nacio.jpg" class="p-3 border" alt=""></a>   
                 </div>
                 <div class="col-12 col-xl-3 col-md-4 text-center">
-                    <a href="#"><img src="/img/home/pasaj.jpg" class="p-3 border" alt=""></a>  
+                    <a href="#"><img src="/img/home/inter.jpg" class="p-3 border" alt=""></a>  
+                </div>
+                <div class="col-12 col-xl-3 col-md-4 text-center">
+                    <a href="#"><img src="/img/home/micro.jpg" class="p-3 border" alt=""></a>    
+                </div>
+                <div class="col-12 col-xl-3 col-md-4 text-center">
+                    <a href="#"><img src="/img/home/aereos.jpg" class="p-3 border" alt=""></a>   
                 </div>
             </div>
         </div>

@@ -49,6 +49,9 @@
 </footer>
 </template>
 <style>
+    #whatsapp{
+        width: 100px;
+    }
     svg{
         color: #ffffff;
         width: 80px;

@@ -34709,10 +34709,12 @@ var staticRenderFns = [
         [
           _c("div", { staticClass: "carousel-inner" }, [
             _c("div", { staticClass: "carousel-item active" }, [
-              _c("img", {
-                staticClass: "d-block w-100",
-                attrs: { src: "/img/home/contactanos-home.jpg", alt: "" },
-              }),
+              _c("a", { attrs: { href: "/contacto" } }, [
+                _c("img", {
+                  staticClass: "d-block w-100",
+                  attrs: { src: "/img/home/contactanos-home.jpg", alt: "" },
+                }),
+              ]),
             ]),
           ]),
         ]

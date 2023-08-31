@@ -5430,8 +5430,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {}
@@ -33948,7 +33946,7 @@ var staticRenderFns = [
             _c("div", { staticClass: "carousel-item active" }, [
               _c("img", {
                 staticClass: "d-block w-100",
-                attrs: { src: "/img/home/banner.jpg", alt: "" },
+                attrs: { src: "/img/home/portada.png", alt: "" },
               }),
             ]),
           ]),
@@ -34070,7 +34068,7 @@ var staticRenderFns = [
                     },
                     [
                       _vm._v(
-                        "\n                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis labore corporis doloribus doloremque dolor et, \n                            unde illum ducimus ipsum incidunt? Nemo laborum, nisi totam quidem doloribus culpa quod consequuntur fugiat! Lorem ipsum, \n                            dolor sit amet consectetur adipisicing elit. Rem asperiores sed vero quidem necessitatibus ratione perspiciatis aperiam nemo magnam mollitia, corporis expedita illum libero voluptates? Repellendus consectetur dolores cum laborum? \n                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae aliquam tempore consequuntur velit cum minima at veniam nobis odio! Quidem sunt assumenda laboriosam eaque ipsum cupiditate totam odit impedit possimus?\n                        "
+                        "\n                            Somos a una empresa familiar y profesional dedicados a cumplir los sueños de nuestros pasajeros, en cada viaje brindamos una óptima calidad de servicio tratando de cumplir con las expectativas de cada uno de los que confía en nuestro trabajo.\n                            Agradecemos infinitamente a quienes estuvieron a nuestro lado durante tantos años de trabajo, apoyándonos para que hoy en día podamos nosotros cumplir nuestro sueño!                            \n                        "
                       ),
                     ]
                   ),
@@ -34636,7 +34634,7 @@ var staticRenderFns = [
                 _c("img", {
                   attrs: { src: "/img/icons/mail.svg", width: "6.5%" },
                 }),
-                _vm._v(" novairesturismo@gmail.com"),
+                _vm._v(" cynthiaedithgarske@gmail.com "),
               ]
             ),
           ]),

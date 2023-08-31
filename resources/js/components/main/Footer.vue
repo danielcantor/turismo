@@ -28,7 +28,7 @@
                 <h5 class='fw-bold'>Contacto</h5>
                 <ul class='ps-0'>
                     <li class="list-group-item mt-3 align-middle fw-light"><img src="/img/icons/cel.svg" width='6.5%'> +54 9 11 3413-8037</li>
-                    <li class="list-group-item mt-4 align-middle fw-light"><img src="/img/icons/mail.svg" width='6.5%'> novairesturismo@gmail.com</li>
+                    <li class="list-group-item mt-4 align-middle fw-light"><img src="/img/icons/mail.svg" width='6.5%'> cynthiaedithgarske@gmail.com </li>
                 </ul>
             </div>
             <div class="col-xl-4 col-6 text-light">

@@ -7,16 +7,43 @@
                 </div>
             </div>
         </div>
-        <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-5">
-                    <h4 class="text-left title-custom border-custom-2 lh-1"> 
-                        <p class=' mb-0' style="font-family:cherolinaregular;font-size:3.4rem;">Comunicate con</p> 
+        <div class="container my-5 py-5">
+            <div class="row justify-content-center text-md-start text-sm-center">
+                <div class="col-md-5 col-12">
+                    <h4 class=" title-custom border-custom-2 lh-1"> 
+                        <p class='mb-0' style="font-family:cherolinaregular;font-size:3.4rem;">Comunicate con</p> 
                         <p class="fw-bolder" style="font-family:poppins;font-size:3.5rem;">Nosotros</p> 
                     </h4>
-                    <p class="text-left">Llena nuestro formulario, nos pondremos en cotacto a la brevedad.</p>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <p class="fw-bolder mb-2" style="font-family:poppins;">Email</p>
+                                <p>cynthiaedithgarske@gmail.com</p> 
+
+                                <p class="fw-bolder" style="font-family:poppins;">Siguenos en redes sociales</p>
+                                <p> 
+                                    <a href="#" class="px-2">
+                                        <i class="fa-brands fa-square-facebook fa-2x" style="color: #276ee7;"></i>
+                                    </a> 
+                                    <a href="#">
+                                        <i class="fa-brands fa-instagram fa-2x" style="color: #8640bf;"></i>
+                                    </a> 
+                                </p> 
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <p class="fw-bolder mb-2" style="font-family:poppins;">Consultas por Whatsapp</p>
+                                <p><a href="#" class="btn w-50" style="color:white; background-color: #25d366;">Mensaje <i class="fa-brands fa-whatsapp fa-sm" style="color: white;"></i></a></p> 
+                            </div>
+                            <hr class="col-12">
+                            <div class="col-12">
+                                <p class="fw-bolder mb-0" style="font-family:poppins;">Telefono de contacto</p>
+                                <p>+54 9 11 3413-8037</p> 
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-7">
+                <div class="col-md-7 col-12">
                     <form>
                         <div class="mb-3">
                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre Completo">
@@ -31,10 +58,9 @@
                             <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="mensaje"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Enviar</button>
-                      </form>
+                    </form>
                 </div>   
                 </div>
-            </div>
         </div>
     </section>
 </template>

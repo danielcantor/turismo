@@ -112,4 +112,18 @@ class ProductController extends Controller
 
         return view('productos.modificar', compact('products'));
     }
+   // use App\Models\Product; // Asegúrate de importar el modelo de Producto adecuadamente
+
+   public function show_product($id)
+   {
+       $product = Product::find($id);
+   
+       if (!$product) {
+           abort(404);
+       }
+   
+       return view('productos.store_product', compact('product'));
+   }
+   
+    
 }

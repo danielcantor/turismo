@@ -29,6 +29,7 @@ Route::get('/register', function(){
 });
 
 Route::post('/productos', [ProductController::class, 'store'])->name('productos.store');
+Route::get('/productos/info/{id}', [ProductController::class, 'show_product']);
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
 Route::get('/nosotros', function () {

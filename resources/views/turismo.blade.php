@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     <link rel="stylesheet" href="{{ url('/css/all.min.css') }}">
-    <title>{{isset($pageName) ? $pageName :'Destinos'}}</title>
+    <title>{{ $pageName }}</title>
 </head>
 <body>
     <div id="app">

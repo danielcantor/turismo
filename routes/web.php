@@ -34,11 +34,16 @@ Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/nosotros', function () {
     return view('nosotros');
 });
-Route::get('/turismo', function () {
-    return view('turismo');
-});
 Route::get('/contacto', function () {
     return view('contacto');
+});
+Route::prefix('destinos')->group(function () {
+    Route::get('/nacional', function () {
+        return view('turismo');
+    });
+    Route::get('/internacional', function () {
+        return view('turismo.internacional');
+    });
 });
 Route::resource('/productos', ProductController::class);
 //Route::get('/productos/modificar', [ProductController::class, 'modificar'])->name('productos.modificar');

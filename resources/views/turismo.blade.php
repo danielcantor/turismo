@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     <link rel="stylesheet" href="{{ url('/css/fontawesome.min.css') }}">
-    <title>Turismo Nacional</title>
+    <title>{{isset($pageName) ? $pageName :'Destinos'}}</title>
 </head>
 <body>
     <div id="app">
         <header-component></header-component>
-
+        <turismo-component></turismo-component>
         <footer-component></footer-component>    
     </div>
     

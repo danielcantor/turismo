@@ -1,12 +1,6 @@
 <template>
     <section>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/img/home/portada.png"  class='d-block w-100' alt="">
-                </div>
-            </div>
-        </div>
+        <Slider :imageUrl="'/img/home/portada.png'"/>
         <div class="container my-5">
             <div class="row justify-content-center">
                 <div class="col-12 mb-5">
@@ -80,11 +74,12 @@
 <script>
     import VueSlickCarousel from 'vue-slick-carousel'
     import Item from '../main/Item.vue';
+    import Slider from '../main/Slider.vue';
     import 'vue-slick-carousel/dist/vue-slick-carousel.css'
     // optional style for arrows & dots
     import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
     export default {
-        components: { VueSlickCarousel , Item },
+        components: { VueSlickCarousel , Item , Slider },
         data() {
             return {
                 settings: {

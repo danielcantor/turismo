@@ -26,6 +26,24 @@
     </style>
 </head>
 <body>
+    @php
+        // SDK de Mercado Pago
+        require base_path('/vendor/autoload.php');
+        // Agrega credenciales
+        MercadoPago\SDK::setAccessToken('TEST-7177899704829740-091014-c2e3f1f44f0a0395a6dd829ecb0effe1-1050379468');
+        
+
+        // Crea un objeto de preferencia
+        $preference = new MercadoPago\Preference();
+
+        // Crea un ítem en la preferencia
+        $item = new MercadoPago\Item();
+        $item->title = "".$product->product_name."";
+        $item->quantity = 1;
+        $item->unit_price = $product->product_price;
+        $preference->items = array($item);
+        $preference->save();
+    @endphp
     <div id="app">
         <header-component></header-component>
         <div class="container" style="display: flex; justify-content: space-between;">
@@ -49,15 +67,15 @@
 
                 </div>
             </div>
-            <div class="col-md-2 card" style="background-color: rgba(255, 127, 80, 0.521); margin-top: 30px; margin-bottom: 30px;">
+            <div class="col-md-2 card" style="background-color: rgba(255, 127, 80, 0.521); margin-top: 30px; margin-bottom: 30px; width: fit-content;">
                 <img src="{{ asset('storage/' . $product->product_image) }}" style="width: 100%; height: 100%;">
                 <div class="card-body">
-                    <p class="text-light" style="color:#2e005d">AHORA</p>
                     <div class="price text-light text-decoration-none">
                         <p>$ {{$product->product_price}}</p>
                     </div>
                     <hr>
                     <button class="btn btn-success" style="border-radius: 10px; width: 100%; height: 20%; font-family: fantasy;">AGREGAR</button>
+                    <div id="wallet_container"></div>
                     <hr>
                     <div class="contacto text-center">
                         <p>¿Tenés alguna consulta?</p>
@@ -72,7 +90,18 @@
     </div>
     
     <script src="{{ mix('js/app.js') }}"></script>   
-    
+
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script>
+        const mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
+        const bricksBuilder = mp.bricks();
+        mp.bricks().create("wallet", "wallet_container", {
+        initialization: {
+            preferenceId: "{{ $preference->id }}",
+        },
+        });
+
+    </script>
 
 </body>
 </html>

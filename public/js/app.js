@@ -5346,6 +5346,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {}
@@ -5364,6 +5371,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5632,8 +5644,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      currentPage: window.location.pathname
+    };
+  },
   mounted: function mounted() {
     var scrollpos = window.scrollY;
     var header = document.getElementById("navbar");
@@ -34087,6 +34113,44 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "container my-5" }, [
         _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-5" }, [
+            _c(
+              "h4",
+              { staticClass: "text-left title-custom border-custom-2 lh-1" },
+              [
+                _c(
+                  "p",
+                  {
+                    staticClass: "mb-0",
+                    staticStyle: {
+                      "font-family": "cherolinaregular",
+                      "font-size": "3.4rem",
+                    },
+                  },
+                  [_vm._v("Comunicate con")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    staticClass: "fw-bolder",
+                    staticStyle: {
+                      "font-family": "poppins",
+                      "font-size": "3.5rem",
+                    },
+                  },
+                  [_vm._v("Nosotros")]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-left" }, [
+              _vm._v(
+                "Llena nuestro formulario, nos pondremos en cotacto a la brevedad."
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "col-7" }, [
             _c("form", [
               _c("div", { staticClass: "mb-3" }, [
@@ -34365,6 +34429,29 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "container my-5" }, [
         _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-12 mb-3" }, [
+            _c(
+              "h4",
+              {
+                staticClass: "text-center lh-1",
+                staticStyle: { color: "#2e005d" },
+              },
+              [
+                _c(
+                  "p",
+                  {
+                    staticClass: "fw-bolder",
+                    staticStyle: {
+                      "font-family": "poppins",
+                      "font-size": "3.3rem",
+                    },
+                  },
+                  [_vm._v("Salidas")]
+                ),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "col-xl-3 col-6 col-md-4 p-3" }, [
             _c("div", { staticClass: "card rounded-0" }, [
               _c("img", {
@@ -35016,140 +35103,209 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "nav",
+    {
+      staticClass: "navbar bg-light navbar-expand-xl py-4",
+      staticStyle: { "background-color": "#f6f6f6" },
+      attrs: { id: "navbar" },
+    },
+    [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "offcanvas offcanvas-end",
+            attrs: {
+              tabindex: "-1",
+              id: "offcanvasNavbar",
+              "aria-labelledby": "offcanvasNavbarLabel",
+            },
+          },
+          [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "offcanvas-body" }, [
+              _c(
+                "ul",
+                { staticClass: "navbar-nav justify-content-end flex-grow-1" },
+                [
+                  _c("li", { staticClass: "nav-item mx-0 mx-xl-2" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        class: _vm.currentPage == "/" ? "active" : " ",
+                        attrs: { "aria-current": "page", href: "/" },
+                      },
+                      [_vm._v("Inicio")]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item mx-0 mx-xl-2" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        class: _vm.currentPage == "/nosotros" ? "active" : " ",
+                        attrs: { href: "/nosotros" },
+                      },
+                      [_vm._v("Nosotros")]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item mx-0 mx-xl-2" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        class: _vm.currentPage == "/contacto" ? "active" : " ",
+                        attrs: { href: "/contacto" },
+                      },
+                      [_vm._v("Contacto")]
+                    ),
+                  ]),
+                ]
+              ),
+            ]),
+          ]
+        ),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "navbar-brand w-25", attrs: { href: "#" } }, [
+      _c("img", { attrs: { src: "img/logo.png", width: "35%", alt: "" } }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
-      "nav",
+      "button",
       {
-        staticClass: "navbar bg-light navbar-expand-xl py-4",
-        staticStyle: { "background-color": "#f6f6f6" },
-        attrs: { id: "navbar" },
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-bs-toggle": "offcanvas",
+          "data-bs-target": "#offcanvasNavbar",
+          "aria-controls": "offcanvasNavbar",
+        },
       },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c("a", { staticClass: "navbar-brand w-25", attrs: { href: "#" } }, [
-            _c("img", {
-              attrs: { src: "img/logo.png", width: "35%", alt: "" },
-            }),
-          ]),
-          _vm._v(" "),
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "offcanvas-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "offcanvas-title",
+          attrs: { id: "offcanvasNavbarLabel" },
+        },
+        [_vm._v("Salidas grupales")]
+      ),
+      _vm._v(" "),
+      _c("button", {
+        staticClass: "btn-close",
+        attrs: {
+          type: "button",
+          "data-bs-dismiss": "offcanvas",
+          "aria-label": "Close",
+        },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item dropdown" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link dropdown-toggle",
+          attrs: {
+            href: "#",
+            role: "button",
+            "data-bs-toggle": "dropdown",
+            "aria-expanded": "false",
+          },
+        },
+        [_vm._v("\n              Destinos\n            ")]
+      ),
+      _vm._v(" "),
+      _c("ul", { staticClass: "dropdown-menu" }, [
+        _c("li", [
           _c(
-            "button",
-            {
-              staticClass: "navbar-toggler",
-              attrs: {
-                type: "button",
-                "data-bs-toggle": "offcanvas",
-                "data-bs-target": "#offcanvasNavbar",
-                "aria-controls": "offcanvasNavbar",
-              },
-            },
-            [_c("span", { staticClass: "navbar-toggler-icon" })]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "offcanvas offcanvas-end",
-              attrs: {
-                tabindex: "-1",
-                id: "offcanvasNavbar",
-                "aria-labelledby": "offcanvasNavbarLabel",
-              },
-            },
-            [
-              _c("div", { staticClass: "offcanvas-header" }, [
-                _c(
-                  "h5",
-                  {
-                    staticClass: "offcanvas-title",
-                    attrs: { id: "offcanvasNavbarLabel" },
-                  },
-                  [_vm._v("Salidas grupales")]
-                ),
-                _vm._v(" "),
-                _c("button", {
-                  staticClass: "btn-close",
-                  attrs: {
-                    type: "button",
-                    "data-bs-dismiss": "offcanvas",
-                    "aria-label": "Close",
-                  },
-                }),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "offcanvas-body" }, [
-                _c(
-                  "ul",
-                  { staticClass: "navbar-nav justify-content-end flex-grow-1" },
-                  [
-                    _c("li", { staticClass: "nav-item mx-0 mx-xl-2" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link active",
-                          attrs: { "aria-current": "page", href: "/" },
-                        },
-                        [_vm._v("Inicio")]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item mx-0 mx-xl-2" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "/nosotros" },
-                        },
-                        [_vm._v("Nosotros")]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item mx-0 mx-xl-2" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "/turismo" },
-                        },
-                        [_vm._v("Turismo Nacional")]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item mx-0 mx-xl-2" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "/turismo" },
-                        },
-                        [_vm._v("Turismo Internacional")]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item mx-0 mx-xl-2" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "/contacto" },
-                        },
-                        [_vm._v("Contacto")]
-                      ),
-                    ]),
-                  ]
-                ),
-              ]),
-            ]
+            "a",
+            { staticClass: "dropdown-item", attrs: { href: "/turismo" } },
+            [_vm._v("Turismo Nacional")]
           ),
         ]),
-      ]
-    )
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            { staticClass: "dropdown-item", attrs: { href: "/turismo" } },
+            [_vm._v("Turismo Internacional")]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            { staticClass: "dropdown-item", attrs: { href: "/turismo" } },
+            [_vm._v("Escapadas")]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            { staticClass: "dropdown-item", attrs: { href: "/turismo" } },
+            [_vm._v("Pasajes Aereos")]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            { staticClass: "dropdown-item", attrs: { href: "/turismo" } },
+            [_vm._v("Findes largos")]
+          ),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item mx-0 mx-xl-2" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "#", target: "_blank" } },
+        [_vm._v("Pasajes en Micro")]
+      ),
+    ])
   },
 ]
 render._withStripped = true

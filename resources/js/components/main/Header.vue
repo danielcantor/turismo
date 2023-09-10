@@ -16,19 +16,28 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1">
             <li class="nav-item mx-0 mx-xl-2">
-                <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                <a class="nav-link" :class="currentPage == '/' ? 'active' : ' '" aria-current="page" href="/">Inicio</a>
             </li>
             <li class="nav-item mx-0 mx-xl-2">
-                <a class="nav-link" href="/nosotros">Nosotros</a>
+                <a class="nav-link" :class="currentPage == '/nosotros' ? 'active' : ' '" href="/nosotros">Nosotros</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Destinos
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/turismo">Turismo Nacional</a></li>
+                <li><a class="dropdown-item" href="/turismo">Turismo Internacional</a></li>
+                <li><a class="dropdown-item" href="/turismo">Escapadas</a></li>
+                <li><a class="dropdown-item" href="/turismo">Pasajes Aereos</a></li>
+                <li><a class="dropdown-item" href="/turismo">Findes largos</a></li>
+              </ul>
             </li>
             <li class="nav-item mx-0 mx-xl-2">
-                <a class="nav-link" href="/turismo">Turismo Nacional</a>
+                <a class="nav-link" href="#" target="_blank">Pasajes en Micro</a>
             </li>
             <li class="nav-item mx-0 mx-xl-2">
-                <a class="nav-link" href="/turismo">Turismo Internacional</a>
-            </li>
-            <li class="nav-item mx-0 mx-xl-2">
-                <a class="nav-link" href="/contacto">Contacto</a>
+                <a class="nav-link" :class="currentPage == '/contacto' ? 'active' : ' '" href="/contacto" >Contacto</a>
             </li>
           </ul>
         </div>
@@ -40,9 +49,14 @@
 <script>
 
 export default {
+  data() {
+    return {
+      currentPage: window.location.pathname
+    };
+  },
   mounted() {
     let scrollpos = window.scrollY
-
+    
     const header = document.getElementById("navbar");
     const scrollChange = 240;
 

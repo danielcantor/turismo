@@ -55,6 +55,11 @@
         </div>
         <div class="container my-5">
             <div class="row justify-content-center">
+                <div class="col-12 mb-3">
+                    <h4 class="text-center lh-1" style="color:#2e005d"> 
+                        <p class="fw-bolder" style="font-family:poppins;font-size:3.3rem;">Salidas</p> 
+                    </h4>
+                </div>
                 <div class="col-xl-3 col-6 col-md-4 p-3">
                     <div class="card rounded-0">
                         <img src="img/home/ninos.png" class="px-3 pt-3 rounded-0" >

@@ -14,7 +14,7 @@ class DestinoController extends Controller
         return view('turismo')->with([
             'items' => $products,
             'pageName' => 'Destinos Nacionales',
-            'imageUrl' => 'asdasdsad'
+            'imageUrl' => '/img/home/Turismo-nacional-banner.jpg'
         ]);
     }
     public function internacional(): View
@@ -24,7 +24,7 @@ class DestinoController extends Controller
         return view('turismo')->with([
             'items'=> $products,
             'pageName' => 'Destinos Internacionales',
-            'imageUrl' => 'asdasd'
+            'imageUrl' => '/img/home/Turismo-internacional-banner.jpg'
         ]);
     }
 }

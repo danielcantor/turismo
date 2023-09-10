@@ -1,6 +1,6 @@
 <template>
     <section>
-        <Slider :imageUrl="'/img/home/baner-nosotros.jpg'"/>
+        <Slider :imageUrl="imageUrl"/>
         <div class="py-5" style="background-color: #f6f6f6;">
             <div class="container mt-5">
                 <div class="row justify-content-center">
@@ -30,10 +30,11 @@
     import Item from '../main/Item.vue';
     export default {      
         components: { Slider , Item},  
-        props: {
-            imageUrl: String,
-            products: JSON,
-            
+        data(){
+            return {
+                products: window.posts,
+                imageUrl : window.imageUrl
+            }
         },
         mounted() {
             

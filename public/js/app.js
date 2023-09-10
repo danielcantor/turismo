@@ -5923,9 +5923,11 @@ __webpack_require__.r(__webpack_exports__);
     Slider: _main_Slider_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Item: _main_Item_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: {
-    imageUrl: String,
-    products: JSON
+  data: function data() {
+    return {
+      products: window.posts,
+      imageUrl: window.imageUrl
+    };
   },
   mounted: function mounted() {}
 });
@@ -35449,7 +35451,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("a", { staticClass: "navbar-brand w-25", attrs: { href: "#" } }, [
-      _c("img", { attrs: { src: "img/logo.png", width: "35%", alt: "" } }),
+      _c("img", { attrs: { src: "/img/logo.png", width: "35%", alt: "" } }),
     ])
   },
   function () {
@@ -35999,7 +36001,7 @@ var render = function () {
   return _c(
     "section",
     [
-      _c("Slider", { attrs: { imageUrl: "/img/home/baner-nosotros.jpg" } }),
+      _c("Slider", { attrs: { imageUrl: _vm.imageUrl } }),
       _vm._v(" "),
       _vm._m(0),
     ],

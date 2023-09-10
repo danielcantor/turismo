@@ -2,7 +2,7 @@
   <nav class="navbar bg-light navbar-expand-xl py-4" style="background-color:#f6f6f6" id="navbar">
     <div class="container">
       <a class="navbar-brand w-25" href="#">
-        <img src="img/logo.png" width="35%" alt="">
+        <img src="/img/logo.png" width="35%" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar">

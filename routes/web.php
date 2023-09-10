@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DestinoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,13 +39,11 @@ Route::get('/nosotros', function () {
 Route::get('/contacto', function () {
     return view('contacto');
 });
-Route::prefix('destinos')->group(function () {
-    Route::get('/nacional', function () {
-        return view('turismo');
-    });
-    Route::get('/internacional', function () {
-        return view('turismo.internacional');
-    });
+Route::controller(DestinoController::class)->group(function () {
+    Route::prefix('destinos')->group(function () {
+        Route::get('/nacional', 'nacional');
+        Route::get('/internacional', 'internacional');
+    });    
 });
 Route::resource('/productos', ProductController::class);
 //Route::get('/productos/modificar', [ProductController::class, 'modificar'])->name('productos.modificar');

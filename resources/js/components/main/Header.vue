@@ -27,7 +27,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/destinos/nacional">Turismo Nacional</a></li>
-                <li><a class="dropdown-item" href="/destinos/inernacional">Turismo Internacional</a></li>
+                <li><a class="dropdown-item" href="/destinos/internacional">Turismo Internacional</a></li>
                 <li><a class="dropdown-item" href="/destinos/escapada">Escapadas</a></li>
                 <li><a class="dropdown-item" href="/destinos/aereo">Pasajes Aereos</a></li>
                 <li><a class="dropdown-item" href="/destinos/finde">Findes largos</a></li>

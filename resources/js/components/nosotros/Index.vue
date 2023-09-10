@@ -29,9 +29,10 @@
     import Slider from '../main/Slider.vue';
 
     export default {      
-        components: { Slider },  
+    components: { Slider },  
         mounted() {
-            }
+        
         }
-    </script>
+    }
+</script>
     

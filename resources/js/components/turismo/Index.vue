@@ -27,11 +27,17 @@
     
     <script>
     import Slider from '../main/Slider.vue';
-
+    import Item from '../main/Item.vue';
     export default {      
-        components: { Slider },  
+        components: { Slider , Item},  
+        props: {
+            imageUrl: String,
+            products: JSON,
+            
+        },
         mounted() {
-            }
+            
+        }
         }
     </script>
     

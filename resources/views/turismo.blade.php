@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         <header-component></header-component>
-        <turismo-component></turismo-component>
+        <turismo-component :items="@json($items)" :imageURL='{{$imageUrl}}'></turismo-component>
         <footer-component></footer-component>    
     </div>
     

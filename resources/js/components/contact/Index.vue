@@ -1,12 +1,6 @@
 <template>
     <section>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/img/baner-contacto.jpg"  class='d-block w-100' alt="">
-                </div>
-            </div>
-        </div>
+        <Slider :imageUrl="'/img/baner-contacto.jpg'"/>
         <div class="container my-5 py-5">
             <div class="row justify-content-center text-md-start text-sm-center">
                 <div class="col-md-5 col-12">
@@ -66,7 +60,10 @@
 </template>
 
 <script>
-    export default {        
+    import Slider from '../main/Slider.vue';
+
+    export default {      
+        components: { Slider },  
         mounted() {
             
         }

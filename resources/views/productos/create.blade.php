@@ -44,6 +44,9 @@
                     <select class="form-control" id="product_type" name="product_type" required>
                         <option value="1">Nacional</option>
                         <option value="2">Internacional</option>
+                        <option value="3">Escapadas</option>
+                        <option value="4">Pasajes Aereos</option>
+                        <option value="5">Findes Largos</option>
                     </select>
                 </div>
                 <br>

@@ -1,12 +1,6 @@
 <template>
     <section>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/img/home/baner-nosotros.jpg"  class='d-block w-100' alt="">
-                </div>
-            </div>
-        </div>
+        <Slider :imageUrl="'/img/home/baner-nosotros.jpg'"/>
         <div class="py-5" style="background-color: #f6f6f6;">
             <div class="container mt-5">
                 <div class="row justify-content-center">
@@ -32,9 +26,13 @@
 </template>
     
     <script>
-        export default {
-            mounted() {
-            }
+    import Slider from '../main/Slider.vue';
+
+    export default {      
+    components: { Slider },  
+        mounted() {
+        
         }
-    </script>
+    }
+</script>
     

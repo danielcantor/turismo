@@ -22,15 +22,15 @@
                 <a class="nav-link" :class="currentPage == '/nosotros' ? 'active' : ' '" href="/nosotros">Nosotros</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" :class="currentPage.indexOf('destinos') > -1 ? 'active' : ' '" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Destinos
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/turismo">Turismo Nacional</a></li>
-                <li><a class="dropdown-item" href="/turismo">Turismo Internacional</a></li>
-                <li><a class="dropdown-item" href="/turismo">Escapadas</a></li>
-                <li><a class="dropdown-item" href="/turismo">Pasajes Aereos</a></li>
-                <li><a class="dropdown-item" href="/turismo">Findes largos</a></li>
+                <li><a class="dropdown-item" href="/destinos/nacional">Turismo Nacional</a></li>
+                <li><a class="dropdown-item" href="/destinos/internacional">Turismo Internacional</a></li>
+                <li><a class="dropdown-item" href="/destinos/escapada">Escapadas</a></li>
+                <li><a class="dropdown-item" href="/destinos/aereo">Pasajes Aereos</a></li>
+                <li><a class="dropdown-item" href="/destinos/finde">Findes largos</a></li>
               </ul>
             </li>
             <li class="nav-item mx-0 mx-xl-2">

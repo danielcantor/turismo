@@ -52,7 +52,6 @@
             <div class="col-md-2 card" style="background-color: rgba(255, 127, 80, 0.521); margin-top: 30px; margin-bottom: 30px;">
                 <img src="{{ asset('storage/' . $product->product_image) }}" style="width: 100%; height: 100%;">
                 <div class="card-body">
-                    <p class="text-light" style="color:#2e005d">AHORA</p>
                     <div class="price text-light text-decoration-none">
                         <p>$ {{$product->product_price}}</p>
                     </div>

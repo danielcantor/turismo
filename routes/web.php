@@ -36,7 +36,7 @@ Route::post('/modificarProducto/{id}', [ProductController::class, 'modificarProd
 Route::post('/activarDesactivarProducto/{id}', [ProductController::class, 'activarDesactivarProducto'])->name('producto.activarDesactivarProducto');
 Route::get('/productos/info/{id}', [ProductController::class, 'show_product']);
 Route::post('/login', [UserController::class, 'login'])->name('login');
-
+Route::post('/registernow', [UserController::class, 'registernow'])->name('registernow');
 Route::get('/nosotros', function () {
     return view('nosotros');
 });

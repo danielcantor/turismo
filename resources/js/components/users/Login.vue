@@ -4,6 +4,7 @@
         <div class="card-body">
           <h5 class="card-title">Iniciar sesión</h5>
           <form @submit.prevent="handleSubmit">
+            <input type="hidden" name="_token" :value="csrfToken">
             <div class="form-group">
               <label for="email">Email</label>
               <input type="email" class="form-control" id="email" v-model="email" required>
@@ -25,7 +26,6 @@
       </div>
     </div>
   </template>
-  
   <script>
   import Swal from 'sweetalert2';
 
@@ -34,44 +34,45 @@
       return {
         email: '',
         password: '',
+        csrfToken: '',
         rememberMe: false,
         flashMessage: '',
         flashMessageClass: ''
       };
     },
+    created(){
+      this.csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    },
     methods: {
-        handleSubmit() {
-            axios.post('/login', {
-                email: this.email,
-                password: this.password,
-                rememberMe: this.rememberMe
-            })
-            .then(response => {
-                if(response.data.message == "ok"){
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Login successful. Redirecting...',
-                        icon: 'success',
-                        timer: 2000,
-                        showConfirmButton: false
-                    })
-                }else if(response.data.message == "inv"){
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Error...',
-                        icon: 'error',
-                        timer: 2000,
-                        showConfirmButton: false
-                    })
-                }
-                
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        }
+      handleSubmit() {
+          const email = this.email;
+          const password = this.password;
 
-    }
+          fetch('/login', {
+              method: 'POST',
+              headers: {
+                  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+              },
+              body: JSON.stringify({
+                  email: email,
+                  password: password
+              })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.message === 'success') {
+                  window.location.href = '/';
+              } else {
+                  alert('Error de inicio de sesión. Verifica tus credenciales.');
+              }
+          })
+          .catch(error => {
+              console.error('Error al iniciar sesión:', error);
+          });
+      }
+  }
   };
   </script>
   

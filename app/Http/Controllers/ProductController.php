@@ -92,7 +92,7 @@ class ProductController extends Controller
         
         return redirect()->route('productos.edit')->with('success','Producto editado correctamente');
     }
-    public function destroy($id)
+    public function eliminar($id)
     {
         $product = Product::findOrFail($id);
         $product->delete();
@@ -112,7 +112,6 @@ class ProductController extends Controller
 
         return view('productos.modificar', compact('products'));
     }
-   // use App\Models\Product; // Asegúrate de importar el modelo de Producto adecuadamente
 
    public function show_product($id)
    {
@@ -124,6 +123,52 @@ class ProductController extends Controller
    
        return view('productos.store_product', compact('product'));
    }
-   
+   public function obtenerProducto($id){
+        $producto = Product::find($id);
+
+        if ($producto) {
+            return response()->json($producto);
+        } else {
+            return response()->json(['error' => 'Producto no encontrado'], 404);
+        }
+    }
     
+    public function modificarProducto(Request $request, $id){
+        $this->validate($request, [
+            'titulo' => 'required|string|max:255',
+            'descripcion' => 'required|string',
+            'tipo' => 'required|in:1,2,3,4,5',
+            'precio' => 'required|numeric',
+        ]);
+
+        $producto = Product::find($id);
+
+        if (!$producto) {
+            return response()->json(['error' => 'Producto no encontrado'], 404);
+        }
+
+        $producto->product_name = $request->input('titulo');
+        $producto->product_description = $request->input('descripcion');
+        $producto->product_type = $request->input('tipo');
+        $producto->product_price = $request->input('precio');
+
+        $producto->save();
+
+        return response()->json(['message' => 'Producto actualizado con éxito']);
+    }
+
+    public function activarDesactivarProducto($id){
+        $producto = Product::find($id);
+
+        if (!$producto) {
+            return response()->json(['error' => 'Producto no encontrado'], 404);
+        }
+
+        $producto->product_activate = $producto->product_activate == 1 ? 0 : 1;
+
+        $producto->save();
+
+        return response()->json(['message' => 'Estado del producto actualizado con éxito']);
+    }
+
 }

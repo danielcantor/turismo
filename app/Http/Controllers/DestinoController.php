@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use App\Models\Product;
 class DestinoController extends Controller
 {
     public function nacional(): View

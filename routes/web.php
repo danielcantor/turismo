@@ -46,9 +46,9 @@ Route::controller(DestinoController::class)->group(function () {
     Route::prefix('destinos')->group(function () {
         Route::get('/nacional', 'nacional');
         Route::get('/internacional', 'internacional');
-        Route::get('/aereo', 'internacional');
-        Route::get('/escapada', 'internacional');
-        Route::get('/finde', 'internacional');
+        Route::get('/aereo', 'aereo');
+        Route::get('/escapada', 'escapada');
+        Route::get('/finde', 'finde');
     });    
 });
 Route::resource('/productos', ProductController::class);

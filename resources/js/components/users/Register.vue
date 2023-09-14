@@ -9,7 +9,7 @@
           </div>
           <div class="form-group">
             <label for="apellido">Apellido</label>
-            <input type="text" id="apellido" v-model="apellido" class="form-control">
+            <input type="text" id="apellido" name="apellido" v-model="apellido" class="form-control">
           </div>
           <div class="form-group">
             <label for="email">Email</label>
@@ -39,36 +39,56 @@
         email: '',
         password: '',
         confirmPassword: '',
+        csrfToken: ''
       };
     },
-    methods: {
-      handleSubmit() {  
-
-        if (this.password !== this.confirmPassword) {
-          alert('Passwords do not match');
-          return;
-        }
-  
-        const registrationData = {
-          name: this.name,
-          apellido: this.apellido,
-          email: this.email,
-          password: this.password,
-        };
-  
-        axios.post('/register', registrationData)
-          .then(response => {
-            if (response.data.message === 'Registration successful') {
-              alert('Registration successful');
-            } else {
-              alert('Registration failed');
-            }
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      },
+    created(){
+      this.csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     },
+    methods: {
+      async handleSubmit() {
+        const name = this.name;
+        const apellido = this.apellido;
+        const email = this.email;
+        const password = this.password;
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        try {
+          const response = await fetch('/registernow', {
+            method: 'POST',
+            headers: {
+              'X-CSRF-TOKEN': csrfToken,
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+              name: name,
+              apellido: apellido,
+              email: email,
+              password: password,
+            }),
+          });
+
+          const responseData = await response.json();
+          if (response.status === 200 && responseData.message === 'Registro exitoso') {
+            alert('Registro exitoso');
+            window.location.href = '/';
+          } else if(responseData.errors && responseData.errors.password){
+            const passwordError = responseData.errors.password[0];
+            alert(passwordError);
+          }else if(responseData.errors && responseData.errors.email){
+            const emailError = responseData.errors.email[0];
+            alert(emailError);
+          }else{
+            alert('Registro fallido');
+          }
+        } catch (error) {
+          console.error('Error en la solicitud de registro:', error);
+        }
+    }
+
+    }
   };
   </script>
   

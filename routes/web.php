@@ -30,9 +30,13 @@ Route::get('/register', function(){
 });
 
 Route::post('/productos', [ProductController::class, 'store'])->name('productos.store');
+Route::delete('/deleteProducto/{id}', [ProductController::class, 'eliminar'])->name('producto.eliminar');
+Route::get('/obtenerProducto/{id}', [ProductController::class, 'obtenerProducto'])->name('producto.obtenerProducto');
+Route::post('/modificarProducto/{id}', [ProductController::class, 'modificarProducto'])->name('producto.modificar');
+Route::post('/activarDesactivarProducto/{id}', [ProductController::class, 'activarDesactivarProducto'])->name('producto.activarDesactivarProducto');
 Route::get('/productos/info/{id}', [ProductController::class, 'show_product']);
 Route::post('/login', [UserController::class, 'login'])->name('login');
-
+Route::post('/registernow', [UserController::class, 'registernow'])->name('registernow');
 Route::get('/nosotros', function () {
     return view('nosotros');
 });
@@ -46,6 +50,3 @@ Route::controller(DestinoController::class)->group(function () {
     });    
 });
 Route::resource('/productos', ProductController::class);
-//Route::get('/productos/modificar', [ProductController::class, 'modificar'])->name('productos.modificar');
-//Route::delete('/productos/{id}', 'ProductosController@destroy')->name('productos.destroy');
-//Route::put('productos/{id}/activar', [ProductController::class, 'activar']);

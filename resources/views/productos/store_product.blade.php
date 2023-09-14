@@ -26,24 +26,6 @@
     </style>
 </head>
 <body>
-    @php
-        // SDK de Mercado Pago
-        require base_path('/vendor/autoload.php');
-        // Agrega credenciales
-        MercadoPago\SDK::setAccessToken('TEST-7177899704829740-091014-c2e3f1f44f0a0395a6dd829ecb0effe1-1050379468');
-        
-
-        // Crea un objeto de preferencia
-        $preference = new MercadoPago\Preference();
-
-        // Crea un ítem en la preferencia
-        $item = new MercadoPago\Item();
-        $item->title = "".$product->product_name."";
-        $item->quantity = 1;
-        $item->unit_price = $product->product_price;
-        $preference->items = array($item);
-        $preference->save();
-    @endphp
     <div id="app">
         <header-component></header-component>
         <div class="container" style="display: flex; justify-content: space-between;">

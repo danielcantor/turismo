@@ -17,9 +17,22 @@
                         </div>
                     </div>
                     <div class="col-xl-6 text-center order-1 order-xl-2">
-                        <img src="img/home/Sobre-nosotros.jpg" alt="" width="75%" class="shadow-image">
+                        <img src="/img/home/Sobre-nosotros.jpg" alt="" width="75%" class="shadow-image">
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="row justify-content-center align-items-center">
+                    <h4 class=" col-12 text-center title-custom ps-3 lh-1"> 
+                        <p class=' mb-0' style="font-family:cherolinaregular;font-size:3.9rem;">Destinos</p> 
+                        <p class="fw-bolder" style="font-family:poppins;font-size:3.5rem;">Nacionales</p> 
+                    </h4>
+                    <div v-if="!products.length" class="col-12 text-center py-5">
+                        <i class="fa-solid fa-triangle-exclamation fa-3x mb-2"></i>
+                        <h4 class="text-center">No hay productos en esta categoria</h4>
+                    </div>
+                    <Item v-for="(product, index) in products" v-bind="product" />
             </div>
         </div>
     </section>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DestinoController;
@@ -15,9 +16,7 @@ use App\Http\Controllers\DestinoController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [IndexController::class, 'index']);
 
 Route::get('/crearProducto', function () {
     return view('productos.create');
@@ -47,6 +46,9 @@ Route::controller(DestinoController::class)->group(function () {
     Route::prefix('destinos')->group(function () {
         Route::get('/nacional', 'nacional');
         Route::get('/internacional', 'internacional');
+        Route::get('/aereo', 'internacional');
+        Route::get('/escapada', 'internacional');
+        Route::get('/finde', 'internacional');
     });    
 });
 Route::resource('/productos', ProductController::class);

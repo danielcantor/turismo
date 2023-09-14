@@ -14,6 +14,9 @@
         <index-component></index-component>
         <footer-component></footer-component>    
     </div>
+    <script>
+        window.posts = @json($products);
+    </script>
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>

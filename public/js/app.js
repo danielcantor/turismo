@@ -5475,6 +5475,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5490,6 +5499,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      products: window.posts,
       settings: {
         "dots": true,
         "infinite": false,
@@ -5733,8 +5743,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['id', 'product_name', 'product_price', 'product_image', 'product_description'],
   mounted: function mounted() {}
 });
 
@@ -5884,6 +5899,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _main_Slider_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../main/Slider.vue */ "./resources/js/components/main/Slider.vue");
 /* harmony import */ var _main_Item_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../main/Item.vue */ "./resources/js/components/main/Item.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6085,7 +6113,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     handleSubmit: function handleSubmit() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var name, apellido, email, password, csrfToken, response, responseData, passwordError;
+        var name, apellido, email, password, csrfToken, response, responseData, passwordError, emailError;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
@@ -6116,28 +6144,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return response.json();
             case 11:
               responseData = _context.sent;
-              console.log(response);
-              console.log(responseData);
               if (response.status === 200 && responseData.message === 'Registro exitoso') {
                 alert('Registro exitoso');
                 window.location.href = '/';
               } else if (responseData.errors && responseData.errors.password) {
                 passwordError = responseData.errors.password[0];
                 alert(passwordError);
+              } else if (responseData.errors && responseData.errors.email) {
+                emailError = responseData.errors.email[0];
+                alert(emailError);
               } else {
                 alert('Registro fallido');
               }
-              _context.next = 20;
+              _context.next = 18;
               break;
-            case 17:
-              _context.prev = 17;
+            case 15:
+              _context.prev = 15;
               _context.t0 = _context["catch"](5);
               console.error('Error en la solicitud de registro:', _context.t0);
-            case 20:
+            case 18:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[5, 17]]);
+        }, _callee, null, [[5, 15]]);
       }))();
     }
   }
@@ -34853,23 +34882,35 @@ var render = function () {
       _vm._m(1),
       _vm._v(" "),
       _c("div", { staticClass: "container my-5" }, [
-        _c(
-          "div",
-          { staticClass: "row justify-content-center" },
-          [
-            _vm._m(2),
-            _vm._v(" "),
-            _c(
-              "VueSlickCarousel",
-              _vm._b({}, "VueSlickCarousel", _vm.settings, false),
-              _vm._l(10, function (n) {
-                return _c("Item", { key: n })
-              }),
-              1
-            ),
-          ],
-          1
-        ),
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          !_vm.products.length
+            ? _c("div", { staticClass: "col-12 text-center py-5" }, [
+                _c("i", {
+                  staticClass: "fa-solid fa-triangle-exclamation fa-3x mb-2",
+                }),
+                _vm._v(" "),
+                _c("h4", { staticClass: "text-center" }, [
+                  _vm._v("No hay productos en esta categoria"),
+                ]),
+              ])
+            : _c(
+                "div",
+                { staticClass: "col-12 text-center py-5" },
+                [
+                  _c(
+                    "VueSlickCarousel",
+                    _vm._b({}, "VueSlickCarousel", _vm.settings, false),
+                    _vm._l(_vm.products, function (product, index) {
+                      return _c("Item", _vm._b({}, "Item", product, false))
+                    }),
+                    1
+                  ),
+                ],
+                1
+              ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div"),
@@ -34941,6 +34982,15 @@ var staticRenderFns = [
             _c("img", {
               staticClass: "p-3 border",
               attrs: { src: "/img/home/micro.jpg", alt: "" },
+            }),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12 col-xl-3 col-md-4 text-center" }, [
+          _c("a", { attrs: { href: "#" } }, [
+            _c("img", {
+              staticClass: "p-3 border",
+              attrs: { src: "/img/home/aereos.jpg", alt: "" },
             }),
           ]),
         ]),
@@ -35630,76 +35680,111 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "col-xl-3 col-6 col-md-4 p-3" }, [
+    _c("div", { staticClass: "card rounded-0" }, [
+      _c("img", {
+        staticClass: "px-3 pt-3 rounded-0",
+        attrs: { src: _vm.product_image },
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "p-0" }, [
+        _c(
+          "h5",
+          {
+            staticClass:
+              "text-center p-3 text-light fs-6 position-absolute start-50 translate-middle w-75",
+            staticStyle: {
+              "background-color": "rgb(150, 131, 236)",
+              "font-family": "'poppins'",
+              "border-color": "rgb(150, 131, 236)",
+            },
+          },
+          [_vm._v(_vm._s(_vm.product_name))]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "text-center mt-5 lh-1 mx-5 fs-1",
+            staticStyle: {
+              border: "1px solid #f18701",
+              "border-top": "0",
+              "border-right": "0",
+              "border-left": "0",
+            },
+          },
+          [
+            _c(
+              "span",
+              {
+                staticClass: "text-uppercase",
+                staticStyle: {
+                  "font-family": "'Raleway', sans-serif",
+                  color: "#2e005d",
+                },
+              },
+              [_vm._v("Desde")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "fw-bolder text-uppercase",
+                staticStyle: { "font-family": "'poppins'", color: "#f18701" },
+              },
+              [_vm._v(_vm._s(_vm.product_price))]
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer text-center border-top-0" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary rounded-0 fw-bolder w-75",
+              staticStyle: {
+                "background-color": "#2e005d",
+                "font-family": "poppins",
+                "border-color": "#2e005d",
+              },
+              attrs: { href: "/productos/info/" + _vm.id },
+            },
+            [
+              _c("img", {
+                attrs: { src: "/img/icons/maleta.svg", width: "10%" },
+              }),
+              _vm._v(" VER PROGRAMA"),
+            ]
+          ),
+        ]),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xl-3 col-6 col-md-4 p-3" }, [
-      _c("div", { staticClass: "card rounded-0" }, [
-        _c("img", {
-          staticClass: "px-3 pt-3 rounded-0",
-          attrs: { src: "img/home/ninos.png" },
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "p-0" }, [
-          _c(
-            "h5",
-            {
-              staticClass:
-                "text-center p-3 text-light fs-6 position-absolute start-50 translate-middle w-75",
-              staticStyle: {
-                "background-color": "rgb(150, 131, 236)",
-                "font-family": "'poppins'",
-                "border-color": "rgb(150, 131, 236)",
-              },
-            },
-            [_vm._v("Republica de los niños")]
-          ),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-center" }, [
-            _c(
-              "span",
-              {
-                staticClass: "fs-6",
-                staticStyle: {
-                  "font-family": "'Raleway', sans-serif",
-                  color: "#2e005d",
-                },
-              },
-              [
-                _c("img", {
-                  attrs: { src: "/img/icons/calendario.svg", width: "5%" },
-                }),
-                _vm._v(" 8 dias , 7 noches"),
-              ]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-footer text-center border-top-0" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-primary rounded-0 fw-bolder w-75",
-                staticStyle: {
-                  "background-color": "#2e005d",
-                  "font-family": "poppins",
-                  "border-color": "#2e005d",
-                },
-                attrs: { href: "#" },
-              },
-              [
-                _c("img", {
-                  attrs: { src: "/img/icons/maleta.svg", width: "10%" },
-                }),
-                _vm._v(" VER PROGRAMA"),
-              ]
-            ),
-          ]),
-        ]),
-      ]),
+    return _c("p", { staticClass: "text-center" }, [
+      _c(
+        "span",
+        {
+          staticClass: "fs-6",
+          staticStyle: {
+            "font-family": "'Raleway', sans-serif",
+            color: "#2e005d",
+          },
+        },
+        [
+          _c("img", {
+            attrs: { src: "/img/icons/calendario.svg", width: "5%" },
+          }),
+          _vm._v(" 8 dias , 7 noches"),
+        ]
+      ),
     ])
   },
 ]
@@ -36013,6 +36098,33 @@ var render = function () {
       _c("Slider", { attrs: { imageUrl: _vm.imageUrl } }),
       _vm._v(" "),
       _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "container py-3" }, [
+        _c(
+          "div",
+          { staticClass: "row justify-content-center align-items-center" },
+          [
+            _vm._m(1),
+            _vm._v(" "),
+            !_vm.products.length
+              ? _c("div", { staticClass: "col-12 text-center py-5" }, [
+                  _c("i", {
+                    staticClass: "fa-solid fa-triangle-exclamation fa-3x mb-2",
+                  }),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "text-center" }, [
+                    _vm._v("No hay productos en esta categoria"),
+                  ]),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.products, function (product, index) {
+              return _c("Item", _vm._b({}, "Item", product, false))
+            }),
+          ],
+          2
+        ),
+      ]),
     ],
     1
   )
@@ -36085,7 +36197,7 @@ var staticRenderFns = [
                 _c("img", {
                   staticClass: "shadow-image",
                   attrs: {
-                    src: "img/home/Sobre-nosotros.jpg",
+                    src: "/img/home/Sobre-nosotros.jpg",
                     alt: "",
                     width: "75%",
                   },
@@ -36094,6 +36206,37 @@ var staticRenderFns = [
             ),
           ]),
         ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "h4",
+      { staticClass: "col-12 text-center title-custom ps-3 lh-1" },
+      [
+        _c(
+          "p",
+          {
+            staticClass: "mb-0",
+            staticStyle: {
+              "font-family": "cherolinaregular",
+              "font-size": "3.9rem",
+            },
+          },
+          [_vm._v("Destinos")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "fw-bolder",
+            staticStyle: { "font-family": "poppins", "font-size": "3.5rem" },
+          },
+          [_vm._v("Nacionales")]
+        ),
       ]
     )
   },

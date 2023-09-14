@@ -23,6 +23,9 @@
                 <div class="col-12 col-xl-3 col-md-4 text-center">
                     <a href="#"><img src="/img/home/aereos.jpg" class="p-3 border" alt=""></a>   
                 </div>
+                <div class="col-12 col-xl-3 col-md-4 text-center">
+                    <a href="#"><img src="/img/home/aereos.jpg" class="p-3 border" alt=""></a>   
+                </div>
             </div>
         </div>
         <div class="py-5" style="background-color: #f6f6f6;">
@@ -54,9 +57,15 @@
                         <p class="fw-bolder" style="font-family:poppins;font-size:3.3rem;">Salidas</p> 
                     </h4>
                 </div>
-                <VueSlickCarousel v-bind="settings">
-                    <Item v-for="n in 10" :key="n" />
-                </VueSlickCarousel>
+                <div v-if="!products.length" class="col-12 text-center py-5">
+                        <i class="fa-solid fa-triangle-exclamation fa-3x mb-2"></i>
+                        <h4 class="text-center">No hay productos en esta categoria</h4>
+                </div>
+                <div v-else class="col-12 text-center py-5">
+                    <VueSlickCarousel v-bind="settings">
+                        <Item v-for="(product, index) in products" v-bind="product" />
+                    </VueSlickCarousel>
+                </div>
             </div>
         </div>
         <div>
@@ -79,9 +88,10 @@
     // optional style for arrows & dots
     import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
     export default {
-        components: { VueSlickCarousel , Item , Slider },
+        components: { VueSlickCarousel , Item , Slider },   
         data() {
             return {
+                products: window.posts,
                 settings: {
                     "dots": true,
                     "infinite": false,

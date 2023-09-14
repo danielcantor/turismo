@@ -28,6 +28,13 @@
 <body>
     <div id="app">
         <header-component></header-component>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ $product->product_image }}"  class='d-block w-100 h-25' alt="">
+            </div>
+        </div>
+    </div>
         <div class="container" style="display: flex; justify-content: space-between;">
             <div class="col-md-6" style="margin-top: 30px; margin-bottom: 30px;">
                 <div class="row mx-auto">
@@ -50,7 +57,7 @@
                 </div>
             </div>
             <div class="col-md-2 card" style="background-color: rgba(255, 127, 80, 0.521); margin-top: 30px; margin-bottom: 30px; width: fit-content;">
-                <img src="{{ asset('storage/' . $product->product_image) }}" style="width: 100%; height: 100%;">
+                <img src="{{ $product->product_image }}" style="width: 100%; height: 100%;">
                 <div class="card-body">
                     <div class="price text-light text-decoration-none">
                         <p>$ {{$product->product_price}}</p>

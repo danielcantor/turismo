@@ -5479,6 +5479,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -34951,7 +34954,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-12 col-xl-3 col-md-4 text-center" }, [
-          _c("a", { attrs: { href: "#" } }, [
+          _c("a", { attrs: { href: "/destinos/escapda" } }, [
             _c("img", {
               staticClass: "p-3 border",
               attrs: { src: "/img/home/escapadas.jpg", alt: "" },
@@ -34960,7 +34963,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-12 col-xl-3 col-md-4 text-center" }, [
-          _c("a", { attrs: { href: "#" } }, [
+          _c("a", { attrs: { href: "/destinos/nacional" } }, [
             _c("img", {
               staticClass: "p-3 border",
               attrs: { src: "/img/home/nacio.jpg", alt: "" },
@@ -34969,16 +34972,18 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-12 col-xl-3 col-md-4 text-center" }, [
-          _c("a", { attrs: { href: "#" } }, [
+          _c("a", { attrs: { href: "/destinos/internacional" } }, [
             _c("img", {
               staticClass: "p-3 border",
               attrs: { src: "/img/home/inter.jpg", alt: "" },
             }),
           ]),
         ]),
-        _vm._v(" "),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row justify-content-center mt-3" }, [
         _c("div", { staticClass: "col-12 col-xl-3 col-md-4 text-center" }, [
-          _c("a", { attrs: { href: "#" } }, [
+          _c("a", { attrs: { href: "#", target: "_blank" } }, [
             _c("img", {
               staticClass: "p-3 border",
               attrs: { src: "/img/home/micro.jpg", alt: "" },
@@ -34987,7 +34992,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-12 col-xl-3 col-md-4 text-center" }, [
-          _c("a", { attrs: { href: "#" } }, [
+          _c("a", { attrs: { href: "/destinos/aereo" } }, [
             _c("img", {
               staticClass: "p-3 border",
               attrs: { src: "/img/home/aereos.jpg", alt: "" },
@@ -34996,7 +35001,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-12 col-xl-3 col-md-4 text-center" }, [
-          _c("a", { attrs: { href: "#" } }, [
+          _c("a", { attrs: { href: "/destinos/finde" } }, [
             _c("img", {
               staticClass: "p-3 border",
               attrs: { src: "/img/home/aereos.jpg", alt: "" },
@@ -35249,7 +35254,7 @@ var staticRenderFns = [
                 "a",
                 {
                   staticClass: "text-light text-decoration-none",
-                  attrs: { href: "/pasajes" },
+                  attrs: { href: "/destinos/aereo" },
                 },
                 [_vm._v(" Pasajes ")]
               ),

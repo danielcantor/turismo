@@ -20,7 +20,7 @@
                     <li class="list-group-item fw-light"><a href='/nosotros' class='text-light text-decoration-none'> Nosotros </a></li>
                     <li class="list-group-item fw-light"><a href='/destinos/nacional' class='text-light text-decoration-none'> Turismo Nacional </a></li>
                     <li class="list-group-item fw-light"><a href='/destinos/internacional' class='text-light text-decoration-none'> Turismo Internacional </a></li>
-                    <li class="list-group-item fw-light"><a href='/pasajes' class='text-light text-decoration-none'> Pasajes </a></li>
+                    <li class="list-group-item fw-light"><a href='/destinos/aereo' class='text-light text-decoration-none'> Pasajes </a></li>
                     <li class="list-group-item fw-light"><a href='/contacto' class='text-light text-decoration-none'> Contacto </a></li>
                 </ul>
             </div>

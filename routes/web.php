@@ -55,3 +55,4 @@ Route::resource('/productos', ProductController::class);
 Route::get('/checkout', function () {
     return view('checkout');
 });
+Route::post('/mail', [IndexController::class, 'mail'])->name('mail');

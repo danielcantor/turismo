@@ -5600,6 +5600,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _main_Slider_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../main/Slider.vue */ "./resources/js/components/main/Slider.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -5661,11 +5665,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Slider: _main_Slider_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      form: {
+        name: '',
+        email: '',
+        phone: '',
+        mensaje: '',
+        csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    };
+  },
+  methods: {
+    send: function send(event) {
+      var _this = this;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post('/mail', this.form).then(function (res) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
+          icon: 'success',
+          title: 'Mensaje enviado',
+          text: 'Gracias por contactarnos, te responderemos a la brevedad',
+          timer: 1500
+        });
+        _this.form.name = '';
+        _this.form.email = '';
+        _this.form.phone = '';
+        _this.form.mensaje = '';
+        event.preventDefault();
+      })["catch"](function (err) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Algo salio mal, intentalo de nuevo',
+          timer: 1500
+        });
+        event.preventDefault();
+      });
+    }
   },
   mounted: function mounted() {}
 });
@@ -35690,7 +35733,143 @@ var render = function () {
     [
       _c("Slider", { attrs: { imageUrl: "/img/baner-contacto.jpg" } }),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "container my-5 py-5" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "row justify-content-center text-md-start text-sm-center",
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-7 col-12" }, [
+              _c("div", { staticClass: "mb-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.name,
+                      expression: "form.name",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "exampleInputEmail1",
+                    "aria-describedby": "emailHelp",
+                    placeholder: "Nombre Completo",
+                  },
+                  domProps: { value: _vm.form.name },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "name", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.email,
+                      expression: "form.email",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "email",
+                    id: "exampleInputEmail1",
+                    "aria-describedby": "emailHelp",
+                    placeholder: "Email",
+                  },
+                  domProps: { value: _vm.form.email },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "email", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.phone,
+                      expression: "form.phone",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "number",
+                    id: "exampleInputEmail1",
+                    "aria-describedby": "emailHelp",
+                    placeholder: "telefono",
+                  },
+                  domProps: { value: _vm.form.phone },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "phone", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.mensaje,
+                      expression: "form.mensaje",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "",
+                    id: "",
+                    cols: "30",
+                    rows: "10",
+                    placeholder: "mensaje",
+                  },
+                  domProps: { value: _vm.form.mensaje },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "mensaje", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "btn btn-primary", on: { click: _vm.send } },
+                [_vm._v("Enviar")]
+              ),
+            ]),
+          ]
+        ),
+      ]),
     ],
     1
   )
@@ -35700,191 +35879,118 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container my-5 py-5" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "row justify-content-center text-md-start text-sm-center",
-        },
-        [
-          _c("div", { staticClass: "col-md-5 col-12" }, [
-            _c("h4", { staticClass: "title-custom border-custom-2 lh-1" }, [
-              _c(
-                "p",
-                {
-                  staticClass: "mb-0",
-                  staticStyle: {
-                    "font-family": "cherolinaregular",
-                    "font-size": "3.4rem",
-                  },
-                },
-                [_vm._v("Comunicate con")]
-              ),
-              _vm._v(" "),
-              _c(
-                "p",
-                {
-                  staticClass: "fw-bolder",
-                  staticStyle: {
-                    "font-family": "poppins",
-                    "font-size": "3.5rem",
-                  },
-                },
-                [_vm._v("Nosotros")]
-              ),
-            ]),
+    return _c("div", { staticClass: "col-md-5 col-12" }, [
+      _c("h4", { staticClass: "title-custom border-custom-2 lh-1" }, [
+        _c(
+          "p",
+          {
+            staticClass: "mb-0",
+            staticStyle: {
+              "font-family": "cherolinaregular",
+              "font-size": "3.4rem",
+            },
+          },
+          [_vm._v("Comunicate con")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "fw-bolder",
+            staticStyle: { "font-family": "poppins", "font-size": "3.5rem" },
+          },
+          [_vm._v("Nosotros")]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6 col-12" }, [
+            _c(
+              "p",
+              {
+                staticClass: "fw-bolder mb-2",
+                staticStyle: { "font-family": "poppins" },
+              },
+              [_vm._v("Email")]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "container-fluid" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-6 col-12" }, [
-                  _c(
-                    "p",
-                    {
-                      staticClass: "fw-bolder mb-2",
-                      staticStyle: { "font-family": "poppins" },
-                    },
-                    [_vm._v("Email")]
-                  ),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("cynthiaedithgarske@gmail.com")]),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    {
-                      staticClass: "fw-bolder",
-                      staticStyle: { "font-family": "poppins" },
-                    },
-                    [_vm._v("Siguenos en redes sociales")]
-                  ),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c("a", { staticClass: "px-2", attrs: { href: "#" } }, [
-                      _c("i", {
-                        staticClass: "fa-brands fa-square-facebook fa-2x",
-                        staticStyle: { color: "#276ee7" },
-                      }),
-                    ]),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c("i", {
-                        staticClass: "fa-brands fa-instagram fa-2x",
-                        staticStyle: { color: "#8640bf" },
-                      }),
-                    ]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6 col-12" }, [
-                  _c(
-                    "p",
-                    {
-                      staticClass: "fw-bolder mb-2",
-                      staticStyle: { "font-family": "poppins" },
-                    },
-                    [_vm._v("Consultas por Whatsapp")]
-                  ),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn w-50",
-                        staticStyle: {
-                          color: "white",
-                          "background-color": "#25d366",
-                        },
-                        attrs: { href: "#" },
-                      },
-                      [
-                        _vm._v("Mensaje "),
-                        _c("i", {
-                          staticClass: "fa-brands fa-whatsapp fa-sm",
-                          staticStyle: { color: "white" },
-                        }),
-                      ]
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("hr", { staticClass: "col-12" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-12" }, [
-                  _c(
-                    "p",
-                    {
-                      staticClass: "fw-bolder mb-0",
-                      staticStyle: { "font-family": "poppins" },
-                    },
-                    [_vm._v("Telefono de contacto")]
-                  ),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("+54 9 11 3413-8037")]),
-                ]),
+            _c("p", [_vm._v("cynthiaedithgarske@gmail.com")]),
+            _vm._v(" "),
+            _c(
+              "p",
+              {
+                staticClass: "fw-bolder",
+                staticStyle: { "font-family": "poppins" },
+              },
+              [_vm._v("Siguenos en redes sociales")]
+            ),
+            _vm._v(" "),
+            _c("p", [
+              _c("a", { staticClass: "px-2", attrs: { href: "#" } }, [
+                _c("i", {
+                  staticClass: "fa-brands fa-square-facebook fa-2x",
+                  staticStyle: { color: "#276ee7" },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#" } }, [
+                _c("i", {
+                  staticClass: "fa-brands fa-instagram fa-2x",
+                  staticStyle: { color: "#8640bf" },
+                }),
               ]),
             ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-7 col-12" }, [
-            _c("form", [
-              _c("div", { staticClass: "mb-3" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "exampleInputEmail1",
-                    "aria-describedby": "emailHelp",
-                    placeholder: "Nombre Completo",
-                  },
-                }),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mb-3" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "email",
-                    id: "exampleInputEmail1",
-                    "aria-describedby": "emailHelp",
-                    placeholder: "Email",
-                  },
-                }),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mb-3" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "number",
-                    id: "exampleInputEmail1",
-                    "aria-describedby": "emailHelp",
-                    placeholder: "telefono",
-                  },
-                }),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mb-3" }, [
-                _c("textarea", {
-                  staticClass: "form-control",
-                  attrs: {
-                    name: "",
-                    id: "",
-                    cols: "30",
-                    rows: "10",
-                    placeholder: "mensaje",
-                  },
-                }),
-              ]),
-              _vm._v(" "),
+          _c("div", { staticClass: "col-md-6 col-12" }, [
+            _c(
+              "p",
+              {
+                staticClass: "fw-bolder mb-2",
+                staticStyle: { "font-family": "poppins" },
+              },
+              [_vm._v("Consultas por Whatsapp")]
+            ),
+            _vm._v(" "),
+            _c("p", [
               _c(
-                "button",
-                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                [_vm._v("Enviar")]
+                "a",
+                {
+                  staticClass: "btn w-50",
+                  staticStyle: {
+                    color: "white",
+                    "background-color": "#25d366",
+                  },
+                  attrs: { href: "#" },
+                },
+                [
+                  _vm._v("Mensaje "),
+                  _c("i", {
+                    staticClass: "fa-brands fa-whatsapp fa-sm",
+                    staticStyle: { color: "white" },
+                  }),
+                ]
               ),
             ]),
           ]),
-        ]
-      ),
+          _vm._v(" "),
+          _c("hr", { staticClass: "col-12" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12" }, [
+            _c(
+              "p",
+              {
+                staticClass: "fw-bolder mb-0",
+                staticStyle: { "font-family": "poppins" },
+              },
+              [_vm._v("Telefono de contacto")]
+            ),
+            _vm._v(" "),
+            _c("p", [_vm._v("+54 9 11 3413-8037")]),
+          ]),
+        ]),
+      ]),
     ])
   },
 ]

@@ -38,21 +38,21 @@
                     </div>
                 </div>
                 <div class="col-md-7 col-12">
-                    <form>
+                    
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre Completo">
+                            <input type="text" v-model="form.name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre Completo">
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+                            <input type="email" v-model="form.email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
                         </div>
                         <div class="mb-3">
-                            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="telefono">
+                            <input type="number" v-model="form.phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="telefono">
                         </div>
                         <div class="mb-3">
-                            <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="mensaje"></textarea>
+                            <textarea name="" v-model="form.mensaje" id="" cols="30" rows="10" class="form-control" placeholder="mensaje"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </form>
+                        <button @click="send" class="btn btn-primary">Enviar</button>
+                    
                 </div>   
                 </div>
         </div>
@@ -61,10 +61,51 @@
 
 <script>
     import Slider from '../main/Slider.vue';
-
+    import axios from 'axios';
+    import Swal from 'sweetalert2';
     export default {      
-        components: { Slider },  
+        components: { Slider },
+        data() {
+            return {
+                form: {
+                    name: '',
+                    email: '',
+                    phone: '',
+                    mensaje: '',
+                    csrfToken : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            }
+        },
+        methods: {
+            send: function(event) {
+                axios.post('/mail', this.form)
+                .then(res => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Mensaje enviado',
+                        text: 'Gracias por contactarnos, te responderemos a la brevedad',
+                        timer: 1500
+                    });
+                    this.form.name = '';
+                    this.form.email = '';
+                    this.form.phone = '';
+                    this.form.mensaje = '';
+                    event.preventDefault();
+                })
+                .catch(err => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salio mal, intentalo de nuevo',
+                        timer: 1500
+                    });
+                    event.preventDefault();
+                })
+            }
+        },
         mounted() {
+
+            
             
         }
     }

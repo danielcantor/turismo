@@ -34954,7 +34954,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-12 col-xl-3 col-md-4 text-center" }, [
-          _c("a", { attrs: { href: "/destinos/escapda" } }, [
+          _c("a", { attrs: { href: "/destinos/escapada" } }, [
             _c("img", {
               staticClass: "p-3 border",
               attrs: { src: "/img/home/escapadas.jpg", alt: "" },
@@ -35277,27 +35277,19 @@ var staticRenderFns = [
           _c("h5", { staticClass: "fw-bold" }, [_vm._v("Contacto")]),
           _vm._v(" "),
           _c("ul", { staticClass: "ps-0" }, [
-            _c(
-              "li",
-              { staticClass: "list-group-item mt-3 align-middle fw-light" },
-              [
-                _c("img", {
-                  attrs: { src: "/img/icons/cel.svg", width: "6.5%" },
-                }),
-                _vm._v(" +54 9 11 3413-8037"),
-              ]
-            ),
+            _c("li", { staticClass: "list-group-item align-middle fw-light" }, [
+              _c("img", {
+                attrs: { src: "/img/icons/cel.svg", width: "6.5%" },
+              }),
+              _vm._v(" +54 9 11 3413-8037"),
+            ]),
             _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "list-group-item mt-4 align-middle fw-light" },
-              [
-                _c("img", {
-                  attrs: { src: "/img/icons/mail.svg", width: "6.5%" },
-                }),
-                _vm._v(" cynthiaedithgarske@gmail.com "),
-              ]
-            ),
+            _c("li", { staticClass: "list-group-item align-middle fw-light" }, [
+              _c("img", {
+                attrs: { src: "/img/icons/mail.svg", width: "6.5%" },
+              }),
+              _vm._v(" cynthiaedithgarske@gmail.com "),
+            ]),
           ]),
         ]),
         _vm._v(" "),

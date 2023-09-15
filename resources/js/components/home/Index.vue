@@ -9,7 +9,7 @@
                     </h4>
                 </div>
                 <div class="col-12 col-xl-3 col-md-4 text-center">
-                    <a href="/destinos/escapda"><img src="/img/home/escapadas.jpg" class="p-3 border" alt=""></a>    
+                    <a href="/destinos/escapada"><img src="/img/home/escapadas.jpg" class="p-3 border" alt=""></a>    
                 </div>
                 <div class="col-12 col-xl-3 col-md-4 text-center">
                     <a href="/destinos/nacional"><img src="/img/home/nacio.jpg" class="p-3 border" alt=""></a>   

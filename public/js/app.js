@@ -5312,12 +5312,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_slick_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-slick-carousel */ "./node_modules/vue-slick-carousel/dist/vue-slick-carousel.umd.js");
-/* harmony import */ var vue_slick_carousel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_slick_carousel__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _main_Item_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../main/Item.vue */ "./resources/js/components/main/Item.vue");
-/* harmony import */ var _main_Slider_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../main/Slider.vue */ "./resources/js/components/main/Slider.vue");
-/* harmony import */ var vue_slick_carousel_dist_vue_slick_carousel_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-slick-carousel/dist/vue-slick-carousel.css */ "./node_modules/vue-slick-carousel/dist/vue-slick-carousel.css");
-/* harmony import */ var vue_slick_carousel_dist_vue_slick_carousel_theme_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-slick-carousel/dist/vue-slick-carousel-theme.css */ "./node_modules/vue-slick-carousel/dist/vue-slick-carousel-theme.css");
 //
 //
 //
@@ -5501,86 +5495,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-// optional style for arrows & dots
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    VueSlickCarousel: (vue_slick_carousel__WEBPACK_IMPORTED_MODULE_0___default()),
-    Item: _main_Item_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Slider: _main_Slider_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
+  props: ['product'],
   data: function data() {
     return {
-      products: window.posts,
-      settings: {
-        "dots": true,
-        "infinite": false,
-        "arrows": true,
-        "speed": 500,
-        "autoplay": true,
-        "slidesToShow": 4,
-        "slidesToScroll": 4,
-        "initialSlide": 0,
-        "responsive": [{
-          "breakpoint": 800,
-          "settings": {
-            "slidesToShow": 2,
-            "slidesToScroll": 2,
-            "infinite": true,
-            "dots": true,
-            "autoplay": true,
-            "arrows": true
-          }
-        }, {
-          "breakpoint": 480,
-          "settings": {
-            "slidesToShow": 1,
-            "slidesToScroll": 1,
-            "infinite": true,
-            "autoplay": true,
-            "dots": true,
-            "arrows": true
-          }
-        }]
-      }
+      cart: []
     };
   },
   mounted: function mounted() {}
@@ -35098,657 +35018,527 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("section", [
+    _c("div", { staticClass: "container" }, [
+      _c("main", [
+        _c("div", { staticClass: "row g-5 pb-3" }, [
+          _c("div", { staticClass: "col-md-5 col-lg-4 order-md-last" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("ul", { staticClass: "list-group mb-3" }, [
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "list-group-item d-flex justify-content-between align-items-center lh-sm",
+                },
+                [
+                  _c("div", [
+                    _c("h6", { staticClass: "my-0" }, [
+                      _vm._v(_vm._s(_vm.product.product_name)),
+                    ]),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "text-muted" }, [
+                      _vm._v(_vm._s(_vm.product.product_description)),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "text-muted" }, [
+                    _vm._v("$" + _vm._s(_vm.product.product_price)),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(1),
+            ]),
+          ]),
+          _vm._v(" "),
+          _vm._m(2),
+        ]),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", [
-      _c("div", { staticClass: "container" }, [
-        _c("main", [
-          _c("div", { staticClass: "py-5 text-center" }, [
-            _c("h2", [_vm._v("Checkout form")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "lead" }, [
-              _vm._v(
-                "Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it."
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row g-5 pb-3" }, [
-            _c("div", { staticClass: "col-md-5 col-lg-4 order-md-last" }, [
+    return _c(
+      "h4",
+      { staticClass: "d-flex justify-content-between align-items-center mb-3" },
+      [
+        _c("span", { staticClass: "text-primary" }, [_vm._v("Tu compra")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "badge bg-primary rounded-pill" }, [
+          _vm._v("1"),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "li",
+      { staticClass: "list-group-item d-flex justify-content-between" },
+      [
+        _c("span", [_vm._v("Total (ARS)")]),
+        _vm._v(" "),
+        _c("strong", [_vm._v("$20")]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-7 col-lg-8" }, [
+      _c("h4", { staticClass: "mb-3" }, [_vm._v("Billing address")]),
+      _vm._v(" "),
+      _c(
+        "form",
+        { staticClass: "needs-validation", attrs: { novalidate: "" } },
+        [
+          _c("div", { staticClass: "row g-3" }, [
+            _c("div", { staticClass: "col-sm-6" }, [
               _c(
-                "h4",
-                {
-                  staticClass:
-                    "d-flex justify-content-between align-items-center mb-3",
-                },
-                [
-                  _c("span", { staticClass: "text-primary" }, [
-                    _vm._v("Your cart"),
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "badge bg-primary rounded-pill" }, [
-                    _vm._v("3"),
-                  ]),
-                ]
+                "label",
+                { staticClass: "form-label", attrs: { for: "firstName" } },
+                [_vm._v("First name")]
               ),
               _vm._v(" "),
-              _c("ul", { staticClass: "list-group mb-3" }, [
-                _c(
-                  "li",
-                  {
-                    staticClass:
-                      "list-group-item d-flex justify-content-between lh-sm",
-                  },
-                  [
-                    _c("div", [
-                      _c("h6", { staticClass: "my-0" }, [
-                        _vm._v("Product name"),
-                      ]),
-                      _vm._v(" "),
-                      _c("small", { staticClass: "text-muted" }, [
-                        _vm._v("Brief description"),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "text-muted" }, [_vm._v("$12")]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass:
-                      "list-group-item d-flex justify-content-between lh-sm",
-                  },
-                  [
-                    _c("div", [
-                      _c("h6", { staticClass: "my-0" }, [
-                        _vm._v("Second product"),
-                      ]),
-                      _vm._v(" "),
-                      _c("small", { staticClass: "text-muted" }, [
-                        _vm._v("Brief description"),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "text-muted" }, [_vm._v("$8")]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass:
-                      "list-group-item d-flex justify-content-between lh-sm",
-                  },
-                  [
-                    _c("div", [
-                      _c("h6", { staticClass: "my-0" }, [_vm._v("Third item")]),
-                      _vm._v(" "),
-                      _c("small", { staticClass: "text-muted" }, [
-                        _vm._v("Brief description"),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "text-muted" }, [_vm._v("$5")]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass:
-                      "list-group-item d-flex justify-content-between bg-light",
-                  },
-                  [
-                    _c("div", { staticClass: "text-success" }, [
-                      _c("h6", { staticClass: "my-0" }, [_vm._v("Promo code")]),
-                      _vm._v(" "),
-                      _c("small", [_vm._v("EXAMPLECODE")]),
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "text-success" }, [
-                      _vm._v("−$5"),
-                    ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass:
-                      "list-group-item d-flex justify-content-between",
-                  },
-                  [
-                    _c("span", [_vm._v("Total (USD)")]),
-                    _vm._v(" "),
-                    _c("strong", [_vm._v("$20")]),
-                  ]
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "firstName",
+                  placeholder: "",
+                  value: "",
+                  required: "",
+                },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\r\n                Valid first name is required.\r\n              "
                 ),
               ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "lastName" } },
+                [_vm._v("Last name")]
+              ),
               _vm._v(" "),
-              _c("form", { staticClass: "card p-2" }, [
-                _c("div", { staticClass: "input-group" }, [
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Promo code" },
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-secondary",
-                      attrs: { type: "submit" },
-                    },
-                    [_vm._v("Redeem")]
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "lastName",
+                  placeholder: "",
+                  value: "",
+                  required: "",
+                },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\r\n                Valid last name is required.\r\n              "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "username" } },
+                [_vm._v("Username")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group has-validation" }, [
+                _c("span", { staticClass: "input-group-text" }, [_vm._v("@")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "username",
+                    placeholder: "Username",
+                    required: "",
+                  },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\r\n                  Your username is required.\r\n                "
                   ),
                 ]),
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-7 col-lg-8" }, [
-              _c("h4", { staticClass: "mb-3" }, [_vm._v("Billing address")]),
+            _c("div", { staticClass: "col-12" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "email" } },
+                [
+                  _vm._v("Email "),
+                  _c("span", { staticClass: "text-muted" }, [
+                    _vm._v("(Optional)"),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "email",
+                  id: "email",
+                  placeholder: "you@example.com",
+                },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\r\n                Please enter a valid email address for shipping updates.\r\n              "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "address" } },
+                [_vm._v("Address")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "address",
+                  placeholder: "1234 Main St",
+                  required: "",
+                },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\r\n                Please enter your shipping address.\r\n              "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "address2" } },
+                [
+                  _vm._v("Address 2 "),
+                  _c("span", { staticClass: "text-muted" }, [
+                    _vm._v("(Optional)"),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "address2",
+                  placeholder: "Apartment or suite",
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-5" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "country" } },
+                [_vm._v("Country")]
+              ),
               _vm._v(" "),
               _c(
-                "form",
-                { staticClass: "needs-validation", attrs: { novalidate: "" } },
+                "select",
+                {
+                  staticClass: "form-select",
+                  attrs: { id: "country", required: "" },
+                },
                 [
-                  _c("div", { staticClass: "row g-3" }, [
-                    _c("div", { staticClass: "col-sm-6" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "firstName" },
-                        },
-                        [_vm._v("First name")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "firstName",
-                          placeholder: "",
-                          value: "",
-                          required: "",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\r\n                Valid first name is required.\r\n              "
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-6" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "lastName" },
-                        },
-                        [_vm._v("Last name")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "lastName",
-                          placeholder: "",
-                          value: "",
-                          required: "",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\r\n                Valid last name is required.\r\n              "
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-12" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "username" },
-                        },
-                        [_vm._v("Username")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "input-group has-validation" }, [
-                        _c("span", { staticClass: "input-group-text" }, [
-                          _vm._v("@"),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            id: "username",
-                            placeholder: "Username",
-                            required: "",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "invalid-feedback" }, [
-                          _vm._v(
-                            "\r\n                  Your username is required.\r\n                "
-                          ),
-                        ]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-12" }, [
-                      _c(
-                        "label",
-                        { staticClass: "form-label", attrs: { for: "email" } },
-                        [
-                          _vm._v("Email "),
-                          _c("span", { staticClass: "text-muted" }, [
-                            _vm._v("(Optional)"),
-                          ]),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "email",
-                          id: "email",
-                          placeholder: "you@example.com",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\r\n                Please enter a valid email address for shipping updates.\r\n              "
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-12" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "address" },
-                        },
-                        [_vm._v("Address")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "address",
-                          placeholder: "1234 Main St",
-                          required: "",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\r\n                Please enter your shipping address.\r\n              "
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-12" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "address2" },
-                        },
-                        [
-                          _vm._v("Address 2 "),
-                          _c("span", { staticClass: "text-muted" }, [
-                            _vm._v("(Optional)"),
-                          ]),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "address2",
-                          placeholder: "Apartment or suite",
-                        },
-                      }),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-5" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "country" },
-                        },
-                        [_vm._v("Country")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          staticClass: "form-select",
-                          attrs: { id: "country", required: "" },
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Choose..."),
-                          ]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("United States")]),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\r\n                Please select a valid country.\r\n              "
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c(
-                        "label",
-                        { staticClass: "form-label", attrs: { for: "state" } },
-                        [_vm._v("State")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          staticClass: "form-select",
-                          attrs: { id: "state", required: "" },
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Choose..."),
-                          ]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("California")]),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\r\n                Please provide a valid state.\r\n              "
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-3" }, [
-                      _c(
-                        "label",
-                        { staticClass: "form-label", attrs: { for: "zip" } },
-                        [_vm._v("Zip")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "zip",
-                          placeholder: "",
-                          required: "",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\r\n                Zip code required.\r\n              "
-                        ),
-                      ]),
-                    ]),
-                  ]),
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Choose...")]),
                   _vm._v(" "),
-                  _c("hr", { staticClass: "my-4" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-check" }, [
-                    _c("input", {
-                      staticClass: "form-check-input",
-                      attrs: { type: "checkbox", id: "same-address" },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-check-label",
-                        attrs: { for: "same-address" },
-                      },
-                      [
-                        _vm._v(
-                          "Shipping address is the same as my billing address"
-                        ),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-check" }, [
-                    _c("input", {
-                      staticClass: "form-check-input",
-                      attrs: { type: "checkbox", id: "save-info" },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-check-label",
-                        attrs: { for: "save-info" },
-                      },
-                      [_vm._v("Save this information for next time")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("hr", { staticClass: "my-4" }),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mb-3" }, [_vm._v("Payment")]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "my-3" }, [
-                    _c("div", { staticClass: "form-check" }, [
-                      _c("input", {
-                        staticClass: "form-check-input",
-                        attrs: {
-                          id: "credit",
-                          name: "paymentMethod",
-                          type: "radio",
-                          checked: "",
-                          required: "",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-check-label",
-                          attrs: { for: "credit" },
-                        },
-                        [_vm._v("Credit card")]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-check" }, [
-                      _c("input", {
-                        staticClass: "form-check-input",
-                        attrs: {
-                          id: "debit",
-                          name: "paymentMethod",
-                          type: "radio",
-                          required: "",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-check-label",
-                          attrs: { for: "debit" },
-                        },
-                        [_vm._v("Debit card")]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-check" }, [
-                      _c("input", {
-                        staticClass: "form-check-input",
-                        attrs: {
-                          id: "paypal",
-                          name: "paymentMethod",
-                          type: "radio",
-                          required: "",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-check-label",
-                          attrs: { for: "paypal" },
-                        },
-                        [_vm._v("PayPal")]
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row gy-3" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "cc-name" },
-                        },
-                        [_vm._v("Name on card")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "cc-name",
-                          placeholder: "",
-                          required: "",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("small", { staticClass: "text-muted" }, [
-                        _vm._v("Full name as displayed on card"),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\r\n                Name on card is required\r\n              "
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "cc-number" },
-                        },
-                        [_vm._v("Credit card number")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "cc-number",
-                          placeholder: "",
-                          required: "",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\r\n                Credit card number is required\r\n              "
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "cc-expiration" },
-                        },
-                        [_vm._v("Expiration")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "cc-expiration",
-                          placeholder: "",
-                          required: "",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\r\n                Expiration date required\r\n              "
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-3" }, [
-                      _c(
-                        "label",
-                        { staticClass: "form-label", attrs: { for: "cc-cvv" } },
-                        [_vm._v("CVV")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "cc-cvv",
-                          placeholder: "",
-                          required: "",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\r\n                Security code required\r\n              "
-                        ),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("hr", { staticClass: "my-4" }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "w-100 btn btn-primary btn-lg",
-                      attrs: { type: "submit" },
-                    },
-                    [_vm._v("Continue to checkout")]
-                  ),
+                  _c("option", [_vm._v("United States")]),
                 ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\r\n                Please select a valid country.\r\n              "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "state" } },
+                [_vm._v("State")]
+              ),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  staticClass: "form-select",
+                  attrs: { id: "state", required: "" },
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Choose...")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("California")]),
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\r\n                Please provide a valid state.\r\n              "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "zip" } },
+                [_vm._v("Zip")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "zip",
+                  placeholder: "",
+                  required: "",
+                },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\r\n                Zip code required.\r\n              "
+                ),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("hr", { staticClass: "my-4" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-check" }, [
+            _c("input", {
+              staticClass: "form-check-input",
+              attrs: { type: "checkbox", id: "same-address" },
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "form-check-label",
+                attrs: { for: "same-address" },
+              },
+              [_vm._v("Shipping address is the same as my billing address")]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-check" }, [
+            _c("input", {
+              staticClass: "form-check-input",
+              attrs: { type: "checkbox", id: "save-info" },
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "form-check-label", attrs: { for: "save-info" } },
+              [_vm._v("Save this information for next time")]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("hr", { staticClass: "my-4" }),
+          _vm._v(" "),
+          _c("h4", { staticClass: "mb-3" }, [_vm._v("Payment")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "my-3" }, [
+            _c("div", { staticClass: "form-check" }, [
+              _c("input", {
+                staticClass: "form-check-input",
+                attrs: {
+                  id: "credit",
+                  name: "paymentMethod",
+                  type: "radio",
+                  checked: "",
+                  required: "",
+                },
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "form-check-label", attrs: { for: "credit" } },
+                [_vm._v("Credit card")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-check" }, [
+              _c("input", {
+                staticClass: "form-check-input",
+                attrs: {
+                  id: "debit",
+                  name: "paymentMethod",
+                  type: "radio",
+                  required: "",
+                },
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "form-check-label", attrs: { for: "debit" } },
+                [_vm._v("Debit card")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-check" }, [
+              _c("input", {
+                staticClass: "form-check-input",
+                attrs: {
+                  id: "paypal",
+                  name: "paymentMethod",
+                  type: "radio",
+                  required: "",
+                },
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "form-check-label", attrs: { for: "paypal" } },
+                [_vm._v("PayPal")]
               ),
             ]),
           ]),
-        ]),
-      ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row gy-3" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "cc-name" } },
+                [_vm._v("Name on card")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "cc-name",
+                  placeholder: "",
+                  required: "",
+                },
+              }),
+              _vm._v(" "),
+              _c("small", { staticClass: "text-muted" }, [
+                _vm._v("Full name as displayed on card"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\r\n                Name on card is required\r\n              "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "cc-number" } },
+                [_vm._v("Credit card number")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "cc-number",
+                  placeholder: "",
+                  required: "",
+                },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\r\n                Credit card number is required\r\n              "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "cc-expiration" } },
+                [_vm._v("Expiration")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "cc-expiration",
+                  placeholder: "",
+                  required: "",
+                },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\r\n                Expiration date required\r\n              "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "cc-cvv" } },
+                [_vm._v("CVV")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "cc-cvv",
+                  placeholder: "",
+                  required: "",
+                },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\r\n                Security code required\r\n              "
+                ),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("hr", { staticClass: "my-4" }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "w-100 btn btn-primary btn-lg",
+              attrs: { type: "submit" },
+            },
+            [_vm._v("Continue to checkout")]
+          ),
+        ]
+      ),
     ])
   },
 ]

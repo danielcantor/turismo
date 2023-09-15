@@ -5,6 +5,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DestinoController;
+use App\Http\Controllers\ShoppingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,7 +53,7 @@ Route::controller(DestinoController::class)->group(function () {
     });    
 });
 Route::resource('/productos', ProductController::class);
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+
+Route::get('/checkout/{id}', [ShoppingController::class, 'index']);
+
 Route::post('/mail', [IndexController::class, 'mail'])->name('mail');

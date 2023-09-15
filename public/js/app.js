@@ -6176,29 +6176,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -37050,97 +37027,9 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    [
-      _c("Slider", { attrs: { imageUrl: "/img/home/baner-nosotros.jpg" } }),
-      _vm._v(" "),
-      _vm._m(0),
-    ],
-    1
-  )
+  return _c("div")
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "py-5", staticStyle: { "background-color": "#f6f6f6" } },
-      [
-        _c("div", { staticClass: "container mt-5" }, [
-          _c("div", { staticClass: "row justify-content-center" }, [
-            _c("div", { staticClass: "col-xl-6 order-2 order-xl-1" }, [
-              _c("div", { staticClass: "mb-5" }, [
-                _c(
-                  "h4",
-                  {
-                    staticClass:
-                      "text-left title-custom border-custom ps-3 lh-1",
-                  },
-                  [
-                    _c(
-                      "p",
-                      {
-                        staticClass: "mb-0",
-                        staticStyle: {
-                          "font-family": "cherolinaregular",
-                          "font-size": "3.9rem",
-                        },
-                      },
-                      [_vm._v("Vive una gran")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "p",
-                      {
-                        staticClass: "fw-bolder",
-                        staticStyle: {
-                          "font-family": "poppins",
-                          "font-size": "3.5rem",
-                        },
-                      },
-                      [_vm._v("Experiencia")]
-                    ),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass: "text-justify my-4",
-                    staticStyle: { "font-family": "'Raleway', sans-serif" },
-                  },
-                  [
-                    _vm._v(
-                      "\n                            Somos a una empresa familiar y profesional dedicados a cumplir los sueños de nuestros pasajeros, en cada viaje brindamos una óptima calidad de servicio tratando de cumplir con las expectativas de cada uno de los que confía en nuestro trabajo.\n                            Agradecemos infinitamente a quienes estuvieron a nuestro lado durante tantos años de trabajo, apoyándonos para que hoy en día podamos nosotros cumplir nuestro sueño!                            \n                        "
-                    ),
-                  ]
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-xl-6 text-center order-1 order-xl-2" },
-              [
-                _c("img", {
-                  staticClass: "shadow-image",
-                  attrs: {
-                    src: "img/home/Sobre-nosotros.jpg",
-                    alt: "",
-                    width: "75%",
-                  },
-                }),
-              ]
-            ),
-          ]),
-        ]),
-      ]
-    )
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

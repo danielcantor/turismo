@@ -18,6 +18,11 @@ class Product extends Model
         'product_category',
         'product_image'
     ];
-
+    public function getProduct($id){
+        return $this::find($id);
+    }
+    public function getProductsbyType($id){
+        return $this::where('product_type', $id)->get();
+    }
     use HasFactory;
 }

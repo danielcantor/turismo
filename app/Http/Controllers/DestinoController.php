@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 class DestinoController extends Controller
 {
+    public $product;
+
+    public function __construct()
+    {
+        $this->product = new Product;
+    }
     public function nacional(): View
     {
-        $products = Product::where('product_type', 1)->get();
+        $products = $this->product->getProductsbyType(1);
 
         return view('turismo')->with([
             'items' => $products,
@@ -21,7 +27,7 @@ class DestinoController extends Controller
     }
     public function internacional(): View
     {
-        $products = Product::where('product_type', 2)->get();
+        $products = $this->product->getProductsbyType(2);
 
         return view('turismo')->with([
             'items'=> $products,
@@ -33,7 +39,7 @@ class DestinoController extends Controller
     }
     public function aereo(): View
     {
-        $products = Product::where('product_type', 3)->get();
+        $products = $this->product->getProductsbyType(3);
 
         return view('turismo')->with([
             'items'=> $products,
@@ -45,7 +51,7 @@ class DestinoController extends Controller
     }
     public function escapada(): View
     {
-        $products = Product::where('product_type', 4)->get();
+        $products = $this->product->getProductsbyType(4);
 
         return view('turismo')->with([
             'items'=> $products,
@@ -57,7 +63,7 @@ class DestinoController extends Controller
     }
     public function finde(): View
     {
-        $products = Product::where('product_type', 5)->get();
+        $products = $this->product->getProductsbyType(5);
 
         return view('turismo')->with([
             'items'=> $products,

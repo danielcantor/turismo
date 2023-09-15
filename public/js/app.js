@@ -5479,11 +5479,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -5950,7 +5945,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       products: window.posts,
-      imageUrl: window.imageUrl
+      imageUrl: window.imageUrl,
+      title: window.title,
+      subtitle: window.subtitle
     };
   },
   mounted: function mounted() {}
@@ -34915,7 +34912,7 @@ var render = function () {
       _vm._v(" "),
       _c("div"),
       _vm._v(" "),
-      _vm._m(3),
+      _c("Slider", { attrs: { imageUrl: "/img/home/contactanos-home.jpg" } }),
     ],
     1
   )
@@ -35120,30 +35117,6 @@ var staticRenderFns = [
         ]
       ),
     ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "carousel slide",
-        attrs: { id: "carouselExampleIndicators", "data-bs-ride": "carousel" },
-      },
-      [
-        _c("div", { staticClass: "carousel-inner" }, [
-          _c("div", { staticClass: "carousel-item active" }, [
-            _c("a", { attrs: { href: "/contacto" } }, [
-              _c("img", {
-                staticClass: "d-block w-100",
-                attrs: { src: "/img/home/contactanos-home.jpg", alt: "" },
-              }),
-            ]),
-          ]),
-        ]),
-      ]
-    )
   },
 ]
 render._withStripped = true
@@ -36104,7 +36077,35 @@ var render = function () {
           "div",
           { staticClass: "row justify-content-center align-items-center" },
           [
-            _vm._m(1),
+            _c(
+              "h4",
+              { staticClass: "col-12 text-center title-custom ps-3 lh-1" },
+              [
+                _c(
+                  "p",
+                  {
+                    staticClass: "mb-0",
+                    staticStyle: {
+                      "font-family": "cherolinaregular",
+                      "font-size": "3.9rem",
+                    },
+                  },
+                  [_vm._v(_vm._s(_vm.title))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    staticClass: "fw-bolder",
+                    staticStyle: {
+                      "font-family": "poppins",
+                      "font-size": "3.5rem",
+                    },
+                  },
+                  [_vm._v(_vm._s(_vm.subtitle))]
+                ),
+              ]
+            ),
             _vm._v(" "),
             !_vm.products.length
               ? _c("div", { staticClass: "col-12 text-center py-5" }, [
@@ -36206,37 +36207,6 @@ var staticRenderFns = [
             ),
           ]),
         ]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "h4",
-      { staticClass: "col-12 text-center title-custom ps-3 lh-1" },
-      [
-        _c(
-          "p",
-          {
-            staticClass: "mb-0",
-            staticStyle: {
-              "font-family": "cherolinaregular",
-              "font-size": "3.9rem",
-            },
-          },
-          [_vm._v("Destinos")]
-        ),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass: "fw-bolder",
-            staticStyle: { "font-family": "poppins", "font-size": "3.5rem" },
-          },
-          [_vm._v("Nacionales")]
-        ),
       ]
     )
   },

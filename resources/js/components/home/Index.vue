@@ -70,13 +70,8 @@
         </div>
         <div>
           </div>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a href="/contacto"><img src="/img/home/contactanos-home.jpg"  class='d-block w-100' alt=""></a>
-                </div>
-            </div>
-        </div>
+        <Slider :imageUrl="'/img/home/contactanos-home.jpg'"/>
+        
     </section>
 </template>
 

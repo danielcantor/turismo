@@ -25,8 +25,8 @@
         <div class="container py-3">
             <div class="row justify-content-center align-items-center">
                     <h4 class=" col-12 text-center title-custom ps-3 lh-1"> 
-                        <p class=' mb-0' style="font-family:cherolinaregular;font-size:3.9rem;">Destinos</p> 
-                        <p class="fw-bolder" style="font-family:poppins;font-size:3.5rem;">Nacionales</p> 
+                        <p class=' mb-0' style="font-family:cherolinaregular;font-size:3.9rem;">{{title}}</p> 
+                        <p class="fw-bolder" style="font-family:poppins;font-size:3.5rem;">{{subtitle}}</p> 
                     </h4>
                     <div v-if="!products.length" class="col-12 text-center py-5">
                         <i class="fa-solid fa-triangle-exclamation fa-3x mb-2"></i>
@@ -46,7 +46,9 @@
         data(){
             return {
                 products: window.posts,
-                imageUrl : window.imageUrl
+                imageUrl : window.imageUrl,
+                title: window.title,
+                subtitle: window.subtitle
             }
         },
         mounted() {

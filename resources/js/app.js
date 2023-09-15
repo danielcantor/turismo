@@ -12,6 +12,7 @@ import AboutComponent from './components/nosotros/Index.vue';
 import RegisterComponent from './components/users/Register.vue';
 import ItemComponent from './components/main/Item.vue';
 import ContactoComponent from './components/contact/Index.vue';
+import CheckoutComponent from './components/checkout/Index.vue';
 Vue.component('index-component', IndexComponent);
 Vue.component('header-component', HeaderComponent);
 Vue.component('footer-component', FooterComponent);
@@ -21,6 +22,7 @@ Vue.component('register-component', RegisterComponent);
 Vue.component('turismo-component', TurismoComponent);
 Vue.component('about-component', AboutComponent);
 Vue.component('item', ItemComponent);
+Vue.component('checkout-component', CheckoutComponent);
 Vue.component('contacto-component', ContactoComponent);
 const app = new Vue({
     el: '#app',

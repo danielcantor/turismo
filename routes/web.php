@@ -52,3 +52,6 @@ Route::controller(DestinoController::class)->group(function () {
     });    
 });
 Route::resource('/productos', ProductController::class);
+Route::get('/checkout', function () {
+    return view('checkout');
+});

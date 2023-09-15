@@ -5665,6 +5665,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5681,12 +5693,49 @@ __webpack_require__.r(__webpack_exports__);
         phone: '',
         mensaje: '',
         csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      },
+      errors: {
+        name: '',
+        email: '',
+        phone: '',
+        mensaje: ''
       }
     };
   },
   methods: {
+    resetForm: function resetForm() {
+      this.form.name = '';
+      this.form.email = '';
+      this.form.phone = '';
+      this.form.mensaje = '';
+    },
+    resetErrors: function resetErrors() {
+      this.errors.name = '';
+      this.errors.email = '';
+      this.errors.phone = '';
+      this.errors.mensaje = '';
+    },
     send: function send(event) {
       var _this = this;
+      this.resetErrors();
+      var keys = Object.keys(this.form);
+      for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        if (this.form[key] === '') {
+          this.errors[key] = 'El campo no puede estar vacio';
+        }
+      }
+      var ekeys = Object.keys(this.errors);
+      var count = 0;
+      for (var _i = 0; _i < ekeys.length; _i++) {
+        var _key = ekeys[_i];
+        if (this.errors[_key] !== '') {
+          count++;
+        }
+      }
+      if (count > 0) {
+        return;
+      }
       axios__WEBPACK_IMPORTED_MODULE_1___default().post('/mail', this.form).then(function (res) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
           icon: 'success',
@@ -5694,10 +5743,7 @@ __webpack_require__.r(__webpack_exports__);
           text: 'Gracias por contactarnos, te responderemos a la brevedad',
           timer: 1500
         });
-        _this.form.name = '';
-        _this.form.email = '';
-        _this.form.phone = '';
-        _this.form.mensaje = '';
+        _this.resetForm();
         event.preventDefault();
       })["catch"](function (err) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
@@ -35755,6 +35801,7 @@ var render = function () {
                     },
                   ],
                   staticClass: "form-control",
+                  class: [_vm.errors.name ? "is-invalid" : ""],
                   attrs: {
                     type: "text",
                     id: "exampleInputEmail1",
@@ -35771,6 +35818,14 @@ var render = function () {
                     },
                   },
                 }),
+                _vm._v(" "),
+                _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n                           " +
+                      _vm._s(_vm.errors.name) +
+                      "\n                        "
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "mb-3" }, [
@@ -35784,6 +35839,7 @@ var render = function () {
                     },
                   ],
                   staticClass: "form-control",
+                  class: [_vm.errors.email ? "is-invalid" : ""],
                   attrs: {
                     type: "email",
                     id: "exampleInputEmail1",
@@ -35800,6 +35856,14 @@ var render = function () {
                     },
                   },
                 }),
+                _vm._v(" "),
+                _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(_vm.errors.email) +
+                      "\n                        "
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "mb-3" }, [
@@ -35813,6 +35877,7 @@ var render = function () {
                     },
                   ],
                   staticClass: "form-control",
+                  class: [_vm.errors.phone ? "is-invalid" : ""],
                   attrs: {
                     type: "number",
                     id: "exampleInputEmail1",
@@ -35829,6 +35894,14 @@ var render = function () {
                     },
                   },
                 }),
+                _vm._v(" "),
+                _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(_vm.errors.phone) +
+                      "\n                        "
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "mb-3" }, [
@@ -35842,6 +35915,7 @@ var render = function () {
                     },
                   ],
                   staticClass: "form-control",
+                  class: [_vm.errors.mensaje ? "is-invalid" : ""],
                   attrs: {
                     name: "",
                     id: "",
@@ -35859,6 +35933,14 @@ var render = function () {
                     },
                   },
                 }),
+                _vm._v(" "),
+                _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(_vm.errors.mensaje) +
+                      "\n                        "
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c(

@@ -38,18 +38,30 @@
                     </div>
                 </div>
                 <div class="col-md-7 col-12">
-                    
+                        
                         <div class="mb-3">
-                            <input type="text" v-model="form.name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre Completo">
+                            <input type="text" v-model="form.name" :class="[ errors.name ? 'is-invalid' : '']" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre Completo">
+                            <div class="invalid-feedback" >
+                               {{ errors.name }}
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input type="email" v-model="form.email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+                            <input type="email" v-model="form.email" :class="[ errors.email ? 'is-invalid' : '']" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+                            <div class="invalid-feedback">
+                                {{ errors.email }}
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input type="number" v-model="form.phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="telefono">
+                            <input type="number" v-model="form.phone" :class="[ errors.phone ? 'is-invalid' : '']" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="telefono">
+                            <div class="invalid-feedback">
+                                {{ errors.phone }}
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <textarea name="" v-model="form.mensaje" id="" cols="30" rows="10" class="form-control" placeholder="mensaje"></textarea>
+                            <textarea name="" v-model="form.mensaje" id="" :class="[ errors.mensaje ? 'is-invalid' : '']" cols="30" rows="10" class="form-control" placeholder="mensaje"></textarea>
+                            <div class="invalid-feedback">
+                                {{ errors.mensaje }}
+                            </div>
                         </div>
                         <button @click="send" class="btn btn-primary">Enviar</button>
                     
@@ -73,11 +85,50 @@
                     phone: '',
                     mensaje: '',
                     csrfToken : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                errors: {
+                        name: '', 
+                        email: '', 
+                        phone: '', 
+                        mensaje: ''
                 }
             }
         },
         methods: {
+            
+            resetForm() {
+                this.form.name = '';
+                this.form.email = '';
+                this.form.phone = '';
+                this.form.mensaje = '';
+            },
+            resetErrors() {
+                this.errors.name = '';
+                this.errors.email = '';
+                this.errors.phone = '';
+                this.errors.mensaje = '';
+            },
+
             send: function(event) {
+                this.resetErrors();
+                let keys = Object.keys( this.form);
+                for(let i=0; i< keys.length; i++){
+                    let key = keys[i];
+                    if(this.form[key] === '') {
+                        this.errors[key] = 'El campo no puede estar vacio';
+                    }
+                }
+                let ekeys = Object.keys( this.errors);
+                let count = 0;
+                for(let i=0; i< ekeys.length; i++){
+                    let key = ekeys[i];
+                    if(this.errors[key] !== '') {
+                        count++;
+                    }
+                }
+                if(count > 0) {
+                    return;
+                }
                 axios.post('/mail', this.form)
                 .then(res => {
                     Swal.fire({
@@ -86,10 +137,7 @@
                         text: 'Gracias por contactarnos, te responderemos a la brevedad',
                         timer: 1500
                     });
-                    this.form.name = '';
-                    this.form.email = '';
-                    this.form.phone = '';
-                    this.form.mensaje = '';
+                    this.resetForm(); 
                     event.preventDefault();
                 })
                 .catch(err => {

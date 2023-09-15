@@ -63,7 +63,7 @@
                 </div>
                 <div v-else class="col-12 text-center py-5">
                     <VueSlickCarousel v-bind="settings">
-                        <Item v-for="(product, index) in products" v-bind="product" />
+                        <Item v-for="(product, index) in products" :key="product.id" v-bind="product" />
                     </VueSlickCarousel>
                 </div>
             </div>

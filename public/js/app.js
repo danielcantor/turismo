@@ -34900,7 +34900,10 @@ var render = function () {
                     "VueSlickCarousel",
                     _vm._b({}, "VueSlickCarousel", _vm.settings, false),
                     _vm._l(_vm.products, function (product, index) {
-                      return _c("Item", _vm._b({}, "Item", product, false))
+                      return _c(
+                        "Item",
+                        _vm._b({ key: product.id }, "Item", product, false)
+                      )
                     }),
                     1
                   ),
@@ -35224,7 +35227,7 @@ var staticRenderFns = [
                 "a",
                 {
                   staticClass: "text-light text-decoration-none",
-                  attrs: { href: "/turismo" },
+                  attrs: { href: "/destinos/nacional" },
                 },
                 [_vm._v(" Turismo Nacional ")]
               ),
@@ -35235,7 +35238,7 @@ var staticRenderFns = [
                 "a",
                 {
                   staticClass: "text-light text-decoration-none",
-                  attrs: { href: "/turismo" },
+                  attrs: { href: "/destinos/internacional" },
                 },
                 [_vm._v(" Turismo Internacional ")]
               ),
@@ -36120,7 +36123,10 @@ var render = function () {
               : _vm._e(),
             _vm._v(" "),
             _vm._l(_vm.products, function (product, index) {
-              return _c("Item", _vm._b({}, "Item", product, false))
+              return _c(
+                "Item",
+                _vm._b({ key: product.id }, "Item", product, false)
+              )
             }),
           ],
           2

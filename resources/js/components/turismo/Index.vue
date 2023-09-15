@@ -32,7 +32,7 @@
                         <i class="fa-solid fa-triangle-exclamation fa-3x mb-2"></i>
                         <h4 class="text-center">No hay productos en esta categoria</h4>
                     </div>
-                    <Item v-for="(product, index) in products" v-bind="product" />
+                    <Item v-for="(product, index) in products" :key="product.id" v-bind="product" />
             </div>
         </div>
     </section>

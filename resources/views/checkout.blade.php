@@ -27,9 +27,7 @@
 </head>
 <body>
     <div id="app">
-        <header-component></header-component>
         <checkout-component :product="{{ $product }}"></checkout-component>
-        <footer-component></footer-component>    
     </div>
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>

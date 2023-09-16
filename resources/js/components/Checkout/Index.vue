@@ -1,5 +1,27 @@
 <template>
 <section>
+<div class="offcanvas offcanvas-end show d-none d-md-flex" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Tu compra</h5>
+    </div>
+    <div class="offcanvas-body">
+      <div class="order-md-last">
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between align-items-center lh-sm">
+              <div>
+                <h6 class="my-0">{{product.product_name}}</h6>
+                <small class="text-muted">{{product.product_description}}</small>
+              </div>
+              <span class="text-muted">${{product.product_price}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (ARS)</span>
+              <strong>$20</strong>
+            </li>
+          </ul>
+    </div>
+  </div>
+</div>
 <div class="container">
   <main>
     <div class="row g-5 pb-3">

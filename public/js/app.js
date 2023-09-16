@@ -5495,6 +5495,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['product'],
@@ -35019,12 +35041,23 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", [
-    _c("div", { staticClass: "container" }, [
-      _c("main", [
-        _c("div", { staticClass: "row g-5 pb-3" }, [
-          _c("div", { staticClass: "col-md-5 col-lg-4 order-md-last" }, [
-            _vm._m(0),
-            _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "offcanvas offcanvas-end show d-none d-md-flex",
+        attrs: {
+          "data-bs-scroll": "true",
+          "data-bs-backdrop": "false",
+          tabindex: "-1",
+          id: "offcanvasScrolling",
+          "aria-labelledby": "offcanvasScrollingLabel",
+        },
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "offcanvas-body" }, [
+          _c("div", { staticClass: "order-md-last" }, [
             _c("ul", { staticClass: "list-group mb-3" }, [
               _c(
                 "li",
@@ -35052,14 +35085,80 @@ var render = function () {
               _vm._m(1),
             ]),
           ]),
+        ]),
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c("main", [
+        _c("div", { staticClass: "row g-5 pb-3" }, [
+          _c("div", { staticClass: "col-md-5 col-lg-4 order-md-last" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("ul", { staticClass: "list-group mb-3" }, [
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "list-group-item d-flex justify-content-between align-items-center lh-sm",
+                },
+                [
+                  _c("div", [
+                    _c("h6", { staticClass: "my-0" }, [
+                      _vm._v(_vm._s(_vm.product.product_name)),
+                    ]),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "text-muted" }, [
+                      _vm._v(_vm._s(_vm.product.product_description)),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "text-muted" }, [
+                    _vm._v("$" + _vm._s(_vm.product.product_price)),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(3),
+            ]),
+          ]),
           _vm._v(" "),
-          _vm._m(2),
+          _vm._m(4),
         ]),
       ]),
     ]),
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "offcanvas-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "offcanvas-title",
+          attrs: { id: "offcanvasScrollingLabel" },
+        },
+        [_vm._v("Tu compra")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "li",
+      { staticClass: "list-group-item d-flex justify-content-between" },
+      [
+        _c("span", [_vm._v("Total (ARS)")]),
+        _vm._v(" "),
+        _c("strong", [_vm._v("$20")]),
+      ]
+    )
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

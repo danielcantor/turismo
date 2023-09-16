@@ -1,5 +1,5 @@
 <template>
-<section class="py-5">
+<section class="pt-5">
 <div class="offcanvas offcanvas-end show d-none d-md-flex" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Tu compra</h5>

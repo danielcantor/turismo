@@ -26,7 +26,7 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <p class="fw-bolder mb-2" style="font-family:poppins;">Consultas por Whatsapp</p>
-                                <p><a href="#" class="btn w-50" style="color:white; background-color: #25d366;">Mensaje <i class="fa-brands fa-whatsapp fa-sm" style="color: white;"></i></a></p> 
+                                <p><a href="https://wa.me/message/SCBMQYYYMSHRM1" class="btn w-50" style="color:white; background-color: #25d366;">Mensaje <i class="fa-brands fa-whatsapp fa-sm" style="color: white;"></i></a></p> 
                             </div>
                             <hr class="col-12">
                             <div class="col-12">

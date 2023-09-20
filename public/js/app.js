@@ -35932,7 +35932,7 @@ var staticRenderFns = [
                     color: "white",
                     "background-color": "#25d366",
                   },
-                  attrs: { href: "#" },
+                  attrs: { href: "https://wa.me/message/SCBMQYYYMSHRM1" },
                 },
                 [
                   _vm._v("Mensaje "),

@@ -54,7 +54,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6" style="margin-top: 30px; margin-bottom: 30px;">
+                <div class="col-md-6 col-lg-6 " style="margin-top: 30px; margin-bottom: 30px;">
                         <div class="row mx-auto">
                         <div class="title">
                             <h5 class='fw-bold'>{{ $product->product_name }}</h5>
@@ -73,8 +73,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 card" style="background-color: rgba(255, 127, 80, 0.521); margin-top: 30px; margin-bottom: 30px; width: fit-content;">
-                    <img src="/storage/{{ $product->product_image }}" style="width: 100%; height: 100%;">
+                <div class="col-md-6 col-lg-6 card" style="background-color: rgba(255, 127, 80, 0.521); margin-top: 30px; margin-bottom: 30px;">
+                    <img class="w-100" src="/storage/{{ $product->product_image }}">
                     <div class="card-body">
                         <div class="price text-light text-decoration-none">
                             <p>$ {{$product->product_price}}</p>

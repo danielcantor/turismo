@@ -36,7 +36,7 @@ class DestinoController extends Controller
             'description' => 'Recorrer el mundo es una experiencia que requiere de un buen asesoramiento y recomendación para poder optimizar los tiempos y de esa forma concretar los deseos y expectativas de cada uno de ustedes. Los invitamos a conocer los circuitos internacionales junto a nosotros.',
             'title' => 'Destinos',
             "subtitle" => "Internacionales",
-            'imageUrl' => '/img/home/Turismo-internacional-banner.jpg'
+            'imageUrl' => '/img/home/internacional.png'
         ]);
     }
     public function aereo(): View

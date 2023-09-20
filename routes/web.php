@@ -29,7 +29,7 @@ Route::get('/register', function(){
     return view('users.register');
 });
 
-Route::post('/productos', [ProductController::class, 'store'])->name('productos.modificar');
+Route::post('/productos', [ProductController::class, 'modificar'])->name('productos.modificar1');
 Route::delete('/deleteProducto/{id}', [ProductController::class, 'eliminar'])->name('producto.eliminar');
 Route::get('/obtenerProducto/{id}', [ProductController::class, 'obtenerProducto'])->name('producto.obtenerProducto');
 Route::post('/modificarProducto/{id}', [ProductController::class, 'modificarProducto'])->name('producto.modificar');

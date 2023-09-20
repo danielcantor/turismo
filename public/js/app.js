@@ -36118,7 +36118,7 @@ var staticRenderFns = [
           _c("a", { attrs: { href: "/destinos/finde" } }, [
             _c("img", {
               staticClass: "p-3 border",
-              attrs: { src: "/img/home/aereos.jpg", alt: "" },
+              attrs: { src: "/img/home/findes.jpg", alt: "" },
             }),
           ]),
         ]),

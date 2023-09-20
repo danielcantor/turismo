@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DestinoController;
 use App\Http\Controllers\ShoppingController;
+use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +28,11 @@ Route::get('/login', function(){
 });
 Route::get('/register', function(){
     return view('users.register');
+});
+Route::get('/link', function(){
+    return Artisan::call('email:send', [
+        'user' => 1, '--queue' => 'default'
+    ]);
 });
 
 Route::get('/productos', [ProductController::class, 'modificar'])->name('productos.modificar1');

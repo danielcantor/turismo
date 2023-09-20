@@ -24,16 +24,23 @@ class UserController extends Controller
     
         $credentials = $request->only('email', 'password');
     
+        //Admin
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $admin = Auth::guard('admin')->user();
+            $name = $admin->name;
+            $apellido = $admin->apellido;
+            return response()->json(['message' => 'success', 'name' => $name, 'apellido' => $apellido], 200);
+        }
+    
+        //User
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-    
             $name = $user->name;
-            $apellido = $user->apellido;
-    
-            return response()->json(['message' => 'success', 'name' => $name, 'apellido' => $apellido], 200);
-        } else {
-            return response()->json(['message' => 'Credenciales incorrectas'], 401);
+            return response()->json(['message' => 'success', 'name' => $name], 200);
         }
+    
+        //Error
+        return response()->json(['message' => 'Credenciales incorrectas'], 401);
     }
 
     public function registernow(Request $request)

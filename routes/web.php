@@ -19,9 +19,10 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 Route::get('/', [IndexController::class, 'index']);
-
-Route::get('/crearProducto', function () {
-    return view('productos.create');
+Route::group(['middleware' => ['auth:admin']], function() {
+    Route::get('/crearProducto', function () {
+        return view('productos.create');
+    });
 });
 Route::get('/login', function(){
     return view('users.login');
@@ -32,7 +33,7 @@ Route::get('/register', function(){
 Route::get('/link', function(){
     return Artisan::call('storage:link');
 });
-
+Route::post('/productos', [ProductController::class, 'store'])->name('productos.store');
 Route::get('/productos', [ProductController::class, 'modificar'])->name('productos.modificar1');
 Route::delete('/deleteProducto/{id}', [ProductController::class, 'eliminar'])->name('producto.eliminar');
 Route::get('/obtenerProducto/{id}', [ProductController::class, 'obtenerProducto'])->name('producto.obtenerProducto');

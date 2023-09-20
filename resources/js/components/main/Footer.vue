@@ -1,9 +1,8 @@
 <template>
 <footer style='background-color:#2e005d;'>
     <div id="whatsapp" class="fixed-bottom">
-        <a href="#" target="_blank">
+        <a href="https://wa.me/message/SCBMQYYYMSHRM1" target="_blank">
             <svg width="80" height="80" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-                <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
                 <g class="layer">
                 <title>Layer 1</title>
                 <circle cx="40" cy="40" fill="#fff" id="svg_1" r="38" stroke="#000000" stroke-width="0"/>

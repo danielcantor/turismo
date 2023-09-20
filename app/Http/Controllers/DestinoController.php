@@ -20,8 +20,7 @@ class DestinoController extends Controller
         return view('turismo')->with([
             'items' => $products,
             'pageName' => 'Destinos Nacionales',
-            'description' => 'El Turismo Nacional construye y preserva la identidad de cada destino, así como también pone en valor cada uno de sus Patrimonios.
-            Te invitamos a recorrer juntos nuestro hermoso país',
+            'description' => 'El Turismo Nacional construye y preserva la identidad de cada destino, así como también pone en valor cada uno de sus Patrimonios.Te invitamos a recorrer juntos nuestro hermoso país',
             'title' => 'Destinos',
             "subtitle" => "Nacionales",
             'imageUrl' => '/img/home/Turismo-nacional-banner.jpg'

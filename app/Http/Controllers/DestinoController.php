@@ -23,7 +23,7 @@ class DestinoController extends Controller
             'description' => 'El Turismo Nacional construye y preserva la identidad de cada destino, así como también pone en valor cada uno de sus Patrimonios.Te invitamos a recorrer juntos nuestro hermoso país',
             'title' => 'Destinos',
             "subtitle" => "Nacionales",
-            'imageUrl' => '/img/home/Turismo-nacional-banner.jpg'
+            'imageUrl' => '/img/home/nacional.png'
         ]);
     }
     public function internacional(): View

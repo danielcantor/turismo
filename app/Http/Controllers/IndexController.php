@@ -22,7 +22,7 @@ class IndexController extends Controller
         $message = $data['mensaje'];
         $sendMail = new Mail;
         $mail = new ContactQuestion($name, $email, $phone, $message);
-        $sendMail->to('cynthiaedithgarske@gmail.com');
+        $sendMail::to('cynthiaedithgarske@gmail.com');
         if ($sendMail::send($mail)) {
             return response()->json(['success' => 'Consulta enviada con éxito']);
         }else{

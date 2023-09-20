@@ -36,6 +36,7 @@
         window.imageUrl = '{{ $imageUrl }}';
         window.title = '{{ $title }}';
         window.subtitle = '{{ $subtitle }}';
+        window.description = '{{ $description }}';
     </script>
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>

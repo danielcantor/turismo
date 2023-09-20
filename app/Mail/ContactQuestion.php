@@ -35,12 +35,12 @@ class ContactQuestion extends Mailable
      */
     public function build()
     {
-        return $this->view('email.consulta' , [
-            'name' => $this->name,
-            'mail' => $this->email,
-            'phone' => $this->phone,
-            'mensaje' => $this->mensaje
-        ])->subject('Recibiste una consulta de ' . $this->name);
+        return $this->from($this->email, $this->name)
+            ->view('email.consulta' , [
+                'name' => $this->name,
+                'mail' => $this->email,
+                'phone' => $this->phone,
+                'mensaje' => $this->mensaje
+            ])->subject('Recibiste una consulta de ' . $this->name);
     }
-    
 }

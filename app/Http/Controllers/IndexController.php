@@ -20,12 +20,10 @@ class IndexController extends Controller
         $email = $data['email'];
         $phone = $data['phone'];
         $message = $data['mensaje'];
+        $sendMail = new Mail;
         $mail = new ContactQuestion($name, $email, $phone, $message);
-        $mail->subject('Recibiste una consulta de ' . $name);
-        $mail->to('cynthiaedithgarske@gmail.com');
-        $mail->from($email, $name);
-        $mail->replyTo($email, $name);
-        if (Mail::send($mail)) {
+        $sendMail->to('cynthiaedithgarske@gmail.com');
+        if ($sendMail::send($mail)) {
             return response()->json(['success' => 'Consulta enviada con éxito']);
         }else{
             return response()->json(['error' => 'Error al enviar la consulta']);

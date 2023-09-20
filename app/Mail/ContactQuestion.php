@@ -40,8 +40,7 @@ class ContactQuestion extends Mailable
             'mail' => $this->email,
             'phone' => $this->phone,
             'mensaje' => $this->mensaje
-        ]);
+        ])->subject('Recibiste una consulta de ' . $this->name);
     }
-
     
 }

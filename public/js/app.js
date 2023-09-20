@@ -36772,7 +36772,7 @@ var render = function () {
     _c("div", { staticClass: "card rounded-0" }, [
       _c("img", {
         staticClass: "px-3 pt-3 rounded-0",
-        attrs: { src: _vm.product_image },
+        attrs: { src: "/storage/" + _vm.product_image },
       }),
       _vm._v(" "),
       _c("div", { staticClass: "p-0" }, [

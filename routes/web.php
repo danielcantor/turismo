@@ -30,9 +30,7 @@ Route::get('/register', function(){
     return view('users.register');
 });
 Route::get('/link', function(){
-    return Artisan::call('email:send', [
-        'user' => 1, '--queue' => 'default'
-    ]);
+    return Artisan::call('storage:link');
 });
 
 Route::get('/productos', [ProductController::class, 'modificar'])->name('productos.modificar1');

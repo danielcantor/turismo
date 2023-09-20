@@ -47,7 +47,7 @@
                 imageUrl : window.imageUrl,
                 title: window.title,
                 subtitle: window.subtitle,
-                descripcion: window.descripcion,
+                descripcion: window.description,
             }
         },
         mounted() {

@@ -6266,7 +6266,7 @@ __webpack_require__.r(__webpack_exports__);
       imageUrl: window.imageUrl,
       title: window.title,
       subtitle: window.subtitle,
-      descripcion: window.descripcion
+      descripcion: window.description
     };
   },
   mounted: function mounted() {}

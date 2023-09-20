@@ -27,7 +27,7 @@
                     <a href="/destinos/aereo"><img src="/img/home/aereos.jpg" class="p-3 border" alt=""></a>   
                 </div>
                 <div class="col-12 col-xl-3 col-md-4 text-center">
-                    <a href="/destinos/finde"><img src="/img/home/aereos.jpg" class="p-3 border" alt=""></a>   
+                    <a href="/destinos/finde"><img src="/img/home/findes.jpg" class="p-3 border" alt=""></a>   
                 </div>
             </div>
         </div>

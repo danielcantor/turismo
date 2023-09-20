@@ -1,7 +1,7 @@
 <template>
     <div class="col-xl-3 col-6 col-md-4 p-3">
         <div class="card rounded-0">
-            <img :src="product_image"  class="px-3 pt-3 rounded-0" >
+            <img :src="'/storage/' + product_image"  class="px-3 pt-3 rounded-0" >
             <div class="p-0">
             <h5 class="text-center p-3 text-light fs-6 position-absolute  start-50 translate-middle w-75" style="background-color:rgb(150, 131, 236); font-family:'poppins';border-color:rgb(150, 131, 236);">{{product_name}}</h5>
             <p class="text-center mt-5 lh-1 mx-5 fs-1 " style="border:1px solid #f18701; border-top:0; border-right:0; border-left:0;  ">

@@ -19,6 +19,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url('/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ url('/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url('/favicon-16x16.png') }}">
+    <link href="https://fonts.cdnfonts.com/css/rift-soft-2" rel="stylesheet">
     <link rel="manifest" href="{{ url('/manifest.json') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ url('/ms-icon-144x144.png') }}">
@@ -27,7 +28,7 @@
     <style>
         body {
             background-color: #9683ec;
-            font-family: Arial, sans-serif;
+            font-family: "Helvetica Neue", sans-serif;
             color: white;
         }
 
@@ -39,6 +40,12 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             margin-top: 50px;
+        }
+        .textos-i, .titulo_producto {
+            font-family: "Rift Soft", sans-serif;
+        }
+        a.btn-pink:visited{
+            color: black;
         }
     </style>
 </head>
@@ -56,13 +63,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-12">
-                            <h5 class="fw-bold">{{ $product->product_name }}</h5>
+                        <div class="col-12 titulo_producto">
+                            <h1 class="fw-bold">{{ $product->product_name }}</h1>
                         </div>
                         <div class="col-12">
-                            <div class="heading__share__item clearfix">
-                                <a class="heading__share__item__link" href=""><i class="fas fa-share-alt"></i></a>
-                                <a href="#" target="_blank" class="heading__share__item__label">Compartir</a>
+                            <div class="heading__share__item clearfix titulo_producto">
+                                <a class="heading__share__item__link" href=""></a>
+                                <a href="#" target="_blank" class="heading__share__item__label"><h5><i class="fas fa-share-alt"></i> Compartir</h5></a>
                             </div>
                         </div>
                         <div class="col-12">
@@ -84,16 +91,32 @@
                             <hr>
                             <div class="text-center">
                                 <p class="fw-bold" style="font-size: 18px;">¿Tenés alguna consulta?</p>
-                                <a href="#" class="text-decoration-none" style="font-size: 18px;"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a><br>
-                                <a href="#" class="text-decoration-none" style="font-size: 18px;"><i class="fas fa-envelope"></i> Enviar un Email</a>
+                                <a href="#" target="_blank" class="text-decoration-none" style="font-size: 18px;"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a><br>
+                                <a href="#" target="_blank" class="text-decoration-none" style="font-size: 18px;"><i class="fas fa-envelope"></i> Enviar un Email</a>
                             </div>
                         </div>
                     </div>
-                </div>
-                
+                </div>             
             </div>
         </div>
         <br>
+        <hr>
+        <section class="bg-light py-4">
+            <div class="container textos-i">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="text">
+                        <h3 class="m-0" style="color:#2e005d">¿Querés seguir viendo nuestros viajes?</h3>
+                        <h3 class="m-0" style="color: #f18701">¡ Ingresá a nuestro Instagram para mantenerte actualizado con las últimas novedades !</h3>
+                    </div>
+                    <div class="group-button" style="display: flex; align-items: center;">
+                        <i class="fa-brands fa-instagram" style="color: black; font-size: xx-large"></i>
+                        <a href="https://www.instagram.com/salidasgrupalescyn/" target="_blank" class="btn btn-pink"><h3 class="m-0">Instagram</h3></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+         
+        <hr>
         <footer-component></footer-component>
     </div>
     

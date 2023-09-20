@@ -48,51 +48,52 @@
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/storage/{{ $product->product_image }}"  class='d-block w-100 h-25' alt="">
+                    <img src="/storage/{{ $product->product_image }}" class='d-block w-100' style="height: 300px; object-fit: cover;" alt="">
                 </div>
             </div>
-        </div>
-        <div class="container">
+        </div>        
+        <div class="container mt-5">
             <div class="row">
-                <div class="col-md-6 col-lg-6 " style="margin-top: 30px; margin-bottom: 30px;">
-                        <div class="row mx-auto">
-                        <div class="title">
-                            <h5 class='fw-bold'>{{ $product->product_name }}</h5>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="fw-bold">{{ $product->product_name }}</h5>
                         </div>
-                        <div class="share">
+                        <div class="col-12">
                             <div class="heading__share__item clearfix">
                                 <a class="heading__share__item__link" href=""><i class="fas fa-share-alt"></i></a>
-                                <a href="" target="_blank" class="heading__share__item__label">Compartir</a>
-                                <div class="share_buttons">
-                                </div>
+                                <a href="#" target="_blank" class="heading__share__item__label">Compartir</a>
                             </div>
                         </div>
-                    <hr>
-                        <div class="description">
-                            <p>{{ $product->product_description }}</p>
+                        <div class="col-12">
+                            <hr>
+                            <p>{!! nl2br(e($product->product_description)) !!}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6 card" style="background-color: rgba(255, 127, 80, 0.521); margin-top: 30px; margin-bottom: 30px; padding: 1%;">
-                    <img class="w-100" src="/storage/{{ $product->product_image }}">
-                    <div class="card-body">
-                        <div class="price text-light text-decoration-none">
-                            <p>$ {{$product->product_price}}</p>
-                        </div>
-                        <hr>
-                        <button class="btn btn-success" style="border-radius: 10px; width: 100%; height: 20%; font-family: fantasy;">AGREGAR</button>
-                        <div id="wallet_container"></div>
-                        <hr>
-                        <div class="contacto text-center">
-                            <p>¿Tenés alguna consulta?</p>
-                            <p href="" style="cursor: pointer"><i class="fa-brands fa-whatsapp"></i> Whatsapp</p>
-                            <p href="" style="cursor: pointer"><i class="fa fa-envelope" aria-hidden="true"></i> Email</p>
-                            
+                <div class="col-md-6">
+                    <div class="card" style="background-color: rgba(255, 127, 80, 0.521); border: none;">
+                        <div class="card-body">
+                            <img src="/storage/{{ $product->product_image }}" alt="Producto" class="w-100 img-fluid" style="max-width: 100%; border-radius: 10px;">
+                            <hr>
+                            <p class="text-success fw-bold" style="font-size: 24px;">$ {{ $product->product_price }}</p>
+                            <div class="text-center">
+                                <button class="btn btn-success btn-block rounded-pill fw-bold" style="font-family: Arial, sans-serif; font-size: 18px;">RESERVAR AHORA</button>
+                                <div id="wallet_container"></div>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <p class="fw-bold" style="font-size: 18px;">¿Tenés alguna consulta?</p>
+                                <a href="#" class="text-decoration-none" style="font-size: 18px;"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a><br>
+                                <a href="#" class="text-decoration-none" style="font-size: 18px;"><i class="fas fa-envelope"></i> Enviar un Email</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
+        <br>
         <footer-component></footer-component>
     </div>
     

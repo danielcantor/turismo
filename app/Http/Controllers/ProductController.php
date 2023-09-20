@@ -71,7 +71,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('productos.create')->with('success','Producto creado correctamente');
+        return redirect()->view('productos.create')->with('success','Producto creado correctamente');
     }
     public function create()
     {

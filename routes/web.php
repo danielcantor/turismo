@@ -22,8 +22,9 @@ Route::get('/', [IndexController::class, 'index']);
 Route::group(['middleware' => ['auth:admin']], function() {
     Route::get('/crearProducto', function () {
         return view('productos.create');
-    });
+    })->name('productos.create');
 });
+
 Route::get('/login', function(){
     return view('users.login');
 });

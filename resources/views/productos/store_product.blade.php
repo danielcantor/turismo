@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6 card" style="background-color: rgba(255, 127, 80, 0.521); margin-top: 30px; margin-bottom: 30px;">
+                <div class="col-md-6 col-lg-6 card" style="background-color: rgba(255, 127, 80, 0.521); margin-top: 30px; margin-bottom: 30px; padding: 1%;">
                     <img class="w-100" src="/storage/{{ $product->product_image }}">
                     <div class="card-body">
                         <div class="price text-light text-decoration-none">

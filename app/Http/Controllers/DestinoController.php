@@ -75,7 +75,7 @@ class DestinoController extends Controller
             'description' => '',
             'title' => 'Fin de',
             "subtitle" => "Semana",
-            'imageUrl' => '/img/home/Turismo-fin-de-semana-banner.jpg'
+            'imageUrl' => '/img/home/findelargo.jpg'
         ]);
     }
 }

@@ -49,7 +49,7 @@ class DestinoController extends Controller
             'description' => '',
             'title' => 'Pasajes',
             "subtitle" => "Aéreos",
-            'imageUrl' => '/img/home/Turismo-aereo-banner.jpg'
+            'imageUrl' => '/img/home/aereo.jpg'
         ]);
     }
     public function escapada(): View
@@ -62,7 +62,7 @@ class DestinoController extends Controller
             'description' => 'El miniturismo representa una porción sustancial de las economías de muchas regiones, ciudades o pueblos; con recorridos de pocos kilómetros, donde lo importante es siempre conectar con la identidad del lugar y regresar renovado.',
             'title' => '',
             "subtitle" => "Escapadas",
-            'imageUrl' => '/img/home/Turismo-escapadas-banner.jpg'
+            'imageUrl' => '/img/home/escapada.jpg'
         ]);
     }
     public function finde(): View

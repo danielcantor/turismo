@@ -5484,39 +5484,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['product'],
@@ -35090,36 +35057,40 @@ var render = function () {
     _c("div", { staticClass: "container" }, [
       _c("main", [
         _c("div", { staticClass: "row g-5 pb-3" }, [
-          _c("div", { staticClass: "col-md-5 col-lg-4 order-md-last" }, [
-            _vm._m(2),
-            _vm._v(" "),
-            _c("ul", { staticClass: "list-group mb-3" }, [
-              _c(
-                "li",
-                {
-                  staticClass:
-                    "list-group-item d-flex justify-content-between align-items-center lh-sm",
-                },
-                [
-                  _c("div", [
-                    _c("h6", { staticClass: "my-0" }, [
-                      _vm._v(_vm._s(_vm.product.product_name)),
+          _c(
+            "div",
+            { staticClass: "col-md-5 col-lg-4 order-md-last d-md-none" },
+            [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("ul", { staticClass: "list-group mb-3" }, [
+                _c(
+                  "li",
+                  {
+                    staticClass:
+                      "list-group-item d-flex justify-content-between align-items-center lh-sm",
+                  },
+                  [
+                    _c("div", [
+                      _c("h6", { staticClass: "my-0" }, [
+                        _vm._v(_vm._s(_vm.product.product_name)),
+                      ]),
+                      _vm._v(" "),
+                      _c("small", { staticClass: "text-muted" }, [
+                        _vm._v(_vm._s(_vm.product.product_description)),
+                      ]),
                     ]),
                     _vm._v(" "),
-                    _c("small", { staticClass: "text-muted" }, [
-                      _vm._v(_vm._s(_vm.product.product_description)),
+                    _c("span", { staticClass: "text-muted" }, [
+                      _vm._v("$" + _vm._s(_vm.product.product_price)),
                     ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-muted" }, [
-                    _vm._v("$" + _vm._s(_vm.product.product_price)),
-                  ]),
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(3),
-            ]),
-          ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(3),
+              ]),
+            ]
+          ),
           _vm._v(" "),
           _vm._m(4),
         ]),
@@ -35192,7 +35163,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-7 col-lg-8" }, [
-      _c("h4", { staticClass: "mb-3" }, [_vm._v("Billing address")]),
+      _c("h4", { staticClass: "mb-3" }, [_vm._v("Informacion de cliente")]),
       _vm._v(" "),
       _c(
         "form",
@@ -35203,7 +35174,7 @@ var staticRenderFns = [
               _c(
                 "label",
                 { staticClass: "form-label", attrs: { for: "firstName" } },
-                [_vm._v("First name")]
+                [_vm._v("Nombre")]
               ),
               _vm._v(" "),
               _c("input", {
@@ -35219,7 +35190,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "invalid-feedback" }, [
                 _vm._v(
-                  "\r\n                Valid first name is required.\r\n              "
+                  "\r\n                Se necesita el nombre.\r\n              "
                 ),
               ]),
             ]),
@@ -35228,7 +35199,7 @@ var staticRenderFns = [
               _c(
                 "label",
                 { staticClass: "form-label", attrs: { for: "lastName" } },
-                [_vm._v("Last name")]
+                [_vm._v("Apellido")]
               ),
               _vm._v(" "),
               _c("input", {
@@ -35244,49 +35215,16 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "invalid-feedback" }, [
                 _vm._v(
-                  "\r\n                Valid last name is required.\r\n              "
+                  "\r\n                Se necesita el apellido.\r\n              "
                 ),
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-12" }, [
-              _c(
-                "label",
-                { staticClass: "form-label", attrs: { for: "username" } },
-                [_vm._v("Username")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group has-validation" }, [
-                _c("span", { staticClass: "input-group-text" }, [_vm._v("@")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "username",
-                    placeholder: "Username",
-                    required: "",
-                  },
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "invalid-feedback" }, [
-                  _vm._v(
-                    "\r\n                  Your username is required.\r\n                "
-                  ),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "col-6" }, [
               _c(
                 "label",
                 { staticClass: "form-label", attrs: { for: "email" } },
-                [
-                  _vm._v("Email "),
-                  _c("span", { staticClass: "text-muted" }, [
-                    _vm._v("(Optional)"),
-                  ]),
-                ]
+                [_vm._v("Correo electronico")]
               ),
               _vm._v(" "),
               _c("input", {
@@ -35300,16 +35238,16 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "invalid-feedback" }, [
                 _vm._v(
-                  "\r\n                Please enter a valid email address for shipping updates.\r\n              "
+                  "\r\n                Por favor ingrese un correo electronico valido.\r\n              "
                 ),
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "col-6" }, [
               _c(
                 "label",
                 { staticClass: "form-label", attrs: { for: "address" } },
-                [_vm._v("Address")]
+                [_vm._v("Dirección")]
               ),
               _vm._v(" "),
               _c("input", {
@@ -35324,17 +35262,17 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "invalid-feedback" }, [
                 _vm._v(
-                  "\r\n                Please enter your shipping address.\r\n              "
+                  "\r\n                Por favor ingrese su direccion.\r\n              "
                 ),
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "col-6" }, [
               _c(
                 "label",
                 { staticClass: "form-label", attrs: { for: "address2" } },
                 [
-                  _vm._v("Address 2 "),
+                  _vm._v("Dirección 2 "),
                   _c("span", { staticClass: "text-muted" }, [
                     _vm._v("(Optional)"),
                   ]),
@@ -35351,38 +35289,11 @@ var staticRenderFns = [
               }),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-5" }, [
-              _c(
-                "label",
-                { staticClass: "form-label", attrs: { for: "country" } },
-                [_vm._v("Country")]
-              ),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  staticClass: "form-select",
-                  attrs: { id: "country", required: "" },
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Choose...")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("United States")]),
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "invalid-feedback" }, [
-                _vm._v(
-                  "\r\n                Please select a valid country.\r\n              "
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "col-md-6" }, [
               _c(
                 "label",
                 { staticClass: "form-label", attrs: { for: "state" } },
-                [_vm._v("State")]
+                [_vm._v("Provincia")]
               ),
               _vm._v(" "),
               _c(
@@ -35392,15 +35303,91 @@ var staticRenderFns = [
                   attrs: { id: "state", required: "" },
                 },
                 [
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Choose...")]),
+                  _c("option", { attrs: { value: "1" } }, [
+                    _vm._v("BUENOS AIRES"),
+                  ]),
                   _vm._v(" "),
-                  _c("option", [_vm._v("California")]),
+                  _c("option", { attrs: { value: "2" } }, [
+                    _vm._v("CATAMARCA"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "5" } }, [_vm._v("CHACO")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "6" } }, [_vm._v("CHUBUT")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "50" } }, [
+                    _vm._v("CIUDAD AUTONOMA DE Bs As"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "3" } }, [_vm._v("CORDOBA")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "4" } }, [
+                    _vm._v("CORRIENTES"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "7" } }, [
+                    _vm._v("ENTRE RIOS"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "8" } }, [_vm._v("FORMOSA")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "9" } }, [_vm._v("JUJUY")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "10" } }, [
+                    _vm._v("LA PAMPA"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "11" } }, [
+                    _vm._v("LA RIOJA"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "12" } }, [_vm._v("MENDOZA")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "13" } }, [
+                    _vm._v("MISIONES"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "14" } }, [_vm._v("NEUQUEN")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "15" } }, [
+                    _vm._v("RIO NEGRO"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "16" } }, [_vm._v("SALTA")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "17" } }, [
+                    _vm._v("SAN LUIS"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "19" } }, [
+                    _vm._v("SANTA CRUZ"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "20" } }, [
+                    _vm._v("SANTA FE"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "21" } }, [
+                    _vm._v("SANTIAGO DEL ESTERO"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "22" } }, [
+                    _vm._v("TIERRA DEL FUEGO"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "option",
+                    {
+                      attrs: { disabled: "true", selected: "true", value: "" },
+                    },
+                    [_vm._v("Selecciona")]
+                  ),
                 ]
               ),
               _vm._v(" "),
               _c("div", { staticClass: "invalid-feedback" }, [
                 _vm._v(
-                  "\r\n                Please provide a valid state.\r\n              "
+                  "\r\n                Por favor seleccione una provincia.\r\n              "
                 ),
               ]),
             ]),
@@ -35409,7 +35396,7 @@ var staticRenderFns = [
               _c(
                 "label",
                 { staticClass: "form-label", attrs: { for: "zip" } },
-                [_vm._v("Zip")]
+                [_vm._v("Codigo Postal")]
               ),
               _vm._v(" "),
               _c("input", {
@@ -35424,7 +35411,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "invalid-feedback" }, [
                 _vm._v(
-                  "\r\n                Zip code required.\r\n              "
+                  "\r\n                Se necesita el codigo postal.\r\n              "
                 ),
               ]),
             ]),
@@ -35432,38 +35419,50 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("hr", { staticClass: "my-4" }),
           _vm._v(" "),
-          _c("div", { staticClass: "form-check" }, [
-            _c("input", {
-              staticClass: "form-check-input",
-              attrs: { type: "checkbox", id: "same-address" },
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              {
-                staticClass: "form-check-label",
-                attrs: { for: "same-address" },
-              },
-              [_vm._v("Shipping address is the same as my billing address")]
-            ),
-          ]),
+          _c("h4", { staticClass: "mb-3" }, [_vm._v("Pasajeros")]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-check" }, [
-            _c("input", {
-              staticClass: "form-check-input",
-              attrs: { type: "checkbox", id: "save-info" },
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "form-check-label", attrs: { for: "save-info" } },
-              [_vm._v("Save this information for next time")]
-            ),
+          _c("div", { staticClass: "row g-3" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "state" } },
+                [_vm._v("Cantidad")]
+              ),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  staticClass: "form-select",
+                  attrs: { id: "state", required: "" },
+                },
+                [
+                  _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "5" } }, [_vm._v("5")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "6" } }, [_vm._v("6")]),
+                  _vm._v(" "),
+                  _c(
+                    "option",
+                    {
+                      attrs: { disabled: "true", selected: "true", value: "" },
+                    },
+                    [_vm._v("Selecciona")]
+                  ),
+                ]
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("hr", { staticClass: "my-4" }),
           _vm._v(" "),
-          _c("h4", { staticClass: "mb-3" }, [_vm._v("Payment")]),
+          _c("h4", { staticClass: "mb-3" }, [_vm._v("Metodo de pago")]),
           _vm._v(" "),
           _c("div", { staticClass: "my-3" }, [
             _c("div", { staticClass: "form-check" }, [
@@ -35481,7 +35480,7 @@ var staticRenderFns = [
               _c(
                 "label",
                 { staticClass: "form-check-label", attrs: { for: "credit" } },
-                [_vm._v("Credit card")]
+                [_vm._v("Mercado pago")]
               ),
             ]),
             _vm._v(" "),
@@ -35499,128 +35498,8 @@ var staticRenderFns = [
               _c(
                 "label",
                 { staticClass: "form-check-label", attrs: { for: "debit" } },
-                [_vm._v("Debit card")]
+                [_vm._v("Transferencia Bancaria")]
               ),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-check" }, [
-              _c("input", {
-                staticClass: "form-check-input",
-                attrs: {
-                  id: "paypal",
-                  name: "paymentMethod",
-                  type: "radio",
-                  required: "",
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                { staticClass: "form-check-label", attrs: { for: "paypal" } },
-                [_vm._v("PayPal")]
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row gy-3" }, [
-            _c("div", { staticClass: "col-md-6" }, [
-              _c(
-                "label",
-                { staticClass: "form-label", attrs: { for: "cc-name" } },
-                [_vm._v("Name on card")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "cc-name",
-                  placeholder: "",
-                  required: "",
-                },
-              }),
-              _vm._v(" "),
-              _c("small", { staticClass: "text-muted" }, [
-                _vm._v("Full name as displayed on card"),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "invalid-feedback" }, [
-                _vm._v(
-                  "\r\n                Name on card is required\r\n              "
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
-              _c(
-                "label",
-                { staticClass: "form-label", attrs: { for: "cc-number" } },
-                [_vm._v("Credit card number")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "cc-number",
-                  placeholder: "",
-                  required: "",
-                },
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "invalid-feedback" }, [
-                _vm._v(
-                  "\r\n                Credit card number is required\r\n              "
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-3" }, [
-              _c(
-                "label",
-                { staticClass: "form-label", attrs: { for: "cc-expiration" } },
-                [_vm._v("Expiration")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "cc-expiration",
-                  placeholder: "",
-                  required: "",
-                },
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "invalid-feedback" }, [
-                _vm._v(
-                  "\r\n                Expiration date required\r\n              "
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-3" }, [
-              _c(
-                "label",
-                { staticClass: "form-label", attrs: { for: "cc-cvv" } },
-                [_vm._v("CVV")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "cc-cvv",
-                  placeholder: "",
-                  required: "",
-                },
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "invalid-feedback" }, [
-                _vm._v(
-                  "\r\n                Security code required\r\n              "
-                ),
-              ]),
             ]),
           ]),
           _vm._v(" "),

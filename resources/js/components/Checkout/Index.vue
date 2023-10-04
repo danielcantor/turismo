@@ -13,11 +13,15 @@
                 <h6 class="my-0">{{product.product_name}}</h6>
                 <small class="text-muted">{{product.product_description}}</small>
               </div>
-              <span class="text-muted">${{product.product_price}}</span>
+              <strong>${{product.product_price}}</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Cantidad</span>
+              <strong>{{quantity}}</strong>
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (ARS)</span>
-              <strong>$20</strong>
+              <strong>${{cart.total}}</strong>
             </li>
           </ul>
     </div>
@@ -29,7 +33,7 @@
       <div class="col-md-5 col-lg-4 order-md-last d-md-none">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">Tu compra</span>
-          <span class="badge bg-primary rounded-pill">1</span>
+          <span class="badge bg-primary rounded-pill">{{quantity}}</span>
         </h4>
         <ul class="list-group mb-3">
           <li class="list-group-item d-flex justify-content-between align-items-center lh-sm">
@@ -37,21 +41,20 @@
               <h6 class="my-0">{{product.product_name}}</h6>
               <small class="text-muted">{{product.product_description}}</small>
             </div>
-            <span class="text-muted">${{product.product_price}}</span>
+            <strong>${{product.product_price}}</strong>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (ARS)</span>
-            <strong>$20</strong>
+            <strong>${{cart.total}}</strong>
           </li>
         </ul>
       </div>
-      <div class="col-md-7 col-lg-8">
+      <div class="col-md-7 col-lg-8" v-show="cart.step === 1">
         <h4 class="mb-3">Informacion de cliente</h4>
-        <form class="needs-validation" novalidate>
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required v-model="cart.data.nombre" :class="[ cart.errors.nombre ? 'is-invalid' : '']">
               <div class="invalid-feedback">
                 Se necesita el nombre.
               </div>
@@ -59,7 +62,7 @@
 
             <div class="col-sm-6">
               <label for="lastName" class="form-label">Apellido</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" required v-model="cart.data.apellido" :class="[ cart.errors.apellido ? 'is-invalid' : '']">
               <div class="invalid-feedback">
                 Se necesita el apellido.
               </div>
@@ -67,7 +70,7 @@
 
             <div class="col-6">
               <label for="email" class="form-label">Correo electronico</label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <input type="email" class="form-control" id="email" placeholder="ejemplo@ex.com" v-model="cart.data.email" :class="[ cart.errors.email ? 'is-invalid' : '']">
               <div class="invalid-feedback">
                 Por favor ingrese un correo electronico valido.
               </div>
@@ -75,7 +78,7 @@
 
             <div class="col-6">
               <label for="address" class="form-label">Dirección</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              <input type="text" class="form-control" id="address" placeholder="Av de Mayo 100" required v-model="cart.data.direccion" :class="[ cart.errors.direccion ? 'is-invalid' : '']"> 
               <div class="invalid-feedback">
                 Por favor ingrese su direccion.
               </div>
@@ -83,13 +86,13 @@
 
             <div class="col-6">
               <label for="address2" class="form-label">Dirección 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+              <input type="text" class="form-control" id="address2" placeholder="Numero de departemento" v-model="cart.data.direccion2">
             </div>
 
 
             <div class="col-md-6">
               <label for="state" class="form-label">Provincia</label>
-              <select class="form-select" id="state" required>
+              <select class="form-select" id="state" required v-model.number="cart.data.provincia" :class="[ cart.errors.provincia ? 'is-invalid' : '']">
                 <option value="1">BUENOS AIRES</option>
                 <option value="2">CATAMARCA</option>
                 <option value="5">CHACO</option>
@@ -118,10 +121,16 @@
                 Por favor seleccione una provincia.
               </div>
             </div>
-
+            <div class="col-6">
+              <label for="email" class="form-label">Documento</label>
+              <input type="number" class="form-control" id="email" placeholder="34556" v-model="cart.data.documento" :class="[ cart.errors.documento ? 'is-invalid' : '']">
+              <div class="invalid-feedback">
+                Por favor ingrese un nro de documento electronico valido.
+              </div>
+            </div>
             <div class="col-md-3">
               <label for="zip" class="form-label">Codigo Postal</label>
-              <input type="text" class="form-control" id="zip" placeholder="" required>
+              <input type="text" class="form-control" id="zip" placeholder="" required v-model="cart.data.codigo_postal" :class="[ cart.errors.codigo_postal ? 'is-invalid' : '']">
               <div class="invalid-feedback">
                 Se necesita el codigo postal.
               </div>
@@ -133,19 +142,22 @@
           <div class="row g-3">
             <div class="col-12">
             <label for="state" class="form-label">Cantidad</label>
-              <select class="form-select" id="state" required>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
+              <select class="form-select" id="state" required v-model.number="quantity">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
                 <option disabled="true" selected="true" value="">Selecciona</option>              
               </select>
             </div>
           </div>
-
-          <hr class="my-4">
+          
+          <div v-for="(qty, index) in quantity" :key="index" >
+            <pasajeros :pasajero="pasajeros[index]" :qty="qty"></pasajeros>
+          </div>
+          <!--<hr class="my-4">
 
           <h4 class="mb-3">Metodo de pago</h4>
 
@@ -158,12 +170,17 @@
               <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
               <label class="form-check-label" for="debit">Transferencia Bancaria</label>
             </div>
-          </div>
+          </div> -->
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-        </form>
+          <button class="w-100 btn btn-primary btn-lg" @click="step2">Continuar</button>
+      </div>
+      <div class="col-md-7 col-lg-8" v-show="cart.step === 2">
+        <h4 class="mb-3">Confirmacion</h4>
+        <div id="wallet_container"></div>
+        <button class="w-100 btn btn-primary btn-lg" @click="step1">Volver</button>
+
       </div>
     </div>
   </main>
@@ -171,16 +188,100 @@
 </section>
 </template>
 <script>
-  
+    import axios from 'axios';
+    import Pasajeros from './pasajeros.vue';
     export default {  
+      components: { Pasajeros },
       props: ['product'],
         data() {
             return {
-                cart: [],
+                cart: {
+                  step : 1,
+                  data: {
+                    nombre: '',
+                    apellido: '',
+                    email: '',
+                    direccion: '',
+                    direccion2: '',
+                    provincia: '',
+                    codigo_postal: '',
+                    documento: ''
+                  },
+                  errors: {
+                    nombre: false, 
+                    apellido: false, 
+                    email: false, 
+                    direccion: false,
+                    provincia: false,
+                    codigo_postal: false,
+                    documento: false
+                  },
+                  total: 0
+                },
+                quantity: 1,
+                pasajeros : [
+                  {
+                    nombre: '',
+                    apellido: '',
+                    email: '',
+                    direccion: '',
+                    documento: ''
+                  }
+                ]
             }
         },
+        watch: {
+          quantity(val , old){
+            for (var i = old; i < val; i++) {
+              this.pasajeros.push({
+                nombre: '',
+                apellido: '',
+                email: '',
+                direccion: '',
+                documento: ''
+              });
+            }
+            this.cart.total = this.product.product_price * val;
+          }
+        },
+        methods: {
+          step2(){
+            let keys = Object.keys(this.cart.data);
+            let count = 0;
+              for(let i=0; i< keys.length; i++){
+                let key = keys[i];
+                if(this.cart.data[key] === '') {
+                    this.cart.errors[key] = true;
+                    count++;
+                }
+              }
+              if(count > 0) {
+                  return;
+              }
+              axios.post('/cart', {
+                id: this.product.id,
+                price: this.cart.total
+              }).then(response => {
+                const mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
+                const bricksBuilder = mp.bricks();
+                mp.bricks().create("wallet", "wallet_container", {
+                initialization: {
+                    preferenceId: response.data.preference,
+                    redirectMode: "modal",
+                },
+                });
+                this.cart.step = 2;
+              }).catch(error => {
+                console.log(error);
+              });
+          },
+          step1 (){
+
+            this.cart.step = 1;
+          }
+        },
         mounted() {
-            
+          this.cart.total = this.product.product_price * this.quantity;
         }
     }
 </script>

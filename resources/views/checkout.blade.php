@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,6 +29,7 @@
     <div id="app">
         <checkout-component :product="{{ $product }}"></checkout-component>
     </div>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>

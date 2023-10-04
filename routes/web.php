@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DestinoController;
 use App\Http\Controllers\ShoppingController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
@@ -61,5 +62,8 @@ Route::controller(DestinoController::class)->group(function () {
 
 
 Route::get('/checkout/{id}', [ShoppingController::class, 'index']);
-
+Route::get('/success', [ShoppingController::class, 'success']);
+Route::get('/failure', [ShoppingController::class, 'failure']);
+Route::get('/pending', [ShoppingController::class, 'pending']);
+Route::post('/cart', [CartController::class, 'getMercadoPago'])->name('cart');
 Route::post('/mail', [IndexController::class, 'mail'])->name('mail');

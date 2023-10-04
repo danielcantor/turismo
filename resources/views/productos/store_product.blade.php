@@ -85,14 +85,14 @@
                             <hr>
                             <p class="text-success fw-bold" style="font-size: 24px;">$ {{ $product->product_price }}</p>
                             <div class="text-center">
-                                <button class="btn btn-success btn-block rounded-pill fw-bold" style="font-family: Arial, sans-serif; font-size: 18px;">RESERVAR AHORA</button>
+                                <a href="/checkout/{{$product->id}}" class="btn btn-success btn-block w-50 fw-bold" style="font-family: Arial, sans-serif; font-size: 18px;">RESERVAR AHORA</a>
                                 <div id="wallet_container"></div>
                             </div>
                             <hr>
                             <div class="text-center">
                                 <p class="fw-bold" style="font-size: 18px;">¿Tenés alguna consulta?</p>
-                                <a href="#" target="_blank" class="text-decoration-none" style="font-size: 18px;"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a><br>
-                                <a href="#" target="_blank" class="text-decoration-none" style="font-size: 18px;"><i class="fas fa-envelope"></i> Enviar un Email</a>
+                                <a href="https://wa.me/message/SCBMQYYYMSHRM1" target="_blank" class="text-decoration-none" style="font-size: 18px;"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a><br>
+                                <a href="mailto:cynthiaedithgarske@gmail.com" target="_blank" class="text-decoration-none" style="font-size: 18px;"><i class="fas fa-envelope"></i> Enviar un Email</a>
                             </div>
                         </div>
                     </div>
@@ -129,9 +129,9 @@
         mp.bricks().create("wallet", "wallet_container", {
         initialization: {
             preferenceId: "{{ $preference->id }}",
+            redirectMode: "modal",
         },
         });
-
     </script>
 
 </body>

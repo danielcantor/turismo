@@ -35,7 +35,7 @@ class ContactQuestion extends Mailable
      */
     public function build()
     {
-        return $this->from($this->email, $this->name)
+        return $this->from(env(MAIL_FROM_ADDRESS), env(MAIL_FROM_NAME))
             ->view('email.consulta' , [
                 'name' => $this->name,
                 'mail' => $this->email,

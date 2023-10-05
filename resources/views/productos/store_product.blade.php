@@ -86,7 +86,6 @@
                             <p class="text-success fw-bold" style="font-size: 24px;">$ {{ $product->product_price }}</p>
                             <div class="text-center">
                                 <a href="/checkout/{{$product->id}}" class="btn btn-success btn-block w-50 fw-bold" style="font-family: Arial, sans-serif; font-size: 18px;">RESERVAR AHORA</a>
-                                <div id="wallet_container"></div>
                             </div>
                             <hr>
                             <div class="text-center">
@@ -121,18 +120,6 @@
     </div>
     
     <script src="{{ mix('js/app.js') }}"></script>   
-
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
-    <script>
-        const mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
-        const bricksBuilder = mp.bricks();
-        mp.bricks().create("wallet", "wallet_container", {
-        initialization: {
-            preferenceId: "{{ $preference->id }}",
-            redirectMode: "modal",
-        },
-        });
-    </script>
 
 </body>
 </html>

@@ -180,8 +180,14 @@
 
           <button class="w-100 btn btn-primary btn-lg" @click="step2">Continuar</button>
       </div>
-      <div class="col-md-7 col-lg-8" v-show="cart.step === 2">
+      <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Confirmacion</h4>
+        <p>Este es el resumen de tu compra:</p>
+        <div v-for="(pasajero,key) in pasajeros.slice(0, quantity)" :key="key">
+            <h5>Pasajero #{{key + 1}}</h5>
+            <p>Nombre: {{ pasajero.nombre }}</p>
+            <p>Apellido : {{ pasajero.apellido }}</p>
+        </div>
         <div id="wallet_container"></div>
         <button class="w-100 btn btn-primary btn-lg" @click="step1">Volver</button>
 
@@ -227,9 +233,19 @@
                   {
                     nombre: '',
                     apellido: '',
+                    nacimiento: '',
                     email: '',
-                    direccion: '',
-                    documento: ''
+                    nacionalidad : '',
+                    documento: '',
+                    celular: '',
+                    emergencia: {
+                      nombre: '',
+                      apellido: '',
+                      celular: ''
+                    },
+                    dieta: {
+                      tipo: ''
+                    }
                   }
                 ]
             }
@@ -238,11 +254,21 @@
           quantity(val , old){
             for (var i = old; i < val; i++) {
               this.pasajeros.push({
-                nombre: '',
-                apellido: '',
-                email: '',
-                direccion: '',
-                documento: ''
+                    nombre: '',
+                    apellido: '',
+                    nacimiento: '',
+                    email: '',
+                    nacionalidad : '',
+                    documento: '',
+                    celular: '',
+                    emergencia: {
+                      nombre: '',
+                      apellido: '',
+                      celular: ''
+                    },
+                    dieta: {
+                      tipo: ''
+                    }
               });
             }
             this.cart.total = this.product.product_price * val;

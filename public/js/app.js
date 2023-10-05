@@ -5504,6 +5504,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -5615,6 +5619,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6224,10 +6275,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    imageUrl: String
+    imageUrl: String,
+    link: String
   },
   mounted: function mounted() {}
 });
@@ -35903,6 +35960,14 @@ var render = function () {
                       _vm._v(" "),
                       _c("option", { attrs: { value: "6" } }, [_vm._v("6")]),
                       _vm._v(" "),
+                      _c("option", { attrs: { value: "7" } }, [_vm._v("7")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "8" } }, [_vm._v("8")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "9" } }, [_vm._v("9")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                      _vm._v(" "),
                       _c(
                         "option",
                         {
@@ -36039,7 +36104,7 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row g-3" }, [
-      _c("div", { staticClass: "col-sm-6" }, [
+      _c("div", { staticClass: "col-6" }, [
         _c("label", { staticClass: "form-label" }, [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("input", {
@@ -36069,7 +36134,7 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-6" }, [
+      _c("div", { staticClass: "col-6" }, [
         _c("label", { staticClass: "form-label" }, [_vm._v("Apellido")]),
         _vm._v(" "),
         _c("input", {
@@ -36095,73 +36160,13 @@ var render = function () {
         }),
         _vm._v(" "),
         _c("div", { staticClass: "invalid-feedback" }, [
-          _vm._v("\n            Se necesita el apellido.\n        "),
+          _vm._v("\n                Se necesita el apellido.\n            "),
         ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-6" }, [
-        _c("label", { staticClass: "form-label" }, [
-          _vm._v("Correo electronico"),
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.pasajero.email,
-              expression: "pasajero.email",
-            },
-          ],
-          staticClass: "form-control",
-          attrs: { type: "email", placeholder: "you@example.com" },
-          domProps: { value: _vm.pasajero.email },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.pasajero, "email", $event.target.value)
-            },
-          },
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "invalid-feedback" }, [
-          _vm._v(
-            "\n            Por favor ingrese un correo electronico valido.\n        "
-          ),
-        ]),
-      ]),
+      _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "col-6" }, [
-        _c("label", { staticClass: "form-label" }, [_vm._v("Dirección")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.pasajero.direccion,
-              expression: "pasajero.direccion",
-            },
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", placeholder: "1234 Main St", required: "" },
-          domProps: { value: _vm.pasajero.direccion },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.pasajero, "direccion", $event.target.value)
-            },
-          },
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "invalid-feedback" }, [
-          _vm._v("\n            Por favor ingrese su direccion.\n        "),
-        ]),
-      ]),
+      _vm._m(1),
       _vm._v(" "),
       _c("div", { staticClass: "col-6" }, [
         _c("label", { staticClass: "form-label", attrs: { for: "address2" } }, [
@@ -36194,10 +36199,242 @@ var render = function () {
           },
         }),
       ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c("label", { staticClass: "form-label" }, [
+          _vm._v("Correo electronico"),
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.pasajero.email,
+              expression: "pasajero.email",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "email", placeholder: "tu@ex.com" },
+          domProps: { value: _vm.pasajero.email },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.pasajero, "email", $event.target.value)
+            },
+          },
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-feedback" }, [
+          _vm._v(
+            "\n                Por favor ingrese un correo electronico valido.\n            "
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c("label", { staticClass: "form-label" }, [_vm._v("Celular")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.pasajero.email,
+              expression: "pasajero.email",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "number" },
+          domProps: { value: _vm.pasajero.email },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.pasajero, "email", $event.target.value)
+            },
+          },
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-feedback" }, [
+          _vm._v(
+            "\n                Por favor ingrese un correo electronico valido.\n            "
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "mb-0" }, [_vm._v("Contacto de emergencia")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c("label", { staticClass: "form-label" }, [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.pasajero.nombre,
+              expression: "pasajero.nombre",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "", value: "", required: "" },
+          domProps: { value: _vm.pasajero.nombre },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.pasajero, "nombre", $event.target.value)
+            },
+          },
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-feedback" }, [
+          _vm._v("\n                Se necesita el nombre.\n            "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c("label", { staticClass: "form-label" }, [_vm._v("Apellido")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.pasajero.apellido,
+              expression: "pasajero.apellido",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "", value: "", required: "" },
+          domProps: { value: _vm.pasajero.apellido },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.pasajero, "apellido", $event.target.value)
+            },
+          },
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-feedback" }, [
+          _vm._v("\n                Se necesita el apellido.\n            "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c("label", { staticClass: "form-label" }, [_vm._v("Celular")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.pasajero.apellido,
+              expression: "pasajero.apellido",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "number", placeholder: "", value: "", required: "" },
+          domProps: { value: _vm.pasajero.apellido },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.pasajero, "apellido", $event.target.value)
+            },
+          },
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-feedback" }, [
+          _vm._v("\n                Se necesita el apellido.\n            "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "mb-0" }, [
+        _vm._v("Si tu reserva es con alojamiento, especifica tu Dieta "),
+      ]),
+      _vm._v(" "),
+      _vm._m(2),
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-6" }, [
+      _c("label", { staticClass: "form-label", attrs: { for: "address2" } }, [
+        _vm._v("Fecha de nacimiento"),
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "address2", placeholder: "", required: "" },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-6" }, [
+      _c("label", { staticClass: "form-label", attrs: { for: "address2" } }, [
+        _vm._v("Nacionalidad"),
+      ]),
+      _vm._v(" "),
+      _c(
+        "select",
+        { staticClass: "form-select", attrs: { name: "", id: "" } },
+        [
+          _c("option", { attrs: { value: "" } }, [
+            _vm._v("Seleccione su nacionalidad"),
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "1" } }, [_vm._v("Argentina")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2" } }, [_vm._v("Brasil")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "3" } }, [_vm._v("Chile")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "4" } }, [_vm._v("Uruguay")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "5" } }, [_vm._v("Paraguay")]),
+        ]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-6" }, [
+      _c(
+        "select",
+        { staticClass: "form-select", attrs: { name: "", id: "" } },
+        [
+          _c("option", { attrs: { value: "" } }, [_vm._v("Sin especificar")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "1" } }, [_vm._v("Vegetariano ")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2" } }, [_vm._v("Celiaco ")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "3" } }, [_vm._v("Diabético ")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "4" } }, [_vm._v("Hipertenso")]),
+        ]
+      ),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -36590,7 +36827,12 @@ var render = function () {
       _vm._v(" "),
       _c("div"),
       _vm._v(" "),
-      _c("Slider", { attrs: { imageUrl: "/img/home/contactanos-home.jpg" } }),
+      _c("Slider", {
+        attrs: {
+          imageUrl: "/img/home/contactanos-home.jpg",
+          link: "/contacto",
+        },
+      }),
     ],
     1
   )
@@ -37472,12 +37714,21 @@ var render = function () {
     },
     [
       _c("div", { staticClass: "carousel-inner" }, [
-        _c("div", { staticClass: "carousel-item active" }, [
-          _c("img", {
-            staticClass: "d-block w-100",
-            attrs: { src: _vm.imageUrl, alt: "" },
-          }),
-        ]),
+        _vm.link
+          ? _c("div", { staticClass: "carousel-item active" }, [
+              _c("a", { attrs: { href: _vm.link } }, [
+                _c("img", {
+                  staticClass: "d-block w-100",
+                  attrs: { src: _vm.imageUrl, alt: "" },
+                }),
+              ]),
+            ])
+          : _c("div", { staticClass: "carousel-item active" }, [
+              _c("img", {
+                staticClass: "d-block w-100",
+                attrs: { src: _vm.imageUrl, alt: "" },
+              }),
+            ]),
       ]),
     ]
   )

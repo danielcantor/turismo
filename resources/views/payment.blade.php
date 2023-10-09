@@ -27,7 +27,9 @@
 </head>
 <body>
     <div id="app">
-        <response-component></response-component>
+        <header-component></header-component>
+        <response-component :status="'{{$status}}'" :text="'{{$message}}'" :title="'{{$title}}'"></response-component>
+        <footer-component></footer-component>    
     </div>
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>

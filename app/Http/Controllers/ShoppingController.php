@@ -7,7 +7,16 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 class ShoppingController extends Controller
 {
-    
+    public $response_messages = [
+        'pending' => 'Tu pago está pendiente',
+        'approved' => 'Tu pago fue procesado exitosamente',
+        'failure' => 'Tu pago no pudo ser procesado',
+    ];
+    public $titles = [
+        'pending' => '¡Tu pago está pendiente!',
+        'approved' => '¡Gracias por tu compra!',
+        'failure' => '¡Hubo un problema con tu pago!',
+    ];
     public function index($id) : View
     {
         $products = new Product;
@@ -17,21 +26,27 @@ class ShoppingController extends Controller
         ]);
     }
 
-    public function success() : View
-    {
-        return view('payment' , [
-            'title' => '¡Gracias por tu compra!',
-            'message' => 'Tu pago fue procesado exitosamente'
-        ]);
-    }
-    
-    public function failure() : View
-    {
-        return view('payment' , [
-            'title' => '¡Hubo un problema con tu pago!',
-            'message' => 'Tu pago no pudo ser procesado'
-        ]);
+    private function responeseArray($status){
+        return [
+            'title' => $this->titles[$status],
+            'message' => $this->response_messages[$status],
+            'status' => $status
+        ];
     }
 
+    public function success() : View
+    {
+        return view('payment' , $this->responeseArray('approved'));
+    }
+
+    public function failure() : View
+    {
+        return view('payment' , $this->responeseArray('failure'));
+    }
+
+    public function pending() : View
+    {
+        return view('payment' , $this->responeseArray('pending'));
+    }
 
 }

@@ -6604,24 +6604,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      paymentStatus: 'pending' // Set the initial payment status to 'pending'
-    };
-  },
-
-  // You can update the payment status based on the response from the payment API
-  methods: {
-    updatePaymentStatus: function updatePaymentStatus(response) {
-      if (response.status === 'success') {
-        this.paymentStatus = 'success';
-      } else {
-        this.paymentStatus = 'failure';
-      }
-    }
-  }
+  props: ['status', 'text', 'title']
 });
 
 /***/ }),
@@ -7011,7 +7001,7 @@ vue__WEBPACK_IMPORTED_MODULE_12__["default"].component('about-component', _compo
 vue__WEBPACK_IMPORTED_MODULE_12__["default"].component('item', _components_main_Item_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_12__["default"].component('checkout-component', _components_checkout_Index_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_12__["default"].component('contacto-component', _components_contact_Index_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_12__["default"].component('response-content', _components_payment_Index_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_12__["default"].component('response-component', _components_payment_Index_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_12__["default"]({
   el: '#app'
 });
@@ -38566,37 +38556,67 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("Payment Status: " + _vm._s(_vm.paymentStatus))]),
+  return _c("div", { staticClass: "py-5 text-center" }, [
+    _c("h1", [
+      _vm.status == "approved"
+        ? _c("i", {
+            staticClass: "fa-regular fa-circle-check fa-2x text-success",
+          })
+        : _vm.status == "pending"
+        ? _c("i", {
+            staticClass: "fa-solid fa-circle-exclamation fa-2x text-warning",
+          })
+        : _vm.status == "failure"
+        ? _c("i", {
+            staticClass: "fa-solid fa-triangle-exclamation fa-2x text-danger",
+          })
+        : _vm._e(),
+    ]),
     _vm._v(" "),
-    _vm.paymentStatus === "pending"
-      ? _c("div", [
-          _c("p", [
-            _vm._v(
-              "Your payment is currently pending. Please wait a few moments and refresh the page to check the status again."
-            ),
-          ]),
-        ])
-      : _vm.paymentStatus === "failure"
-      ? _c("div", [
-          _c("p", [
-            _vm._v(
-              "Sorry, your payment was not successful. Please try again or contact customer support for assistance."
-            ),
-          ]),
-        ])
-      : _vm.paymentStatus === "success"
-      ? _c("div", [
-          _c("p", [
-            _vm._v(
-              "Thank you for your payment! Your transaction was successful."
-            ),
-          ]),
-        ])
-      : _vm._e(),
+    _c("h1", [_vm._v(_vm._s(_vm.title))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.text))]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "En los proximos minutos se estara enviando un correo con la informacion de su compra y/o estado del pago"
+      ),
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v(
+        "Si no recibe el correo en los proximos minutos, por favor revise su bandeja de correo no deseado"
+      ),
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("Si tiene alguna duda o consulta, por favor escribanos a "),
+      _c("a", { attrs: { href: "mailto:cynthiaedithgarske@gmail.com" } }, [
+        _vm._v("cynthiaedithgarske@gmail.com"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-5" }, [
+      _c("a", { staticClass: "btn btn-primary", attrs: { href: "/" } }, [
+        _vm._v("Volver al inicio"),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

@@ -28,6 +28,17 @@
   </div>
 </div>
 <div class="container">
+  <ul class="nav nav-pills mb-3">
+    <li class="nav-item">
+      <a class="nav-link" :class="[ cart.step === 1 ? 'active' : 'disabled']" href="#">Información de facturaccion</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" :class="[ cart.step === 2 ? 'active' : 'disabled']"  href="#">Información de Pasajeros</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" :class="[ cart.step === 3 ? 'active' : 'disabled']"  href="#">Confirmación de compra</a>
+    </li>
+  </ul>
   <main>
     <div class="row g-5 pb-3">
       <div class="col-md-5 col-lg-4 order-md-last d-md-none">
@@ -50,7 +61,7 @@
         </ul>
       </div>
       <div class="col-md-7 col-lg-8" v-show="cart.step === 1">
-        <h4 class="mb-3">Informacion de cliente</h4>
+        <h4 class="mb-3">Informacion de facturaccion</h4>
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">Nombre</label>
@@ -157,10 +168,7 @@
               </select>
             </div>
           </div>
-          
-          <div v-for="(qty, index) in quantity" :key="index" >
-            <pasajeros :pasajero="pasajeros[index]" :qty="qty"></pasajeros>
-          </div>
+
           <!--<hr class="my-4">
 
           <h4 class="mb-3">Metodo de pago</h4>
@@ -178,10 +186,25 @@
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" @click="step2">Continuar</button>
+          <button class="w-100 btn btn-success btn-lg" @click="step2">Continuar</button>
       </div>
-      <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Confirmacion</h4>
+      <div class="col-md-7 col-lg-8" v-show="cart.step === 2">
+
+        <h4 class="mb-3">Informacion de pasajeros</h4>
+
+        <pasajeros v-for="(qty, index) in quantity" :key="index" :pasajero="pasajeros[index]" :qty="qty" @error="setError" :ref="'pasajero' + index"></pasajeros>
+
+        <div class="row mt-3">
+          <div class="col-6">
+            <button class="w-100 btn btn-warning btn-lg" @click="goBack">Volver</button>
+          </div>
+          <div class="col-6">
+            <button class="w-100 btn btn-success btn-lg" @click="step3">Continuar</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7 col-lg-8" v-show="cart.step === 3">
+        <h4 class="mb-3">Confirmacion de compra</h4>
         <p>Este es el resumen de tu compra:</p>
         <div v-for="(pasajero,key) in pasajeros.slice(0, quantity)" :key="key">
             <h5>Pasajero #{{key + 1}}</h5>
@@ -189,7 +212,7 @@
             <p>Apellido : {{ pasajero.apellido }}</p>
         </div>
         <div id="wallet_container"></div>
-        <button class="w-100 btn btn-primary btn-lg" @click="step1">Volver</button>
+        <button class="w-100 btn btn-primary btn-lg" @click="goBack">Volver</button>
 
       </div>
     </div>
@@ -247,7 +270,8 @@
                       tipo: ''
                     }
                   }
-                ]
+                ],
+                errors : false
             }
         },
         watch: {
@@ -288,10 +312,33 @@
               if(count > 0) {
                   return;
               }
-              axios.post('/cart', {
+              this.resetErrors();
+              this.cart.step = 2;
+          },
+          setError(value){
+            this.error = value;
+          },
+          resetErrors(){
+            this.cart.errors.nombre = false;
+            this.cart.errors.apellido = false;
+            this.cart.errors.email = false;
+            this.cart.errors.direccion = false;
+            this.cart.errors.provincia = false;
+            this.cart.errors.codigo_postal = false;
+            this.cart.errors.documento = false;
+          },
+          step3 (){
+
+            for(let i=0; i< this.quantity ; i++){
+              this.$refs['pasajero' + i][0].CheckPropData();
+            }
+            if(this.error) return;
+            
+            axios.post('/cart', {
                 id: this.product.id,
                 price: this.cart.total
               }).then(response => {
+                document.getElementById("wallet_container").innerHTML = "";
                 const mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
                 const bricksBuilder = mp.bricks();
                 mp.bricks().create("wallet", "wallet_container", {
@@ -300,7 +347,7 @@
                     redirectMode: "modal",
                 },
                 });
-                this.cart.step = 2;
+                this.cart.step = 3;
               }).catch(error => {
                 console.log(error);
               });
@@ -308,6 +355,11 @@
           step1 (){
 
             this.cart.step = 1;
+          },
+          goBack (){
+            if(this.cart.step > 1){
+              this.cart.step = this.cart.step - 1;
+            }
           }
         },
         mounted() {

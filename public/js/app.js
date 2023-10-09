@@ -5514,6 +5514,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5564,7 +5587,8 @@ __webpack_require__.r(__webpack_exports__);
         dieta: {
           tipo: ''
         }
-      }]
+      }],
+      errors: false
     };
   },
   watch: {
@@ -5593,7 +5617,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     step2: function step2() {
-      var _this = this;
       var keys = Object.keys(this.cart.data);
       var count = 0;
       for (var i = 0; i < keys.length; i++) {
@@ -5606,10 +5629,32 @@ __webpack_require__.r(__webpack_exports__);
       if (count > 0) {
         return;
       }
+      this.resetErrors();
+      this.cart.step = 2;
+    },
+    setError: function setError(value) {
+      this.error = value;
+    },
+    resetErrors: function resetErrors() {
+      this.cart.errors.nombre = false;
+      this.cart.errors.apellido = false;
+      this.cart.errors.email = false;
+      this.cart.errors.direccion = false;
+      this.cart.errors.provincia = false;
+      this.cart.errors.codigo_postal = false;
+      this.cart.errors.documento = false;
+    },
+    step3: function step3() {
+      var _this = this;
+      for (var i = 0; i < this.quantity; i++) {
+        this.$refs['pasajero' + i][0].CheckPropData();
+      }
+      if (this.error) return;
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/cart', {
         id: this.product.id,
         price: this.cart.total
       }).then(function (response) {
+        document.getElementById("wallet_container").innerHTML = "";
         var mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
         var bricksBuilder = mp.bricks();
         mp.bricks().create("wallet", "wallet_container", {
@@ -5618,13 +5663,18 @@ __webpack_require__.r(__webpack_exports__);
             redirectMode: "modal"
           }
         });
-        _this.cart.step = 2;
+        _this.cart.step = 3;
       })["catch"](function (error) {
         console.log(error);
       });
     },
     step1: function step1() {
       this.cart.step = 1;
+    },
+    goBack: function goBack() {
+      if (this.cart.step > 1) {
+        this.cart.step = this.cart.step - 1;
+      }
     }
   },
   mounted: function mounted() {
@@ -5645,6 +5695,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5735,6 +5795,70 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['pasajero', 'qty'],
+  data: function data() {
+    return {
+      errors: {
+        nombre: false,
+        apellido: false,
+        nacimiento: false,
+        nacionalidad: false,
+        documento: false,
+        email: false,
+        celular: false,
+        emergencia: {
+          nombre: false,
+          apellido: false,
+          celular: false
+        }
+      }
+    };
+  },
+  methods: {
+    resetErrors: function resetErrors() {
+      this.errors = {
+        nombre: false,
+        apellido: false,
+        nacimiento: false,
+        nacionalidad: false,
+        documento: false,
+        email: false,
+        celular: false,
+        emergencia: {
+          nombre: false,
+          apellido: false,
+          celular: false
+        }
+      };
+    },
+    CheckPropData: function CheckPropData() {
+      this.resetErrors();
+      var count = 0;
+      var keys = Object.keys(this.errors);
+      for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        if (_typeof(this.pasajero[key]) === 'object') {
+          var keys2 = Object.keys(this.pasajero[key]);
+          for (var _i = 0; _i < keys.length; _i++) {
+            var key2 = keys2[_i];
+            if (this.pasajero[key][key2] === '') {
+              this.errors[key][key2] = true;
+              count++;
+            }
+          }
+        } else {
+          if (this.pasajero[key] === '') {
+            this.errors[key] = true;
+            count++;
+          }
+        }
+      }
+      if (count > 0) {
+        this.$emit('error', true);
+      } else {
+        this.$emit('error', false);
+      }
+    }
+  },
   mounted: function mounted() {}
 });
 
@@ -35398,6 +35522,44 @@ var render = function () {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
+      _c("ul", { staticClass: "nav nav-pills mb-3" }, [
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              class: [_vm.cart.step === 1 ? "active" : "disabled"],
+              attrs: { href: "#" },
+            },
+            [_vm._v("Información de facturaccion")]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              class: [_vm.cart.step === 2 ? "active" : "disabled"],
+              attrs: { href: "#" },
+            },
+            [_vm._v("Información de Pasajeros")]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              class: [_vm.cart.step === 3 ? "active" : "disabled"],
+              attrs: { href: "#" },
+            },
+            [_vm._v("Confirmación de compra")]
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
       _c("main", [
         _c("div", { staticClass: "row g-5 pb-3" }, [
           _c(
@@ -35476,7 +35638,7 @@ var render = function () {
             },
             [
               _c("h4", { staticClass: "mb-3" }, [
-                _vm._v("Informacion de cliente"),
+                _vm._v("Informacion de facturaccion"),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row g-3" }, [
@@ -36010,38 +36172,91 @@ var render = function () {
                 ]),
               ]),
               _vm._v(" "),
-              _vm._l(_vm.quantity, function (qty, index) {
-                return _c(
-                  "div",
-                  { key: index },
-                  [
-                    _c("pasajeros", {
-                      attrs: { pasajero: _vm.pasajeros[index], qty: qty },
-                    }),
-                  ],
-                  1
-                )
-              }),
-              _vm._v(" "),
               _c("hr", { staticClass: "my-4" }),
               _vm._v(" "),
               _c(
                 "button",
                 {
-                  staticClass: "w-100 btn btn-primary btn-lg",
+                  staticClass: "w-100 btn btn-success btn-lg",
                   on: { click: _vm.step2 },
                 },
                 [_vm._v("Continuar")]
               ),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.cart.step === 2,
+                  expression: "cart.step === 2",
+                },
+              ],
+              staticClass: "col-md-7 col-lg-8",
+            },
+            [
+              _c("h4", { staticClass: "mb-3" }, [
+                _vm._v("Informacion de pasajeros"),
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.quantity, function (qty, index) {
+                return _c("pasajeros", {
+                  key: index,
+                  ref: "pasajero" + index,
+                  refInFor: true,
+                  attrs: { pasajero: _vm.pasajeros[index], qty: qty },
+                  on: { error: _vm.setError },
+                })
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "row mt-3" }, [
+                _c("div", { staticClass: "col-6" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "w-100 btn btn-warning btn-lg",
+                      on: { click: _vm.goBack },
+                    },
+                    [_vm._v("Volver")]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "w-100 btn btn-success btn-lg",
+                      on: { click: _vm.step3 },
+                    },
+                    [_vm._v("Continuar")]
+                  ),
+                ]),
+              ]),
             ],
             2
           ),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-md-7 col-lg-8" },
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.cart.step === 3,
+                  expression: "cart.step === 3",
+                },
+              ],
+              staticClass: "col-md-7 col-lg-8",
+            },
             [
-              _c("h4", { staticClass: "mb-3" }, [_vm._v("Confirmacion")]),
+              _c("h4", { staticClass: "mb-3" }, [
+                _vm._v("Confirmacion de compra"),
+              ]),
               _vm._v(" "),
               _c("p", [_vm._v("Este es el resumen de tu compra:")]),
               _vm._v(" "),
@@ -36066,7 +36281,7 @@ var render = function () {
                 "button",
                 {
                   staticClass: "w-100 btn btn-primary btn-lg",
-                  on: { click: _vm.step1 },
+                  on: { click: _vm.goBack },
                 },
                 [_vm._v("Volver")]
               ),
@@ -36134,7 +36349,7 @@ var render = function () {
     _c("hr", { staticClass: "my-4" }),
     _vm._v(" "),
     _c("h4", { staticClass: "mb-3" }, [
-      _vm._v("Datos del pasajero  " + _vm._s(_vm.qty)),
+      _vm._v("Informacion del pasajero  " + _vm._s(_vm.qty)),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row g-3" }, [
@@ -36151,6 +36366,7 @@ var render = function () {
             },
           ],
           staticClass: "form-control",
+          class: [_vm.errors.nombre ? "is-invalid" : ""],
           attrs: { type: "text", placeholder: "", value: "", required: "" },
           domProps: { value: _vm.pasajero.nombre },
           on: {
@@ -36181,6 +36397,7 @@ var render = function () {
             },
           ],
           staticClass: "form-control",
+          class: [_vm.errors.apellido ? "is-invalid" : ""],
           attrs: { type: "text", placeholder: "", value: "", required: "" },
           domProps: { value: _vm.pasajero.apellido },
           on: {
@@ -36213,6 +36430,7 @@ var render = function () {
             },
           ],
           staticClass: "form-control",
+          class: [_vm.errors.nacimiento ? "is-invalid" : ""],
           attrs: {
             type: "date",
             id: "address2",
@@ -36229,6 +36447,12 @@ var render = function () {
             },
           },
         }),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-feedback" }, [
+          _vm._v(
+            "\n                Por favor ingrese una fecha de nacimiento valida.\n            "
+          ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-6" }, [
@@ -36248,6 +36472,7 @@ var render = function () {
               },
             ],
             staticClass: "form-select",
+            class: [_vm.errors.nacionalidad ? "is-invalid" : ""],
             attrs: { name: "", id: "" },
             on: {
               change: function ($event) {
@@ -36283,6 +36508,12 @@ var render = function () {
             _c("option", { attrs: { value: "5" } }, [_vm._v("Paraguay")]),
           ]
         ),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-feedback" }, [
+          _vm._v(
+            "\n                Por favor ingrese una nacionalidad valida.\n            "
+          ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-6" }, [
@@ -36300,6 +36531,7 @@ var render = function () {
             },
           ],
           staticClass: "form-control",
+          class: [_vm.errors.documento ? "is-invalid" : ""],
           attrs: {
             type: "number",
             id: "address2",
@@ -36315,6 +36547,12 @@ var render = function () {
             },
           },
         }),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-feedback" }, [
+          _vm._v(
+            "\n                Por favor ingrese un documento valido.\n            "
+          ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-6" }, [
@@ -36332,6 +36570,7 @@ var render = function () {
             },
           ],
           staticClass: "form-control",
+          class: [_vm.errors.email ? "is-invalid" : ""],
           attrs: { type: "email", placeholder: "tu@ex.com" },
           domProps: { value: _vm.pasajero.email },
           on: {
@@ -36364,6 +36603,7 @@ var render = function () {
             },
           ],
           staticClass: "form-control",
+          class: [_vm.errors.celular ? "is-invalid" : ""],
           attrs: { type: "number" },
           domProps: { value: _vm.pasajero.celular },
           on: {
@@ -36378,7 +36618,7 @@ var render = function () {
         _vm._v(" "),
         _c("div", { staticClass: "invalid-feedback" }, [
           _vm._v(
-            "\n                Por favor ingrese un correo electronico valido.\n            "
+            "\n                Por favor ingrese un celular.\n            "
           ),
         ]),
       ]),
@@ -36398,6 +36638,7 @@ var render = function () {
             },
           ],
           staticClass: "form-control",
+          class: [_vm.errors.emergencia.nombre ? "is-invalid" : ""],
           attrs: { type: "text", placeholder: "", value: "", required: "" },
           domProps: { value: _vm.pasajero.emergencia.nombre },
           on: {
@@ -36411,7 +36652,9 @@ var render = function () {
         }),
         _vm._v(" "),
         _c("div", { staticClass: "invalid-feedback" }, [
-          _vm._v("\n                Se necesita el nombre.\n            "),
+          _vm._v(
+            "\n                Se necesita el nombre del contacto.\n            "
+          ),
         ]),
       ]),
       _vm._v(" "),
@@ -36423,25 +36666,28 @@ var render = function () {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.pasajero.emergencia.nombre,
-              expression: "pasajero.emergencia.nombre",
+              value: _vm.pasajero.emergencia.apellido,
+              expression: "pasajero.emergencia.apellido",
             },
           ],
           staticClass: "form-control",
+          class: [_vm.errors.emergencia.apellido ? "is-invalid" : ""],
           attrs: { type: "text", placeholder: "", value: "", required: "" },
-          domProps: { value: _vm.pasajero.emergencia.nombre },
+          domProps: { value: _vm.pasajero.emergencia.apellido },
           on: {
             input: function ($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.pasajero.emergencia, "nombre", $event.target.value)
+              _vm.$set(_vm.pasajero.emergencia, "apellido", $event.target.value)
             },
           },
         }),
         _vm._v(" "),
         _c("div", { staticClass: "invalid-feedback" }, [
-          _vm._v("\n                Se necesita el apellido.\n            "),
+          _vm._v(
+            "\n                Se necesita el apellido del contacto.\n            "
+          ),
         ]),
       ]),
       _vm._v(" "),
@@ -36458,6 +36704,7 @@ var render = function () {
             },
           ],
           staticClass: "form-control",
+          class: [_vm.errors.emergencia.celular ? "is-invalid" : ""],
           attrs: { type: "number", placeholder: "", value: "", required: "" },
           domProps: { value: _vm.pasajero.emergencia.celular },
           on: {
@@ -36471,7 +36718,9 @@ var render = function () {
         }),
         _vm._v(" "),
         _c("div", { staticClass: "invalid-feedback" }, [
-          _vm._v("\n                Se necesita el apellido.\n            "),
+          _vm._v(
+            "\n                Se necesita el celular de emergencia.\n            "
+          ),
         ]),
       ]),
       _vm._v(" "),
@@ -36479,37 +36728,55 @@ var render = function () {
         _vm._v("Si tu reserva es con alojamiento, especifica tu Dieta "),
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "col-6" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.pasajero.dieta.tipo,
+                expression: "pasajero.dieta.tipo",
+              },
+            ],
+            staticClass: "form-select",
+            attrs: { name: "", id: "" },
+            on: {
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.pasajero.dieta,
+                  "tipo",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              },
+            },
+          },
+          [
+            _c("option", { attrs: { value: "" } }, [_vm._v("Sin especificar")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("Vegetariano ")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "2" } }, [_vm._v("Celiaco ")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "3" } }, [_vm._v("Diabético ")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "4" } }, [_vm._v("Hipertenso")]),
+          ]
+        ),
+      ]),
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-6" }, [
-      _c(
-        "select",
-        {
-          staticClass: "form-select",
-          attrs: { name: "", id: "", "pasajero.dieta.tipo": "" },
-        },
-        [
-          _c("option", { attrs: { value: "" } }, [_vm._v("Sin especificar")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "1" } }, [_vm._v("Vegetariano ")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2" } }, [_vm._v("Celiaco ")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("Diabético ")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "4" } }, [_vm._v("Hipertenso")]),
-        ]
-      ),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -61680,7 +61947,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\laragon\\\\www\\\\turismo"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\laragon\\\\www\\\\turismo","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

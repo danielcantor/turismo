@@ -195,10 +195,10 @@
         <pasajeros v-for="(qty, index) in quantity" :key="index" :pasajero="pasajeros[index]" :qty="qty" @error="setError" :ref="'pasajero' + index"></pasajeros>
 
         <div class="row mt-3">
-          <div class="col-6">
+          <div class="col-6 text-center">
             <button class="btn btn-warning btn-lg" @click="goBack">Volver</button>
           </div>
-          <div class="col-6">
+          <div class="col-6 text-center">
             <button class="btn btn-success btn-lg" @click="step3">Continuar</button>
           </div>
         </div>

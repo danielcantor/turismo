@@ -21,12 +21,12 @@ class CartController extends Controller
         $item->title = "".$product->product_name."";
         $item->quantity = 1;
         $item->unit_price = (int) $request->input('price');
-        $base_url = URL::to('/');
+        $base_url = env('APP_URL');
         $preference->items = array($item);
         $preference->back_urls = array(
-            "success" => $base_url."success",
-            "failure" => $base_url."failure",
-            "pending" => $base_url."pending"
+            "success" => $base_url."/success",
+            "failure" => $base_url."/failure",
+            "pending" => $base_url."/pending"
         );
         $preference->auto_return = "approved";
         $preference->save();

@@ -186,7 +186,7 @@
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-success btn-lg" @click="step2">Continuar</button>
+          <button class="mx-auto d-block btn btn-success btn-lg" @click="step2">Continuar</button>
       </div>
       <div class="col-md-7 col-lg-8" v-show="cart.step === 2">
 
@@ -196,24 +196,91 @@
 
         <div class="row mt-3">
           <div class="col-6">
-            <button class="w-100 btn btn-warning btn-lg" @click="goBack">Volver</button>
+            <button class="btn btn-warning btn-lg" @click="goBack">Volver</button>
           </div>
           <div class="col-6">
-            <button class="w-100 btn btn-success btn-lg" @click="step3">Continuar</button>
+            <button class="btn btn-success btn-lg" @click="step3">Continuar</button>
           </div>
         </div>
       </div>
       <div class="col-md-7 col-lg-8" v-show="cart.step === 3">
         <h4 class="mb-3">Confirmacion de compra</h4>
         <p>Este es el resumen de tu compra:</p>
-        <div v-for="(pasajero,key) in pasajeros.slice(0, quantity)" :key="key">
-            <h5>Pasajero #{{key + 1}}</h5>
-            <p>Nombre: {{ pasajero.nombre }}</p>
-            <p>Apellido : {{ pasajero.apellido }}</p>
+        <div class="card my-3" v-for="(pasajero,key) in pasajeros.slice(0, quantity)" :key="key">
+          <div class="card-body">
+            <h5 class="card-title">Datos personales del pasajero #{{ key + 1}}</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="card-text"><strong>Nombre:</strong> {{ pasajero.nombre }}</p>
+              </div>
+              <div class="col-md-6">
+                <p class="card-text"><strong>Apellido:</strong> {{ pasajero.apellido }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="card-text"><strong>Fecha de nacimiento:</strong> {{ pasajero.nacimiento }}</p>
+              </div>
+              <div class="col-md-6">
+                <p class="card-text"><strong>Email:</strong> {{ pasajero.email }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="card-text"><strong>Nacionalidad:</strong> {{ NacionalidadName(pasajero.nacionalidad) }} </p>
+              </div>
+              <div class="col-md-6">
+                <p class="card-text"><strong>Documento:</strong> {{ pasajero.documento }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="card-text"><strong>Celular:</strong> {{ pasajero.celular }}</p>
+              </div>
+            </div>
+            <hr>
+            <h5 class="card-title">Contacto de emergencia</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="card-text"><strong>Nombre:</strong> {{ pasajero.emergencia.nombre }}</p>
+              </div>
+              <div class="col-md-6">
+                <p class="card-text"><strong>Apellido:</strong> {{ pasajero.emergencia.apellido }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="card-text"><strong>Celular:</strong> {{ pasajero.emergencia.celular }}</p>
+              </div>
+            </div>
+            <hr>
+            <h5 class="card-title">Dieta</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="card-text"><strong>Tipo:</strong> {{ DietaName(pasajero.dieta.tipo) }}</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="wallet_container"></div>
-        <button class="w-100 btn btn-primary btn-lg" @click="goBack">Volver</button>
-
+        
+        <hr>
+        <h5 class="card-title">Datos de facturación</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <p class="card-text"><strong>Nombre:</strong> {{ cart.data.nombre }}</p>
+          </div>
+          <div class="col-md-6">
+            <p class="card-text"><strong>Apellido:</strong> {{ cart.data.apellido }}</p>
+          </div>
+        </div>
+        <div class="row mt-3 align-items-center">
+          <div class="col-6">
+            <button class="btn btn-warning btn-lg mb-3" @click="goBack">Volver</button>
+          </div>
+          <div class="col-6">
+            <div id="wallet_container"></div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -314,6 +381,26 @@
               }
               this.resetErrors();
               this.cart.step = 2;
+          },
+          NacionalidadName(value){
+            const nacionalidades = {
+              1: 'Argentina',
+              2: 'Brasil',
+              3: 'Chile',
+              4: 'Uruguay',
+              5: 'Paraguay'
+            }
+            return nacionalidades[value];
+          },
+          DietaName(value){
+            if(value === '') return ('Sin especificar');
+            const dietas = {
+              1: 'Vegetariano',
+              2: 'Celiaco',
+              3: 'Diabetico',
+              4: 'Hipertenso'
+            }
+            return dietas[value];
           },
           setError(value){
             this.error = value;

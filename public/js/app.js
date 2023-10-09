@@ -5537,6 +5537,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5631,6 +5698,26 @@ __webpack_require__.r(__webpack_exports__);
       }
       this.resetErrors();
       this.cart.step = 2;
+    },
+    NacionalidadName: function NacionalidadName(value) {
+      var nacionalidades = {
+        1: 'Argentina',
+        2: 'Brasil',
+        3: 'Chile',
+        4: 'Uruguay',
+        5: 'Paraguay'
+      };
+      return nacionalidades[value];
+    },
+    DietaName: function DietaName(value) {
+      if (value === '') return 'Sin especificar';
+      var dietas = {
+        1: 'Vegetariano',
+        2: 'Celiaco',
+        3: 'Diabetico',
+        4: 'Hipertenso'
+      };
+      return dietas[value];
     },
     setError: function setError(value) {
       this.error = value;
@@ -36177,7 +36264,7 @@ var render = function () {
               _c(
                 "button",
                 {
-                  staticClass: "w-100 btn btn-success btn-lg",
+                  staticClass: "mx-auto d-block btn btn-success btn-lg",
                   on: { click: _vm.step2 },
                 },
                 [_vm._v("Continuar")]
@@ -36218,7 +36305,7 @@ var render = function () {
                   _c(
                     "button",
                     {
-                      staticClass: "w-100 btn btn-warning btn-lg",
+                      staticClass: "btn btn-warning btn-lg",
                       on: { click: _vm.goBack },
                     },
                     [_vm._v("Volver")]
@@ -36229,7 +36316,7 @@ var render = function () {
                   _c(
                     "button",
                     {
-                      staticClass: "w-100 btn btn-success btn-lg",
+                      staticClass: "btn btn-success btn-lg",
                       on: { click: _vm.step3 },
                     },
                     [_vm._v("Continuar")]
@@ -36263,28 +36350,165 @@ var render = function () {
               _vm._l(
                 _vm.pasajeros.slice(0, _vm.quantity),
                 function (pasajero, key) {
-                  return _c("div", { key: key }, [
-                    _c("h5", [_vm._v("Pasajero #" + _vm._s(key + 1))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Nombre: " + _vm._s(pasajero.nombre))]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v("Apellido : " + _vm._s(pasajero.apellido)),
+                  return _c("div", { key: key, staticClass: "card my-3" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("h5", { staticClass: "card-title" }, [
+                        _vm._v(
+                          "Datos personales del pasajero #" + _vm._s(key + 1)
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("p", { staticClass: "card-text" }, [
+                            _c("strong", [_vm._v("Nombre:")]),
+                            _vm._v(" " + _vm._s(pasajero.nombre)),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("p", { staticClass: "card-text" }, [
+                            _c("strong", [_vm._v("Apellido:")]),
+                            _vm._v(" " + _vm._s(pasajero.apellido)),
+                          ]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("p", { staticClass: "card-text" }, [
+                            _c("strong", [_vm._v("Fecha de nacimiento:")]),
+                            _vm._v(" " + _vm._s(pasajero.nacimiento)),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("p", { staticClass: "card-text" }, [
+                            _c("strong", [_vm._v("Email:")]),
+                            _vm._v(" " + _vm._s(pasajero.email)),
+                          ]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("p", { staticClass: "card-text" }, [
+                            _c("strong", [_vm._v("Nacionalidad:")]),
+                            _vm._v(
+                              " " +
+                                _vm._s(
+                                  _vm.NacionalidadName(pasajero.nacionalidad)
+                                ) +
+                                " "
+                            ),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("p", { staticClass: "card-text" }, [
+                            _c("strong", [_vm._v("Documento:")]),
+                            _vm._v(" " + _vm._s(pasajero.documento)),
+                          ]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("p", { staticClass: "card-text" }, [
+                            _c("strong", [_vm._v("Celular:")]),
+                            _vm._v(" " + _vm._s(pasajero.celular)),
+                          ]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("h5", { staticClass: "card-title" }, [
+                        _vm._v("Contacto de emergencia"),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("p", { staticClass: "card-text" }, [
+                            _c("strong", [_vm._v("Nombre:")]),
+                            _vm._v(" " + _vm._s(pasajero.emergencia.nombre)),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("p", { staticClass: "card-text" }, [
+                            _c("strong", [_vm._v("Apellido:")]),
+                            _vm._v(" " + _vm._s(pasajero.emergencia.apellido)),
+                          ]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("p", { staticClass: "card-text" }, [
+                            _c("strong", [_vm._v("Celular:")]),
+                            _vm._v(" " + _vm._s(pasajero.emergencia.celular)),
+                          ]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("h5", { staticClass: "card-title" }, [
+                        _vm._v("Dieta"),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("p", { staticClass: "card-text" }, [
+                            _c("strong", [_vm._v("Tipo:")]),
+                            _vm._v(
+                              " " + _vm._s(_vm.DietaName(pasajero.dieta.tipo))
+                            ),
+                          ]),
+                        ]),
+                      ]),
                     ]),
                   ])
                 }
               ),
               _vm._v(" "),
-              _c("div", { attrs: { id: "wallet_container" } }),
+              _c("hr"),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "w-100 btn btn-primary btn-lg",
-                  on: { click: _vm.goBack },
-                },
-                [_vm._v("Volver")]
-              ),
+              _c("h5", { staticClass: "card-title" }, [
+                _vm._v("Datos de facturación"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("p", { staticClass: "card-text" }, [
+                    _c("strong", [_vm._v("Nombre:")]),
+                    _vm._v(" " + _vm._s(_vm.cart.data.nombre)),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("p", { staticClass: "card-text" }, [
+                    _c("strong", [_vm._v("Apellido:")]),
+                    _vm._v(" " + _vm._s(_vm.cart.data.apellido)),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row mt-3 align-items-center" }, [
+                _c("div", { staticClass: "col-6" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-warning btn-lg mb-3",
+                      on: { click: _vm.goBack },
+                    },
+                    [_vm._v("Volver")]
+                  ),
+                ]),
+                _vm._v(" "),
+                _vm._m(2),
+              ]),
             ],
             2
           ),
@@ -36321,6 +36545,14 @@ var staticRenderFns = [
         _c("span", { staticClass: "text-muted" }, [_vm._v("(Optional)")]),
       ]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-6" }, [
+      _c("div", { attrs: { id: "wallet_container" } }),
+    ])
   },
 ]
 render._withStripped = true

@@ -35731,7 +35731,7 @@ var render = function () {
               class: [_vm.cart.step === 1 ? "active" : "disabled"],
               attrs: { href: "#" },
             },
-            [_vm._v("Información de facturaccion")]
+            [_vm._v("Información de facturación")]
           ),
         ]),
         _vm._v(" "),
@@ -35838,7 +35838,7 @@ var render = function () {
             },
             [
               _c("h4", { staticClass: "mb-3" }, [
-                _vm._v("Informacion de facturaccion"),
+                _vm._v("Informacion de facturación"),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row g-3" }, [
@@ -36654,7 +36654,7 @@ var staticRenderFns = [
       "label",
       { staticClass: "form-label", attrs: { for: "address2" } },
       [
-        _vm._v("Dirección 2 "),
+        _vm._v("Localidad "),
         _c("span", { staticClass: "text-muted" }, [_vm._v("(Optional)")]),
       ]
     )

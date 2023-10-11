@@ -30,7 +30,7 @@
 <div class="container">
   <ul class="nav nav-pills mb-3">
     <li class="nav-item">
-      <a class="nav-link" :class="[ cart.step === 1 ? 'active' : 'disabled']" href="#">Información de facturaccion</a>
+      <a class="nav-link" :class="[ cart.step === 1 ? 'active' : 'disabled']" href="#">Información de facturación</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" :class="[ cart.step === 2 ? 'active' : 'disabled']"  href="#">Información de Pasajeros</a>
@@ -61,7 +61,7 @@
         </ul>
       </div>
       <div class="col-md-7 col-lg-8" v-show="cart.step === 1">
-        <h4 class="mb-3">Informacion de facturaccion</h4>
+        <h4 class="mb-3">Informacion de facturación</h4>
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">Nombre</label>
@@ -96,7 +96,7 @@
             </div>
 
             <div class="col-6">
-              <label for="address2" class="form-label">Dirección 2 <span class="text-muted">(Optional)</span></label>
+              <label for="address2" class="form-label">Localidad <span class="text-muted">(Optional)</span></label>
               <input type="text" class="form-control" id="address2" placeholder="Numero de departemento" v-model="cart.data.direccion2">
             </div>
 

@@ -65,6 +65,7 @@
                 <div class="form-group">
                     <label for="product_nights">Noches:</label>
                     <select class="form-control" id="product_nights" name="product_nights" required>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>

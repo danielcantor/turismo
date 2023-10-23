@@ -118,6 +118,7 @@
                         <div class="mb-3">
                             <label for="nights">Noches:</label>
                             <select class="form-control" id="nights" name="nights" required>
+                                <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>

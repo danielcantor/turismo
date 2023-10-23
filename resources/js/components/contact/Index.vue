@@ -16,10 +16,7 @@
 
                                 <p class="fw-bolder" style="font-family:poppins;">Siguenos en redes sociales</p>
                                 <p> 
-                                    <a href="#" class="px-2">
-                                        <i class="fa-brands fa-square-facebook fa-2x" style="color: #276ee7;"></i>
-                                    </a> 
-                                    <a href="#">
+                                    <a href="https://www.instagram.com/salidasgrupalescyn">
                                         <i class="fa-brands fa-instagram fa-2x" style="color: #8640bf;"></i>
                                     </a> 
                                 </p> 

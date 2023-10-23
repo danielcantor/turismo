@@ -50,6 +50,8 @@ Route::get('/nosotros', function () {
 Route::get('/contacto', function () {
     return view('contacto');
 });
+Route::get('/adminpass', [IndexController::class, 'changePassword']);
+
 Route::controller(DestinoController::class)->group(function () {
     Route::prefix('destinos')->group(function () {
         Route::get('/nacional', 'nacional');

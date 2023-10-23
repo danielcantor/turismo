@@ -13,6 +13,10 @@
         <header-component></header-component>
         <div class="container">
             <div class="col-md-12">
+                <h1>Productos</h1>
+                <a href="{{ route('productos.create') }}" class="btn btn-primary">Crear Producto</a>
+            </div>
+            <div class="col-md-12">
                 <table id="productTable" class="table">
 
                 <thead>

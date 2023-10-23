@@ -6037,9 +6037,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -37379,19 +37376,20 @@ var staticRenderFns = [
             ),
             _vm._v(" "),
             _c("p", [
-              _c("a", { staticClass: "px-2", attrs: { href: "#" } }, [
-                _c("i", {
-                  staticClass: "fa-brands fa-square-facebook fa-2x",
-                  staticStyle: { color: "#276ee7" },
-                }),
-              ]),
-              _vm._v(" "),
-              _c("a", { attrs: { href: "#" } }, [
-                _c("i", {
-                  staticClass: "fa-brands fa-instagram fa-2x",
-                  staticStyle: { color: "#8640bf" },
-                }),
-              ]),
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href: "https://www.instagram.com/salidasgrupalescyn",
+                  },
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa-brands fa-instagram fa-2x",
+                    staticStyle: { color: "#8640bf" },
+                  }),
+                ]
+              ),
             ]),
           ]),
           _vm._v(" "),

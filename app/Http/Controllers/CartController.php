@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public function getMercadoPago( Request $request){
-        SDK::setAccessToken('TEST-7177899704829740-091014-c2e3f1f44f0a0395a6dd829ecb0effe1-1050379468');
+        SDK::setAccessToken('APP_USR-5080290645165804-102315-da0a88af09a1a2fe2d7a37c5497c3fb8-1050379468');
 
         $preference = new Preference();
         $product = Product::find($request->input('id'));

@@ -18,10 +18,12 @@ class Products extends Migration
             $table->increments('id');
             $table->string('product_name');
             $table->string('product_price');
-            $table->string('product_description');
+            $table->text('product_description');
             $table->integer('product_type');
             $table->string('product_image')->nullable();
             $table->tinyInteger('product_activate')->default(1);
+            $table->tinyInteger('days')->default(1);
+            $table->tinyInteger('nights')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

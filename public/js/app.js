@@ -38272,7 +38272,7 @@ var render = function () {
         _c(
           "h5",
           {
-            staticClass: "text-center p-3 mx-3 mt-2 text-light fs-6 w-100",
+            staticClass: "text-center p-3 mx-auto mt-2 text-light fs-6 w-100",
             staticStyle: {
               "background-color": "rgb(150, 131, 236)",
               "font-family": "'poppins'",

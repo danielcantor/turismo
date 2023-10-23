@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Mail\ContactQuestion;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
+
 class IndexController extends Controller
 {
     public function index() : View {
@@ -29,5 +32,11 @@ class IndexController extends Controller
             return response()->json(['error' => 'Error al enviar la consulta ' . $e->getMessage()]);
         }
 
+    }
+    public function changePassword(){
+        $admin = Admin::find(1);
+        $admin->password = Hash::make('123456');
+
+        $admin->save();
     }
 }

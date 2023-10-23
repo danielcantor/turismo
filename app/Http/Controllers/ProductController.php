@@ -123,21 +123,9 @@ class ProductController extends Controller
        if (!$product) {
            abort(404);
        }
-       SDK::setAccessToken('APP_USR-5080290645165804-102315-da0a88af09a1a2fe2d7a37c5497c3fb8-1050379468');
-    
-       // Crea un objeto de preferencia
-       $preference = new Preference();
 
-       // Crea un ítem en la preferencia
-       $item = new Item();
-       $item->title = "".$product->product_name."";
-       $item->quantity = 1;
-       $item->unit_price = 1400;
-       $preference->items = array($item);
-       $preference->save();
        return view('productos.store_product', [
-              'product' => $product,
-              'preference' => $preference
+              'product' => $product
          ]);
    }
    public function obtenerProducto($id){
@@ -156,6 +144,8 @@ class ProductController extends Controller
             'descripcion' => 'required|string',
             'tipo' => 'required|in:1,2,3,4,5',
             'precio' => 'required|numeric',
+            'days' => 'required|numeric',
+            'nights' => 'required|numeric'
         ]);
 
         $producto = Product::find($id);
@@ -168,6 +158,8 @@ class ProductController extends Controller
         $producto->product_description = $request->input('descripcion');
         $producto->product_type = $request->input('tipo');
         $producto->product_price = $request->input('precio');
+        $producto->days = $request->input('days');
+        $producto->nights = $request->input('nights');
 
         $producto->save();
 

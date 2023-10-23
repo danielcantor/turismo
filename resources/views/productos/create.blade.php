@@ -49,6 +49,32 @@
                         <option value="5">Findes Largos</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="product_days">Dias:</label>
+                    <select class="form-control" id="product_days" name="product_days" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product_nights">Noches:</label>
+                    <select class="form-control" id="product_nights" name="product_nights" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
                 <br>
                 <div class="buttons">
                     <button type="submit" class="btn btn-primary mx-auto">Guardar producto</button>
@@ -68,6 +94,8 @@
             productPrice: '',
             productDescription: '',
             productType: '',
+            productDays: '',
+            productNights: '',
             productImage: null
         };
     },
@@ -77,7 +105,10 @@
                 this.productName.trim() === '' ||
                 this.productPrice.trim() === '' ||
                 this.productDescription.trim() === '' ||
-                this.productType.trim() === ''
+                this.productType.trim() === '' ||
+                this.productImage === null ||
+                this.productDays.trim() === '' ||
+                this.productNights.trim() === ''
             ) {
                 alert('Por favor completa todos los campos');
                 return;
@@ -88,6 +119,8 @@
             formData.append('product_description', this.productDescription);
             formData.append('product_type', this.productType);
             formData.append('product_image', this.productImage);
+            formData.append('product_days', this.productDays);
+            formData.append('product_nights', this.productNights);
 
             
             axios.post('/productos', formData)
@@ -98,6 +131,8 @@
                     this.productDescription = '';
                     this.productType = '';
                     this.productImage = null;
+                    this.productDays = '';
+                    this.productNights = '';
                 })
                 .catch(error => {
                     alert('Error al guardar el producto');

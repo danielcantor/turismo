@@ -6482,7 +6482,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['id', 'product_name', 'product_price', 'product_image', 'product_description'],
+  props: ['id', 'product_name', 'product_price', 'product_image', 'product_description', 'days', 'nights'],
   mounted: function mounted() {}
 });
 
@@ -38272,8 +38272,7 @@ var render = function () {
         _c(
           "h5",
           {
-            staticClass:
-              "text-center p-3 text-light fs-6 position-absolute start-50 translate-middle w-75",
+            staticClass: "text-center p-3 mx-3 mt-2 text-light fs-6 w-100",
             staticStyle: {
               "background-color": "rgb(150, 131, 236)",
               "font-family": "'poppins'",
@@ -38286,7 +38285,7 @@ var render = function () {
         _c(
           "p",
           {
-            staticClass: "text-center mt-5 lh-1 mx-5 fs-1",
+            staticClass: "text-center mt-3 lh-1 mx-5 fs-1",
             staticStyle: {
               border: "1px solid #f18701",
               "border-top": "0",
@@ -38313,12 +38312,35 @@ var render = function () {
                 staticClass: "fw-bolder text-uppercase",
                 staticStyle: { "font-family": "'poppins'", color: "#f18701" },
               },
-              [_vm._v(_vm._s(_vm.product_price))]
+              [_vm._v("$" + _vm._s(_vm.product_price))]
             ),
           ]
         ),
         _vm._v(" "),
-        _vm._m(0),
+        _c("p", { staticClass: "text-center" }, [
+          _c(
+            "span",
+            {
+              staticClass: "fs-6",
+              staticStyle: {
+                "font-family": "'Raleway', sans-serif",
+                color: "#2e005d",
+              },
+            },
+            [
+              _c("img", {
+                attrs: { src: "/img/icons/calendario.svg", width: "5%" },
+              }),
+              _vm._v(
+                " " +
+                  _vm._s(_vm.days) +
+                  " dias , " +
+                  _vm._s(_vm.nights) +
+                  " noches"
+              ),
+            ]
+          ),
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-footer text-center border-top-0" }, [
           _c(
@@ -38344,31 +38366,7 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "text-center" }, [
-      _c(
-        "span",
-        {
-          staticClass: "fs-6",
-          staticStyle: {
-            "font-family": "'Raleway', sans-serif",
-            color: "#2e005d",
-          },
-        },
-        [
-          _c("img", {
-            attrs: { src: "/img/icons/calendario.svg", width: "5%" },
-          }),
-          _vm._v(" 8 dias , 7 noches"),
-        ]
-      ),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

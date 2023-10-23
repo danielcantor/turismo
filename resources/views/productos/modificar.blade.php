@@ -103,6 +103,33 @@
                             </select>
                         </div>
                         <div class="mb-3">
+                            <label for="days">Dias:</label>
+                            <select class="form-control" id="days" name="days" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nights">Noches:</label>
+                            <select class="form-control" id="nights" name="nights" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
                             <label for="precio" class="form-label">Precio</label>
                             <input type="number" class="form-control" id="precio" name="precio">
                         </div>
@@ -155,7 +182,8 @@
                     document.getElementById('descripcion').value = data.product_description;
                     document.getElementById('tipo').value = data.product_type;
                     document.getElementById('precio').value = data.product_price;
-
+                    document.getElementById('days').value = data.days;
+                    document.getElementById('nights').value = data.nights;
                     $('#modificarProductoModal').modal('show');
                 })
                 .catch(error => {

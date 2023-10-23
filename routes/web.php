@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth:admin']], function() {
     Route::get('/crearProducto', function () {
         return view('productos.create');
     })->name('productos.create');
+    
+    Route::get('/productos', [ProductController::class, 'modificar'])->name('productos.modificar1');
 });
 
 Route::get('/login', function(){
@@ -36,7 +38,7 @@ Route::get('/link', function(){
     return Artisan::call('storage:link');
 });
 Route::post('/productos', [ProductController::class, 'store'])->name('productos.store');
-Route::get('/productos', [ProductController::class, 'modificar'])->name('productos.modificar1');
+
 Route::delete('/deleteProducto/{id}', [ProductController::class, 'eliminar'])->name('producto.eliminar');
 Route::get('/obtenerProducto/{id}', [ProductController::class, 'obtenerProducto'])->name('producto.obtenerProducto');
 Route::post('/modificarProducto/{id}', [ProductController::class, 'modificarProducto'])->name('producto.modificar');

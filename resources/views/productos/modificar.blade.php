@@ -36,7 +36,28 @@
                             <td>{{ $product->product_name }}</td>
                             <td>{{ $product->product_description }}</td>
                             <td>{{ $product->product_price }}</td>
-                            <td>{{ $product->product_type }}</td>
+                            <td>@switch($product->product_type)
+                                @case(1)
+                                    Nacional
+                                    @break
+
+                                @case(2)
+                                    Internacional
+                                    @break
+                                
+                                @case(3)
+                                    Aereos
+                                    @break
+                                    
+                                @case(4)
+                                    Escapadas
+                                    @break
+                                    
+                                @case(5)
+                                    Finde largo
+                                    @break
+                            @endswitch
+                            </td>
                             <td>
                                 <button class="btn btn-sm btn-danger delete-btn" data-product-id="{{ $product->id }}" onclick="eliminarProducto({{ $product->id }})">Eliminar</button>
                                 <button class="btn btn-sm btn-primary edit-btn" data-product-id="{{ $product->id }}"  onclick="modificarProducto({{ $product->id }})">Modificar</button>
@@ -76,8 +97,8 @@
                             <select class="form-select" id="tipo" name="tipo">
                                 <option value="1">Nacional</option>
                                 <option value="2">Internacional</option>
-                                <option value="3">Escapadas</option>
-                                <option value="4">Pasajes Aereos</option>
+                                <option value="3">Pasajes Aereos</option>
+                                <option value="4">Escapadas</option>
                                 <option value="5">Findes Largos</option>
                             </select>
                         </div>

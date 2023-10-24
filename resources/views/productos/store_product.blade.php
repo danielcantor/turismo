@@ -27,7 +27,7 @@
     <title>Detalle del Producto</title>
     <style>
         body {
-            background-color: #9683ec;
+            background-color: #2e005d;
             font-family: "Helvetica Neue", sans-serif;
             color: white;
         }
@@ -74,18 +74,18 @@
                         </div>
                         <div class="col-12">
                             <hr>
-                            <p>{!! nl2br(e($product->product_description)) !!}</p>
+                            <p style="font-family: poppins;">{!! nl2br(e($product->product_description)) !!}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card" style="background-color: rgba(255, 127, 80, 0.521); border: none;">
+                    <div class="card" style="background-color: #f18701; border: none;">
                         <div class="card-body">
                             <img src="/storage/{{ $product->product_image }}" alt="Producto" class="w-100 img-fluid" style="max-width: 100%; border-radius: 10px;">
                             <hr>
-                            <p class="text-success fw-bold" style="font-size: 24px;">$ {{ $product->product_price }}</p>
+                            <p class="text-center fw-bolder" style="font-size: 24px;">$ {{ $product->product_price }}</p>
                             <div class="text-center">
-                                <a href="/checkout/{{$product->id}}" class="btn btn-success btn-block w-50 fw-bold" style="font-family: Arial, sans-serif; font-size: 18px;">RESERVAR AHORA</a>
+                                <a href="/checkout/{{$product->id}}" class="btn btn-success btn-block w-50 fw-bold" style="border-color: rgb(150, 131, 236); background-color:rgb(150, 131, 236);font-family: Arial, sans-serif; font-size: 18px;">RESERVAR AHORA</a>
                             </div>
                             <hr>
                             <div class="text-center">

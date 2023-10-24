@@ -5739,7 +5739,8 @@ __webpack_require__.r(__webpack_exports__);
       if (this.error) return;
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/cart', {
         id: this.product.id,
-        price: this.cart.total
+        price: this.cart.total,
+        pasajeros: this.pasajeros
       }).then(function (response) {
         document.getElementById("wallet_container").innerHTML = "";
         var mp = new MercadoPago('APP_USR-e71ced4d-0847-490c-abc6-d26b20fcf93e');
@@ -6521,6 +6522,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37535,10 +37550,7 @@ var render = function () {
       _c("div"),
       _vm._v(" "),
       _c("Slider", {
-        attrs: {
-          imageUrl: "/img/home/contactanos-home.jpg",
-          link: "/contacto",
-        },
+        attrs: { imageUrl: "/img/home/home-new.jpg", link: "/contacto" },
       }),
     ],
     1
@@ -38430,12 +38442,60 @@ var render = function () {
       _c("div", { staticClass: "carousel-inner" }, [
         _vm.link
           ? _c("div", { staticClass: "carousel-item active" }, [
-              _c("a", { attrs: { href: _vm.link } }, [
-                _c("img", {
-                  staticClass: "d-block w-100",
-                  attrs: { src: _vm.imageUrl, alt: "" },
-                }),
-              ]),
+              _c("img", {
+                staticClass: "d-block w-100",
+                staticStyle: { "max-height": "461px" },
+                attrs: { src: _vm.imageUrl, alt: "" },
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "position-absolute top-50 start-50 translate-middle w-100 h-100",
+                  staticStyle: { "background-color": "rgb(243, 91, 4, .8)" },
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "text-center align-middle position-relative top-50 start-50 translate-middle",
+                    },
+                    [
+                      _c(
+                        "p",
+                        {
+                          staticClass: "text-white mb-3",
+                          staticStyle: {
+                            "font-family": "Raleway, sans-serif",
+                            "font-size": "3.5rem !important",
+                          },
+                        },
+                        [_vm._v("Una experiencia inolvidable")]
+                      ),
+                      _vm._v(" "),
+                      _c("p", [
+                        _c(
+                          "a",
+                          {
+                            staticClass:
+                              "text-white text-decoration-none border px-5 py-1 fw-bolder",
+                            staticStyle: {
+                              "font-family": "Raleway, sans-serif",
+                              "font-size": "3.5rem !important",
+                            },
+                            attrs: { href: _vm.link },
+                          },
+                          [_vm._v("Contáctanos")]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(0),
+                    ]
+                  ),
+                ]
+              ),
             ])
           : _c("div", { staticClass: "carousel-item active" }, [
               _c("img", {
@@ -38447,7 +38507,29 @@ var render = function () {
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", {}, [
+      _c(
+        "a",
+        { attrs: { href: "https://www.instagram.com/salidasgrupalescyn" } },
+        [
+          _c("i", {
+            staticClass: "fa-brands fa-instagram fa-4x",
+            staticStyle: { color: "#8640bf" },
+          }),
+        ]
+      ),
+      _vm._v(" "),
+      _c("a", { staticClass: "mx-3", attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa-brands fa-whatsapp fa-4x text-success" }),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

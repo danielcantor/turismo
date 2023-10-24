@@ -73,7 +73,7 @@
         </div>
         <div>
           </div>
-        <Slider :imageUrl="'/img/home/contactanos-home.jpg'" :link="'/contacto'"/>
+        <Slider :imageUrl="'/img/home/home-new.jpg'" :link="'/contacto'"/>
         
     </section>
 </template>

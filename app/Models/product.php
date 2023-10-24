@@ -22,7 +22,7 @@ class Product extends Model
         return $this::find($id);
     }
     public function getProductsbyType($id){
-        return $this::where('product_type', $id)->get();
+        return $this::where('product_type', $id)->where('product_activate', 1)->get();
     }
     use HasFactory;
 }

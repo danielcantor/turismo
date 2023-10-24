@@ -423,7 +423,8 @@
             
             axios.post('/cart', {
                 id: this.product.id,
-                price: this.cart.total
+                price: this.cart.total,
+                pasajeros: this.pasajeros
               }).then(response => {
                 document.getElementById("wallet_container").innerHTML = "";
                 const mp = new MercadoPago('APP_USR-e71ced4d-0847-490c-abc6-d26b20fcf93e');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Purchase;
 class ShoppingController extends Controller
 {
     public $response_messages = [
@@ -26,7 +27,7 @@ class ShoppingController extends Controller
         ]);
     }
 
-    private function responeseArray($status){
+    private function responeseArray($status , $purchaseID){
         return [
             'title' => $this->titles[$status],
             'message' => $this->response_messages[$status],
@@ -34,19 +35,28 @@ class ShoppingController extends Controller
         ];
     }
 
-    public function success() : View
+    public function success(Request $request) : View
     {
-        return view('payment' , $this->responeseArray('approved'));
+        $purchaseID = $request->query('purchase_id');
+        $purchase = Purchase::where("purchase_code", $purchaseID)->first();
+        $purchase->payment_status = 'approved';
+        return view('payment' , $this->responeseArray('approved' , $purchaseID));
     }
 
-    public function failure() : View
+    public function failure(Request $request) : View
     {
-        return view('payment' , $this->responeseArray('failure'));
+        $purchaseID = $request->query('purchase_id');
+        $purchase = Purchase::where("purchase_code", $purchaseID)->first();
+        $purchase->payment_status = 'failure';
+        return view('payment' , $this->responeseArray('failure' , $purchaseID));
     }
 
-    public function pending() : View
+    public function pending(Request $request) : View
     {
-        return view('payment' , $this->responeseArray('pending'));
+        $purchaseID = $request->query('purchase_id');
+        $purchase = Purchase::where("purchase_code", $purchaseID)->first();
+        $purchase->payment_status = 'pending';
+        return view('payment' , $this->responeseArray('pending' , $purchaseID));
     }
 
 }

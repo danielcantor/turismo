@@ -13,7 +13,7 @@
                                 <a href="https://www.instagram.com/salidasgrupalescyn">
                                     <i class="fa-brands fa-instagram fa-4x" style="color: #8640bf;"></i>
                                 </a>
-                                <a href="#" class="mx-3">
+                                <a href="https://chat.whatsapp.com/KCGUvgi5vQvDo8bSjIvn4q" class="mx-3">
                                     <i class="fa-brands fa-whatsapp fa-4x text-success"></i>
                                 </a>
                             </p>

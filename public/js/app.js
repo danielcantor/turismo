@@ -38524,9 +38524,14 @@ var staticRenderFns = [
         ]
       ),
       _vm._v(" "),
-      _c("a", { staticClass: "mx-3", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa-brands fa-whatsapp fa-4x text-success" }),
-      ]),
+      _c(
+        "a",
+        {
+          staticClass: "mx-3",
+          attrs: { href: "https://chat.whatsapp.com/KCGUvgi5vQvDo8bSjIvn4q" },
+        },
+        [_c("i", { staticClass: "fa-brands fa-whatsapp fa-4x text-success" })]
+      ),
     ])
   },
 ]

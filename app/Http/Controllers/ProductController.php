@@ -89,35 +89,17 @@ class ProductController extends Controller
             'product_description' => 'required',
             'product_price' => 'required|numeric|min:0',
             'product_image' => 'image',
-            'product_slider' => 'image',
-            'product_type' => 'required|in:1,2,3,4,5',
-            'days' => 'required|numeric',
-            'nights' => 'required|numeric'
+            'product_slider' => 'image'
         ]);
 
         $product = Product::findOrFail($id);
 
-        
-        dd($validated);
 
-        if ($validated['product_image'] != null) {
-            Storage::delete("public/".$product->product_image);
-            $imagePath = $validated['product_image']->store('images', 'public');
-            $product->product_image = $imagePath;
-        }
-        if ($validated['product_slider'] != null) {
-            Storage::delete("public/".$product->product_slider);
-            $imagePath = $validated['product_slider']->store('images', 'public');
-            $product->product_slider = $imagePath;
-        }
-        $product->product_name = $validated['product_name'];
-        $product->product_description = $validated['product_description'];
-        $product->product_price = $validated['product_price'];
-        $product->product_type = $validated['product_type'];
-        $product->days = $validated['days'];
-        $product->nights = $validated['nights'];
-
-        $product->save();
+        $product->update([
+            'product_name' => $validated['product_name'],
+            'product_description' => $validated['product_description'],
+            'product_price' => $validated['product_price']
+        ]);
         
         return redirect()->route('productos.edit')->with('success','Producto editado correctamente');
     }
@@ -171,6 +153,8 @@ class ProductController extends Controller
             'tipo' => 'required|in:1,2,3,4,5',
             'precio' => 'required|numeric',
             'days' => 'required|numeric',
+            'product_image' => 'image',
+            'product_slider' => 'image',
             'nights' => 'required|numeric'
         ]);
 
@@ -179,7 +163,16 @@ class ProductController extends Controller
         if (!$producto) {
             return response()->json(['error' => 'Producto no encontrado'], 404);
         }
-
+        if ($request->hasFile('product_image')) {
+            Storage::delete("public/".$producto->product_image);
+            $imagePath =$request->file('product_image')->store('images', 'public');
+            $producto->product_image = $imagePath;
+        }
+        if ($request->hasFile('product_slider')) {
+            Storage::delete("public/".$producto->product_slider);
+            $imagePath = $request->file('product_slider')->store('images', 'public');
+            $producto->product_slider = $imagePath;
+        }
         $producto->product_name = $request->input('titulo');
         $producto->product_description = $request->input('descripcion');
         $producto->product_type = $request->input('tipo');

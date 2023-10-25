@@ -98,6 +98,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         
+        dd($validated);
 
         if ($validated['product_image'] != null) {
             Storage::delete("public/".$product->product_image);

@@ -100,12 +100,12 @@ class ProductController extends Controller
         
 
         if ($request->hasFile('product_image')) {
-            Storage::delete("public/images/".$product->product_image);
+            Storage::delete("public/".$product->product_image);
             $imagePath = $validated['product_image']->store('images', 'public');
             $product->product_image = $imagePath;
         }
         if ($request->hasFile('product_slider')) {
-            Storage::delete("public/images/".$product->product_slider);
+            Storage::delete("public/".$product->product_slider);
             $imagePath = $validated['product_slider']->store('images', 'public');
             $product->product_slider = $imagePath;
         }

@@ -6646,9 +6646,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['status', 'text', 'title']
+  props: ['status', 'text', 'title', 'payment_id']
 });
 
 /***/ }),
@@ -38708,6 +38709,8 @@ var render = function () {
     _c("h1", [_vm._v(_vm._s(_vm.title))]),
     _vm._v(" "),
     _c("p", [_vm._v(_vm._s(_vm.text))]),
+    _vm._v(" "),
+    _c("p", [_vm._v("Numero de reserva # " + _vm._s(_vm.payment_id))]),
     _vm._v(" "),
     _c("p", [
       _vm._v(

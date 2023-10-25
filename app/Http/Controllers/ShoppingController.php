@@ -28,18 +28,19 @@ class ShoppingController extends Controller
         ]);
     }
 
-    private function responeseArray($status , $purchaseID){
+    private function responeseArray($status , $shopping){
         return [
             'title' => $this->titles[$status],
             'message' => $this->response_messages[$status],
-            'status' => $status
+            'status' => $status,
+            'code' => $shopping->code
         ];
     }
 
     public function success($purchase, Request $request) : View
     {
         $payment_info = explode( "&" , $request->path() );
-        
+
         foreach ($payment_info as $key => $value) {
             if($key != 0){
                  $payment_info[$key] = explode( "=" , $value );

@@ -28,7 +28,7 @@
 <body>
     <div id="app">
         <header-component></header-component>
-        <response-component :status="'{{$status}}'" :text="'{{$message}}'" :title="'{{$title}}'"></response-component>
+        <response-component :status="'{{$status}}'" :text="'{{$message}}'" :title="'{{$title}}'" :payment_id="'{{$code}}'"></response-component>
         <footer-component></footer-component>    
     </div>
     <script src="{{ mix('/js/app.js') }}"></script>

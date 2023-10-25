@@ -9,6 +9,15 @@ class Purchase extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'purchase_code',
+        'user_id',
+        'product_id',
+        'payment_status',
+        'payment_method',
+        'total_price',
+    ];
+
     public function passengers()
     {
         return $this->hasMany(Passenger::class);

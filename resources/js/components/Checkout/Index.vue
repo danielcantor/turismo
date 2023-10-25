@@ -428,6 +428,8 @@
               }).then(response => {
                 document.getElementById("wallet_container").innerHTML = "";
                 const mp = new MercadoPago('APP_USR-e71ced4d-0847-490c-abc6-d26b20fcf93e');
+                //const mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
+
                 const bricksBuilder = mp.bricks();
                 mp.bricks().create("wallet", "wallet_container", {
                 initialization: {

@@ -7,38 +7,39 @@ use MercadoPago\Preference;
 use MercadoPago\Item;
 use App\Models\Product;
 use App\Models\Passenger;
-use App\Models\Purchase;
+use App\Models\Shopping;
 use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public function getMercadoPago( Request $request){
         SDK::setAccessToken('APP_USR-5080290645165804-102315-da0a88af09a1a2fe2d7a37c5497c3fb8-1050379468');
+        //SDK::setAccessToken('TEST-7177899704829740-091014-c2e3f1f44f0a0395a6dd829ecb0effe1-1050379468');
 
         $preference = new Preference();
         $product = Product::find($request->input('id'));
-        $passengers = $request->input('passengers');
-        $purchaseID = rand(1, 1000) . time();
-        $purchase = new Purchase();
-        $purchase->purchase_code = $purchaseID;
+        $passengers = $request->input('pasajeros');
+        $purchaseID = rand(1, 1000000) ;
+        $purchase = new Shopping();
+        $purchase->code = $purchaseID;
         $purchase->product_id = $product->id;
 
         foreach ($passengers as $passenger) {
-            $passenger = new Passenger();
-            $passenger->purchase_id = $purchaseID;
-            $passenger->nombre = $passenger['nombre'];
-            $passenger->apellido = $passenger['apellido'];
-            $passenger->nacimiento = $passenger['nacimiento'];
-            $passenger->email = $passenger['email'];
-            $passenger->nacionalidad = $passenger['nacionalidad'];
-            $passenger->documento = $passenger['documento'];
-            $passenger->celular = $passenger['celular'];
-            $passenger->emergencia_nombre = $passenger['emergencia_nombre'];
-            $passenger->emergencia_apellido = $passenger['emergencia_apellido'];
-            $passenger->emergencia_celular = $passenger['emergencia_celular'];
-            $passenger->dieta_tipo = $passenger['dieta_tipo'];
-            $passenger->save();
+            
+            $new = new Passenger();
+            $new->purchase_id = $purchaseID;
+            $new->nombre = $passenger['nombre'];
+            $new->apellido = $passenger['apellido'];
+            $new->nacimiento = $passenger['nacimiento'];
+            $new->email = $passenger['email'];
+            $new->nacionalidad = $passenger['nacionalidad'];
+            $new->documento = $passenger['documento'];
+            $new->celular = $passenger['celular'];
+            $new->emergencia_nombre = $passenger['emergencia']['nombre'];
+            $new->emergencia_apellido = $passenger['emergencia']['apellido'];
+            $new->emergencia_celular = $passenger['emergencia']['celular'];
+            $new->dieta_tipo = $passenger['dieta']['tipo'];
+            $new->save();
         }
-        $purchase->user_id = 0;
         $purchase->payment_status = 'pending';
         $purchase->payment_method = 'MercadoPago';
         $purchase->total_price = (int) $request->input('price');
@@ -51,9 +52,9 @@ class CartController extends Controller
         $base_url = env('APP_URL');
         $preference->items = array($item);
         $preference->back_urls = array(
-            "success" => $base_url."/success?purchase_id=".$purchaseID."",
-            "failure" => $base_url."/failure?purchase_id=".$purchaseID."",
-            "pending" => $base_url."/pending?purchase_id=".$purchaseID.""
+            "success" => $base_url."/success/".$purchaseID."",
+            "failure" => $base_url."/failure/".$purchaseID."",
+            "pending" => $base_url."/pending/".$purchaseID.""
         );
         $preference->auto_return = "approved";
         $preference->save();

@@ -6,6 +6,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Purchase;
+use App\Models\Shopping;
 class ShoppingController extends Controller
 {
     public $response_messages = [
@@ -35,28 +36,58 @@ class ShoppingController extends Controller
         ];
     }
 
-    public function success(Request $request) : View
+    public function success($purchase, Request $request) : View
     {
-        $purchaseID = $request->query('purchase_id');
-        $purchase = Purchase::where("purchase_code", $purchaseID)->first();
-        $purchase->payment_status = 'approved';
-        return view('payment' , $this->responeseArray('approved' , $purchaseID));
+        $payment_info = explode( "&" , $request->path() );
+        
+        foreach ($payment_info as $key => $value) {
+            if($key != 0){
+                 $payment_info[$key] = explode( "=" , $value );
+            }else if($key == 0 || $key == end($payment_info) ){
+                unset($payment_info[$key]);
+            }
+           
+        }
+        $purchaseC = new Purchase();
+        $columns = $purchaseC->getFillable();
+        foreach ($payment_info as $value) {
+            
+            $column = $value[0];
+            if(in_array($column, $columns)){
+                $purchaseC->$column = $value[1];
+            }
+            
+        }
+        $shopping = Shopping::where("code", $purchase)->first();
+        $shopping->payment_status = 'approved';
+
+        $purchaseC->purchase_code = $shopping->id;
+
+        $purchaseC->user_id = $shopping->user_id;
+        $purchaseC->payment_status = 'approved';
+        $purchaseC->payment_method = $shopping->payment_method;
+        $purchaseC->total_price = $shopping->total_price;
+
+        $shopping->save();
+        $purchaseC->save();
+        return view('payment' , $this->responeseArray('approved' , $shopping));
     }
 
-    public function failure(Request $request) : View
+    public function failure($purchase, Request $request) : View
     {
         $purchaseID = $request->query('purchase_id');
-        $purchase = Purchase::where("purchase_code", $purchaseID)->first();
-        $purchase->payment_status = 'failure';
-        return view('payment' , $this->responeseArray('failure' , $purchaseID));
+        $shopping = Shopping::where("purchase_code", $purchaseID)->first();
+        $shopping->payment_status = 'failure';
+        $shopping->save();
+        return view('payment' , $this->responeseArray('failure' , $shopping));
     }
 
-    public function pending(Request $request) : View
+    public function pending($purchase , Request $request) : View
     {
-        $purchaseID = $request->query('purchase_id');
-        $purchase = Purchase::where("purchase_code", $purchaseID)->first();
-        $purchase->payment_status = 'pending';
-        return view('payment' , $this->responeseArray('pending' , $purchaseID));
+        $shopping = Shopping::where("purchase_code", $purchase)->first();
+        $shopping->payment_status = 'pending';
+        $shopping->save();
+        return view('payment' , $this->responeseArray('pending' , $shopping));
     }
 
 }

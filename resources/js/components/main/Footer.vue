@@ -40,7 +40,7 @@
                 <hr>
                 <p class=" mb-0 fw-light">Cynthia Garske </p>
                 <p class="align-middle fw-light mb-0"><a class="text-decoration-none text-info" href="/pdf/licencia.pdf" target="_blank" rel="noopener noreferrer">Certificado de Local Virtual</a></p>
-                <p>Leg 18.761 - Disp 2182/72</p>
+                <p class="align-middle fw-light mb-0"></p>>Leg 18.761 - Disp 2182/72</p>
                 <p class="align-middle fw-light mb-0"> Si necesita hacer un reclamo puede hacerlo ingresando <a class="text-decoration-none text-info" href="https://www.argentina.gob.ar/servicio/presentar-una-denuncia-contra-una-agencia-de-viajes" target="_blank" rel="noopener noreferrer">aca</a> </p>
                 <p class="align-middle fw-light mb-0"><a href="https://www.argentina.gob.ar/economia/comercio/defensadelconsumidor" target="_blank" rel="noopener noreferrer">Dirección Nacional de Defensa del Consumidor</a></p>
                 <p class="align-middle fw-light mb-0"><a href="https://autogestion.produccion.gob.ar/consumidores" target="_blank" rel="noopener noreferrer">Defensa de las y los Consumidores. Para reclamos ingrese aquí</a></p>

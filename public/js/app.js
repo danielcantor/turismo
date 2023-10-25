@@ -37975,7 +37975,7 @@ var staticRenderFns = [
             ),
           ]),
           _vm._v(" "),
-          _c("p", [_vm._v("EVT - Leg 18.761 - Disp 2182/72")]),
+          _c("p", [_vm._v("Leg 18.761 - Disp 2182/72")]),
           _vm._v(" "),
           _c("p", { staticClass: "align-middle fw-light mb-0" }, [
             _vm._v(" Si necesita hacer un reclamo puede hacerlo ingresando "),

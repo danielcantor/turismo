@@ -55,7 +55,7 @@
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/storage/{{ $product->product_slider }}" class='d-block w-100' style="height: 225px;object-fit: cover;object-position: bottom;" alt="">
+                    <img src="/storage/{{ $product->product_slider }}" class='d-block w-100' alt="">
                 </div>
             </div>
         </div>        

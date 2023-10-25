@@ -6353,6 +6353,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {}
@@ -37973,6 +37974,8 @@ var staticRenderFns = [
               [_vm._v("Certificado de Local Virtual")]
             ),
           ]),
+          _vm._v(" "),
+          _c("p", [_vm._v("EVT - Leg 18.761 - Disp 2182/72")]),
           _vm._v(" "),
           _c("p", { staticClass: "align-middle fw-light mb-0" }, [
             _vm._v(" Si necesita hacer un reclamo puede hacerlo ingresando "),

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 use MercadoPago\SDK;
 use MercadoPago\Preference;
 use MercadoPago\Item;
@@ -30,7 +31,8 @@ class ProductController extends Controller
             'product_name' => 'required',
             'product_description' => 'required',
             'product_price' => 'required|numeric|min:0',
-            'product_image' => 'image'
+            'product_image' => 'image',
+            'product_slider' => 'image'
         ]);
     
         $product = new Product();
@@ -44,7 +46,10 @@ class ProductController extends Controller
             $imagePath = $request->file('product_image')->store('images', 'public');
             $product->product_image = $imagePath;
         }
-    
+        if ($request->hasFile('product_slider')) {
+            $imagePath = $request->file('product_slider')->store('images', 'public');
+            $product->product_slider = $imagePath;
+        }
         $product->save();
     
         return redirect()->route('productos.create')->with('success', 'Producto creado correctamente');
@@ -82,16 +87,36 @@ class ProductController extends Controller
         $validated = $request->validate([
             'product_name' => 'required',
             'product_description' => 'required',
-            'product_price' => 'required|numeric|min:0'
+            'product_price' => 'required|numeric|min:0',
+            'product_image' => 'image',
+            'product_slider' => 'image',
+            'product_type' => 'required|in:1,2,3,4,5',
+            'days' => 'required|numeric',
+            'nights' => 'required|numeric'
         ]);
 
         $product = Product::findOrFail($id);
 
-        $product->update([
-            'product_name' => $validated['product_name'],
-            'product_description' => $validated['product_description'],
-            'product_price' => $validated['product_price']
-        ]);
+        
+
+        if ($request->hasFile('product_image')) {
+            Storage::delete("public/images/".$product->product_image);
+            $imagePath = $validated['product_image']->store('images', 'public');
+            $product->product_image = $imagePath;
+        }
+        if ($request->hasFile('product_slider')) {
+            Storage::delete("public/images/".$product->product_slider);
+            $imagePath = $validated['product_slider']->store('images', 'public');
+            $product->product_slider = $imagePath;
+        }
+        $product->product_name = $validated['product_name'];
+        $product->product_description = $validated['product_description'];
+        $product->product_price = $validated['product_price'];
+        $product->product_type = $validated['product_type'];
+        $product->days = $validated['days'];
+        $product->nights = $validated['nights'];
+
+        $product->save();
         
         return redirect()->route('productos.edit')->with('success','Producto editado correctamente');
     }

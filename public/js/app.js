@@ -37960,7 +37960,18 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "align-middle fw-light mb-0" }, [
-            _vm._v("PV-2023-87417235-APN-DRAV#MTYD "),
+            _c(
+              "a",
+              {
+                staticClass: "text-decoration-none text-info",
+                attrs: {
+                  href: "/pdf/licencia.pdf",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                },
+              },
+              [_vm._v("Certificado de Local Virtual")]
+            ),
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "align-middle fw-light mb-0" }, [

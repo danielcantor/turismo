@@ -38,6 +38,10 @@
                     <label for="product_image">Imagen del producto:</label>
                     <input type="file" class="form-control-file" id="product_image" name="product_image">
                 </div>
+                <div class="form-group">
+                    <label for="product_slider">Slider del producto:</label>
+                    <input type="file" class="form-control-file" id="product_slider" name="product_slider">
+                </div>
                 <br>
                 <div class="form-group">
                     <label for="product_type">Tipo de producto:</label>
@@ -97,7 +101,9 @@
             productType: '',
             productDays: '',
             productNights: '',
-            productImage: null
+            productImage: null,
+            productSlider: null,
+
         };
     },
     methods: {
@@ -109,7 +115,9 @@
                 this.productType.trim() === '' ||
                 this.productImage === null ||
                 this.productDays.trim() === '' ||
-                this.productNights.trim() === ''
+                this.productNights.trim() === '' ||
+                this.productSlider === null
+
             ) {
                 alert('Por favor completa todos los campos');
                 return;
@@ -120,6 +128,7 @@
             formData.append('product_description', this.productDescription);
             formData.append('product_type', this.productType);
             formData.append('product_image', this.productImage);
+            formData.append('product_slider', this.productSlider);
             formData.append('product_days', this.productDays);
             formData.append('product_nights', this.productNights);
 
@@ -132,6 +141,7 @@
                     this.productDescription = '';
                     this.productType = '';
                     this.productImage = null;
+                    this.productSlider = null;
                     this.productDays = '';
                     this.productNights = '';
                 })

@@ -21,6 +21,7 @@ class Products extends Migration
             $table->text('product_description');
             $table->integer('product_type');
             $table->string('product_image')->nullable();
+            $table->string('product_slider')->nullable();
             $table->tinyInteger('product_activate')->default(1);
             $table->tinyInteger('days')->default(1);
             $table->tinyInteger('nights')->default(1);

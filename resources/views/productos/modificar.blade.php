@@ -103,6 +103,14 @@
                             </select>
                         </div>
                         <div class="mb-3">
+                            <label for="product_image">Imagen del producto:</label>
+                            <input type="file" class="form-control-file" id="product_image" name="product_image">
+                        </div>
+                        <div class="mb-3">
+                            <label for="product_slider">Slider del producto:</label>
+                            <input type="file" class="form-control-file" id="product_slider" name="product_slider">
+                        </div>
+                        <div class="mb-3">
                             <label for="days">Dias:</label>
                             <select class="form-control" id="days" name="days" required>
                                 <option value="1">1</option>

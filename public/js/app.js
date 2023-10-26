@@ -6142,6 +6142,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_Slider_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../main/Slider.vue */ "./resources/js/components/main/Slider.vue");
 /* harmony import */ var vue_slick_carousel_dist_vue_slick_carousel_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-slick-carousel/dist/vue-slick-carousel.css */ "./node_modules/vue-slick-carousel/dist/vue-slick-carousel.css");
 /* harmony import */ var vue_slick_carousel_dist_vue_slick_carousel_theme_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-slick-carousel/dist/vue-slick-carousel-theme.css */ "./node_modules/vue-slick-carousel/dist/vue-slick-carousel-theme.css");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6227,7 +6234,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// optional style for arrows & dots
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -6271,6 +6278,16 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  methods: {
+    openModal: function openModal() {
+      sweetalert2__WEBPACK_IMPORTED_MODULE_5___default().fire({
+        imageUrl: 'img/home/getnet.jpg',
+        imageHeight: 500,
+        title: '',
+        text: 'Contactanos por whatsapp para mas información para pagar por getnet'
+      });
+    }
+  },
   mounted: function mounted() {}
 });
 
@@ -6287,6 +6304,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -37618,6 +37636,22 @@ var render = function () {
       _c("div", { staticClass: "container my-5" }, [
         _c("div", { staticClass: "row justify-content-center" }, [
           _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-6 justify-content-center text-center" },
+            [
+              _c("a", { attrs: { href: "#" }, on: { click: _vm.openModal } }, [
+                _c("img", {
+                  attrs: {
+                    src: "img/home/getnet2.jpeg",
+                    alt: "",
+                    width: "30%",
+                  },
+                }),
+              ]),
+            ]
+          ),
           _vm._v(" "),
           !_vm.products.length
             ? _c("div", { staticClass: "col-12 text-center py-5" }, [

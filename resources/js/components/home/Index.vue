@@ -60,6 +60,11 @@
                         <p class="fw-bolder" style="font-family:poppins;font-size:3.3rem;">Salidas</p> 
                     </h4>
                 </div>
+                <div class="col-6 justify-content-center text-center">
+                    <a href="#" @click="openModal">
+                        <img src="img/home/getnet2.jpeg" alt="" width="30%">
+                    </a>
+                </div>
                 <div v-if="!products.length" class="col-12 text-center py-5">
                         <i class="fa-solid fa-triangle-exclamation fa-3x mb-2"></i>
                         <h4 class="text-center">No hay productos en esta categoria</h4>
@@ -74,7 +79,7 @@
         <div>
           </div>
         <Slider :imageUrl="'/img/home/home-new.jpg'" :link="'/contacto'"/>
-        
+
     </section>
 </template>
 
@@ -82,9 +87,9 @@
     import VueSlickCarousel from 'vue-slick-carousel'
     import Item from '../main/Item.vue';
     import Slider from '../main/Slider.vue';
-    import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-    // optional style for arrows & dots
-    import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+    import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+    import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
+    import Swal from 'sweetalert2';
     export default {
         components: { VueSlickCarousel , Item , Slider },   
         data() {
@@ -125,6 +130,16 @@
                         }
                     ]
                     }
+            }
+        },
+        methods: {
+            openModal(){
+                Swal.fire({
+                        imageUrl: 'img/home/getnet.jpg',
+                        imageHeight: 500,
+                        title: '',
+                        text: 'Contactanos por whatsapp para mas información para pagar por getnet'
+                });
             }
         },
         mounted() {

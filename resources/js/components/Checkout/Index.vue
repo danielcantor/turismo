@@ -405,6 +405,10 @@
           setError(value){
             this.error = value;
           },
+          formatDescription: function (value) {
+            //replace br with new line
+            return value.replace(/<br\s*[\/]?>/gi, "\n");
+          },
           resetErrors(){
             this.cart.errors.nombre = false;
             this.cart.errors.apellido = false;
@@ -452,6 +456,9 @@
               this.cart.step = this.cart.step - 1;
             }
           }
+        },
+        beforeMount() {
+          this.product.product_description = this.formatDescription(this.product.product_description);
         },
         mounted() {
           this.cart.total = this.product.product_price * this.quantity;

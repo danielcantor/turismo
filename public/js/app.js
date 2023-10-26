@@ -5722,6 +5722,10 @@ __webpack_require__.r(__webpack_exports__);
     setError: function setError(value) {
       this.error = value;
     },
+    formatDescription: function formatDescription(value) {
+      //replace br with new line
+      return value.replace(/<br\s*[\/]?>/gi, "\n");
+    },
     resetErrors: function resetErrors() {
       this.cart.errors.nombre = false;
       this.cart.errors.apellido = false;
@@ -5767,6 +5771,9 @@ __webpack_require__.r(__webpack_exports__);
         this.cart.step = this.cart.step - 1;
       }
     }
+  },
+  beforeMount: function beforeMount() {
+    this.product.product_description = this.formatDescription(this.product.product_description);
   },
   mounted: function mounted() {
     this.cart.total = this.product.product_price * this.quantity;

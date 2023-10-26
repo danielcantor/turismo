@@ -52,13 +52,15 @@
 <body>
     <div id="app">
         <header-component></header-component>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/storage/{{ $product->product_slider }}" class='d-block w-100' alt="">
+        @if ($product->product_slider)
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/storage/{{ $product->product_slider }}" class='d-block w-100' alt="">
+                    </div>
                 </div>
-            </div>
-        </div>        
+            </div>    
+        @endif        
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-6">

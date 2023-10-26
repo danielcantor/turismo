@@ -38258,7 +38258,7 @@ var staticRenderFns = [
             staticClass: "dropdown-item",
             attrs: { href: "/destinos/escapada" },
           },
-          [_vm._v("Escapadas")]
+          [_vm._v("Salidas grupales")]
         ),
       ]),
       _vm._v(" "),

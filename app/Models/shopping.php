@@ -25,6 +25,11 @@ class Shopping extends Model
         return $this->hasMany(Passenger::class);
     }
 
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class , 'purchase_code' , 'id');
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class);

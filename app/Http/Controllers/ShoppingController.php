@@ -49,6 +49,12 @@ class ShoppingController extends Controller
             }
            
         }
+        $shopping = Shopping::where("code", $purchase)->first();
+
+        if($shopping->purchases()->where("payment_status", 'approved')->count() > 0){
+            return view('payment' , $this->responeseArray('approved' , $shopping));
+        }
+
         $purchaseC = new Purchase();
         $columns = $purchaseC->getFillable();
         foreach ($payment_info as $value) {
@@ -59,7 +65,7 @@ class ShoppingController extends Controller
             }
             
         }
-        $shopping = Shopping::where("code", $purchase)->first();
+        
         $shopping->payment_status = 'approved';
 
         $purchaseC->purchase_code = $shopping->id;

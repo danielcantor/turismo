@@ -50,7 +50,7 @@
           <li class="list-group-item d-flex justify-content-between align-items-center lh-sm">
             <div>
               <h6 class="my-0">{{product.product_name}}</h6>
-              <small class="text-muted">{{product.product_description}}</small>
+              <small class="text-muted" :html="product.product_description"></small>
             </div>
             <strong>${{product.product_price}}</strong>
           </li>

@@ -35932,9 +35932,10 @@ var render = function () {
                         _vm._v(_vm._s(_vm.product.product_name)),
                       ]),
                       _vm._v(" "),
-                      _c("small", { staticClass: "text-muted" }, [
-                        _vm._v(_vm._s(_vm.product.product_description)),
-                      ]),
+                      _c("small", {
+                        staticClass: "text-muted",
+                        attrs: { html: _vm.product.product_description },
+                      }),
                     ]),
                     _vm._v(" "),
                     _c("strong", [

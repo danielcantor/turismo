@@ -8,6 +8,7 @@ use MercadoPago\Item;
 use App\Models\Product;
 use App\Models\Passenger;
 use App\Models\Shopping;
+use app\Models\Facturacion;
 use Illuminate\Http\Request;
 class CartController extends Controller
 {
@@ -23,6 +24,12 @@ class CartController extends Controller
         $purchase->code = $purchaseID;
         $purchase->product_id = $product->id;
 
+        $factura = $request->input('facturacion');
+        $facturacion = new Facturacion();
+
+        foreach ($factura as $key => $value) {
+            $facturacion->$key = $value;
+        }
         foreach ($passengers as $passenger) {
             
             $new = new Passenger();
@@ -44,6 +51,9 @@ class CartController extends Controller
         $purchase->payment_method = 'MercadoPago';
         $purchase->total_price = (int) $request->input('price');
         $purchase->save();
+
+        $facturacion->purchase_id = $purchase->id;
+        $facturacion->save();
         // Crea un ítem en la preferencia
         $item = new Item();
         $item->title = "".$product->product_name."";

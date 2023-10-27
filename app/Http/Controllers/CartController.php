@@ -26,9 +26,9 @@ class CartController extends Controller
 
         $factura = $request->input('facturacion');
         $facturacion = new Facturacion();
-
+        $columns = $facturacion->getFillable();
         foreach ($factura as $key => $value) {
-            if($key == "direccion2") continue;
+            if(!in_array($key, $columns)) continue;
             $facturacion->$key = $value;
         }
         foreach ($passengers as $passenger) {

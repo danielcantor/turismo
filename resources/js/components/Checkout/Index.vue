@@ -11,7 +11,7 @@
             <li class="list-group-item d-flex justify-content-between align-items-center lh-sm">
               <div>
                 <h6 class="my-0">{{product.product_name}}</h6>
-                <small class="text-muted">{{product.product_description}}</small>
+                <small class="text-muted" v-html="product.product_description" ></small>
               </div>
               <strong>${{product.product_price}}</strong>
             </li>
@@ -406,8 +406,8 @@
             this.error = value;
           },
           formatDescription: function (value) {
-            //replace br with new line
-            return value.replace(/<br\s*[\/]?>/gi, "\n");
+            //replace \n with a double lineebreak
+            return value.replace(/\n/g, '<br>');
           },
           resetErrors(){
             this.cart.errors.nombre = false;

@@ -23,7 +23,7 @@ class ShoppingController extends Controller
     {
         $products = new Product;
         $product = $products->getProduct($id);
-        $product->product_description = nl2br(e($product->product_description));
+        
         return view('checkout', [
             'product' => $product
         ]);

@@ -5723,8 +5723,8 @@ __webpack_require__.r(__webpack_exports__);
       this.error = value;
     },
     formatDescription: function formatDescription(value) {
-      //replace br with new line
-      return value.replace(/<br\s*[\/]?>/gi, "\n");
+      //replace \n with a double lineebreak
+      return value.replace(/\n/g, '<br>');
     },
     resetErrors: function resetErrors() {
       this.cart.errors.nombre = false;
@@ -35843,9 +35843,12 @@ var render = function () {
                       _vm._v(_vm._s(_vm.product.product_name)),
                     ]),
                     _vm._v(" "),
-                    _c("small", { staticClass: "text-muted" }, [
-                      _vm._v(_vm._s(_vm.product.product_description)),
-                    ]),
+                    _c("small", {
+                      staticClass: "text-muted",
+                      domProps: {
+                        innerHTML: _vm._s(_vm.product.product_description),
+                      },
+                    }),
                   ]),
                   _vm._v(" "),
                   _c("strong", [

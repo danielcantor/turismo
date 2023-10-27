@@ -37906,6 +37906,7 @@ var staticRenderFns = [
                 { attrs: { href: "https://wa.link/0qrx6o", target: "_blank" } },
                 [
                   _c("img", {
+                    staticClass: "responsive-img",
                     attrs: {
                       src: "img/home/getnet3.jpg",
                       alt: "",

@@ -133,15 +133,23 @@
             }
         },
         methods: {
-            openModal(){
-                Swal.fire({
-                        imageUrl: 'img/home/getnet3.jpg',
-                        imageHeight: 500,
-                        title: '',
-                        text: 'Contactanos por whatsapp para mas información para pagar por getnet'
-                });
-            }
-        },
+  openModal: function openModal() {
+    const buttonHtml = `
+      <div style="position: relative;">
+        <a href="https://wa.link/0qrx6o" target="_blank" style="position: absolute; bottom: 20px; right: 5px; background-color: red; border: 2px solid white; border-radius: 10px; padding: 10px 20px; color: white; text-decoration: none;">
+          CONSULTAR AQUI
+        </a>
+        <img src="img/home/getnet4.jpg" style="max-width: 100%; height: auto;">
+      </div>
+    `;
+
+    sweetalert2__WEBPACK_IMPORTED_MODULE_5___default().fire({
+      html: buttonHtml,
+      showConfirmButton: false
+    });
+  }
+}
+,
         mounted() {
             
         }

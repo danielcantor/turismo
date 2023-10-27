@@ -20,9 +20,9 @@ class CartController extends Controller
         $product = Product::find($request->input('id'));
         $passengers = $request->input('pasajeros');
         $purchaseID = rand(1, 1000000) ;
-        $purchase = new Shopping();
-        $purchase->code = $purchaseID;
-        $purchase->product_id = $product->id;
+        $shopping = new Shopping();
+        $shopping->code = $purchaseID;
+        $shopping->product_id = $product->id;
 
         $factura = $request->input('facturacion');
         $facturacion = new Facturacion();
@@ -47,12 +47,12 @@ class CartController extends Controller
             $new->dieta_tipo = $passenger['dieta']['tipo'];
             $new->save();
         }
-        $purchase->payment_status = 'pending';
-        $purchase->payment_method = 'MercadoPago';
-        $purchase->total_price = (int) $request->input('price');
-        $purchase->save();
+        $shopping->payment_status = 'pending';
+        $shopping->payment_method = 'MercadoPago';
+        $shopping->total_price = (int) $request->input('price');
+        $shopping->save();
 
-        $facturacion->purchase_id = $purchase->id;
+        $facturacion->purchase_id = $shopping->id;
         $facturacion->save();
         // Crea un ítem en la preferencia
         $item = new Item();

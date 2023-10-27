@@ -61,7 +61,7 @@
                     </h4>
                     <div class="col-12 justify-content-center text-center">
                     <a href="https://wa.link/0qrx6o" target="_blank">
-                        <img src="img/home/getnet3.jpg" alt="" width="25%" class="responsive-img">
+                        <img class="responsive-img" src="img/home/getnet3.jpg" alt="" width="25%">
                     </a>
                 </div>
                 </div>

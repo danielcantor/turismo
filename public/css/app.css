@@ -55,7 +55,7 @@ footer  {
 }	
 @media (max-width: 768px) {
     .responsive-img{
-        width: 50% !important;
+        width: 100% !important;
     }
 }
 @charset "UTF-8";

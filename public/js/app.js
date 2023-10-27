@@ -6288,7 +6288,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     openModal: function openModal() {
       sweetalert2__WEBPACK_IMPORTED_MODULE_5___default().fire({
-        imageUrl: 'img/home/getnet.jpg',
+        imageUrl: 'img/home/getnet3.jpg',
         imageHeight: 500,
         title: '',
         text: 'Contactanos por whatsapp para mas información para pagar por getnet'

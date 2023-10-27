@@ -135,7 +135,7 @@
         methods: {
             openModal(){
                 Swal.fire({
-                        imageUrl: 'img/home/getnet.jpg',
+                        imageUrl: 'img/home/getnet3.jpg',
                         imageHeight: 500,
                         title: '',
                         text: 'Contactanos por whatsapp para mas información para pagar por getnet'

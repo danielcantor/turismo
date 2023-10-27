@@ -57,14 +57,24 @@
             <div class="row justify-content-center">
                 <div class="col-12 mb-3">
                     <h4 class="text-center lh-1" style="color:#2e005d"> 
+                        <p class="fw-bolder" style="font-family:poppins;font-size:3.3rem;">Promociones</p> 
+                    </h4>
+                    <div class="col-12 justify-content-center text-center">
+                    <a href="https://wa.link/0qrx6o" target="_blank">
+                        <img src="img/home/getnet3.jpg" alt="" width="25%">
+                    </a>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-12 mb-3">
+                    <h4 class="text-center lh-1" style="color:#2e005d"> 
                         <p class="fw-bolder" style="font-family:poppins;font-size:3.3rem;">Salidas</p> 
                     </h4>
                 </div>
-                <div class="col-6 justify-content-center text-center">
-                    <a href="#" @click="openModal">
-                        <img src="img/home/getnet2.jpeg" alt="" width="30%">
-                    </a>
-                </div>
+
                 <div v-if="!products.length" class="col-12 text-center py-5">
                         <i class="fa-solid fa-triangle-exclamation fa-3x mb-2"></i>
                         <h4 class="text-center">No hay productos en esta categoria</h4>
@@ -132,24 +142,7 @@
                     }
             }
         },
-        methods: {
-  openModal: function openModal() {
-    const buttonHtml = `
-      <div style="position: relative;">
-        <a href="https://wa.link/0qrx6o" target="_blank" style="position: absolute; bottom: 20px; right: 5px; background-color: red; border: 2px solid white; border-radius: 10px; padding: 10px 20px; color: white; text-decoration: none;">
-          CONSULTAR AQUI
-        </a>
-        <img src="img/home/getnet4.jpg" style="max-width: 100%; height: auto;">
-      </div>
-    `;
-
-    sweetalert2__WEBPACK_IMPORTED_MODULE_5___default().fire({
-      html: buttonHtml,
-      showConfirmButton: false
-    });
-  }
-}
-,
+        methods: {},
         mounted() {
             
         }

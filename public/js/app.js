@@ -6236,6 +6236,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6285,23 +6295,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  methods: {
-    openModal: function openModal() {
-      const buttonHtml = `
-        <div style="position: relative;">
-          <a href="https://wa.link/0qrx6o" target="_blank" style="position: absolute; bottom: 20px; right: 5px; background-color: red; border: 2px solid white; border-radius: 10px; padding: 10px 20px; color: white; text-decoration: none;">
-            CONSULTAR AQUI
-          </a>
-          <img src="img/home/getnet4.jpg" style="max-width: 100%; height: auto;">
-        </div>
-      `;
-  
-      sweetalert2__WEBPACK_IMPORTED_MODULE_5___default().fire({
-        html: buttonHtml,
-        showConfirmButton: false
-      });
-    }
-  },
+  methods: {},
   mounted: function mounted() {}
 });
 
@@ -37647,25 +37641,11 @@ var render = function () {
       _vm._v(" "),
       _vm._m(1),
       _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
       _c("div", { staticClass: "container my-5" }, [
         _c("div", { staticClass: "row justify-content-center" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-6 justify-content-center text-center" },
-            [
-              _c("a", { attrs: { href: "#" }, on: { click: _vm.openModal } }, [
-                _c("img", {
-                  attrs: {
-                    src: "img/home/getnet2.jpeg",
-                    alt: "",
-                    width: "30%",
-                  },
-                }),
-              ]),
-            ]
-          ),
+          _vm._m(3),
           _vm._v(" "),
           !_vm.products.length
             ? _c("div", { staticClass: "col-12 text-center py-5" }, [
@@ -37888,6 +37868,57 @@ var staticRenderFns = [
         ]),
       ]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container my-5" }, [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-12 mb-3" }, [
+          _c(
+            "h4",
+            {
+              staticClass: "text-center lh-1",
+              staticStyle: { color: "#2e005d" },
+            },
+            [
+              _c(
+                "p",
+                {
+                  staticClass: "fw-bolder",
+                  staticStyle: {
+                    "font-family": "poppins",
+                    "font-size": "3.3rem",
+                  },
+                },
+                [_vm._v("Promociones")]
+              ),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-12 justify-content-center text-center" },
+            [
+              _c(
+                "a",
+                { attrs: { href: "https://wa.link/0qrx6o", target: "_blank" } },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "img/home/getnet3.jpg",
+                      alt: "",
+                      width: "25%",
+                    },
+                  }),
+                ]
+              ),
+            ]
+          ),
+        ]),
+      ]),
+    ])
   },
   function () {
     var _vm = this

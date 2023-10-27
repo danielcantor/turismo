@@ -97,7 +97,7 @@
 
             <div class="col-6">
               <label for="address2" class="form-label">Localidad <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Numero de departemento" v-model="cart.data.direccion2">
+              <input type="text" class="form-control" id="address2" placeholder="Numero de departemento" v-model="cart.data.ciudad">
             </div>
 
 
@@ -302,7 +302,7 @@
                     apellido: '',
                     email: '',
                     direccion: '',
-                    direccion2: '',
+                    ciudad: '',
                     provincia: '',
                     codigo_postal: '',
                     documento: ''

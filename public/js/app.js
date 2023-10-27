@@ -5621,7 +5621,7 @@ __webpack_require__.r(__webpack_exports__);
           apellido: '',
           email: '',
           direccion: '',
-          direccion2: '',
+          ciudad: '',
           provincia: '',
           codigo_postal: '',
           documento: ''
@@ -36186,8 +36186,8 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.cart.data.direccion2,
-                        expression: "cart.data.direccion2",
+                        value: _vm.cart.data.ciudad,
+                        expression: "cart.data.ciudad",
                       },
                     ],
                     staticClass: "form-control",
@@ -36196,17 +36196,13 @@ var render = function () {
                       id: "address2",
                       placeholder: "Numero de departemento",
                     },
-                    domProps: { value: _vm.cart.data.direccion2 },
+                    domProps: { value: _vm.cart.data.ciudad },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(
-                          _vm.cart.data,
-                          "direccion2",
-                          $event.target.value
-                        )
+                        _vm.$set(_vm.cart.data, "ciudad", $event.target.value)
                       },
                     },
                   }),

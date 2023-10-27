@@ -28,6 +28,7 @@ class CartController extends Controller
         $facturacion = new Facturacion();
 
         foreach ($factura as $key => $value) {
+            if($key == "direccion2") continue;
             $facturacion->$key = $value;
         }
         foreach ($passengers as $passenger) {

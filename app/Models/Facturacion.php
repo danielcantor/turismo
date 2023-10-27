@@ -9,4 +9,18 @@ class Facturacion extends Model
 {
     use HasFactory;
     protected $table = 'facturacion';
+
+    protected $fillable = [
+        'nombre',
+        'apellido',
+        'email',
+        'documento',
+        'direccion',
+        'ciudad',
+        'provincia',
+        'codigo_postal',
+        'pais',
+        'telefono',
+        'purchase_id',
+    ];
 }

@@ -8,7 +8,7 @@ use MercadoPago\Item;
 use App\Models\Product;
 use App\Models\Passenger;
 use App\Models\Shopping;
-use app\Models\Facturacion;
+use App\Models\Facturacion;
 use Illuminate\Http\Request;
 class CartController extends Controller
 {

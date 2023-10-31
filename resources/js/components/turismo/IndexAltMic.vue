@@ -3,6 +3,13 @@
         <Slider :imageUrl="imageUrl"/>
         <div class="py-5" style="background-color: #f6f6f6;">
             <div class="container mt-5">
+                <div class="row text-center">
+                <div class="col-12 text-center">
+                                <a href=""></a>
+                                <img style="width: 100%;" src="/img/home/microscompanies.jpg" alt="">
+                                <p class="text-center" style="background-color: #2e005d; color: white;">Envíanos tu consulta haciendo click aquí...</p>
+                            </div>
+                </div>
                 <div class="row justify-content-center">
                     <div class="col-xl-6 order-2 order-xl-1">
                         <div class="mb-5">
@@ -10,7 +17,6 @@
                                 <p class=' mb-0' style="font-family:cherolinaregular;font-size:3.9rem;">Vive una gran</p> 
                                 <p class="fw-bolder" style="font-family:poppins;font-size:3.5rem;">Experiencia</p> 
                             </h4>
-                            <img src="/img/home/microscompanies.jpg" alt="">
                             <p class="text-justify my-4" style="font-family:'Raleway', sans-serif;">
                                 {{descripcion}}
                             </p>

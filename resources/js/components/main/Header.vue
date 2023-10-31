@@ -34,7 +34,7 @@
               </ul>
             </li>
             <li class="nav-item mx-0 mx-xl-2">
-                <a class="nav-link" href="#" target="_blank">Pasajes en Micro</a>
+                <a class="nav-link" href="/destinos/micro">Pasajes en Micro</a>
             </li>
             <li class="nav-item mx-0 mx-xl-2">
                 <a class="nav-link" :class="currentPage == '/contacto' ? 'active' : ' '" href="/contacto" >Contacto</a>

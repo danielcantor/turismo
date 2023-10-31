@@ -5,8 +5,7 @@
             <div class="container mt-5">
                 <div class="row text-center">
                 <div class="col-12 text-center">
-                                <a href=""></a>
-                                <img style="width: 100%;" src="/img/home/aereoscompanies.jpg" alt="">
+                                <a href=""><img style="width: 100%;" src="/img/home/aereoscompanies.jpg" alt=""></a>
                                 <p class="text-center" style="background-color: #2e005d; color: white;">Envíanos tu consulta haciendo click aquí...</p>
                             </div>
                 </div>

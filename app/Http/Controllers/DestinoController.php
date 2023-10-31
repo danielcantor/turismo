@@ -39,17 +39,28 @@ class DestinoController extends Controller
             'imageUrl' => '/img/home/internacional.png'
         ]);
     }
+    
     public function aereo(): View
     {
-        $products = $this->product->getProductsbyType(3);
-
+    
         return view('turismo')->with([
-            'items'=> $products,
+            'items'=> "",
             'pageName' => 'Destinos Aéreos',
             'description' => '',
             'title' => 'Pasajes',
             "subtitle" => "Aéreos",
             'imageUrl' => '/img/home/aereo.jpg'
+        ]);
+    }
+    public function micro(): View
+    {
+        return view('turismo')->with([
+            'items'=> "",
+            'pageName' => 'Pasajes en Micro',
+            'description' => '',
+            'title' => 'Pasajes',
+            "subtitle" => "en Micro",
+            'imageUrl' => '/img/home/micro.jpg'
         ]);
     }
     public function escapada(): View

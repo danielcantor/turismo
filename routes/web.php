@@ -59,6 +59,7 @@ Route::controller(DestinoController::class)->group(function () {
         Route::get('/nacional', 'nacional');
         Route::get('/internacional', 'internacional');
         Route::get('/aereo', 'aereo');
+        Route::get('/micro', 'micro');
         Route::get('/escapada', 'escapada');
         Route::get('/finde', 'finde');
     });    

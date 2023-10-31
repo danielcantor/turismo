@@ -10,11 +10,7 @@
                                 <p class=' mb-0' style="font-family:cherolinaregular;font-size:3.9rem;">Vive una gran</p> 
                                 <p class="fw-bolder" style="font-family:poppins;font-size:3.5rem;">Experiencia</p> 
                             </h4>
-                            <div class="col-4 text-center">
-                                <a href=""></a>
-                                <img src="/img/home/aereoscompanies.jpg" alt="">
-                                <p class="text-center" style="background-color: #2e005d; color: white;">Envíanos tu consulta haciendo click aquí...</p>
-                            </div>
+                            <img src="/img/home/microscompanies.jpg" alt="">
                             <p class="text-justify my-4" style="font-family:'Raleway', sans-serif;">
                                 {{descripcion}}
                             </p>

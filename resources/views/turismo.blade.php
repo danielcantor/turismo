@@ -28,8 +28,10 @@
 <body>
     <div id="app">
         <header-component></header-component>
-        @if ($pageName == 'Destinos Aéreos' || $pageName == 'Pasajes en Micro' )
+        @if ($pageName == 'Destinos Aéreos')
             <turismo-component-alt ></turismo-component-alt>
+        @elseif ($pageName == 'Pasajes en Micro')
+            <turismo-component-mic ></turismo-component-mic>
         @else
             <turismo-component ></turismo-component>
         @endif

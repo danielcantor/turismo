@@ -31,7 +31,7 @@
         @if ($pageName == 'Destinos Aéreos')
             <turismo-component-alt ></turismo-component-alt>
         @elseif ($pageName == 'Pasajes en Micro')
-            <turismo-component-mic ></turismo-component-mic>
+            <turismo-component-altmic ></turismo-component-altmic>
         @else
             <turismo-component ></turismo-component>
         @endif

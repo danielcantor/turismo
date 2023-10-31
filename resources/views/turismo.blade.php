@@ -28,11 +28,7 @@
 <body>
     <div id="app">
         <header-component></header-component>
-        @if ($pageName == 'Destinos Aéreos')
-            <turismo-component-alt ></turismo-component-alt>
-        @else
-            <turismo-component ></turismo-component>
-        @endif
+        <turismo-component ></turismo-component>
         <footer-component></footer-component>    
     </div>
     <script>

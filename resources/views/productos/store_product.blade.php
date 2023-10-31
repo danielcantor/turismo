@@ -71,7 +71,7 @@
                         <div class="col-12">
                             <div class="heading__share__item clearfix titulo_producto">
                                 <a class="heading__share__item__link" href=""></a>
-                                <a href="whatsapp://send?text=Te comparto la información sobre este viaje! <?=$_SERVER["REQUEST_URI"]?>" target="_blank" class="heading__share__item__label"><h5><i class="fas fa-share-alt"></i> Compartir</h5></a>
+                                <a href="whatsapp://send?text=Te comparto la información sobre este viaje! <?=$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]?>" target="_blank" class="heading__share__item__label"><h5><i class="fas fa-share-alt"></i> Compartir</h5></a>
                             </div>
                         </div>
                         <div class="col-12">

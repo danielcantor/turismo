@@ -39698,7 +39698,7 @@
         "div",
         { staticClass: "row text-center justify-content-center" },
         [
-          _c("div", { staticClass: "col-4 text-center" }, [
+          _c("div", { staticClass: "col-4 col-sm-8 col-xs-8 text-center" }, [
             _c("a", { attrs: { href: "" } }, [
               _c("img", {
                 staticStyle: { width: "100%" },
@@ -39884,7 +39884,7 @@
         "div",
         { staticClass: "row text-center justify-content-center" },
         [
-          _c("div", { staticClass: "col-4 text-center" }, [
+          _c("div", { staticClass: "col-4 col-sm-8 col-xs-8 text-center" }, [
             _c("a", { attrs: { href: "" } }, [
               _c("img", {
                 staticStyle: { width: "100%" },

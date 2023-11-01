@@ -39699,7 +39699,7 @@
         { staticClass: "row text-center justify-content-center" },
         [
           _c("div", { staticClass: "col-4 text-center" }, [
-            _c("a", { attrs: { href: "" } }, [
+            _c("a", { attrs: { href: "https://wa.link/1r56u8" } }, [
               _c("img", {
                 staticStyle: { width: "100%" },
                 attrs: { src: "/img/home/aereoscompanies.jpg", alt: "" },
@@ -39885,7 +39885,7 @@
         { staticClass: "row text-center justify-content-center" },
         [
           _c("div", { staticClass: "col-4 text-center" }, [
-            _c("a", { attrs: { href: "" } }, [
+            _c("a", { attrs: { href: "https://wa.link/bznznz" } }, [
               _c("img", {
                 staticStyle: { width: "100%" },
                 attrs: { src: "/img/home/aereoscompanies.jpg", alt: "" },

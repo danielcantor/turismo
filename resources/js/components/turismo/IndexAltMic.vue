@@ -3,12 +3,6 @@
         <Slider :imageUrl="imageUrl"/>
         <div class="py-5" style="background-color: #f6f6f6;">
             <div class="container mt-5">
-                <div class="row text-center">
-                <div class="col-12 text-center">
-                                <a href=""><img style="width: 100%;" src="/img/home/microscompanies.jpg" alt=""></a>
-                                <p class="text-center" style="background-color: #2e005d; color: white;">Envíanos tu consulta haciendo click aquí...</p>
-                            </div>
-                </div>
                 <div class="row justify-content-center">
                     <div class="col-xl-6 order-2 order-xl-1">
                         <div class="mb-5">
@@ -22,6 +16,13 @@
                         </div>
                     </div>
                     <div class="col-xl-6 text-center order-1 order-xl-2">
+                    </div>
+                </div>
+                                <div class="row text-center">
+                    <div class="col-4 text-center">
+                                    <a href=""><img style="width: 100%;" src="/img/home/aereoscompanies.jpg" alt=""></a>
+                                    <p class="text-center" style="background-color: #2e005d; color: white;">Envíanos tu consulta haciendo click aquí...</p>
+                                </div>
                     </div>
                 </div>
             </div>

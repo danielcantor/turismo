@@ -18,7 +18,7 @@
                     <div class="col-xl-6 text-center order-1 order-xl-2">
                     </div>
                 </div>
-                <div class="row text-center">
+                <div class="row text-center justify-content-center">
                     <div class="col-4 text-center">
                                     <a href=""><img style="width: 100%;" src="/img/home/aereoscompanies.jpg" alt=""></a>
                                     <p class="text-center" style="background-color: #2e005d; color: white;">Envíanos tu consulta haciendo click aquí...</p>

@@ -159,7 +159,7 @@
                             <img src="/img/home/condicionesgenerales.jpeg" alt="Imagen Modal">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="openModal">Cerrar</button>
+                            <button type="button" class="btn btn-secondary" @click="closeModal">Cerrar</button>
                         </div>
                         </div>
                     </div>

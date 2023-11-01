@@ -39664,25 +39664,29 @@
       var _vm = this
       var _h = _vm.$createElement
       var _c = _vm._self._c || _h
-      return _c("div", { staticClass: "row text-center" }, [
-        _c("div", { staticClass: "col-4 text-center" }, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("img", {
-              staticStyle: { width: "100%" },
-              attrs: { src: "/img/home/aereoscompanies.jpg", alt: "" },
-            }),
+      return _c(
+        "div",
+        { staticClass: "row text-center justify-content-center" },
+        [
+          _c("div", { staticClass: "col-4 text-center" }, [
+            _c("a", { attrs: { href: "" } }, [
+              _c("img", {
+                staticStyle: { width: "100%" },
+                attrs: { src: "/img/home/aereoscompanies.jpg", alt: "" },
+              }),
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              {
+                staticClass: "text-center",
+                staticStyle: { "background-color": "#2e005d", color: "white" },
+              },
+              [_vm._v("Envíanos tu consulta haciendo click aquí...")]
+            ),
           ]),
-          _vm._v(" "),
-          _c(
-            "p",
-            {
-              staticClass: "text-center",
-              staticStyle: { "background-color": "#2e005d", color: "white" },
-            },
-            [_vm._v("Envíanos tu consulta haciendo click aquí...")]
-          ),
-        ]),
-      ])
+        ]
+      )
     },
   ]
   render._withStripped = true
@@ -39826,25 +39830,29 @@
       var _vm = this
       var _h = _vm.$createElement
       var _c = _vm._self._c || _h
-      return _c("div", { staticClass: "row text-center" }, [
-        _c("div", { staticClass: "col-4 text-center" }, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("img", {
-              staticStyle: { width: "100%" },
-              attrs: { src: "/img/home/aereoscompanies.jpg", alt: "" },
-            }),
+      return _c(
+        "div",
+        { staticClass: "row text-center justify-content-center" },
+        [
+          _c("div", { staticClass: "col-4 text-center" }, [
+            _c("a", { attrs: { href: "" } }, [
+              _c("img", {
+                staticStyle: { width: "100%" },
+                attrs: { src: "/img/home/aereoscompanies.jpg", alt: "" },
+              }),
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              {
+                staticClass: "text-center",
+                staticStyle: { "background-color": "#2e005d", color: "white" },
+              },
+              [_vm._v("Envíanos tu consulta haciendo click aquí...")]
+            ),
           ]),
-          _vm._v(" "),
-          _c(
-            "p",
-            {
-              staticClass: "text-center",
-              staticStyle: { "background-color": "#2e005d", color: "white" },
-            },
-            [_vm._v("Envíanos tu consulta haciendo click aquí...")]
-          ),
-        ]),
-      ])
+        ]
+      )
     },
   ]
   render._withStripped = true

@@ -131,6 +131,7 @@
     <script src="{{ mix('js/app.js') }}"></script>   
     <script>
         Vue.component('modal-example', {
+            name: 'modal-example',
             data() {
                 return {
                     showModal: false,

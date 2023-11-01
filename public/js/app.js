@@ -6884,6 +6884,7 @@
   //
   //
   //
+  //
   
   
   
@@ -6919,6 +6920,7 @@
   /* harmony export */ });
   /* harmony import */ var _main_Slider_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../main/Slider.vue */ "./resources/js/components/main/Slider.vue");
   /* harmony import */ var _main_Item_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../main/Item.vue */ "./resources/js/components/main/Item.vue");
+  //
   //
   //
   //
@@ -39553,12 +39555,10 @@
           { staticClass: "py-5", staticStyle: { "background-color": "#f6f6f6" } },
           [
             _c("div", { staticClass: "container mt-5" }, [
-              _vm._m(0),
-              _vm._v(" "),
               _c("div", { staticClass: "row justify-content-center" }, [
                 _c("div", { staticClass: "col-xl-6 order-2 order-xl-1" }, [
                   _c("div", { staticClass: "mb-5" }, [
-                    _vm._m(1),
+                    _vm._m(0),
                     _vm._v(" "),
                     _c(
                       "p",
@@ -39581,6 +39581,8 @@
                   staticClass: "col-xl-6 text-center order-1 order-xl-2",
                 }),
               ]),
+              _vm._v(" "),
+              _vm._m(1),
             ]),
           ]
         ),
@@ -39631,30 +39633,6 @@
       var _vm = this
       var _h = _vm.$createElement
       var _c = _vm._self._c || _h
-      return _c("div", { staticClass: "row text-center" }, [
-        _c("div", { staticClass: "col-12 text-center" }, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("img", {
-              staticStyle: { width: "100%" },
-              attrs: { src: "/img/home/aereoscompanies.jpg", alt: "" },
-            }),
-          ]),
-          _vm._v(" "),
-          _c(
-            "p",
-            {
-              staticClass: "text-center",
-              staticStyle: { "background-color": "#2e005d", color: "white" },
-            },
-            [_vm._v("Envíanos tu consulta haciendo click aquí...")]
-          ),
-        ]),
-      ])
-    },
-    function () {
-      var _vm = this
-      var _h = _vm.$createElement
-      var _c = _vm._self._c || _h
       return _c(
         "h4",
         { staticClass: "text-left title-custom border-custom ps-3 lh-1" },
@@ -39681,6 +39659,30 @@
           ),
         ]
       )
+    },
+    function () {
+      var _vm = this
+      var _h = _vm.$createElement
+      var _c = _vm._self._c || _h
+      return _c("div", { staticClass: "row text-center" }, [
+        _c("div", { staticClass: "col-4 text-center" }, [
+          _c("a", { attrs: { href: "" } }, [
+            _c("img", {
+              staticStyle: { width: "100%" },
+              attrs: { src: "/img/home/aereoscompanies.jpg", alt: "" },
+            }),
+          ]),
+          _vm._v(" "),
+          _c(
+            "p",
+            {
+              staticClass: "text-center",
+              staticStyle: { "background-color": "#2e005d", color: "white" },
+            },
+            [_vm._v("Envíanos tu consulta haciendo click aquí...")]
+          ),
+        ]),
+      ])
     },
   ]
   render._withStripped = true
@@ -39715,12 +39717,10 @@
           { staticClass: "py-5", staticStyle: { "background-color": "#f6f6f6" } },
           [
             _c("div", { staticClass: "container mt-5" }, [
-              _vm._m(0),
-              _vm._v(" "),
               _c("div", { staticClass: "row justify-content-center" }, [
                 _c("div", { staticClass: "col-xl-6 order-2 order-xl-1" }, [
                   _c("div", { staticClass: "mb-5" }, [
-                    _vm._m(1),
+                    _vm._m(0),
                     _vm._v(" "),
                     _c(
                       "p",
@@ -39743,6 +39743,8 @@
                   staticClass: "col-xl-6 text-center order-1 order-xl-2",
                 }),
               ]),
+              _vm._v(" "),
+              _vm._m(1),
             ]),
           ]
         ),
@@ -39793,30 +39795,6 @@
       var _vm = this
       var _h = _vm.$createElement
       var _c = _vm._self._c || _h
-      return _c("div", { staticClass: "row text-center" }, [
-        _c("div", { staticClass: "col-12 text-center" }, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("img", {
-              staticStyle: { width: "100%" },
-              attrs: { src: "/img/home/microscompanies.jpg", alt: "" },
-            }),
-          ]),
-          _vm._v(" "),
-          _c(
-            "p",
-            {
-              staticClass: "text-center",
-              staticStyle: { "background-color": "#2e005d", color: "white" },
-            },
-            [_vm._v("Envíanos tu consulta haciendo click aquí...")]
-          ),
-        ]),
-      ])
-    },
-    function () {
-      var _vm = this
-      var _h = _vm.$createElement
-      var _c = _vm._self._c || _h
       return _c(
         "h4",
         { staticClass: "text-left title-custom border-custom ps-3 lh-1" },
@@ -39843,6 +39821,30 @@
           ),
         ]
       )
+    },
+    function () {
+      var _vm = this
+      var _h = _vm.$createElement
+      var _c = _vm._self._c || _h
+      return _c("div", { staticClass: "row text-center" }, [
+        _c("div", { staticClass: "col-4 text-center" }, [
+          _c("a", { attrs: { href: "" } }, [
+            _c("img", {
+              staticStyle: { width: "100%" },
+              attrs: { src: "/img/home/aereoscompanies.jpg", alt: "" },
+            }),
+          ]),
+          _vm._v(" "),
+          _c(
+            "p",
+            {
+              staticClass: "text-center",
+              staticStyle: { "background-color": "#2e005d", color: "white" },
+            },
+            [_vm._v("Envíanos tu consulta haciendo click aquí...")]
+          ),
+        ]),
+      ])
     },
   ]
   render._withStripped = true

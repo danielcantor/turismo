@@ -19,11 +19,11 @@
                     </div>
                 </div>
                 <div class="row text-center justify-content-center">
-                    <div class="col-4 text-center">
-                                    <a href=""><img style="width: 100%;" src="/img/home/aereoscompanies.jpg" alt=""></a>
-                                    <p class="text-center" style="background-color: #2e005d; color: white;">Envíanos tu consulta haciendo click aquí...</p>
-                                </div>
+                    <div class="col-4 col-sm-8 col-xs-8 text-center">
+                        <a href=""><img style="width: 100%;" src="/img/home/aereoscompanies.jpg" alt=""></a>
+                        <p class="text-center" style="background-color: #2e005d; color: white;">Envíanos tu consulta haciendo click aquí...</p>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

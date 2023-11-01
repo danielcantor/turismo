@@ -127,7 +127,7 @@
 
         <footer-component></footer-component>
     </div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
     <script src="{{ mix('js/app.js') }}"></script>   
     <script>
         Vue.component('modal-example', {

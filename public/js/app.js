@@ -6885,6 +6885,11 @@
   //
   //
   //
+  //
+  //
+  //
+  //
+  //
   
   
   
@@ -6920,6 +6925,11 @@
   /* harmony export */ });
   /* harmony import */ var _main_Slider_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../main/Slider.vue */ "./resources/js/components/main/Slider.vue");
   /* harmony import */ var _main_Item_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../main/Item.vue */ "./resources/js/components/main/Item.vue");
+  //
+  //
+  //
+  //
+  //
   //
   //
   //
@@ -39621,7 +39631,27 @@
                   ),
                 ]
               ),
-            ]
+              _vm._v(" "),
+              !_vm.products.length
+                ? _c("div", { staticClass: "col-12 text-center py-5" }, [
+                    _c("i", {
+                      staticClass: "fa-solid fa-triangle-exclamation fa-3x mb-2",
+                    }),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "text-center" }, [
+                      _vm._v("No hay productos en esta categoria"),
+                    ]),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.products, function (product, index) {
+                return _c(
+                  "Item",
+                  _vm._b({ key: product.id }, "Item", product, false)
+                )
+              }),
+            ],
+            2
           ),
         ]),
       ],
@@ -39787,7 +39817,27 @@
                   ),
                 ]
               ),
-            ]
+              _vm._v(" "),
+              !_vm.products.length
+                ? _c("div", { staticClass: "col-12 text-center py-5" }, [
+                    _c("i", {
+                      staticClass: "fa-solid fa-triangle-exclamation fa-3x mb-2",
+                    }),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "text-center" }, [
+                      _vm._v("No hay productos en esta categoria"),
+                    ]),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.products, function (product, index) {
+                return _c(
+                  "Item",
+                  _vm._b({ key: product.id }, "Item", product, false)
+                )
+              }),
+            ],
+            2
           ),
         ]),
       ],

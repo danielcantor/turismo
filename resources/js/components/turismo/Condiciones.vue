@@ -24,7 +24,6 @@
   
   <script>
   export default {
-    name: 'modal-example',
     data() {
       return {
         showModal: false,

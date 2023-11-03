@@ -16,6 +16,7 @@ import ItemComponent from './components/main/Item.vue';
 import ContactoComponent from './components/contact/Index.vue';
 import CheckoutComponent from './components/checkout/Index.vue';
 import responseContent from './components/payment/Index.vue';
+import CondicionesComponent from './components/turismo/Condiciones.vue';
 
 Vue.component('index-component', IndexComponent);
 Vue.component('header-component', HeaderComponent);
@@ -31,6 +32,7 @@ Vue.component('item', ItemComponent);
 Vue.component('checkout-component', CheckoutComponent);
 Vue.component('contacto-component', ContactoComponent);
 Vue.component('response-component', responseContent);
+Vue.component('condiciones-component', CondicionesComponent);
 
 const app = new Vue({
     el: '#app',

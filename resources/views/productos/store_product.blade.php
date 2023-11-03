@@ -75,8 +75,7 @@
                                     <a href="whatsapp://send?text=Te comparto la información sobre este viaje! <?=$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]?>" target="_blank" class="heading__share__item__label"><h5><i class="fas fa-share-alt"></i> Compartir</h5></a>
                                 </div>
                                 <div class="col-5 titulo_producto">
-                                    <modal-example></modal-example>
-                                    
+                                    <condiciones-component></condiciones-component>
                                 </div>
                             </div>
                         </div>
@@ -128,47 +127,5 @@
         <footer-component></footer-component>
     </div>
     <script src="{{ mix('js/app.js') }}"></script>   
-    <script>
-        Vue.component('modal-example', {
-            name: 'modal-example',
-            data() {
-                return {
-                    showModal: false,
-                };
-            },
-            methods: {
-                openModal() {
-                    this.showModal = true;
-                },
-                closeModal() {
-                    this.showModal = false;
-                },
-            },
-            template: `
-            <button class="btn btn-primary" @click="openModal">CONDICIONES GENERALES</button>
-                <div class="modal" tabindex="-1" role="dialog" :class="{ 'show': showModal }">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Imagen</h5>
-                            <button type="button" class="close" @click="openModal">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <img src="/img/home/condicionesgenerales.jpeg" alt="Imagen Modal">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="closeModal">Cerrar</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>`
-        });
-
-        new Vue({
-            el: '#app',
-        });
-    </script>
 </body>
 </html>

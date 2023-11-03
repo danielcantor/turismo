@@ -39538,7 +39538,7 @@ var render = function () {
     _c(
       "div",
       {
-        staticClass: "modal",
+        staticClass: "modal fade",
         class: { show: _vm.showModal },
         attrs: { tabindex: "-1", role: "dialog" },
       },

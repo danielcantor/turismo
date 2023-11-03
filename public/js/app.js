@@ -39593,6 +39593,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-body" }, [
       _c("img", {
+        staticStyle: { width: "100%" },
         attrs: {
           src: "/img/home/condicionesgenerales.jpeg",
           alt: "Imagen Modal",

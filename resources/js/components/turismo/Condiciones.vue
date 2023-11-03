@@ -11,7 +11,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <img src="/img/home/condicionesgenerales.jpeg" alt="Imagen Modal">
+              <img src="/img/home/condicionesgenerales.jpeg" style="width: 100%;" alt="Imagen Modal">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" @click="closeModal">Cerrar</button>

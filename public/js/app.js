@@ -5603,7 +5603,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -5616,6 +5615,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       cart: {
         step: 1,
+        payment_type: '',
+        discount_value: 0,
         data: {
           nombre: '',
           apellido: '',
@@ -5679,7 +5680,10 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-      this.cart.total = this.product.product_price * val;
+      this.ChangePrice(val);
+    },
+    'cart.payment_type': function cartPayment_type(val) {
+      this.ChangePrice(this.quantity);
     }
   },
   methods: {
@@ -5698,6 +5702,17 @@ __webpack_require__.r(__webpack_exports__);
       }
       this.resetErrors();
       this.cart.step = 2;
+    },
+    ChangePrice: function ChangePrice(val) {
+      var normal_price = this.product.product_price * val;
+      if (this.cart.payment_type === "Transferencia") {
+        var discount = (normal_price * 0.1).toFixed(2);
+        this.cart.discount_value = discount;
+        this.cart.total = (normal_price - discount).toFixed(2);
+      } else {
+        this.cart.total = normal_price.toFixed(2);
+        this.cart.discount_value = 0;
+      }
     },
     NacionalidadName: function NacionalidadName(value) {
       var nacionalidades = {
@@ -36308,6 +36323,25 @@ var render = function () {
                 ]
               ),
               _vm._v(" "),
+              _vm.cart.discount_value > 0
+                ? _c(
+                    "li",
+                    {
+                      staticClass:
+                        "list-group-item d-flex justify-content-between",
+                    },
+                    [
+                      _c("span", [
+                        _vm._v("Descuento por transferencia bancaria"),
+                      ]),
+                      _vm._v(" "),
+                      _c("strong", [
+                        _vm._v("$" + _vm._s(_vm.cart.discount_value)),
+                      ]),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _c(
                 "li",
                 {
@@ -36972,6 +37006,58 @@ var render = function () {
                   ),
                 ]),
               ]),
+              _vm._v(" "),
+              _c("hr", { staticClass: "my-4" }),
+              _vm._v(" "),
+              _c("h4", { staticClass: "mb-3" }, [_vm._v("Metodo de pago")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.cart.payment_type,
+                      expression: "cart.payment_type",
+                    },
+                  ],
+                  staticClass: "form-select",
+                  attrs: { id: "" },
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.cart,
+                        "payment_type",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                  },
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Selecciona"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Mercadopago" } }, [
+                    _vm._v("MercadoPago"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Transferencia" } }, [
+                    _vm._v("Transferencia Bancaria"),
+                  ]),
+                ]
+              ),
               _vm._v(" "),
               _c("hr", { staticClass: "my-4" }),
               _vm._v(" "),

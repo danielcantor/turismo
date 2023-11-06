@@ -19,6 +19,10 @@
               <span>Cantidad</span>
               <strong>{{quantity}}</strong>
             </li>
+            <li v-if="cart.discount_value > 0" class="list-group-item d-flex justify-content-between">
+              <span>Descuento por transferencia bancaria</span>
+              <strong>${{cart.discount_value}}</strong>
+            </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (ARS)</span>
               <strong>${{cart.total}}</strong>
@@ -169,20 +173,15 @@
             </div>
           </div>
 
-          <!--<hr class="my-4">
+          <hr class="my-4">
 
           <h4 class="mb-3">Metodo de pago</h4>
 
-          <div class="my-3">
-            <div class="form-check">
-              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-              <label class="form-check-label" for="credit">Mercado pago</label>
-            </div>
-            <div class="form-check">
-              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-              <label class="form-check-label" for="debit">Transferencia Bancaria</label>
-            </div>
-          </div> -->
+          <select class="form-select" id="" v-model="cart.payment_type">
+              <option value="">Selecciona</option>
+              <option value="Mercadopago">MercadoPago</option>
+              <option value="Transferencia">Transferencia Bancaria</option>
+          </select>
 
           <hr class="my-4">
 
@@ -297,6 +296,8 @@
             return {
                 cart: {
                   step : 1,
+                  payment_type : '',
+                  discount_value : 0,
                   data: {
                     nombre: '',
                     apellido: '',
@@ -362,7 +363,10 @@
                     }
               });
             }
-            this.cart.total = this.product.product_price * val;
+            this.ChangePrice(val);
+          },
+          'cart.payment_type': function (val) {
+            this.ChangePrice(this.quantity);
           }
         },
         methods: {
@@ -381,6 +385,17 @@
               }
               this.resetErrors();
               this.cart.step = 2;
+          },
+          ChangePrice(val){
+            let normal_price = this.product.product_price * val;
+            if(this.cart.payment_type === "Transferencia"){
+              let discount = (normal_price * 0.1).toFixed(2);
+              this.cart.discount_value = discount;
+              this.cart.total = (normal_price - discount).toFixed(2);
+            }else{
+              this.cart.total = normal_price.toFixed(2);
+              this.cart.discount_value = 0;
+            }
           },
           NacionalidadName(value){
             const nacionalidades = {
@@ -409,6 +424,7 @@
             //replace \n with a double lineebreak
             return value.replace(/\n/g, '<br>');
           },
+          
           resetErrors(){
             this.cart.errors.nombre = false;
             this.cart.errors.apellido = false;
@@ -455,7 +471,7 @@
             if(this.cart.step > 1){
               this.cart.step = this.cart.step - 1;
             }
-          }
+          },
         },
         beforeMount() {
           this.product.product_description = this.formatDescription(this.product.product_description);

@@ -19,6 +19,8 @@
                     </div>
                 </div>
                     <div class="row text-center justify-content-center">
+                        <p>Para compras de pasajes en Bus Semi Cama y Cama, escribinos al WhatsApp haciendo "Click" en la imagen.<br>
+                        Envianos a qué destino queres viajar y en qué fechas, muchas gracias!</p>
                         <div class="col-4 text-center">
                             <a href="https://wa.link/bznznz"><img style="width: 100%;" src="/img/home/microscompanies.jpg" alt=""></a>
                             <p class="text-center" style="background-color: #2e005d; color: white;">Envíanos tu consulta haciendo click aquí...</p>
@@ -33,11 +35,11 @@
                         <p class=' mb-0' style="font-family:cherolinaregular;font-size:3.9rem;">{{title}}</p> 
                         <p class="fw-bolder" style="font-family:poppins;font-size:3.5rem;">{{subtitle}}</p> 
                     </h4>
-                    <div v-if="!products.length" class="col-12 text-center py-5">
+                    <!--<div v-if="!products.length" class="col-12 text-center py-5">
                         <i class="fa-solid fa-triangle-exclamation fa-3x mb-2"></i>
                         <h4 class="text-center">No hay productos en esta categoria</h4>
                     </div>
-                    <Item v-for="(product, index) in products" :key="product.id" v-bind="product" />
+                    <Item v-for="(product, index) in products" :key="product.id" v-bind="product" />-->
             </div>
         </div>
     </section>

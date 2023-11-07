@@ -40096,7 +40096,7 @@ var staticRenderFns = [
       "div",
       { staticClass: "row text-center justify-content-center" },
       [
-        _c("p", [
+        _c("p", { staticStyle: { "font-size": "x-large" } }, [
           _vm._v(
             'Para compras de Aéreos, escribinos al WhatsApp haciendo "Click" en la imagen.'
           ),
@@ -40272,7 +40272,7 @@ var staticRenderFns = [
       "div",
       { staticClass: "row text-center justify-content-center" },
       [
-        _c("p", [
+        _c("p", { staticStyle: { "font-size": "x-large" } }, [
           _vm._v(
             'Para compras de pasajes en Bus Semi Cama y Cama, escribinos al WhatsApp haciendo "Click" en la imagen.'
           ),

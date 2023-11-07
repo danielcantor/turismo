@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="row text-center justify-content-center">
-                    <p>Para compras de Aéreos, escribinos al WhatsApp haciendo "Click" en la imagen.<br>
+                    <p style="font-size: x-large;">Para compras de Aéreos, escribinos al WhatsApp haciendo "Click" en la imagen.<br>
                         Envianos a qué destino queres viajar y en qué fechas, muchas gracias!</p>
                     <div class="col-4 text-center">
                         <a href="https://wa.link/1r56u8"><img style="width: 100%;" src="/img/home/aereoscompanies.jpg" alt=""></a>

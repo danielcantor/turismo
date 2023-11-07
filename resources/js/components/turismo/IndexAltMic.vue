@@ -19,7 +19,7 @@
                     </div>
                 </div>
                     <div class="row text-center justify-content-center">
-                        <p>Para compras de pasajes en Bus Semi Cama y Cama, escribinos al WhatsApp haciendo "Click" en la imagen.<br>
+                        <p style="font-size: x-large;">Para compras de pasajes en Bus Semi Cama y Cama, escribinos al WhatsApp haciendo "Click" en la imagen.<br>
                         Envianos a qué destino queres viajar y en qué fechas, muchas gracias!</p>
                         <div class="col-4 text-center">
                             <a href="https://wa.link/bznznz"><img style="width: 100%;" src="/img/home/microscompanies.jpg" alt=""></a>

@@ -34,7 +34,7 @@
             <turismo-component-altmic></turismo-component-altmic>
         @else
             <turismo-component></turismo-component>
-            @if($subtitle == "Escapadas")
+            @if($pageName == "Escapadas")
                 <p style="font-size: x-large;">10% de descuento abonando en efectivo!</p>
             @endif
         @endif

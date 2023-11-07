@@ -39907,7 +39907,7 @@ var render = function () {
                   "text-decoration": "underline double",
                 },
               },
-              [_vm._v(_vm._s(_vm.discountMessage))]
+              [_vm._v(_vm._s(_vm.descuentoMensaje))]
             ),
             _vm._v(" "),
             !_vm.products.length

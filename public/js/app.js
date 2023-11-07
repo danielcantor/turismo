@@ -6288,6 +6288,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -6906,7 +6907,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -6921,15 +6921,10 @@ __webpack_require__.r(__webpack_exports__);
       imageUrl: window.imageUrl,
       title: window.title,
       subtitle: window.subtitle,
-      descripcion: window.description,
-      descuentoMensaje: ''
+      descripcion: window.description
     };
   },
-  mounted: function mounted() {
-    if (window.subtitle == "Escapadas") {
-      this.descuentoMensaje = "10% de descuento abonando por transferencia!";
-    }
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -38552,6 +38547,18 @@ var staticRenderFns = [
                   }),
                 ]
               ),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticClass: "text-center",
+                  staticStyle: {
+                    "font-size": "x-large",
+                    "text-decoration": "underline double",
+                  },
+                },
+                [_vm._v("10% de descuento abonando por transferencia")]
+              ),
             ]
           ),
         ]),
@@ -39896,18 +39903,6 @@ var render = function () {
                   [_vm._v(_vm._s(_vm.subtitle))]
                 ),
               ]
-            ),
-            _vm._v(" "),
-            _c(
-              "p",
-              {
-                staticClass: "text-center",
-                staticStyle: {
-                  "font-size": "x-large",
-                  "text-decoration": "underline double",
-                },
-              },
-              [_vm._v(_vm._s(_vm.descuentoMensaje))]
             ),
             _vm._v(" "),
             !_vm.products.length

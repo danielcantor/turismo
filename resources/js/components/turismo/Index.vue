@@ -26,7 +26,6 @@
                         <p class=' mb-0' style="font-family:cherolinaregular;font-size:3.9rem;">{{title}}</p> 
                         <p class="fw-bolder" style="font-family:poppins;font-size:3.5rem;">{{subtitle}}</p> 
                     </h4>
-                    <p class="text-center" style="font-size: x-large; text-decoration: underline double;">{{ descuentoMensaje }}</p>
                     <div v-if="!products.length" class="col-12 text-center py-5">
                         <i class="fa-solid fa-triangle-exclamation fa-3x mb-2"></i>
                         <h4 class="text-center">No hay productos en esta categoria</h4>
@@ -49,13 +48,10 @@
                 title: window.title,
                 subtitle: window.subtitle,
                 descripcion: window.description,
-                descuentoMensaje : '',
             }
         },
         mounted() {
-            if(window.subtitle == "Escapadas"){
-                this.descuentoMensaje = "10% de descuento abonando por transferencia!";
-            }
+
         }
         }
     </script>

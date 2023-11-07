@@ -6927,7 +6927,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     if (window.subtitle == "Escapadas") {
-      descuentoMensaje = "10% de descuento abonando en efectivo!";
+      this.descuentoMensaje = "10% de descuento abonando en efectivo!";
     }
   }
 });

@@ -179,7 +179,7 @@
 
           <select class="form-select" id="" v-model="cart.payment_type">
               <option value="">Selecciona</option>
-              <option value="Mercadopago">MercadoPago</option>
+              <option value="MercadoPago">MercadoPago</option>
               <option value="Transferencia">Transferencia Bancaria</option>
           </select>
 
@@ -276,9 +276,27 @@
           <div class="col-6">
             <button class="btn btn-warning btn-lg mb-3" @click="goBack">Volver</button>
           </div>
-          <div class="col-6">
+          <div class="col-6" v-if='cart.payment_type == "MercadoPago"'>
             <div id="wallet_container"></div>
           </div>
+          <div class="col-6" v-else>
+            <button class="btn btn-success btn-lg mb-3" @click="reserve">Hacer reserva</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7 col-lg-8" v-show="cart.step === 4">
+        <h1>
+            <i class="fa-regular fa-circle-check fa-2x text-success"></i>
+        </h1>
+        <h1>¡Gracias por tu reserva!</h1>
+        <p>Tu reserva fue procesada exitosamente</p>
+        <p>Numero de reserva # {{localStorage.getItem('purchaseID')}}</p>
+        <p>En los proximos minutos se estara enviando un correo con la informacion de su compra y/o estado del pago</p>
+        <p>Si no recibe el correo en los proximos minutos, por favor revise su bandeja de correo no deseado</p>
+        <p>Si tiene alguna duda o consulta, por favor escribanos a <a href="mailto:cynthiaedithgarske@gmail.com">cynthiaedithgarske@gmail.com</a></p>
+
+        <div class="mt-5">
+            <a href="/" class="btn btn-primary">Volver al inicio</a>
         </div>
       </div>
     </div>
@@ -444,20 +462,26 @@
             axios.post('/cart', {
                 id: this.product.id,
                 price: this.cart.total,
+                payment: this.cart.payment_type,
                 pasajeros: this.pasajeros,
                 facturacion : this.cart.data
               }).then(response => {
-                document.getElementById("wallet_container").innerHTML = "";
-                const mp = new MercadoPago('APP_USR-e71ced4d-0847-490c-abc6-d26b20fcf93e');
-                //const mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
+                if(response.data.preference){
+                  document.getElementById("wallet_container").innerHTML = "";
+                  const mp = new MercadoPago('APP_USR-e71ced4d-0847-490c-abc6-d26b20fcf93e');
+                  //const mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
 
-                const bricksBuilder = mp.bricks();
-                mp.bricks().create("wallet", "wallet_container", {
-                initialization: {
-                    preferenceId: response.data.preference,
-                    redirectMode: "modal",
-                },
-                });
+                  const bricksBuilder = mp.bricks();
+                  mp.bricks().create("wallet", "wallet_container", {
+                  initialization: {
+                      preferenceId: response.data.preference,
+                      redirectMode: "modal",
+                  },
+                  });
+                }else{
+                    localStorage.setItem('purchaseID', response.data.purchaseID);
+                }
+
                 this.cart.step = 3;
               }).catch(error => {
                 console.log(error);

@@ -60,7 +60,7 @@ class DestinoController extends Controller
             'description' => '',
             'title' => 'Pasajes',
             "subtitle" => "en Micro",
-            'imageUrl' => '/img/home/micro.jpg'
+            'imageUrl' => ''
         ]);
     }
     public function escapada(): View

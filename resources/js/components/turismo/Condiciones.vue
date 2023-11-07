@@ -2,7 +2,7 @@
     <div>
       <button class="btn btn-primary" @click="openModal">CONDICIONES GENERALES</button>
       <div class="modal fade" tabindex="-1" role="dialog" :class="{ 'show': showModal }">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Imagen</h5>

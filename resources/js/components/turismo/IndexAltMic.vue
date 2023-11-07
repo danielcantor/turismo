@@ -20,7 +20,7 @@
                 </div>
                     <div class="row text-center justify-content-center">
                         <div class="col-4 text-center">
-                            <a href="https://wa.link/bznznz"><img style="width: 100%;" src="/img/home/aereoscompanies.jpg" alt=""></a>
+                            <a href="https://wa.link/bznznz"><img style="width: 100%;" src="/img/home/microscompanies.jpg" alt=""></a>
                             <p class="text-center" style="background-color: #2e005d; color: white;">Envíanos tu consulta haciendo click aquí...</p>
                         </div>
                     </div>

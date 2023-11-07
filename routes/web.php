@@ -70,5 +70,5 @@ Route::get('/checkout/{id}', [ShoppingController::class, 'index']);
 Route::get('/success/{purchase_id}', [ShoppingController::class, 'success']);
 Route::get('/failure/{purchase_id}', [ShoppingController::class, 'failure']);
 Route::get('/pending/{purchase_id}', [ShoppingController::class, 'pending']);
-Route::post('/cart', [CartController::class, 'getMercadoPago'])->name('cart');
+Route::post('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/mail', [IndexController::class, 'mail'])->name('mail');

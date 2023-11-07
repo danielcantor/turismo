@@ -5603,6 +5603,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5759,20 +5777,25 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/cart', {
         id: this.product.id,
         price: this.cart.total,
+        payment: this.cart.payment_type,
         pasajeros: this.pasajeros,
         facturacion: this.cart.data
       }).then(function (response) {
-        document.getElementById("wallet_container").innerHTML = "";
-        var mp = new MercadoPago('APP_USR-e71ced4d-0847-490c-abc6-d26b20fcf93e');
-        //const mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
+        if (response.data.preference) {
+          document.getElementById("wallet_container").innerHTML = "";
+          var mp = new MercadoPago('APP_USR-e71ced4d-0847-490c-abc6-d26b20fcf93e');
+          //const mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
 
-        var bricksBuilder = mp.bricks();
-        mp.bricks().create("wallet", "wallet_container", {
-          initialization: {
-            preferenceId: response.data.preference,
-            redirectMode: "modal"
-          }
-        });
+          var bricksBuilder = mp.bricks();
+          mp.bricks().create("wallet", "wallet_container", {
+            initialization: {
+              preferenceId: response.data.preference,
+              redirectMode: "modal"
+            }
+          });
+        } else {
+          localStorage.setItem('purchaseID', response.data.purchaseID);
+        }
         _this.cart.step = 3;
       })["catch"](function (error) {
         console.log(error);
@@ -37049,7 +37072,7 @@ var render = function () {
                     _vm._v("Selecciona"),
                   ]),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "Mercadopago" } }, [
+                  _c("option", { attrs: { value: "MercadoPago" } }, [
                     _vm._v("MercadoPago"),
                   ]),
                   _vm._v(" "),
@@ -37307,10 +37330,68 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _vm._m(2),
+                _vm.cart.payment_type == "MercadoPago"
+                  ? _c("div", { staticClass: "col-6" }, [
+                      _c("div", { attrs: { id: "wallet_container" } }),
+                    ])
+                  : _c("div", { staticClass: "col-6" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-lg mb-3",
+                          on: { click: _vm.reserve },
+                        },
+                        [_vm._v("Hacer reserva")]
+                      ),
+                    ]),
               ]),
             ],
             2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.cart.step === 4,
+                  expression: "cart.step === 4",
+                },
+              ],
+              staticClass: "col-md-7 col-lg-8",
+            },
+            [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("h1", [_vm._v("¡Gracias por tu reserva!")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Tu reserva fue procesada exitosamente")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Numero de reserva # " +
+                    _vm._s(_vm.localStorage.getItem("purchaseID"))
+                ),
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "En los proximos minutos se estara enviando un correo con la informacion de su compra y/o estado del pago"
+                ),
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Si no recibe el correo en los proximos minutos, por favor revise su bandeja de correo no deseado"
+                ),
+              ]),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _vm._m(4),
+            ]
           ),
         ]),
       ]),
@@ -37350,8 +37431,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-6" }, [
-      _c("div", { attrs: { id: "wallet_container" } }),
+    return _c("h1", [
+      _c("i", { staticClass: "fa-regular fa-circle-check fa-2x text-success" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("Si tiene alguna duda o consulta, por favor escribanos a "),
+      _c("a", { attrs: { href: "mailto:cynthiaedithgarske@gmail.com" } }, [
+        _vm._v("cynthiaedithgarske@gmail.com"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-5" }, [
+      _c("a", { staticClass: "btn btn-primary", attrs: { href: "/" } }, [
+        _vm._v("Volver al inicio"),
+      ]),
     ])
   },
 ]
@@ -39631,7 +39733,7 @@ var render = function () {
       [
         _c(
           "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
               _c("div", { staticClass: "modal-header" }, [
@@ -40199,7 +40301,7 @@ var staticRenderFns = [
           _c("a", { attrs: { href: "https://wa.link/bznznz" } }, [
             _c("img", {
               staticStyle: { width: "100%" },
-              attrs: { src: "/img/home/aereoscompanies.jpg", alt: "" },
+              attrs: { src: "/img/home/microscompanies.jpg", alt: "" },
             }),
           ]),
           _vm._v(" "),

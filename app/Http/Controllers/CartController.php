@@ -12,18 +12,22 @@ use App\Models\Facturacion;
 use Illuminate\Http\Request;
 class CartController extends Controller
 {
-    public function getMercadoPago( Request $request){
-        SDK::setAccessToken('APP_USR-5080290645165804-102315-da0a88af09a1a2fe2d7a37c5497c3fb8-1050379468');
-        //SDK::setAccessToken('TEST-7177899704829740-091014-c2e3f1f44f0a0395a6dd829ecb0effe1-1050379468');
+    public function index(Request $request){
+        $payment = $request->input('payment');
 
-        $preference = new Preference();
+        if($payment == 'MercadoPago'){
+            return $this->getMercadoPago($request);
+        }else{
+            return $this->getTransference($request);
+        }
+    }
+    public function setPayload(Request $request){
         $product = Product::find($request->input('id'));
         $passengers = $request->input('pasajeros');
         $purchaseID = rand(1, 1000000) ;
         $shopping = new Shopping();
         $shopping->code = $purchaseID;
         $shopping->product_id = $product->id;
-
         $factura = $request->input('facturacion');
         $facturacion = new Facturacion();
         $columns = $facturacion->getFillable();
@@ -49,12 +53,25 @@ class CartController extends Controller
             $new->save();
         }
         $shopping->payment_status = 'pending';
-        $shopping->payment_method = 'MercadoPago';
+        $shopping->payment_method = $request->input('payment');
         $shopping->total_price = (int) $request->input('price');
         $shopping->save();
 
         $facturacion->purchase_id = $shopping->id;
         $facturacion->save();
+        return [
+            'purchaseID' => $purchaseID,
+            'product' => $product,
+        ];
+    }
+    public function getMercadoPago( Request $request){
+        SDK::setAccessToken('APP_USR-5080290645165804-102315-da0a88af09a1a2fe2d7a37c5497c3fb8-1050379468');
+        //SDK::setAccessToken('TEST-7177899704829740-091014-c2e3f1f44f0a0395a6dd829ecb0effe1-1050379468');
+
+        $preference = new Preference();
+        $setup = $this->setPayload($request);
+        $product = $setup['product'];
+        $purchaseID = $setup['purchaseID'];
         // Crea un ítem en la preferencia
         $item = new Item();
         $item->title = "".$product->product_name."";
@@ -72,6 +89,14 @@ class CartController extends Controller
 
         return response()->json([
             'preference' => $preference->id
+        ]);
+    }
+    public function getTransference(Request $request){
+        $setup = $this->setPayload($request);
+        $purchaseID = $setup['purchaseID'];
+        
+        return response()->json([
+            'purchaseID' => $purchaseID
         ]);
     }
 }

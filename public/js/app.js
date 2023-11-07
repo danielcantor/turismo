@@ -5645,6 +5645,7 @@ __webpack_require__.r(__webpack_exports__);
           codigo_postal: '',
           documento: ''
         },
+        purchaseID: '',
         errors: {
           nombre: false,
           apellido: false,
@@ -5794,7 +5795,7 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         } else {
-          localStorage.setItem('purchaseID', response.data.purchaseID);
+          _this.cart.purchaseID = response.data.purchaseID;
         }
         _this.cart.step = 3;
       })["catch"](function (error) {
@@ -5803,6 +5804,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     step1: function step1() {
       this.cart.step = 1;
+    },
+    reserve: function reserve() {
+      this.cart.step = 4;
     },
     goBack: function goBack() {
       if (this.cart.step > 1) {
@@ -37370,10 +37374,7 @@ var render = function () {
               _c("p", [_vm._v("Tu reserva fue procesada exitosamente")]),
               _vm._v(" "),
               _c("p", [
-                _vm._v(
-                  "Numero de reserva # " +
-                    _vm._s(_vm.localStorage.getItem("purchaseID"))
-                ),
+                _vm._v("Numero de reserva # " + _vm._s(_vm.cart.purchaseID)),
               ]),
               _vm._v(" "),
               _c("p", [

@@ -290,7 +290,7 @@
         </h1>
         <h1>¡Gracias por tu reserva!</h1>
         <p>Tu reserva fue procesada exitosamente</p>
-        <p>Numero de reserva # {{localStorage.getItem('purchaseID')}}</p>
+        <p>Numero de reserva # {{cart.purchaseID}}</p>
         <p>En los proximos minutos se estara enviando un correo con la informacion de su compra y/o estado del pago</p>
         <p>Si no recibe el correo en los proximos minutos, por favor revise su bandeja de correo no deseado</p>
         <p>Si tiene alguna duda o consulta, por favor escribanos a <a href="mailto:cynthiaedithgarske@gmail.com">cynthiaedithgarske@gmail.com</a></p>
@@ -326,6 +326,7 @@
                     codigo_postal: '',
                     documento: ''
                   },
+                  purchaseID: '',
                   errors: {
                     nombre: false, 
                     apellido: false, 
@@ -479,7 +480,7 @@
                   },
                   });
                 }else{
-                    localStorage.setItem('purchaseID', response.data.purchaseID);
+                    this.cart.purchaseID = response.data.purchaseID;
                 }
 
                 this.cart.step = 3;
@@ -490,6 +491,9 @@
           step1 (){
 
             this.cart.step = 1;
+          },
+          reserve (){
+                this.cart.step = 4;
           },
           goBack (){
             if(this.cart.step > 1){

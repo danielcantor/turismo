@@ -63,6 +63,7 @@
                     <a href="https://wa.link/0qrx6o" target="_blank">
                         <img class="responsive-img" src="img/home/getnet3.jpg" alt="" width="25%">
                     </a>
+                    <br>
                     <p class="text-center" style="font-size: x-large; text-decoration: underline double;">10% de descuento abonando por transferencia</p>
                 </div>
                 </div>

@@ -38558,6 +38558,7 @@ var staticRenderFns = [
                   staticStyle: {
                     "font-size": "x-large",
                     "text-decoration": "underline double",
+                    "margin-top": "2%",
                   },
                 },
                 [_vm._v("10% de descuento abonando por transferencia")]

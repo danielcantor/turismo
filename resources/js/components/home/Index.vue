@@ -64,7 +64,7 @@
                         <img class="responsive-img" src="img/home/getnet3.jpg" alt="" width="25%">
                     </a>
                     <br>
-                    <p class="text-center" style="font-size: x-large; text-decoration: underline double;">10% de descuento abonando por transferencia</p>
+                    <p class="text-center" style="font-size: x-large; text-decoration: underline double; margin-top: 2%;">10% de descuento abonando por transferencia</p>
                 </div>
                 </div>
             </div>

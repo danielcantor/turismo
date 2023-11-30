@@ -19,11 +19,11 @@ class DestinoController extends Controller
 
         return view('turismo')->with([
             'items' => $products,
-            'pageName' => 'Destinos Nacionales',
+            'pageName' => 'Verano',
             'description' => 'El Turismo Nacional construye y preserva la identidad de cada destino, así como también pone en valor cada uno de sus Patrimonios. Te invitamos a recorrer juntos nuestro hermoso país.',
-            'title' => 'Destinos',
-            "subtitle" => "Nacionales",
-            'imageUrl' => '/img/home/nacional.png'
+            'title' => 'Verano',
+            "subtitle" => "2024",
+            'imageUrl' => '/img/home/Turismo-nacional-banner.jpg'
         ]);
     }
     public function internacional(): View

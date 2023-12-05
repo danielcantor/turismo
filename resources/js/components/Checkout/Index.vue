@@ -181,6 +181,7 @@
               <option value="">Selecciona</option>
               <option value="MercadoPago">MercadoPago</option>
               <option value="Transferencia">Transferencia Bancaria</option>
+              <option value="Seña">Seña</option>
           </select>
 
           <hr class="my-4">

@@ -38,7 +38,7 @@
                             <td>{{ $product->product_price }}</td>
                             <td>@switch($product->product_type)
                                 @case(1)
-                                    Nacional
+                                    Verano
                                     @break
 
                                 @case(2)
@@ -95,7 +95,7 @@
                         <div class="mb-3">
                             <label for="tipo" class="form-label">Tipo</label>
                             <select class="form-select" id="tipo" name="tipo">
-                                <option value="1">Nacional</option>
+                                <option value="1">Verano</option>
                                 <option value="2">Internacional</option>
                                 <option value="3">Pasajes Aereos</option>
                                 <option value="4">Escapadas</option>

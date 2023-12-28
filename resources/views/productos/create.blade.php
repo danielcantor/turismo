@@ -46,7 +46,7 @@
                 <div class="form-group">
                     <label for="product_type">Tipo de producto:</label>
                     <select class="form-control" id="product_type" name="product_type" required>
-                        <option value="1">Nacional</option>
+                        <option value="1">Verano</option>
                         <option value="2">Internacional</option>
                         <option value="3">Pasajes Aereos</option>
                         <option value="4">Escapadas</option>

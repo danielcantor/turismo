@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
-use MercadoPago\SDK;
-use MercadoPago\Preference;
-use MercadoPago\Item;
+use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
     public function index(Request $request): View
@@ -56,9 +54,7 @@ class ProductController extends Controller
     }
     public function modificar()
     {
-        $products = Product::all();
-
-        return view('productos.modificar', compact('products'));
+        return view('productos.modificar');
     }
     public function save(Request $request){
 
@@ -123,7 +119,12 @@ class ProductController extends Controller
 
         return view('productos.modificar', compact('products'));
     }
-
+    public function get(Request $request){
+        $perPage = 10; // Número de productos por página
+        $page = $request->input('page', 1);
+        $products = Product::paginate($perPage, ['*'], 'page', $page);    
+        return response()->json($products);
+    }
    public function show_product($id)
    {
        $product = Product::find($id);
@@ -147,17 +148,22 @@ class ProductController extends Controller
     }
     
     public function modificarProducto(Request $request, $id){
-        $this->validate($request, [
+        
+        $validator = Validator::make($request->all(), [
             'titulo' => 'required|string|max:255',
             'descripcion' => 'required|string',
             'tipo' => 'required|in:1,2,3,4,5',
             'precio' => 'required|numeric',
             'days' => 'required|numeric',
-            'product_image' => 'image',
-            'product_slider' => 'image',
             'nights' => 'required|numeric'
         ]);
-
+    
+        // Si la validación falla, devolvemos una respuesta JSON con los errores
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422); // 422 Unprocessable Entity
+        }
         $producto = Product::find($id);
 
         if (!$producto) {

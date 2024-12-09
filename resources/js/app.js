@@ -1,7 +1,7 @@
 require('./bootstrap');
 
 import Vue from 'vue';
-
+window.bootstrap = require('bootstrap');
 import IndexComponent from './components/home/Index.vue';
 import HeaderComponent from './components/main/Header.vue';
 import FooterComponent from './components/main/Footer.vue';
@@ -17,11 +17,14 @@ import ContactoComponent from './components/contact/Index.vue';
 import CheckoutComponent from './components/checkout/Index.vue';
 import responseContent from './components/payment/Index.vue';
 import CondicionesComponent from './components/turismo/Condiciones.vue';
+import ProductosComponent from "./components/productos/Productos.vue";
+import Category from "./components/category/Index.vue";
 
 Vue.component('index-component', IndexComponent);
 Vue.component('header-component', HeaderComponent);
 Vue.component('footer-component', FooterComponent);
 Vue.component('producto-component', ProductoComponent);
+Vue.component('productos-component', ProductosComponent);
 Vue.component('login-component', LoginComponent);
 Vue.component('register-component', RegisterComponent);
 Vue.component('turismo-component', TurismoComponent);
@@ -33,6 +36,7 @@ Vue.component('checkout-component', CheckoutComponent);
 Vue.component('contacto-component', ContactoComponent);
 Vue.component('response-component', responseContent);
 Vue.component('condiciones-component', CondicionesComponent);
+Vue.component('category-component', Category);
 
 const app = new Vue({
     el: '#app',

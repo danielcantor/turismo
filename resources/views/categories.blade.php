@@ -23,22 +23,14 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ url('/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="{{ $description }}">
-    <title>{{ $pageName }}</title>
+    <title>Categorias</title>
 </head>
 <body>
     <div id="app">
         <header-component></header-component>
-        <turismo-component></turismo-component>
+        <category-component></category-component>
         <footer-component></footer-component>    
     </div>
-    <script>
-        window.posts = @json($items);
-        window.imageUrl = '{{ $imageUrl }}';
-        window.title = '{{ $title }}';
-        window.subtitle = '{{ $subtitle }}';
-        window.description = '{{ $description }}';
-    </script>
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>

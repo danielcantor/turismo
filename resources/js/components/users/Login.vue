@@ -63,7 +63,7 @@
           .then(response => response.json())
           .then(data => {
               if (data.message === 'success') {
-                  window.location.href = '/';
+                  window.location.href = '/category/list';
               } else {
                   alert('Error de inicio de sesión. Verifica tus credenciales.');
               }

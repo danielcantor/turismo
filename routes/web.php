@@ -7,7 +7,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DestinoController;
 use App\Http\Controllers\ShoppingController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,13 +23,28 @@ use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::group(['middleware' => ['auth:admin']], function() {
-    Route::get('/crearProducto', function () {
-        return view('productos.create');
-    })->name('productos.create');
-    
-    Route::get('/productos', [ProductController::class, 'modificar'])->name('productos.modificar1');
+    Route::controller(ProductController::class)->group(function () {
+        Route::prefix('products')->group(function () {
+            Route::get('/list', 'modificar');
+            Route::post('/save', 'store');
+            Route::get('/get', 'get');
+            Route::delete('/delete/{id}', 'eliminar');
+            Route::get('/obtenerProducto/{id}','obtenerProducto');
+            Route::post('/update/{id}', 'modificarProducto');
+            Route::post('/toggle/{id}','activarDesactivarProducto');
+        });    
+    });
+    Route::controller(CategoryController::class)->group(function () {
+        Route::prefix('category')->group(function () {
+            Route::get('/list', 'index');
+            Route::post('/save', 'store');
+            Route::get('/get', 'getCategories');
+            Route::get('/get/{category}', 'show');
+            Route::put('/update/{category}', 'update');
+            Route::delete('/delete/{category}', 'destroy');
+        });    
+    });
 });
-
 Route::get('/login', function(){
     return view('users.login');
 });
@@ -44,8 +61,10 @@ Route::get('/obtenerProducto/{id}', [ProductController::class, 'obtenerProducto'
 Route::post('/modificarProducto/{id}', [ProductController::class, 'modificarProducto'])->name('producto.modificar');
 Route::post('/activarDesactivarProducto/{id}', [ProductController::class, 'activarDesactivarProducto'])->name('producto.activarDesactivarProducto');
 Route::get('/productos/info/{id}', [ProductController::class, 'show_product']);
+
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::post('/registernow', [UserController::class, 'registernow'])->name('registernow');
+
 Route::get('/nosotros', function () {
     return view('nosotros');
 });
@@ -54,17 +73,13 @@ Route::get('/contacto', function () {
 });
 Route::get('/adminpass', [IndexController::class, 'changePassword']);
 
-Route::controller(DestinoController::class)->group(function () {
-    Route::prefix('destinos')->group(function () {
-        Route::get('/nacional', 'nacional');
-        Route::get('/internacional', 'internacional');
-        Route::get('/aereo', 'aereo');
-        Route::get('/micro', 'micro');
-        Route::get('/escapada', 'escapada');
-        Route::get('/finde', 'finde');
-    });    
-});
+Route::prefix('destinos')->group(function () {
+    Route::get('/{slug}', [DestinoController::class, 'show'])->name('destino.{slug}');
+}); 
 
+Route::get('/admin/status', function () {
+    return response()->json(['authenticated' => Auth::guard('admin')->check()]);
+});
 
 Route::get('/checkout/{id}', [ShoppingController::class, 'index']);
 Route::get('/success/{purchase_id}', [ShoppingController::class, 'success']);

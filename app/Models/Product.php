@@ -24,5 +24,9 @@ class Product extends Model
     public function getProductsbyType($id){
         return $this::where('product_type', $id)->where('product_activate', 1)->get();
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
     use HasFactory;
 }

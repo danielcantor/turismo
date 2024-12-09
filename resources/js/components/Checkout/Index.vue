@@ -23,6 +23,9 @@
               <span>Descuento por transferencia bancaria</span>
               <strong>${{cart.discount_value}}</strong>
             </li>
+            <li v-if="cart.payment_type === 'Seña'" class="list-group-item d-flex justify-content-between">
+              <span>Se va a realizar la seña de la reserva</span>
+            </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (ARS)</span>
               <strong>${{cart.total}}</strong>
@@ -180,7 +183,7 @@
           <select class="form-select" id="" v-model="cart.payment_type">
               <option value="">Selecciona</option>
               <option value="MercadoPago">MercadoPago</option>
-              <option value="Transferencia">Transferencia Bancaria</option>
+              <!--<option value="Transferencia">Transferencia Bancaria</option>-->
               <option value="Seña">Seña</option>
           </select>
 
@@ -412,6 +415,8 @@
               let discount = (normal_price * 0.1).toFixed(2);
               this.cart.discount_value = discount;
               this.cart.total = (normal_price - discount).toFixed(2);
+            }else if(this.cart.payment_type === "Seña"){
+              this.cart.total = (10000).toFixed(2);
             }else{
               this.cart.total = normal_price.toFixed(2);
               this.cart.discount_value = 0;

@@ -21,23 +21,28 @@
             <li class="nav-item mx-0 mx-xl-2">
                 <a class="nav-link" :class="currentPage == '/nosotros' ? 'active' : ' '" href="/nosotros">Nosotros</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" v-if="categories.length">
               <a class="nav-link dropdown-toggle" :class="currentPage.indexOf('destinos') > -1 ? 'active' : ' '" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Destinos
+                Argentina
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/destinos/nacional">Verano</a></li>
-                <li><a class="dropdown-item" href="/destinos/internacional">Turismo Internacional</a></li>
-                <li><a class="dropdown-item" href="/destinos/escapada">Salidas grupales</a></li>
-                <li><a class="dropdown-item" href="/destinos/aereo">Pasajes Aereos</a></li>
-                <li><a class="dropdown-item" href="/destinos/finde">Findes largos</a></li>
+                <li v-for="category in categories" :key="category.id">
+                  <a class="dropdown-item" :href="'/destinos/' + category.slug">{{ category.name }}</a>
+                </li>
               </ul>
             </li>
-            <li class="nav-item mx-0 mx-xl-2">
-                <a class="nav-link" href="/destinos/micro">Pasajes en Micro</a>
-            </li>
-            <li class="nav-item mx-0 mx-xl-2">
-                <a class="nav-link" :class="currentPage == '/contacto' ? 'active' : ' '" href="/contacto" >Contacto</a>
+            <li class="nav-item dropdown" v-if="isAdmin">
+              <a class="nav-link dropdown-toggle" :class="currentPage == '/category/list' || currentPage ==  '/products/list'  ? 'active' : ' '" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Administración
+              </a>
+              <ul class="dropdown-menu">
+                <li class="nav-item mx-0 mx-xl-2" >
+                    <a class="nav-link"  href="/category/list">Categorias</a>
+                </li>
+                <li class="nav-item mx-0 mx-xl-2" >
+                    <a class="nav-link"  href="/products/list">Productos</a>
+                </li>
+            </ul>
             </li>
           </ul>
         </div>
@@ -47,28 +52,39 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   data() {
     return {
-      currentPage: window.location.pathname
+      categories: [],
+      currentPage: window.location.pathname,
+      isAdmin: false
     };
   },
-  mounted() {
-    let scrollpos = window.scrollY
-    
-    const header = document.getElementById("navbar");
-    const scrollChange = 240;
-
-    const add_class_on_scroll = () => header.classList.add("sticky-top")
-    const remove_class_on_scroll = () => header.classList.remove("sticky-top")
-
-    window.addEventListener('scroll', function() { 
-      scrollpos = window.scrollY;
-
-      if (scrollpos >= scrollChange) { add_class_on_scroll() }
-      else { remove_class_on_scroll() }
-    });
+  created() {
+    this.fetchCategories();
+    this.checkAdminStatus();
   },
+  methods: {
+    fetchCategories() {
+      axios.get('/api/categories')
+        .then(response => {
+          this.categories = response.data;
+        });
+    },
+    checkAdminStatus() {
+      axios.get('/admin/status')
+        .then(response => {
+          this.isAdmin = response.data.authenticated;
+        });
+    }
+  }
 };
 </script>
+
+<style scoped>
+.navbar-nav .nav-link.active {
+  font-weight: bold;
+}
+</style>

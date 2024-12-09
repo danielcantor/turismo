@@ -53,22 +53,7 @@
                 </div>
             </div>
         </div>
-        <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-12 mb-3">
-                    <h4 class="text-center lh-1" style="color:#2e005d"> 
-                        <p class="fw-bolder" style="font-family:poppins;font-size:3.3rem;">Promociones</p> 
-                    </h4>
-                    <div class="col-12 justify-content-center text-center">
-                    <a href="https://wa.link/0qrx6o" target="_blank">
-                        <img class="responsive-img" src="img/home/getnet3.jpg" alt="" width="25%">
-                    </a>
-                    <br>
-                    <p class="text-center" style="font-size: x-large; text-decoration: underline double; margin-top: 2%;">10% de descuento abonando por transferencia</p>
-                </div>
-                </div>
-            </div>
-        </div>
+
         <div class="container my-5">
             <div class="row justify-content-center">
                 <div class="col-12 mb-3">

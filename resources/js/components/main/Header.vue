@@ -44,6 +44,9 @@
                 </li>
             </ul>
             </li>
+            <li class="nav-item mx-0 mx-xl-2">
+                <a class="nav-link" :class="currentPage == '/contacto' ? 'active' : ' '" href="/contacto">Contacto</a>
+            </li>
           </ul>
         </div>
       </div>

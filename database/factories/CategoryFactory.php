@@ -92,4 +92,10 @@ class CategoryFactory extends Factory
             'home_image' => '/img/home/findelargo.jpg',
         ]);
     }
+    public function withId($id)
+    {
+        return $this->state([
+            'id' => $id,
+        ]);
+    }
 }

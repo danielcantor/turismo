@@ -1,6 +1,6 @@
 <template>
   <div>
-  <table class="table">
+  <table class="table table-responsive">
     <thead>
       <tr>
         <th>ID</th>
@@ -21,7 +21,10 @@
         <td>
           <button class="btn btn-warning btn-sm" @click="$emit('edit-product', product)">Editar</button>
           <button class="btn btn-danger btn-sm" @click="$emit('delete-product', product.id)">Eliminar</button>
-          <button class="btn btn-primary btn-sm" @click="$emit('toggle-product', product.id)">
+          <button 
+            :class="['btn', 'btn-sm', product.product_activate ? 'btn-secondary' : 'btn-primary']" 
+            @click="$emit('toggle-product', product.id)"
+          >
             {{ product.product_activate ? 'Desactivar' : 'Activar' }}
           </button>
         </td>

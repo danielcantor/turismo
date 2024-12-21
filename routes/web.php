@@ -8,6 +8,7 @@ use App\Http\Controllers\DestinoController;
 use App\Http\Controllers\ShoppingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ArtisanController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -87,3 +88,6 @@ Route::get('/failure/{purchase_id}', [ShoppingController::class, 'failure']);
 Route::get('/pending/{purchase_id}', [ShoppingController::class, 'pending']);
 Route::post('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/mail', [IndexController::class, 'mail'])->name('mail');
+
+Route::get('/migrate', [ArtisanController::class, 'migrate']);
+Route::get('/seed-categories', [ArtisanController::class, 'seedCategories']);

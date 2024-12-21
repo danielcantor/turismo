@@ -15,7 +15,7 @@ class ArtisanController extends Controller
 
     public function seedCategories()
     {
-        Artisan::call('db:seed', ['--class' => 'CategorySeeder,' , '--force' => true ]);
+        Artisan::call('db:seed', ['--class' => 'CategorySeeder' , '--force' => true ]);
         return 'Category seeder executed successfully';
     }
 }

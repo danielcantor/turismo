@@ -141,14 +141,18 @@ class ProductController extends Controller
               'product' => $product
          ]);
    }
-   public function obtenerProducto($id){
-        $producto = Product::find($id);
+    public function obtenerProducto($id)
+    {
+        $product = Product::find($id);
 
-        if ($producto) {
-            return response()->json($producto);
-        } else {
+        if (!$product) {
             return response()->json(['error' => 'Producto no encontrado'], 404);
         }
+
+        $product->product_image = $product->product_image ? Storage::url($product->product_image) : null;
+        $product->product_slider = $product->product_slider ? Storage::url($product->product_slider) : null;
+
+        return response()->json($product);
     }
     
     public function modificarProducto(Request $request, $id)

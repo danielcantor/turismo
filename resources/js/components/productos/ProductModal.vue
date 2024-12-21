@@ -52,7 +52,6 @@
                 required
               ></textarea>
             </div>
-
             <!-- Imagen del producto -->
             <div class="mb-3">
               <label for="product_image" class="form-label">Imagen del producto:</label>
@@ -64,8 +63,8 @@
                 :required="!isEditMode"
               />
               <!-- Mostrar imagen actual si está en modo edición -->
-              <div v-if="isEditMode && form.product_image_url">
-                <img :src="form.product_image_url" alt="Imagen actual" width="150" class="mt-2" />
+              <div v-if="isEditMode && form.product_image">
+                <img :src="form.product_image" alt="Imagen actual" width="150" class="mt-2" />
               </div>
             </div>
 
@@ -80,8 +79,8 @@
                 :required="!isEditMode"
               />
               <!-- Mostrar slider actual si está en modo edición -->
-              <div v-if="isEditMode && form.product_slider_url">
-                <img :src="form.product_slider_url" alt="Slider actual" width="150" class="mt-2" />
+              <div v-if="isEditMode && form.product_slider">
+                <img :src="form.product_slider" alt="Slider actual" width="150" class="mt-2" />
               </div>
             </div>
 

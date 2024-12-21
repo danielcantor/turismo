@@ -18,6 +18,7 @@
       ref="productModal"
       @submit-form="submitForm"
       @close-modal="closeModal"
+      @update-form="updateForm"
       :categories="categories"
     />
   </div>
@@ -47,9 +48,7 @@ export default {
         product_price: '',
         product_description: '',
         product_image: null,
-        product_image_url: '',
         product_slider: null,
-        product_slider_url: '',
         product_days: '',
         product_nights: '',
         product_type: ''
@@ -103,12 +102,10 @@ export default {
             product_name: product.product_name,
             product_price: product.product_price,
             product_description: product.product_description,
-            product_image: null,
-            product_image_url: product.product_image_url, // URL de la imagen actual
-            product_slider: null,
-            product_slider_url: product.product_slider_url, // URL del slider actual
-            product_days: product.days,
-            product_nights: product.nights,
+            product_image: product.product_image, // URL de la imagen actual desde la base de datos
+            product_slider: product.product_slider, // URL del slider actual desde la base de datos
+            product_days: product.product_days,
+            product_nights: product.product_nights,
             product_type: product.product_type
           };
     
@@ -120,24 +117,19 @@ export default {
     },
     submitForm() {
       const formData = new FormData();
-      formData.append('product_name', this.form.product_name);
-      formData.append('product_price', this.form.product_price);
-      formData.append('product_description', this.form.product_description);
-      formData.append('product_type', this.form.product_type);
-      formData.append('product_days', this.form.product_days);
-      formData.append('product_nights', this.form.product_nights);
-
-      if (this.form.product_image) {
-        formData.append('product_image', this.form.product_image);
+      for (const key in this.form) {
+        formData.append(key, this.form[key]);
       }
 
-      if (this.form.product_slider) {
-        formData.append('product_slider', this.form.product_slider);
-      }
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      };
 
       if (this.isEditMode) {
         axios
-          .post(`/modificarProducto/${this.currentProductId}`, formData)
+          .post(`/modificarProducto/${this.currentProductId}`, formData, config)
           .then(() => {
             alert('Producto actualizado correctamente');
             this.closeModal();
@@ -149,7 +141,7 @@ export default {
           });
       } else {
         axios
-          .post('/products/save', formData)
+          .post('/products/save', formData, config)
           .then(() => {
             alert('Producto creado correctamente');
             this.closeModal();
@@ -170,9 +162,7 @@ export default {
         product_price: '',
         product_description: '',
         product_image: null,
-        product_image_url: '',
         product_slider: null,
-        product_slider_url: '',
         product_days: '',
         product_nights: '',
         product_type: ''

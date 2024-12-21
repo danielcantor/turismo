@@ -2,33 +2,30 @@
     <section>
         <Slider :imageUrl="'/img/home/portada.png'"/>
         <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-12 mb-5">
-                    <h4 class="text-center lh-1" style="color:#2e005d"> 
-                        <p class="fw-bolder" style="font-family:poppins;font-size:3.3rem;">Destinos</p> 
-                    </h4>
-                </div>
-                <div class="col-12 col-xl-3 col-md-4 text-center">
-                    <a href="/destinos/escapada"><img src="/img/home/escapadas.jpg" class="p-3 border" alt=""></a>    
-                </div>
-                <div class="col-12 col-xl-3 col-md-4 text-center">
-                    <a href="/destinos/nacional"><img src="/img/home/nacio.jpg" class="p-3 border" alt=""></a>   
-                </div>
-                <div class="col-12 col-xl-3 col-md-4 text-center">
-                    <a href="/destinos/internacional"><img src="/img/home/inter.jpg" class="p-3 border" alt=""></a>  
-                </div>
+            <div class="col-12 mb-5">
+            <h4 class="text-center lh-1" style="color:#2e005d"> 
+                <p class="fw-bolder" style="font-family:poppins;font-size:3.3rem;">Destinos</p>
+            </h4>
             </div>
-
-            <div class="row justify-content-center mt-3">
-                <div class="col-12 col-xl-3 col-md-4 text-center">
-                    <a href="#" target="_blank"><img src="/img/home/micro.jpg" class="p-3 border" alt=""></a>    
-                </div>
-                <div class="col-12 col-xl-3 col-md-4 text-center">
-                    <a href="/destinos/aereo"><img src="/img/home/aereos.jpg" class="p-3 border" alt=""></a>   
-                </div>
-                <div class="col-12 col-xl-3 col-md-4 text-center">
-                    <a href="/destinos/finde"><img src="/img/home/findes.jpg" class="p-3 border" alt=""></a>   
-                </div>
+            <!-- Recorremos el arreglo 'chunkedCategories' para crear filas de 3 categorías. -->
+            <div
+            v-for="(row, rowIndex) in chunkedCategories"
+            :key="rowIndex"
+            class="row justify-content-center mb-4"
+            >
+            <!-- Para cada fila, mostramos hasta 3 columnas. -->
+            <div
+                v-for="category in row"
+                :key="category.id"
+                class="col-12 col-md-4 text-center mb-3"
+            >
+                <a :href="'/destinos/' + category.slug">
+                <img
+                    :src="category.home_image"
+                    class="p-3 border"
+                    :alt="category.name"/>
+                </a>
+            </div>
             </div>
         </div>
         <div class="py-5" style="background-color: #f6f6f6;">
@@ -92,6 +89,7 @@
         data() {
             return {
                 products: window.posts,
+                categories: [],
                 settings: {
                     "dots": true,
                     "infinite": false,
@@ -129,9 +127,27 @@
                     }
             }
         },
-        methods: {},
-        mounted() {
-            
+        computed: {
+            // Agrupa 'categories' en subarreglos de 3 elementos
+            chunkedCategories() {
+            const chunkSize = 3
+            const chunked = []
+            for (let i = 0; i < this.categories.length; i += chunkSize) {
+                chunked.push(this.categories.slice(i, i + chunkSize))
+            }
+            return chunked
+            }
+        },
+        methods: {
+            fetchCategories() {
+            axios.get('/api/categories')
+                .then(response => {
+                this.categories = response.data;
+                });
+            }
+        },
+        created() {
+            this.fetchCategories();
         }
     }
 </script>

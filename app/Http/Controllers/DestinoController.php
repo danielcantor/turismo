@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 class DestinoController extends Controller
 {
     public $product;
@@ -27,7 +28,7 @@ class DestinoController extends Controller
             'description' => $destino->description,
             'title' => $destino->name,
             'subtitle' => $destino->subtitle,
-            'imageUrl' => $destino->image
+            'imageUrl' => Storage::url($destino->image)
         ]);
     }
 }

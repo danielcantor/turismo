@@ -15,7 +15,14 @@ class CategoryController extends Controller
 
     public function getCategories()
     {
-        return Category::all();
+        $categories = Category::all();
+
+        foreach ($categories as $category) {
+            $category->image = $category->image ? Storage::url($category->image) : null;
+            $category->home_image = $category->home_image ? Storage::url($category->home_image) : null;
+        }    
+        return $categories;
+
     }
 
     public function store(Request $request)
@@ -41,6 +48,9 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
+        $category->image = $category->image ? Storage::url($category->image) : null;
+        $category->home_image = $category->home_image ? Storage::url($category->home_image) : null;
+        
         return $category;
     }
 

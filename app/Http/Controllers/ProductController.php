@@ -50,7 +50,11 @@ class ProductController extends Controller
         }
         $product->save();
     
-        return redirect()->route('productos.create')->with('success', 'Producto creado correctamente');
+        return response()->json([
+            'success' => true,
+            'message' => 'Producto creado correctamente',
+            'product' => $product
+        ]);
     }
     public function modificar()
     {
@@ -147,15 +151,17 @@ class ProductController extends Controller
         }
     }
     
-    public function modificarProducto(Request $request, $id){
-        
+    public function modificarProducto(Request $request, $id)
+    {
         $validator = Validator::make($request->all(), [
-            'titulo' => 'required|string|max:255',
-            'descripcion' => 'required|string',
-            'tipo' => 'required|in:1,2,3,4,5',
-            'precio' => 'required|numeric',
-            'days' => 'required|numeric',
-            'nights' => 'required|numeric'
+            'product_name' => 'required|string|max:255',
+            'product_description' => 'required|string',
+            'product_type' => 'required|numeric',
+            'product_price' => 'required|numeric|min:0',
+            'product_days' => 'required|numeric|min:0',
+            'product_nights' => 'required|numeric|min:0',
+            'product_image' => 'image|nullable',
+            'product_slider' => 'image|nullable'
         ]);
     
         // Si la validación falla, devolvemos una respuesta JSON con los errores
@@ -164,30 +170,34 @@ class ProductController extends Controller
                 'errors' => $validator->errors()
             ], 422); // 422 Unprocessable Entity
         }
+    
         $producto = Product::find($id);
-
+    
         if (!$producto) {
             return response()->json(['error' => 'Producto no encontrado'], 404);
         }
+    
         if ($request->hasFile('product_image')) {
             Storage::delete("public/".$producto->product_image);
-            $imagePath =$request->file('product_image')->store('images', 'public');
+            $imagePath = $request->file('product_image')->store('images', 'public');
             $producto->product_image = $imagePath;
         }
+    
         if ($request->hasFile('product_slider')) {
             Storage::delete("public/".$producto->product_slider);
             $imagePath = $request->file('product_slider')->store('images', 'public');
             $producto->product_slider = $imagePath;
         }
-        $producto->product_name = $request->input('titulo');
-        $producto->product_description = $request->input('descripcion');
-        $producto->product_type = $request->input('tipo');
-        $producto->product_price = $request->input('precio');
-        $producto->days = $request->input('days');
-        $producto->nights = $request->input('nights');
-
+    
+        $producto->product_name = $request->input('product_name');
+        $producto->product_description = $request->input('product_description');
+        $producto->product_type = $request->input('product_type');
+        $producto->product_price = $request->input('product_price');
+        $producto->days = $request->input('product_days');
+        $producto->nights = $request->input('product_nights');
+    
         $producto->save();
-
+    
         return response()->json(['message' => 'Producto actualizado con éxito']);
     }
 

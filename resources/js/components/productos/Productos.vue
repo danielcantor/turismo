@@ -89,23 +89,34 @@ export default {
       this.resetForm();
       new bootstrap.Modal(this.$refs.productModal.$el).show();
     },
-    openEditModal(product) {
+      openEditModal(productId) {
       this.isEditMode = true;
-      this.currentProductId = product.id;
-      // Asignar los valores del producto al formulario
-      this.form = {
-        product_name: product.product_name,
-        product_price: product.product_price,
-        product_description: product.product_description,
-        product_image: null,
-        product_image_url: product.product_image_url, // URL de la imagen actual
-        product_slider: null,
-        product_slider_url: product.product_slider_url, // URL del slider actual
-        product_days: product.product_days,
-        product_nights: product.product_nights,
-        product_type: product.product_type
-      };
-      new bootstrap.Modal(this.$refs.productModal.$el).show();
+      this.currentProductId = productId;
+    
+      // Hacer una solicitud para obtener la información del producto
+      axios.get(`/products/obtenerProducto/` + productId)
+        .then(response => {
+          const product = response.data;
+    
+          // Asignar los valores del producto al formulario
+          this.form = {
+            product_name: product.product_name,
+            product_price: product.product_price,
+            product_description: product.product_description,
+            product_image: null,
+            product_image_url: product.product_image_url, // URL de la imagen actual
+            product_slider: null,
+            product_slider_url: product.product_slider_url, // URL del slider actual
+            product_days: product.days,
+            product_nights: product.nights,
+            product_type: product.product_type
+          };
+    
+          new bootstrap.Modal(this.$refs.productModal.$el).show();
+        })
+        .catch(error => {
+          console.error('Error obteniendo informacion del producto:', error);
+        });
     },
     submitForm() {
       const formData = new FormData();
@@ -138,7 +149,7 @@ export default {
           });
       } else {
         axios
-          .post('/products/productos', formData)
+          .post('/products/save', formData)
           .then(() => {
             alert('Producto creado correctamente');
             this.closeModal();

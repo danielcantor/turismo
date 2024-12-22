@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Validator;
 class CategoryController extends Controller
 {
     public function index()
@@ -27,12 +27,17 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'slug' => 'required',
-            'description' => 'required'
+            'description' => 'required'        
         ]);
 
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422); // 422 Unprocessable Entity
+        }
 
         $category = new Category($request->all());    
 
@@ -58,12 +63,18 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'slug' => 'required',
-            'description' => 'required'
+            'description' => 'required'        
         ]);
-
+    
+        // Si la validación falla, devolvemos una respuesta JSON con los errores
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422); // 422 Unprocessable Entity
+        }
         if ($request->hasFile('image')) {
             Storage::disk('public')->delete($category->image);
             $category->image = $request->file('image')->store('images', 'public');

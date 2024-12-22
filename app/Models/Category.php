@@ -16,6 +16,11 @@ class Category extends Model
     }
 
     protected $fillable = [
-        'name', 'slug', 'description', 'image', 'home_image'
+        'name',
+        'slug',
+        'description',
+        'image',
+        'home_image',
+        'subtitle' // Agregado para permitir su almacenamiento
     ];
 }

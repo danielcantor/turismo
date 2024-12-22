@@ -30,7 +30,8 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'slug' => 'required',
-            'description' => 'required'        
+            'description' => 'required',
+            'subtitle' => 'nullable|string'  
         ]);
 
         if ($validator->fails()) {
@@ -66,25 +67,24 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'slug' => 'required',
-            'description' => 'required'        
+            'description' => 'required',
+            'subtitle' => 'nullable|string'
         ]);
     
-        // Si la validación falla, devolvemos una respuesta JSON con los errores
         if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors()
-            ], 422); // 422 Unprocessable Entity
+            return response()->json(['errors' => $validator->errors()], 422);
         }
+    
         if ($request->hasFile('image')) {
             Storage::disk('public')->delete($category->image);
             $category->image = $request->file('image')->store('images', 'public');
         }
-
+    
         if ($request->hasFile('home_image')) {
             Storage::disk('public')->delete($category->home_image);
             $category->home_image = $request->file('home_image')->store('images', 'public');
         }
-
+    
         $category->update($request->except(['image', 'home_image']));
         return $category;
     }

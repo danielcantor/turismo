@@ -159,7 +159,7 @@ export default {
                     formData.append(key, this.category[key]);
                 }
             }
-            axios.post(`/category/update/${this.category.id}`, formData, {
+            axios.put(`/category/update/${this.category.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

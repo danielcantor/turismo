@@ -49,8 +49,8 @@ export default {
         product_description: '',
         product_image: null,
         product_slider: null,
-        product_days: '',
-        product_nights: '',
+        days: '',
+        nights: '',
         product_type: ''
       },
       isEditMode: false,
@@ -104,8 +104,8 @@ export default {
             product_description: product.product_description,
             product_image: product.product_image, // URL de la imagen actual desde la base de datos
             product_slider: product.product_slider, // URL del slider actual desde la base de datos
-            product_days: product.product_days,
-            product_nights: product.product_nights,
+            days: product.days,
+            nights: product.nights,
             product_type: product.product_type
           };
     

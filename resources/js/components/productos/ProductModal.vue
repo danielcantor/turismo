@@ -90,7 +90,7 @@
                 type="number"
                 class="form-control"
                 id="product_days"
-                v-model="form.product_days"
+                v-model="form.days"
                 required
                 min="0"
               />
@@ -103,7 +103,7 @@
                 type="number"
                 class="form-control"
                 id="product_nights"
-                v-model="form.product_nights"
+                v-model="form.nights"
                 required
                 min="0"
               />

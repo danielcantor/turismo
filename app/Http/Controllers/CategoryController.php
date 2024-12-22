@@ -64,6 +64,7 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
+        dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'slug' => 'required',
@@ -72,7 +73,9 @@ class CategoryController extends Controller
         ]);
     
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422); // 422 Unprocessable Entity
         }
     
         if ($request->hasFile('image')) {

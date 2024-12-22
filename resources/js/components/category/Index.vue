@@ -188,7 +188,7 @@ export default {
           this.closeModal();
         })
         .catch(error => {
-          console.error('Error al crear categoría:', error);
+          alert('Error al crear categoría:', error);
         });
     },
     updateCategory() {
@@ -198,6 +198,7 @@ export default {
           formData.append(key, this.category[key]);
         }
       }
+      console.log(formData);
       axios
         .put(`/category/update/${this.category.id}`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
@@ -208,7 +209,7 @@ export default {
           this.closeModal();
         })
         .catch(error => {
-          console.error('Error al actualizar categoría:', error);
+            alert('Error al actualizar categoría:', error);
         });
     },
     confirmDeleteCategory(id) {

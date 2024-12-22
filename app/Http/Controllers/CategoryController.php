@@ -30,17 +30,19 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'slug' => 'required',
-            'description' => 'required',
-            'image' => 'required|image',
-            'home_image' => 'required|image',
+            'description' => 'required'
         ]);
 
-        $imagePath = $request->file('image')->store('images', 'public');
-        $homeImagePath = $request->file('home_image')->store('images', 'public');
 
-        $category = new Category($request->all());
-        $category->image = $imagePath;
-        $category->home_image = $homeImagePath;
+        $category = new Category($request->all());    
+
+        if ($request->hasFile('image')) {
+            $category->image = $request->file('image')->store('images', 'public');
+        }
+
+        if ($request->hasFile('home_image')) {
+            $category->home_image = $request->file('home_image')->store('images', 'public');
+        }
         $category->save();
 
         return $category;
@@ -59,9 +61,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'slug' => 'required',
-            'description' => 'required',
-            'image' => 'image',
-            'home_image' => 'image',
+            'description' => 'required'
         ]);
 
         if ($request->hasFile('image')) {

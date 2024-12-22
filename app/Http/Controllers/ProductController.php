@@ -25,21 +25,32 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'product_name' => 'required',
-            'product_description' => 'required',
+        $validator = Validator::make($request->all(), [
+            'product_name' => 'required|string|max:255',
+            'product_description' => 'required|string',
+            'product_type' => 'required|numeric',
             'product_price' => 'required|numeric|min:0',
-            'product_image' => 'image',
-            'product_slider' => 'image'
+            'days' => 'required|numeric|min:0',
+            'nights' => 'required|numeric|min:0'
         ]);
+    
+        // Si la validación falla, devolvemos una respuesta JSON con los errores
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422); // 422 Unprocessable Entity
+        }
+    
     
         $product = new Product();
     
-        $product->product_name = $validated['product_name'];
-        $product->product_description = $validated['product_description'];
-        $product->product_price = $validated['product_price'];
+        $product->product_name = $validator['product_name'];
+        $product->product_description = $validator['product_description'];
+        $product->product_price = $validator['product_price'];
         $product->product_type = $request->input('product_type');
-    
+        $product->days = $validator['days'];
+        $product->nights = $validator['nights'];
+
         if ($request->hasFile('product_image')) {
             $imagePath = $request->file('product_image')->store('images', 'public');
             $product->product_image = $imagePath;
@@ -162,8 +173,8 @@ class ProductController extends Controller
             'product_description' => 'required|string',
             'product_type' => 'required|numeric',
             'product_price' => 'required|numeric|min:0',
-            'product_days' => 'required|numeric|min:0',
-            'product_nights' => 'required|numeric|min:0'
+            'days' => 'required|numeric|min:0',
+            'nights' => 'required|numeric|min:0'
         ]);
     
         // Si la validación falla, devolvemos una respuesta JSON con los errores
@@ -195,8 +206,8 @@ class ProductController extends Controller
         $producto->product_description = $request->input('product_description');
         $producto->product_type = $request->input('product_type');
         $producto->product_price = $request->input('product_price');
-        $producto->days = $request->input('product_days');
-        $producto->nights = $request->input('product_nights');
+        $producto->days = $request->input('days');
+        $producto->nights = $request->input('nights');
     
         $producto->save();
     

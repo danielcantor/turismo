@@ -76,7 +76,6 @@
                 class="form-control"
                 id="product_slider"
                 @change="handleFileUpload('product_slider', $event)"
-                :required="!isEditMode"
               />
               <!-- Mostrar slider actual si está en modo edición -->
               <div v-if="isEditMode && form.product_slider">

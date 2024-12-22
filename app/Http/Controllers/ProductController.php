@@ -163,9 +163,7 @@ class ProductController extends Controller
             'product_type' => 'required|numeric',
             'product_price' => 'required|numeric|min:0',
             'product_days' => 'required|numeric|min:0',
-            'product_nights' => 'required|numeric|min:0',
-            'product_image' => 'image|nullable',
-            'product_slider' => 'image|nullable'
+            'product_nights' => 'required|numeric|min:0'
         ]);
     
         // Si la validación falla, devolvemos una respuesta JSON con los errores

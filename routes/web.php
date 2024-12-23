@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth:admin']], function() {
             Route::post('/save', 'store');
             Route::get('/get', 'getCategories');
             Route::get('/get/{category}', 'show');
-            Route::put('/update/{category}', 'update');
+            Route::post('/update/{category}', 'update');
             Route::delete('/delete/{category}', 'destroy');
         });    
     });

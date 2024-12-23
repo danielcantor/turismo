@@ -27,28 +27,20 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'name' => 'required',
             'slug' => 'required',
             'description' => 'required',
-            'subtitle' => 'nullable|string'  
+            'image' => 'required|image',
+            'home_image' => 'required|image',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors()
-            ], 422); // 422 Unprocessable Entity
-        }
+        $imagePath = $request->file('image')->store('images', 'public');
+        $homeImagePath = $request->file('home_image')->store('images', 'public');
 
-        $category = new Category($request->all());    
-
-        if ($request->hasFile('image')) {
-            $category->image = $request->file('image')->store('images', 'public');
-        }
-
-        if ($request->hasFile('home_image')) {
-            $category->home_image = $request->file('home_image')->store('images', 'public');
-        }
+        $category = new Category($request->all());
+        $category->image = $imagePath;
+        $category->home_image = $homeImagePath;
         $category->save();
 
         return $category;
@@ -56,9 +48,6 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $category->image = $category->image ? Storage::url($category->image) : null;
-        $category->home_image = $category->home_image ? Storage::url($category->home_image) : null;
-        
         return $category;
     }
 
@@ -68,9 +57,18 @@ class CategoryController extends Controller
             'name' => 'required',
             'slug' => 'required',
             'description' => 'required',
-            'subtitle' => 'nullable|string'
+            'image' => 'image',
+            'home_image' => 'image',
         ]);
     
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422); // 422 Unprocessable Entity
+        }
+    
+
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors()
@@ -81,12 +79,12 @@ class CategoryController extends Controller
             Storage::disk('public')->delete($category->image);
             $category->image = $request->file('image')->store('images', 'public');
         }
-    
+
         if ($request->hasFile('home_image')) {
             Storage::disk('public')->delete($category->home_image);
             $category->home_image = $request->file('home_image')->store('images', 'public');
         }
-    
+
         $category->update($request->except(['image', 'home_image']));
         return $category;
     }

@@ -44,13 +44,13 @@ class ProductController extends Controller
     
         $product = new Product();
     
-        $product->product_name = $validator['product_name'];
-        $product->product_description = $validator['product_description'];
-        $product->product_price = $validator['product_price'];
+        $product->product_name = $request->input('product_name');
+        $product->product_description = $request->input('product_description');
         $product->product_type = $request->input('product_type');
-        $product->days = $validator['days'];
-        $product->nights = $validator['nights'];
-
+        $product->product_price = $request->input('product_price');
+        $product->days = $request->input('days');
+        $product->nights = $request->input('nights');
+        
         if ($request->hasFile('product_image')) {
             $imagePath = $request->file('product_image')->store('images', 'public');
             $product->product_image = $imagePath;

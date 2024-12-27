@@ -19,13 +19,18 @@
               <span>Cantidad</span>
               <strong>{{quantity}}</strong>
             </li>
+            <li v-if="cart.payment_type === 'Seña'" class="list-group-item d-flex justify-content-between">
+              <span>Se va a abonar la seña de la reserva</span>
+            </li>
+            <li v-if="cart.subtotal > 0" class="list-group-item d-flex justify-content-between">
+              <span>Subtotal de la compra (ARS)</span>
+              <strong>${{cart.subtotal}}</strong>
+            </li>
             <li v-if="cart.discount_value > 0" class="list-group-item d-flex justify-content-between">
-              <span>Descuento por transferencia bancaria</span>
+              <span>Restante a pagar (ARS)</span>
               <strong>${{cart.discount_value}}</strong>
             </li>
-            <li v-if="cart.payment_type === 'Seña'" class="list-group-item d-flex justify-content-between">
-              <span>Se va a realizar la seña de la reserva</span>
-            </li>
+
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (ARS)</span>
               <strong>${{cart.total}}</strong>
@@ -62,6 +67,10 @@
             <strong>${{product.product_price}}</strong>
           </li>
           <li class="list-group-item d-flex justify-content-between">
+            <span>Subtotal (ARS)</span>
+            <strong>${{cart.subtotal}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
             <span>Total (ARS)</span>
             <strong>${{cart.total}}</strong>
           </li>
@@ -85,7 +94,13 @@
                 Se necesita el apellido.
               </div>
             </div>
-
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Telefono</label>
+              <input type="number" class="form-control" id="lastName" placeholder="" value="" required v-model="cart.data.telefono" :class="[ cart.errors.telefono ? 'is-invalid' : '']">
+              <div class="invalid-feedback">
+                Se necesita el numero de telefono.
+              </div>
+            </div>
             <div class="col-6">
               <label for="email" class="form-label">Correo electronico</label>
               <input type="email" class="form-control" id="email" placeholder="ejemplo@ex.com" v-model="cart.data.email" :class="[ cart.errors.email ? 'is-invalid' : '']">
@@ -178,12 +193,11 @@
 
           <hr class="my-4">
 
-          <h4 class="mb-3">Metodo de pago</h4>
+          <h4 class="mb-3">Forma de pago</h4>
 
           <select class="form-select" id="" v-model="cart.payment_type">
               <option value="">Selecciona</option>
-              <option value="MercadoPago">MercadoPago</option>
-              <!--<option value="Transferencia">Transferencia Bancaria</option>-->
+              <option value="MercadoPago">Pago total</option>
               <option value="Seña">Seña</option>
           </select>
 
@@ -322,13 +336,15 @@
                   discount_value : 0,
                   data: {
                     nombre: '',
+                    pais: 'Argentina',
                     apellido: '',
                     email: '',
                     direccion: '',
                     ciudad: '',
                     provincia: '',
                     codigo_postal: '',
-                    documento: ''
+                    documento: '',
+                    telefono: ''
                   },
                   purchaseID: '',
                   errors: {
@@ -338,8 +354,10 @@
                     direccion: false,
                     provincia: false,
                     codigo_postal: false,
-                    documento: false
+                    documento: false,
+                    telefono: false
                   },
+                  subtotal : 0,
                   total: 0
                 },
                 quantity: 1,
@@ -409,16 +427,23 @@
               this.resetErrors();
               this.cart.step = 2;
           },
-          ChangePrice(val){
-            let normal_price = this.product.product_price * val;
-            if(this.cart.payment_type === "Transferencia"){
-              let discount = (normal_price * 0.1).toFixed(2);
-              this.cart.discount_value = discount;
-              this.cart.total = (normal_price - discount).toFixed(2);
-            }else if(this.cart.payment_type === "Seña"){
-              this.cart.total = (10000).toFixed(2);
-            }else{
-              this.cart.total = normal_price.toFixed(2);
+          ChangePrice(val) {
+            const normalPrice = this.product.product_price * val;
+            let discount = 0;
+          
+            // Determinamos el descuento según tipo de pago
+            if (this.cart.payment_type === "Seña") {
+              discount = normalPrice * 0.75;
+            }
+          
+            this.cart.discount_value = discount.toFixed(2);
+            this.cart.subtotal = normalPrice.toFixed(2);
+          
+            // Determinamos total según tipo de pago
+            if (this.cart.payment_type === "Seña") {
+              this.cart.total = (normalPrice * 0.25).toFixed(2);
+            } else {
+              this.cart.total = normalPrice.toFixed(2);
               this.cart.discount_value = 0;
             }
           },
@@ -458,6 +483,7 @@
             this.cart.errors.provincia = false;
             this.cart.errors.codigo_postal = false;
             this.cart.errors.documento = false;
+            this.cart.errors.telefono = false;
           },
           step3 (){
 

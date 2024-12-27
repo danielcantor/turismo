@@ -56,19 +56,10 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'slug' => 'required',
-            'description' => 'required',
-            'image' => 'image',
-            'home_image' => 'image',
+            'description' => 'required'
         ]);
     
     
-        if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors()
-            ], 422); // 422 Unprocessable Entity
-        }
-    
-
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors()

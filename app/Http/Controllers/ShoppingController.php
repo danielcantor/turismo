@@ -6,7 +6,11 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Purchase;
+use App\Models\Facturacion;
 use App\Models\Shopping;
+use App\Mail\PaymentStatus;
+use Illuminate\Support\Facades\Mail;
+
 class ShoppingController extends Controller
 {
     public $response_messages = [
@@ -50,8 +54,10 @@ class ShoppingController extends Controller
             }
            
         }
+        $facturacion = new Facturacion();
+        
         $shopping = Shopping::where("code", $purchase)->first();
-
+        
         if($shopping->purchases()->where("payment_status", 'approved')->count() > 0){
             return view('payment' , $this->responeseArray('approved' , $shopping));
         }
@@ -78,6 +84,17 @@ class ShoppingController extends Controller
 
         $shopping->save();
         $purchaseC->save();
+        $mailing_info = $facturacion->where("purchase_id", $shopping->id)->first();
+
+        // Enviar correo de pago exitoso
+        Mail::to($mailing_info->email)->bcc('pagos@cynthiagarske.tur.ar')->send(new PaymentStatus(
+            $mailing_info->nombre,
+            $shopping->code,
+            $shopping->created_at->format('d-m-Y'),
+            $shopping->total_price,
+            'success'
+        ));
+        
         return view('payment' , $this->responeseArray('approved' , $shopping));
     }
 
@@ -87,6 +104,18 @@ class ShoppingController extends Controller
         $shopping = Shopping::where("purchase_code", $purchaseID)->first();
         $shopping->payment_status = 'failure';
         $shopping->save();
+        $facturacion = new Facturacion();
+        $mailing_info = $facturacion->where("purchase_id", $shopping->id)->first();
+
+        // Enviar correo de pago fallido
+        Mail::to($mailing_info->email)->bcc('pagos@cynthiagarske.tur.ar')->send(new PaymentStatus(
+            $mailing_info->nombre,
+            $shopping->code,
+            $shopping->created_at->format('d-m-Y'),
+            $shopping->total_price,
+            'failed'
+        ));
+
         return view('payment' , $this->responeseArray('failure' , $shopping));
     }
 
@@ -95,6 +124,18 @@ class ShoppingController extends Controller
         $shopping = Shopping::where("purchase_code", $purchase)->first();
         $shopping->payment_status = 'pending';
         $shopping->save();
+        $facturacion = new Facturacion();
+        $mailing_info = $facturacion->where("purchase_id", $shopping->id)->first();
+
+        // Enviar correo de pago pendiente
+        Mail::to($mailing_info->email)->bcc('pagos@cynthiagarske.tur.ar')->send(new PaymentStatus(
+            $mailing_info->nombre,
+            $shopping->code,
+            $shopping->created_at->format('d-m-Y'),
+            $shopping->total_price,
+            'pending'
+        ));
+
         return view('payment' , $this->responeseArray('pending' , $shopping));
     }
 

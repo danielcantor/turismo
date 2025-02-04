@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use MercadoPago\Client\Common\RequestOptions;
-use MercadoPago\Client\Payment\PaymentClient;
+use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\Exceptions\MPApiException;
 use MercadoPago\MercadoPagoConfig;
 use App\Models\Product;
@@ -21,7 +21,7 @@ class CartController extends Controller
     public function setPayload(Request $request){ 
         $product = Product::find($request->input('id'));
         $passengers = $request->input('pasajeros');
-        $purchaseID = rand(1, 1000000);
+        $purchaseID = rand(1, 1000000) . $product->id;
         $shopping = new Shopping();
         $shopping->code = $purchaseID;
         $shopping->product_id = $product->id;
@@ -64,68 +64,60 @@ class CartController extends Controller
     static function createPreferenceRequest($items, $payer , $purchaseID): array
     {
         $paymentMethods = [
-            "excluded_payment_methods" => [],
-            "installments" => 12,
-            "default_installments" => 1
+            "installments" => 12
         ];
         $backUrls = [
-            'success' => route('cart.success', ['purchaseID' => $purchaseID]),
-            'failure' => route('cart.failure', ['purchaseID' => $purchaseID]),
-            'pending' => route('cart.pending', ['purchaseID' => $purchaseID]),
+            'success' => route('cart.success', ['purchase_id' => $purchaseID]),
+            'failure' => route('cart.failure', ['purchase_id' => $purchaseID]),
+            'pending' => route('cart.pending', ['purchase_id' => $purchaseID]),
         ];
 
         $request = [
-            "items" => $items,
+            "items" => [
+                $items
+            ],
             "payer" => $payer,
             "payment_methods" => $paymentMethods,
             "back_urls" => $backUrls,
-            "statement_descriptor" => "NAME_DISPLAYED_IN_USER_BILLING",
-            "external_reference" => "1234567890",
+            "statement_descriptor" => "Cynthia Garske Turismo",
+            "external_reference" => $purchaseID,
             "expires" => false,
-            "auto_return" => 'approved',
+            "auto_return" => "approved",
         ];
 
         return $request;
     }
     public function getMercadoPago( Request $request){
-        MercadoPagoConfig::setAccessToken("APP_USR-5080290645165804-102315-da0a88af09a1a2fe2d7a37c5497c3fb8-1050379468");
-        MercadoPagoConfig::setRuntimeEnviroment(MercadoPagoConfig::LOCAL);
-        //SDK::setAccessToken('TEST-7177899704829740-091014-c2e3f1f44f0a0395a6dd829ecb0effe1-1050379468');
-        
-        $product1 = array(
-            "id" => "1234567890",
-            "title" => "Product 1 Title",
-            "description" => "Product 1 Description",
-            "currency_id" => "BRL",
-            "quantity" => 12,
-            "unit_price" => 9.90
-        );
+        // Set your Mercado Pago access token
+        $token = ENV("APP_ENV") == "local" ? ENV("MP_ACCESS_TOKEN_TEST") : ENV('MP_ACCESS_TOKEN')  ;
+        MercadoPagoConfig::setAccessToken($token);
+        MercadoPagoConfig::setRuntimeEnviroment(ENV("APP_ENV") == "local" ? MercadoPagoConfig::LOCAL : MercadoPagoConfig::SERVER);
 
-        $product2 = array(
-            "id" => "9012345678",
-            "title" => "Product 2 Title",
-            "description" => "Product 2 Description",
-            "currency_id" => "BRL",
-            "quantity" => 5,
-            "unit_price" => 19.90
-        );
+        $prepare = $this->setPayload($request);
+        $purchaseID = $prepare['purchaseID'];
+        $product = $prepare['product'];
 
-        // Mount the array of products that will integrate the purchase amount
-        $items = array($product1, $product2);
+        $product_mp = array(
+            "id" => $product->id,
+            "title" => $product->product_name,
+            "currency_id" => "ARS",
+            "quantity" => 1,
+            "unit_price" => (int)$product->product_price
+        );
 
         // Retrieve information about the user (use your own function)
-        $user = getSessionUser();
+        $user = $request->input('facturacion');
 
         $payer = array(
-            "name" => $user->name,
-            "surname" => $user->surname,
-            "email" => $user->email,
+            "name" => $user['nombre'],
+            "surname" => $user['apellido'],
+            "email" => $user['email'],
         );
 
         // Create the request object to be sent to the API when the preference is created
-        $request = createPreferenceRequest($item, $payer);
-
+        $request = $this->createPreferenceRequest($product_mp, $payer, $purchaseID);
         // Instantiate a new Preference Client
+        
         $client = new PreferenceClient();
 
         try {
@@ -133,10 +125,20 @@ class CartController extends Controller
             $preference = $client->create($request);
 
             // Useful props you could use from this object is 'init_point' (URL to Checkout Pro) or the 'id'
-            return $preference;
+            return response()->json([
+                'init_point' => $preference->init_point,
+                'preference' => $preference->id,
+            ]);
         } catch (MPApiException $error) {
             // Here you might return whatever your app needs.
             // We are returning null here as an example.
-            return null;
+            return response()->json([
+                'error' => $error->getMessage(),
+                "info" => $error->getCode(),
+                "file" => $error->getFile(),
+                "cause" => $error->getLine(), 
+                "data_send" => $request
+            ]);
         }
+    }
 }

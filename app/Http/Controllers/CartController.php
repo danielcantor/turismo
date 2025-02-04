@@ -89,9 +89,9 @@ class CartController extends Controller
     }
     public function getMercadoPago( Request $request){
         // Set your Mercado Pago access token
-        $token = ENV("APP_ENV") == "local" ? ENV("MP_ACCESS_TOKEN_TEST") : ENV('MP_ACCESS_TOKEN');
+        $token = env("APP_ENV") == "local" ? env("MP_ACCESS_TOKEN_TEST") : env('MP_ACCESS_TOKEN');
         MercadoPagoConfig::setAccessToken($token);
-        MercadoPagoConfig::setRuntimeEnviroment(ENV("APP_ENV") == "local" ? MercadoPagoConfig::LOCAL : MercadoPagoConfig::SERVER);
+        MercadoPagoConfig::setRuntimeEnviroment(env("APP_ENV") == "local" ? MercadoPagoConfig::LOCAL : MercadoPagoConfig::SERVER);
 
         $prepare = $this->setPayload($request);
         $purchaseID = $prepare['purchaseID'];

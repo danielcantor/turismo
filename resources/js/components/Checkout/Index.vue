@@ -294,11 +294,8 @@
           <div class="col-6">
             <button class="btn btn-warning btn-lg mb-3" @click="goBack">Volver</button>
           </div>
-          <div class="col-6" v-if='cart.payment_type == "MercadoPago"'>
+          <div class="col-6">
             <div id="wallet_container"></div>
-          </div>
-          <div class="col-6" v-else>
-            <button class="btn btn-success btn-lg mb-3" @click="reserve">Hacer reserva</button>
           </div>
         </div>
       </div>

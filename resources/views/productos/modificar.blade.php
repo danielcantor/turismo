@@ -25,6 +25,7 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Productos</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <div id="app">

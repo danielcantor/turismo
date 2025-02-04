@@ -495,6 +495,10 @@
                 payment: this.cart.payment_type,
                 pasajeros: this.pasajeros,
                 facturacion : this.cart.data
+              },{
+                headers: {
+                  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
               }).then(response => {
                 if(response.data.preference){
                   document.getElementById("wallet_container").innerHTML = "";

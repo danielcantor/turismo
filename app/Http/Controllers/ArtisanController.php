@@ -21,6 +21,7 @@ class ArtisanController extends Controller
     public function cache()
     {
         Artisan::call('cache:clear');
+        Artisan::call('config:clear');
         return 'Cache cleared successfully';
     }
 }

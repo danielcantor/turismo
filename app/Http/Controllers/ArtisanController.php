@@ -18,4 +18,9 @@ class ArtisanController extends Controller
         Artisan::call('db:seed', ['--class' => 'CategorySeeder' , '--force' => true ]);
         return 'Category seeder executed successfully';
     }
+    public function cache()
+    {
+        Artisan::call('cache:clear');
+        return 'Cache cleared successfully';
+    }
 }

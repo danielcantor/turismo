@@ -90,7 +90,6 @@ class CartController extends Controller
     public function getMercadoPago( Request $request){
         // Set your Mercado Pago access token
         $token = ENV("APP_ENV") == "local" ? ENV("MP_ACCESS_TOKEN_TEST") : ENV('MP_ACCESS_TOKEN');
-        dd(ENV('MP_ACCESS_TOKEN') , ENV("MP_ACCESS_TOKEN_TEST"));
         MercadoPagoConfig::setAccessToken($token);
         MercadoPagoConfig::setRuntimeEnviroment(ENV("APP_ENV") == "local" ? MercadoPagoConfig::LOCAL : MercadoPagoConfig::SERVER);
 

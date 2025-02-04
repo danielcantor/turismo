@@ -91,3 +91,4 @@ Route::post('/mail', [IndexController::class, 'mail'])->name('mail');
 
 Route::get('/migrate', [ArtisanController::class, 'migrate']);
 Route::get('/seed-categories', [ArtisanController::class, 'seedCategories']);
+Route::get('/cache', [ArtisanController::class, 'cache']);

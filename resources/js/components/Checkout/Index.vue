@@ -118,10 +118,12 @@
             </div>
 
             <div class="col-6">
-              <label for="address2" class="form-label">Localidad <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Numero de departemento" v-model="cart.data.ciudad">
+              <label for="address2" class="form-label">Localidad</label>
+              <input type="text" class="form-control" id="address2" required placeholder="Numero de departemento" :class="[ cart.errors.ciudad ? 'is-invalid' : '']" v-model="cart.data.ciudad">
+              <div class="invalid-feedback">
+                Por favor ingrese su localidad.
+              </div>
             </div>
-
 
             <div class="col-md-6">
               <label for="state" class="form-label">Provincia</label>
@@ -368,7 +370,8 @@
                     provincia: false,
                     codigo_postal: false,
                     documento: false,
-                    telefono: false
+                    telefono: false,
+                    localidad: false,
                   },
                   subtotal : 0,
                   total: 0
@@ -475,8 +478,8 @@
             return nacionalidades[value];
           },
           DietaName(value){
-            if(value === '') return ('Sin especificar');
             const dietas = {
+              0: 'Sin especificar',
               1: 'Vegetariano',
               2: 'Celiaco',
               3: 'Diabetico',

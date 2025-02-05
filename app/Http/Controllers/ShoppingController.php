@@ -87,7 +87,7 @@ class ShoppingController extends Controller
         $mailing_info = $facturacion->where("purchase_id", $shopping->id)->first();
 
         // Enviar correo de pago exitoso
-        Mail::to($mailing_info->email)->bcc('pagos@cynthiagarske.tur.ar')->send(new PaymentStatus(
+        Mail::to($mailing_info->email)->bcc('cynthiagarsketurismo@gmai.com')->send(new PaymentStatus(
             $mailing_info->nombre,
             $shopping->code,
             $shopping->created_at->format('d-m-Y'),
@@ -108,7 +108,7 @@ class ShoppingController extends Controller
         $mailing_info = $facturacion->where("purchase_id", $shopping->id)->first();
 
         // Enviar correo de pago fallido
-        Mail::to($mailing_info->email)->bcc('pagos@cynthiagarske.tur.ar')->send(new PaymentStatus(
+        Mail::to($mailing_info->email)->bcc('cynthiagarsketurismo@gmai.com')->send(new PaymentStatus(
             $mailing_info->nombre,
             $shopping->code,
             $shopping->created_at->format('d-m-Y'),
@@ -128,7 +128,7 @@ class ShoppingController extends Controller
         $mailing_info = $facturacion->where("purchase_id", $shopping->id)->first();
 
         // Enviar correo de pago pendiente
-        Mail::to($mailing_info->email)->bcc('pagos@cynthiagarske.tur.ar')->send(new PaymentStatus(
+        Mail::to($mailing_info->email)->bcc('cynthiagarsketurismo@gmai.com')->send(new PaymentStatus(
             $mailing_info->nombre,
             $shopping->code,
             $shopping->created_at->format('d-m-Y'),

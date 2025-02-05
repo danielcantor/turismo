@@ -99,10 +99,9 @@ class CartController extends Controller
 
         $product_mp = array(
             "id" => $product->id,
-            "title" => $product->product_name,
             "currency_id" => "ARS",
             "quantity" => 1,
-            "unit_price" => (int)$product->product_price
+            "unit_price" => (int)$request->input('price')
         );
 
         // Retrieve information about the user (use your own function)

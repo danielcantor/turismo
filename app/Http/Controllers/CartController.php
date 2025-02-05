@@ -91,7 +91,6 @@ class CartController extends Controller
         // Set your Mercado Pago access token
         $token = env("APP_ENV") == "local" ? env("MP_ACCESS_TOKEN_TEST") : env('MP_ACCESS_TOKEN');
         MercadoPagoConfig::setAccessToken($token);
-        MercadoPagoConfig::setRuntimeEnviroment(env("APP_ENV") == "local" ? MercadoPagoConfig::LOCAL : MercadoPagoConfig::SERVER);
 
         $prepare = $this->setPayload($request);
         $purchaseID = $prepare['purchaseID'];
@@ -136,6 +135,7 @@ class CartController extends Controller
                 "info" => $error->getCode(),
                 "file" => $error->getFile(),
                 "cause" => $error->getLine(), 
+                'trace' => $error->getTraceAsString(),
                 "data_send" => $request
             ]);
         }

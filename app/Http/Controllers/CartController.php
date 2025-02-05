@@ -100,7 +100,7 @@ class CartController extends Controller
             "id" => $product->id,
             "title" => $product->name,
             "quantity" => 1,
-            "unit_price" => (int)$request->input('price')
+            "unit_price" => (float)$request->input('price')
         );
 
         // Retrieve information about the user (use your own function)

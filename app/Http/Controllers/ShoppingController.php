@@ -100,7 +100,7 @@ class ShoppingController extends Controller
 
     public function failure($purchase, Request $request) : View
     {
-        $purchaseID = $request->query('purchase_id');
+        $purchaseID = $purchase;
         $shopping = Shopping::where("purchase_code", $purchaseID)->first();
         $shopping->payment_status = 'failure';
         $shopping->save();

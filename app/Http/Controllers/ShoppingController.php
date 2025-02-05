@@ -100,8 +100,7 @@ class ShoppingController extends Controller
 
     public function failure($purchase, Request $request) : View
     {
-        $purchaseID = $purchase;
-        $shopping = Shopping::where("purchase_code", $purchaseID)->first();
+        $shopping = Shopping::where("code", $purchase)->first();
         $shopping->payment_status = 'failure';
         $shopping->save();
         $facturacion = new Facturacion();
@@ -121,7 +120,7 @@ class ShoppingController extends Controller
 
     public function pending($purchase , Request $request) : View
     {
-        $shopping = Shopping::where("purchase_code", $purchase)->first();
+        $shopping = Shopping::where("code", $purchase)->first();
         $shopping->payment_status = 'pending';
         $shopping->save();
         $facturacion = new Facturacion();

@@ -99,7 +99,7 @@ class CartController extends Controller
 
         $product_mp = array(
             "id" => $product->id,
-            "currency_id" => "ARS",
+            "title" => $product->name,
             "quantity" => 1,
             "unit_price" => (int)$request->input('price')
         );

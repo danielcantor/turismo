@@ -317,6 +317,22 @@
     </div>
   </main>
 </div>
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">Error</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Ha ocurrido un error al intentar continuar con el pago, por favor intente en unos minutos.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 </template>
 <script>
@@ -502,7 +518,9 @@
               }).then(response => {
                 if(response.data.preference){
                   document.getElementById("wallet_container").innerHTML = "";
-                  const mp = new MercadoPago('APP_USR-e71ced4d-0847-490c-abc6-d26b20fcf93e');
+                  const mp = new MercadoPago('APP_USR-e71ced4d-0847-490c-abc6-d26b20fcf93e', {
+                    locale: 'es-AR'
+                  });
                   //const mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
 
                   const bricksBuilder = mp.bricks();
@@ -512,13 +530,18 @@
                       redirectMode: "modal",
                   },
                   });
+                  this.cart.step = 3;
+
                 }else{
+                    //modal en caso de que no se haya podido generar la preferencia
+                    var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                    errorModal.show();
                     this.cart.purchaseID = response.data.purchaseID;
                 }
 
-                this.cart.step = 3;
               }).catch(error => {
-                console.log(error);
+                var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                errorModal.show();
               });
           },
           step1 (){

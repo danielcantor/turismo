@@ -8,32 +8,24 @@ use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Facturacion;
 use App\Models\Shopping;
-use App\Mail\PaymentStatus;
-use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendPurchaseEmail;
 
 class ShoppingController extends Controller
 {
-    public $response_messages = [
+    private $response_messages = [
         'pending' => 'Tu pago está pendiente',
         'approved' => 'Tu pago fue procesado exitosamente',
         'failure' => 'Tu pago no pudo ser procesado',
     ];
-    public $titles = [
+
+    private $titles = [
         'pending' => '¡Tu pago está pendiente!',
         'approved' => '¡Gracias por tu compra!',
         'failure' => '¡Hubo un problema con tu pago!',
     ];
-    public function index($id) : View
-    {
-        $products = new Product;
-        $product = $products->getProduct($id);
-        
-        return view('checkout', [
-            'product' => $product
-        ]);
-    }
 
-    private function responeseArray($status , $shopping){
+    private function responseArray($status, $shopping)
+    {
         return [
             'title' => $this->titles[$status],
             'message' => $this->response_messages[$status],
@@ -42,100 +34,146 @@ class ShoppingController extends Controller
         ];
     }
 
-    public function success($purchase, Request $request) : View
+    public function success($purchase, Request $request): View
     {
-        $payment_info = explode( "&" , $request->path() );
-
-        foreach ($payment_info as $key => $value) {
-            if($key != 0){
-                 $payment_info[$key] = explode( "=" , $value );
-            }else if($key == 0 || $key == end($payment_info) ){
-                unset($payment_info[$key]);
-            }
-           
-        }
-        $facturacion = new Facturacion();
-        
         $shopping = Shopping::where("code", $purchase)->first();
-        
-        if($shopping->purchases()->where("payment_status", 'approved')->count() > 0){
-            return view('payment' , $this->responeseArray('approved' , $shopping));
+        if (!$shopping) {
+            abort(404, 'Compra no encontrada');
         }
+
+        if ($shopping->purchases()->where("payment_status", 'approved')->exists()) {
+            return view('payment', $this->responseArray('approved', $shopping));
+        }
+
+        $paymentData = $request->all();
 
         $purchaseC = new Purchase();
-        $columns = $purchaseC->getFillable();
-        foreach ($payment_info as $value) {
-            
-            $column = $value[0];
-            if(in_array($column, $columns)){
-                $purchaseC->$column = $value[1];
-            }
-            
-        }
-        
-        $shopping->payment_status = 'approved';
-
         $purchaseC->purchase_code = $shopping->id;
-
         $purchaseC->user_id = $shopping->user_id;
         $purchaseC->payment_status = 'approved';
         $purchaseC->payment_method = $shopping->payment_method;
         $purchaseC->total_price = $shopping->total_price;
 
-        $shopping->save();
+        // Guardar datos adicionales de MercadoPago
+        $purchaseC->payment_id = $paymentData['payment_id'] ?? null;
+        $purchaseC->preference_id = $paymentData['preference_id'] ?? null; // ✅ Guardar ID de preferencia
+        $purchaseC->status = $paymentData['status'] ?? 'approved';
+        $purchaseC->payer_email = $paymentData['payer']['email'] ?? null;
+        $purchaseC->transaction_amount = $paymentData['transaction_amount'] ?? null;
+        $purchaseC->installments = $paymentData['installments'] ?? null;
         $purchaseC->save();
-        $mailing_info = $facturacion->where("purchase_id", $shopping->id)->first();
 
-        // Enviar correo de pago exitoso
-        Mail::to($mailing_info->email)->bcc('cynthiagarsketurismo@gmail.com')->send(new PaymentStatus(
-            $mailing_info->nombre,
-            $shopping->code,
-            $shopping->created_at->format('d-m-Y'),
-            $shopping->total_price,
-            'success'
-        ));
-        
-        return view('payment' , $this->responeseArray('approved' , $shopping));
+        $shopping->update(['payment_status' => 'approved']);
+
+        $mailing_info = Facturacion::where("purchase_id", $shopping->id)->first();
+        $product = Product::find($shopping->product_id);
+
+        if ($mailing_info && $product) {
+            SendPurchaseEmail::dispatch(
+                $mailing_info->nombre,
+                $shopping->code,
+                $shopping->created_at->format('d-m-Y'),
+                $shopping->total_price,
+                'success',
+                $mailing_info->email,
+                [
+                    'billingName' => $mailing_info->nombre,
+                    'billingAddress' => $mailing_info->direccion,
+                    'billingCity' => $mailing_info->ciudad,
+                    'billingCountry' => $mailing_info->pais,
+                    'productName' => $product->name,
+                    'productQuantity' => $shopping->quantity,
+                    'productPrice' => $product->price,
+                    'passengers' => $shopping->passengers
+                ]
+            )->onQueue('emails');
+        }
+
+        return view('payment', $this->responseArray('approved', $shopping));
     }
 
-    public function failure($purchase, Request $request) : View
+    public function failure($purchase, Request $request): View
     {
         $shopping = Shopping::where("code", $purchase)->first();
-        $shopping->payment_status = 'failure';
-        $shopping->save();
-        $facturacion = new Facturacion();
-        $mailing_info = $facturacion->where("purchase_id", $shopping->id)->first();
+        if (!$shopping) {
+            abort(404, 'Compra no encontrada');
+        }
 
-        // Enviar correo de pago fallido
-        Mail::to($mailing_info->email)->bcc('cynthiagarsketurismo@gmail.com')->send(new PaymentStatus(
-            $mailing_info->nombre,
-            $shopping->code,
-            $shopping->created_at->format('d-m-Y'),
-            $shopping->total_price,
-            'failed'
-        ));
+        $paymentData = $request->all();
 
-        return view('payment' , $this->responeseArray('failure' , $shopping));
+        $shopping->update(['payment_status' => 'failure']);
+
+        $purchaseC = new Purchase();
+        $purchaseC->purchase_code = $shopping->id;
+        $purchaseC->user_id = $shopping->user_id;
+        $purchaseC->payment_status = 'failure';
+        $purchaseC->payment_id = $paymentData['payment_id'] ?? null;
+        $purchaseC->preference_id = $paymentData['preference_id'] ?? null; // ✅ Guardar ID de preferencia
+        $purchaseC->status = $paymentData['status'] ?? 'failure';
+        $purchaseC->payer_email = $paymentData['payer']['email'] ?? null;
+        $purchaseC->save();
+
+        $mailing_info = Facturacion::where("purchase_id", $shopping->id)->first();
+
+        if ($mailing_info) {
+            SendPurchaseEmail::dispatch(
+                $mailing_info->nombre,
+                $shopping->code,
+                $shopping->created_at->format('d-m-Y'),
+                $shopping->total_price,
+                'failed',
+                $mailing_info->email
+            )->onQueue('emails');
+        }
+
+        return view('payment', $this->responseArray('failure', $shopping));
     }
 
-    public function pending($purchase , Request $request) : View
+    public function pending($purchase, Request $request): View
     {
         $shopping = Shopping::where("code", $purchase)->first();
-        $shopping->payment_status = 'pending';
-        $shopping->save();
-        $facturacion = new Facturacion();
-        $mailing_info = $facturacion->where("purchase_id", $shopping->id)->first();
+        if (!$shopping) {
+            abort(404, 'Compra no encontrada');
+        }
 
-        // Enviar correo de pago pendiente
-        Mail::to($mailing_info->email)->bcc('cynthiagarsketurismo@gmail.com')->send(new PaymentStatus(
-            $mailing_info->nombre,
-            $shopping->code,
-            $shopping->created_at->format('d-m-Y'),
-            $shopping->total_price,
-            'pending'
-        ));
+        $paymentData = $request->all();
 
-        return view('payment' , $this->responeseArray('pending' , $shopping));
+        $shopping->update(['payment_status' => 'pending']);
+
+        $purchaseC = new Purchase();
+        $purchaseC->purchase_code = $shopping->id;
+        $purchaseC->user_id = $shopping->user_id;
+        $purchaseC->payment_status = 'pending';
+        $purchaseC->payment_id = $paymentData['payment_id'] ?? null;
+        $purchaseC->preference_id = $paymentData['preference_id'] ?? null; // ✅ Guardar ID de preferencia
+        $purchaseC->status = $paymentData['status'] ?? 'pending';
+        $purchaseC->payer_email = $paymentData['payer']['email'] ?? null;
+        $purchaseC->save();
+
+        $mailing_info = Facturacion::where("purchase_id", $shopping->id)->first();
+        $product = Product::find($shopping->product_id);
+
+        if ($mailing_info && $product) {
+            SendPurchaseEmail::dispatch(
+                $mailing_info->nombre,
+                $shopping->code,
+                $shopping->created_at->format('d-m-Y'),
+                $shopping->total_price,
+                'pending',
+                $mailing_info->email,
+                [
+                    'billingName' => $mailing_info->nombre,
+                    'billingAddress' => $mailing_info->direccion,
+                    'billingCity' => $mailing_info->ciudad,
+                    'billingCountry' => $mailing_info->pais,
+                    'productName' => $product->name,
+                    'productQuantity' => $shopping->quantity,
+                    'productPrice' => $product->price,
+                    'passengers' => $shopping->passengers
+                ]
+            )->onQueue('emails');
+        }
+
+        return view('payment', $this->responseArray('pending', $shopping));
     }
-
 }

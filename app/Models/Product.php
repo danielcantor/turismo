@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use HasFactory;
+
     protected $table = 'products';
-    
     protected $primaryKey = 'id';
 
     protected $fillable = [
@@ -16,17 +17,33 @@ class Product extends Model
         'product_price',
         'product_description',
         'product_category',
-        'product_image'
+        'product_image',
+        'product_activate'
     ];
-    public function getProduct($id){
-        return $this::find($id);
+
+    /**
+     * Obtiene un producto por id
+     */
+    public function getProduct($id)
+    {
+        return self::find($id);
     }
-    public function getProductsbyType($id){
-        return $this::where('product_type', $id)->where('product_activate', 1)->get();
+
+    /**
+     * Obtiene productos por categoría (se alinea con la columna product_category)
+     */
+    public function getProductsbyType($id)
+    {
+        return self::where('product_category', $id)
+            ->where('product_activate', 1)
+            ->get();
     }
+
+    /**
+     * Relación con Category usando la columna product_category como foreign key
+     */
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'product_category', 'id');
     }
-    use HasFactory;
 }

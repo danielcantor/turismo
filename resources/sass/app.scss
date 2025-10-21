@@ -8,3 +8,9 @@
 @import "../css/app.css";
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.bg-light-custom { background-color: #f6f6f6; }
+.font-cherolina-large { font-family: cherolinaregular; font-size: 3.9rem; margin: 0; }
+.font-poppins-large { font-family: poppins; font-size: 3.5rem; }
+.font-raleway { font-family: 'Raleway', sans-serif; }
+.title-custom { /* ajustes compartidos */ }

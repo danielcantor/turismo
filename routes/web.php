@@ -74,9 +74,7 @@ Route::get('/contacto', function () {
 });
 Route::get('/adminpass', [IndexController::class, 'changePassword']);
 
-Route::prefix('destinos')->group(function () {
-    Route::get('/{slug}', [DestinoController::class, 'show'])->name('destino.{slug}');
-}); 
+Route::get('/destinos/{category:slug}', [DestinoController::class, 'show'])->name('destinos.show');
 
 Route::get('/admin/status', function () {
     return response()->json(['authenticated' => Auth::guard('admin')->check()]);

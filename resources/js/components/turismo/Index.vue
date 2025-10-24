@@ -35,6 +35,26 @@
 
         <Item v-for="product in posts" :key="product.id" v-bind="product" />
       </div>
+      
+      <!-- Pagination -->
+      <nav v-if="pagination && pagination.last_page > 1" class="d-flex justify-content-center mt-4">
+        <ul class="pagination">
+          <li class="page-item" :class="{ disabled: pagination.current_page === 1 }">
+            <a class="page-link" :href="pagination.first_page_url" rel="prev">Anterior</a>
+          </li>
+          <li 
+            v-for="page in pagination.last_page" 
+            :key="page" 
+            class="page-item" 
+            :class="{ active: page === pagination.current_page }"
+          >
+            <a class="page-link" :href="pagination.path + '?page=' + page">{{ page }}</a>
+          </li>
+          <li class="page-item" :class="{ disabled: pagination.current_page === pagination.last_page }">
+            <a class="page-link" :href="pagination.next_page_url" rel="next">Siguiente</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </section>
 </template>
@@ -50,6 +70,10 @@ export default {
     posts: {
       type: Array,
       default: () => []
+    },
+    pagination: {
+      type: Object,
+      default: () => ({})
     },
     imageUrl: {
       type: String,

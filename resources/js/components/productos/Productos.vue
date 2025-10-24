@@ -51,7 +51,8 @@ export default {
         product_slider: null,
         days: '',
         nights: '',
-        product_type: ''
+        product_type: '',
+        departure_date: ''
       },
       isEditMode: false,
       currentProductId: null,
@@ -106,7 +107,8 @@ export default {
             product_slider: product.product_slider, // URL del slider actual desde la base de datos
             days: product.days,
             nights: product.nights,
-            product_type: product.product_type
+            product_type: product.product_type,
+            departure_date: product.departure_date
           };
     
           new bootstrap.Modal(this.$refs.productModal.$el).show();
@@ -163,9 +165,10 @@ export default {
         product_description: '',
         product_image: null,
         product_slider: null,
-        product_days: '',
-        product_nights: '',
-        product_type: ''
+        days: '',
+        nights: '',
+        product_type: '',
+        departure_date: ''
       };
       this.currentProductId = null;
     },

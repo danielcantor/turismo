@@ -18,7 +18,8 @@ class Product extends Model
         'product_description',
         'product_category',
         'product_image',
-        'product_activate'
+        'product_activate',
+        'departure_date'
     ];
 
     /**

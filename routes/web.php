@@ -85,6 +85,7 @@ Route::get('/success/{purchase_id}', [ShoppingController::class, 'success'])->na
 Route::get('/failure/{purchase_id}', [ShoppingController::class, 'failure'])->name('cart.failure');
 Route::get('/pending/{purchase_id}', [ShoppingController::class, 'pending'])->name('cart.pending');
 Route::post('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/cart/reserve', [CartController::class, 'reserve'])->name('cart.reserve');
 Route::post('/mail', [IndexController::class, 'mail'])->name('mail');
 
 Route::get('/migrate', [ArtisanController::class, 'migrate']);

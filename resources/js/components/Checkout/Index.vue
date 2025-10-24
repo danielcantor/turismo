@@ -19,18 +19,6 @@
               <span>Cantidad</span>
               <strong>{{quantity}}</strong>
             </li>
-            <li v-if="cart.payment_type === 'Seña'" class="list-group-item d-flex justify-content-between">
-              <span>Se va a abonar la seña de la reserva</span>
-            </li>
-            <li v-if="cart.subtotal > 0" class="list-group-item d-flex justify-content-between">
-              <span>Subtotal de la compra (ARS)</span>
-              <strong>${{cart.subtotal}}</strong>
-            </li>
-            <li v-if="cart.discount_value > 0" class="list-group-item d-flex justify-content-between">
-              <span>Restante a pagar (ARS)</span>
-              <strong>${{cart.discount_value}}</strong>
-            </li>
-
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (ARS)</span>
               <strong>${{cart.total}}</strong>
@@ -195,14 +183,6 @@
 
           <hr class="my-4">
 
-          <h4 class="mb-3">Forma de pago</h4>
-
-          <select class="form-select" id="" v-model="cart.payment_type">
-              <option value="">Selecciona</option>
-              <option value="MercadoPago">Pago total</option>
-              <option value="Seña">Seña</option>
-          </select>
-
           <hr class="my-4">
 
           <button class="mx-auto d-block btn btn-success btn-lg" @click="step2">Continuar</button>
@@ -225,79 +205,102 @@
       <div class="col-md-7 col-lg-8" v-show="cart.step === 3">
         <h4 class="mb-3">Confirmacion de compra</h4>
         <p>Este es el resumen de tu compra:</p>
-        <div class="card my-3" v-for="(pasajero,key) in pasajeros.slice(0, quantity)" :key="key">
+        <div class="card my-3 shadow-sm" v-for="(pasajero,key) in pasajeros.slice(0, quantity)" :key="key">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Pasajero #{{ key + 1}}</h5>
+          </div>
           <div class="card-body">
-            <h5 class="card-title">Datos personales del pasajero #{{ key + 1}}</h5>
-            <div class="row">
-              <div class="col-md-6">
-                <p class="card-text"><strong>Nombre:</strong> {{ pasajero.nombre }}</p>
+            <h6 class="card-subtitle mb-3 text-muted">Datos personales</h6>
+            <div class="row mb-2">
+              <div class="col-md-4">
+                <p class="mb-1"><small class="text-muted">Nombre completo</small></p>
+                <p class="fw-bold">{{ pasajero.nombre }} {{ pasajero.apellido }}</p>
               </div>
-              <div class="col-md-6">
-                <p class="card-text"><strong>Apellido:</strong> {{ pasajero.apellido }}</p>
+              <div class="col-md-4">
+                <p class="mb-1"><small class="text-muted">Fecha de nacimiento</small></p>
+                <p class="fw-bold">{{ pasajero.nacimiento }}</p>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <p class="card-text"><strong>Fecha de nacimiento:</strong> {{ pasajero.nacimiento }}</p>
-              </div>
-              <div class="col-md-6">
-                <p class="card-text"><strong>Email:</strong> {{ pasajero.email }}</p>
+              <div class="col-md-4">
+                <p class="mb-1"><small class="text-muted">Nacionalidad</small></p>
+                <p class="fw-bold">{{ NacionalidadName(pasajero.nacionalidad) }}</p>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <p class="card-text"><strong>Nacionalidad:</strong> {{ NacionalidadName(pasajero.nacionalidad) }} </p>
+            <div class="row mb-2">
+              <div class="col-md-4">
+                <p class="mb-1"><small class="text-muted">Documento</small></p>
+                <p class="fw-bold">{{ pasajero.documento }}</p>
               </div>
-              <div class="col-md-6">
-                <p class="card-text"><strong>Documento:</strong> {{ pasajero.documento }}</p>
+              <div class="col-md-4">
+                <p class="mb-1"><small class="text-muted">Celular</small></p>
+                <p class="fw-bold">{{ pasajero.celular }}</p>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <p class="card-text"><strong>Celular:</strong> {{ pasajero.celular }}</p>
-              </div>
-            </div>
-            <hr>
-            <h5 class="card-title">Contacto de emergencia</h5>
-            <div class="row">
-              <div class="col-md-6">
-                <p class="card-text"><strong>Nombre:</strong> {{ pasajero.emergencia.nombre }}</p>
-              </div>
-              <div class="col-md-6">
-                <p class="card-text"><strong>Apellido:</strong> {{ pasajero.emergencia.apellido }}</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <p class="card-text"><strong>Celular:</strong> {{ pasajero.emergencia.celular }}</p>
+              <div class="col-md-4">
+                <p class="mb-1"><small class="text-muted">Email</small></p>
+                <p class="fw-bold">{{ pasajero.email }}</p>
               </div>
             </div>
             <hr>
-            <h5 class="card-title">Dieta</h5>
-            <div class="row">
+            <h6 class="card-subtitle mb-3 text-muted">Contacto de emergencia</h6>
+            <div class="row mb-2">
               <div class="col-md-6">
-                <p class="card-text"><strong>Tipo:</strong> {{ DietaName(pasajero.dieta.tipo) }}</p>
+                <p class="mb-1"><small class="text-muted">Nombre completo</small></p>
+                <p class="fw-bold">{{ pasajero.emergencia.nombre }} {{ pasajero.emergencia.apellido }}</p>
+              </div>
+              <div class="col-md-6">
+                <p class="mb-1"><small class="text-muted">Celular</small></p>
+                <p class="fw-bold">{{ pasajero.emergencia.celular }}</p>
+              </div>
+            </div>
+            <hr>
+            <h6 class="card-subtitle mb-3 text-muted">Preferencias alimentarias</h6>
+            <div class="row">
+              <div class="col-md-12">
+                <p class="mb-1"><small class="text-muted">Tipo de dieta</small></p>
+                <p class="fw-bold">{{ DietaName(pasajero.dieta.tipo) }}</p>
               </div>
             </div>
           </div>
         </div>
         
-        <hr>
-        <h5 class="card-title">Datos de facturación</h5>
-        <div class="row">
-          <div class="col-md-6">
-            <p class="card-text"><strong>Nombre:</strong> {{ cart.data.nombre }}</p>
+        <div class="card my-3 shadow-sm">
+          <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Datos de facturación</h5>
           </div>
-          <div class="col-md-6">
-            <p class="card-text"><strong>Apellido:</strong> {{ cart.data.apellido }}</p>
+          <div class="card-body">
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <p class="mb-1"><small class="text-muted">Nombre completo</small></p>
+                <p class="fw-bold">{{ cart.data.nombre }} {{ cart.data.apellido }}</p>
+              </div>
+              <div class="col-md-6">
+                <p class="mb-1"><small class="text-muted">Email</small></p>
+                <p class="fw-bold">{{ cart.data.email }}</p>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <p class="mb-1"><small class="text-muted">Teléfono</small></p>
+                <p class="fw-bold">{{ cart.data.telefono }}</p>
+              </div>
+              <div class="col-md-6">
+                <p class="mb-1"><small class="text-muted">Documento</small></p>
+                <p class="fw-bold">{{ cart.data.documento }}</p>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-12">
+                <p class="mb-1"><small class="text-muted">Dirección completa</small></p>
+                <p class="fw-bold">{{ cart.data.direccion }}, {{ cart.data.ciudad }}, CP: {{ cart.data.codigo_postal }}</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row mt-3 align-items-center">
-          <div class="col-6">
-            <button class="btn btn-warning btn-lg mb-3" @click="goBack">Volver</button>
+        <div class="row mt-3">
+          <div class="col-6 text-center">
+            <button class="btn btn-warning btn-lg" @click="goBack">Volver</button>
           </div>
-          <div class="col-6">
-            <div id="wallet_container"></div>
+          <div class="col-6 text-center">
+            <button class="btn btn-success btn-lg" @click="confirmReservation">Confirmar Reserva</button>
           </div>
         </div>
       </div>
@@ -347,7 +350,7 @@
             return {
                 cart: {
                   step : 1,
-                  payment_type : '',
+                  payment_type : 'Reserva',
                   discount_value : 0,
                   data: {
                     nombre: '',
@@ -426,9 +429,7 @@
             }
             this.ChangePrice(val);
           },
-          'cart.payment_type': function (val) {
-            this.ChangePrice(this.quantity);
-          }
+
         },
         methods: {
           step2(){
@@ -449,23 +450,9 @@
           },
           ChangePrice(val) {
             const normalPrice = this.product.product_price * val;
-            let discount = 0;
-          
-            // Determinamos el descuento según tipo de pago
-            if (this.cart.payment_type === "Seña") {
-              discount = normalPrice * 0.75;
-            }
-          
-            this.cart.discount_value = discount.toFixed(2);
             this.cart.subtotal = normalPrice.toFixed(2);
-          
-            // Determinamos total según tipo de pago
-            if (this.cart.payment_type === "Seña") {
-              this.cart.total = (normalPrice * 0.25).toFixed(2);
-            } else {
-              this.cart.total = normalPrice.toFixed(2);
-              this.cart.discount_value = 0;
-            }
+            this.cart.total = normalPrice.toFixed(2);
+            this.cart.discount_value = 0;
           },
           NacionalidadName(value){
             const nacionalidades = {
@@ -506,46 +493,33 @@
             this.cart.errors.telefono = false;
           },
           step3 (){
-
             for(let i=0; i< this.quantity ; i++){
               this.$refs['pasajero' + i][0].CheckPropData();
             }
             if(this.error) return;
             
-            axios.post('/cart', {
+            this.cart.step = 3;
+          },
+          confirmReservation() {
+            axios.post('/cart/reserve', {
                 id: this.product.id,
                 price: this.cart.total,
                 payment: this.cart.payment_type,
-                pasajeros: this.pasajeros,
+                pasajeros: this.pasajeros.slice(0, this.quantity),
                 facturacion : this.cart.data
               },{
                 headers: {
                   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
               }).then(response => {
-                if(response.data.preference){
-                  document.getElementById("wallet_container").innerHTML = "";
-                  const mp = new MercadoPago('APP_USR-05fd7fa1-0813-4dd9-bd79-77a315efd6b3', {
-                    locale: 'es-AR'
-                  });
-                  //const mp = new MercadoPago('TEST-b970a885-b574-4d94-b036-3d9f659d7a44');
-
-                  const bricksBuilder = mp.bricks();
-                  bricksBuilder.create("wallet", "wallet_container", {
-                  initialization: {
-                      preferenceId: response.data.preference,
-                      redirectMode: "modal",
-                  },
-                  });
-                  this.cart.step = 3;
-
+                if(response.data.purchaseID){
+                  this.cart.purchaseID = response.data.purchaseID;
+                  this.cart.step = 4;
                 }else{
-                    //modal en caso de que no se haya podido generar la preferencia
+                    //modal en caso de error
                     var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
                     errorModal.show();
-                    this.cart.purchaseID = response.data.purchaseID;
                 }
-
               }).catch(error => {
                 var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
                 errorModal.show();

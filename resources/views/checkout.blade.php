@@ -30,7 +30,6 @@
     <div id="app">
         <checkout-component :product="{{ $product }}"></checkout-component>
     </div>
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>

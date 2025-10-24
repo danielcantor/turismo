@@ -45,13 +45,32 @@ class SendPurchaseEmail implements ShouldQueue
      */
     public function handle()
     {
+        // Extract billing and product info from additional data
+        $billingInfo = isset($this->additionalData['billingName']) ? [
+            'name' => $this->additionalData['billingName'],
+            'address' => $this->additionalData['billingAddress'] ?? '',
+            'city' => $this->additionalData['billingCity'] ?? '',
+            'country' => $this->additionalData['billingCountry'] ?? '',
+        ] : [];
+        
+        $productInfo = isset($this->additionalData['productName']) ? [
+            'name' => $this->additionalData['productName'],
+            'quantity' => $this->additionalData['productQuantity'] ?? 1,
+            'price' => $this->additionalData['productPrice'] ?? 0,
+        ] : [];
+        
+        $passengers = $this->additionalData['passengers'] ?? [];
+        
         Mail::to($this->email)->bcc('cynthiagarsketurismo@gmail.com')->send(new PaymentStatus(
             $this->customerName,
             $this->orderNumber,
             $this->orderDate,
             $this->orderTotal,
             $this->status,
-            $this->additionalData
+            $this->email,
+            $billingInfo,
+            $productInfo,
+            $passengers
         ));
     }
 }

@@ -280,7 +280,7 @@
                     <div style="font-size: 18px;line-height: 24px;text-align:left;text-align-last:left;color:#434343;letter-spacing:-0.2px;font-weight:500;font-style:normal;font-variant-ligatures:normal;">
                      <div><span style="font-family: 'Chivo', Arial, Helvetica, sans-serif; font-size: 18px; line-height: 24px; text-decoration: none; text-transform: none;">Pedido nro #{{ $orderNumber }}</span>
                      </div>
-                     <div><span style="font-family: 'Chivo', Arial, Helvetica, sans-serif; font-size: 18px; line-height: 24px; text-decoration: none; text-transform: none;">{{ $customerName }}, felicidades aca esta el resumen de tu compra:</span>
+                     <div><span style="font-family: 'Chivo', Arial, Helvetica, sans-serif; font-size: 18px; line-height: 24px; text-decoration: none; text-transform: none;">{{ $name }}, felicidades aca esta el resumen de tu reserva:</span>
                      </div>
                     </div>
                    </div>
@@ -918,7 +918,7 @@
                                                     <tr>
                                                         <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
                                                             <p style="margin: 0px; color: #ffffff; line-height: 160%; text-align: center; word-wrap: break-word; font-size: 18px; font-weight: 400;">
-                                                                Estimado/a {{ $customerName }},
+                                                                Estimado/a {{ $name }},
                                                             </p>
                                                         </td>
                                                     </tr>

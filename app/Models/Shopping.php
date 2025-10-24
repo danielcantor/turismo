@@ -18,6 +18,7 @@ class Shopping extends Model
         'payment_status',
         'payment_method',
         'total_price',
+        'quantity',
     ];
 
     public function passengers()

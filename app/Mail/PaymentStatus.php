@@ -62,6 +62,10 @@ class PaymentStatus extends Mailable
                 $view = 'emails.payment_failed';
                 $subject = "Pago Fallido - Cynthia Garske";
                 break;
+            case 'reserved':
+                $view = 'emails.reservation_confirmed';
+                $subject = "Confirmación de reserva #{$this->orderCode} - Cynthia Garske";
+                break;
         }
 
         return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))

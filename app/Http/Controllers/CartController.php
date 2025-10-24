@@ -18,6 +18,75 @@ class CartController extends Controller
         return $this->getMercadoPago($request);
 
     }
+
+    public function reserve(Request $request){
+        $product = Product::find($request->input('id'));
+        $passengers = $request->input('pasajeros');
+        $purchaseID = rand(1, 1000000) . $product->id;
+        
+        $shopping = new Shopping();
+        $shopping->code = $purchaseID;
+        $shopping->product_id = $product->id;
+        $shopping->quantity = count($passengers);
+        
+        $factura = $request->input('facturacion');
+        $facturacion = new Facturacion();
+        $columns = $facturacion->getFillable();
+        foreach ($factura as $key => $value) {
+            if(!in_array($key, $columns)) continue;
+            $facturacion->$key = $value;
+        }
+        
+        foreach ($passengers as $passenger) {
+            $new = new Passenger();
+            $new->purchase_id = $purchaseID;
+            $new->nombre = $passenger['nombre'];
+            $new->apellido = $passenger['apellido'];
+            $new->nacimiento = $passenger['nacimiento'];
+            $new->email = $passenger['email'];
+            $new->nacionalidad = $passenger['nacionalidad'];
+            $new->documento = $passenger['documento'];
+            $new->celular = $passenger['celular'];
+            $new->emergencia_nombre = $passenger['emergencia']['nombre'];
+            $new->emergencia_apellido = $passenger['emergencia']['apellido'];
+            $new->emergencia_celular = $passenger['emergencia']['celular'];
+            $new->dieta_tipo = $passenger['dieta']['tipo'];
+            $new->save();
+        }
+        
+        $shopping->payment_status = 'reserved';
+        $shopping->payment_method = 'Reserva';
+        $shopping->total_price = (float) $request->input('price');
+        $shopping->save();
+
+        $facturacion->purchase_id = $shopping->id;
+        $facturacion->save();
+        
+        // Send reservation confirmation email to customer and store
+        \App\Jobs\SendPurchaseEmail::dispatch(
+            $facturacion->nombre,
+            $purchaseID,
+            now()->format('d-m-Y'),
+            $shopping->total_price,
+            'reserved',
+            $facturacion->email,
+            [
+                'billingName' => $facturacion->nombre . ' ' . $facturacion->apellido,
+                'billingAddress' => $facturacion->direccion,
+                'billingCity' => $facturacion->ciudad,
+                'billingCountry' => $facturacion->pais,
+                'productName' => $product->product_name,
+                'productQuantity' => $shopping->quantity,
+                'productPrice' => $product->product_price,
+                'passengers' => $passengers
+            ]
+        )->onQueue('emails');
+        
+        return response()->json([
+            'purchaseID' => $purchaseID,
+            'status' => 'reserved'
+        ]);
+    }
     public function setPayload(Request $request){ 
         $product = Product::find($request->input('id'));
         $passengers = $request->input('pasajeros');

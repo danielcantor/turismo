@@ -24,7 +24,8 @@
 
         <!-- Pasamos datos al componente Vue mediante props en vez de window.* -->
         <turismo-component
-            :posts='@json($items)'
+            :posts='@json($items->items())'
+            :pagination='@json($items->toArray())'
             :image-url='@json(Storage::url($imageUrl))'
             :title='@json($title)'
             :subtitle='@json($subtitle)'

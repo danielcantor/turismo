@@ -108,6 +108,17 @@
                 min="0"
               />
             </div>
+
+            <!-- Fecha de salida del producto -->
+            <div class="mb-3">
+              <label for="departure_date" class="form-label">Fecha de salida:</label>
+              <input
+                type="date"
+                class="form-control"
+                id="departure_date"
+                v-model="form.departure_date"
+              />
+            </div>
             <!-- Tipo del producto -->
             <div class="mb-3">
               <label for="product_category" class="form-label">Categoría del producto:</label>

@@ -20,7 +20,6 @@ class PaymentStatus extends Mailable
     public $billingInfo;
     public $productInfo;
     public $passengers;
-
     /**
      * Create a new message instance.
      *

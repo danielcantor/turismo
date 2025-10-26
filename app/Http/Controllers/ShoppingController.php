@@ -24,6 +24,16 @@ class ShoppingController extends Controller
         'failure' => '¡Hubo un problema con tu pago!',
     ];
 
+    public function index($id) : View
+    {
+        $products = new Product;
+        $product = $products->getProduct($id);
+        
+        return view('checkout', [
+            'product' => $product
+        ]);
+    }
+    
     private function responseArray($status, $shopping)
     {
         return [

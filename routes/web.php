@@ -91,39 +91,3 @@ Route::post('/mail', [IndexController::class, 'mail'])->name('mail');
 Route::get('/migrate', [ArtisanController::class, 'migrate']);
 Route::get('/seed-categories', [ArtisanController::class, 'seedCategories']);
 Route::get('/cache', [ArtisanController::class, 'cache']);
-
-// Ruta para previsualizar el email de confirmación de reserva
-Route::get('/preview-email', function () {
-    // Datos de ejemplo para la vista
-    $data = [
-        'orderCode' => '83792010',
-        'name' => 'Daniel',
-        'orderDate' => '26-10-2025',
-        'totalPrice' => '785302207.39',
-        'productInfo' => [
-            'name' => 'Ms. Tanya O\'Reilly I'
-        ],
-        'billingInfo' => [
-            'payment_method' => 'Tarjeta de crédito',
-            'name' => 'Daniel Cantor',
-            'dni' => '01135110935',
-            'phone' => '99',
-            'email' => 'daniel@example.com'
-        ],
-        'passengers' => [
-            [
-                'nombre' => 'Ut provident rem al',
-                'apellido' => 'Dolorum error non qu',
-                'email' => 'daxucenuk@mailinator.com',
-                'documento' => '30',
-                'celular' => '99',
-                'nacimiento' => '1987-07-28',
-                'dieta' => [
-                    'tipo' => 0 // Normal
-                ]
-            ]
-        ]
-    ];
-    
-    return view('emails.reservation_confirmed', $data);
-});

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,    // Primero categorías (referenciadas por productos)
             ProductSeeder::class,     // Luego productos (referenciados por shopping)
             UserSeeder::class,        // Usuarios (referenciados por shopping y purchases)
+            AdminSeeder::class,       // Administradores (tabla independiente)
             ShoppingSeeder::class,    // Shopping (referenciado por purchases)
             PurchaseSeeder::class,    // Purchases (referenciado por passengers y facturacion)
             PassengerSeeder::class,   // Pasajeros

@@ -8686,7 +8686,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("nav", {
-    staticClass: "navbar bg-light navbar-expand-xl py-4",
+    staticClass: "navbar bg-light navbar-expand-xl",
     staticStyle: {
       "background-color": "#f6f6f6"
     },

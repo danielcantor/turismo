@@ -9,7 +9,7 @@ class ArtisanController extends Controller
 {
     public function migrate()
     {
-        Artisan::call('migrate:fresh', ['--force' => true ]);
+        Artisan::call('migrate', ['--force' => true ]);
         return 'Migrations executed successfully';
     }
 

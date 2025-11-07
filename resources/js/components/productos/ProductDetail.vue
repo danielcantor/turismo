@@ -1,5 +1,25 @@
 <template>
   <section class="product-detail-page">
+    <!-- Loading State -->
+    <div v-if="loading" class="loading-container text-center py-5">
+      <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <p class="mt-3">Cargando producto...</p>
+    </div>
+
+    <!-- Error State -->
+    <div v-else-if="error" class="error-container text-center py-5">
+      <div class="container">
+        <i class="fas fa-exclamation-triangle fa-3x mb-3 text-warning"></i>
+        <h2 class="mb-3">Error al cargar el producto</h2>
+        <p class="mb-4">{{ errorMessage }}</p>
+        <a href="/" class="btn btn-primary">Volver al inicio</a>
+      </div>
+    </div>
+
+    <!-- Content (only show when not loading and no error) -->
+    <template v-else>
     <!-- Hero Image/Slider -->
     <div v-if="product.product_slider" class="hero-slider">
       <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -85,6 +105,8 @@
               <a 
                 :href="checkoutUrl" 
                 class="btn-booking"
+                role="button"
+                :aria-label="'Reservar ' + product.product_name"
               >
                 RESERVAR AHORA
               </a>
@@ -161,6 +183,7 @@
       </div>
     </div>
     <div v-if="showConditionsModal" class="modal-backdrop fade show"></div>
+    </template>
   </section>
 </template>
 
@@ -180,7 +203,9 @@ export default {
   data() {
     return {
       product: this.initialProduct || {},
-      loading: true,
+      loading: !this.initialProduct,
+      error: false,
+      errorMessage: '',
       showConditionsModal: false
     };
   },
@@ -217,12 +242,30 @@ export default {
   methods: {
     async fetchProduct() {
       try {
+        this.loading = true;
+        this.error = false;
         const response = await axios.get(`/obtenerProducto/${this.productId}`);
         this.product = response.data;
         this.loading = false;
       } catch (error) {
         console.error('Error fetching product:', error);
+        this.error = true;
         this.loading = false;
+        
+        if (error.response) {
+          // Server responded with error
+          if (error.response.status === 404) {
+            this.errorMessage = 'El producto que buscas no existe o fue eliminado.';
+          } else {
+            this.errorMessage = 'Hubo un problema al cargar el producto. Por favor, intenta nuevamente.';
+          }
+        } else if (error.request) {
+          // Request was made but no response
+          this.errorMessage = 'No se pudo conectar con el servidor. Verifica tu conexión a internet.';
+        } else {
+          // Something else happened
+          this.errorMessage = 'Ocurrió un error inesperado. Por favor, intenta nuevamente.';
+        }
       }
     },
     getImageUrl(imagePath) {
@@ -253,6 +296,34 @@ export default {
   background-color: #2e005d;
   color: white;
   min-height: 100vh;
+}
+
+.loading-container,
+.error-container {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-container .spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.error-container i {
+  color: #f18701;
+}
+
+.error-container .btn-primary {
+  background-color: #f18701;
+  border-color: #f18701;
+}
+
+.error-container .btn-primary:hover {
+  background-color: #d97501;
+  border-color: #d97501;
 }
 
 .hero-slider img {

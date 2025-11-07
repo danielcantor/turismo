@@ -151,7 +151,8 @@ class ProductController extends Controller
            abort(404);
        }
 
-       return view('productos.store_product', [
+       // Return the new Vue.js based product detail view
+       return view('productos.product_detail', [
               'product' => $product
          ]);
    }

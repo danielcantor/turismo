@@ -19,6 +19,7 @@ import responseContent from './components/payment/Index.vue';
 import CondicionesComponent from './components/turismo/Condiciones.vue';
 import ProductosComponent from "./components/productos/Productos.vue";
 import Category from "./components/category/Index.vue";
+import ProductDetailComponent from "./components/productos/ProductDetail.vue";
 
 Vue.component('index-component', IndexComponent);
 Vue.component('header-component', HeaderComponent);
@@ -37,6 +38,7 @@ Vue.component('contacto-component', ContactoComponent);
 Vue.component('response-component', responseContent);
 Vue.component('condiciones-component', CondicionesComponent);
 Vue.component('category-component', Category);
+Vue.component('product-detail-component', ProductDetailComponent);
 
 const app = new Vue({
     el: '#app',

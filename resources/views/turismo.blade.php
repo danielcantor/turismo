@@ -26,7 +26,7 @@
         <turismo-component
             :posts='@json($items->items())'
             :pagination='@json($items->toArray())'
-            :image-url='@json(Storage::url($imageUrl))'
+            :image-url='@json($imageUrl)'
             :title='@json($title)'
             :subtitle='@json($subtitle)'
             :description='@json($description)'>

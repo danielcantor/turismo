@@ -37,7 +37,7 @@ class Product extends Model
      */
     public function getProductsbyType($id)
     {
-        return self::where('product_category', $id)
+        return self::where('product_type', $id)
             ->where('product_activate', 1)
             ->get();
     }

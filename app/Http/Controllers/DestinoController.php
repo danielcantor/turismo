@@ -17,6 +17,8 @@ class DestinoController extends Controller
         $today = now()->format('Y-m-d');
         $products = $category->products()
             ->where('product_activate', 1)
+            ->orderByRaw("CASE WHEN departure_date >= ? THEN 0 ELSE 1 END", [$today])
+            ->orderByRaw("CASE WHEN departure_date >= ? THEN departure_date END", [$today])
             ->orderBy('created_at', 'desc')
             ->paginate(12);
 

@@ -16,7 +16,7 @@
 
                                 <p class="fw-bolder" style="font-family:poppins;">Siguenos en redes sociales</p>
                                 <p> 
-                                    <a href="https://www.instagram.com/salidasgrupalescyn">
+                                    <a href="https://www.instagram.com/cynthiagarsketurismo/">
                                         <i class="fa-brands fa-instagram fa-2x" style="color: #8640bf;"></i>
                                     </a> 
                                 </p> 

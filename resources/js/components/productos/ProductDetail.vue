@@ -148,7 +148,7 @@
           <div class="cta-button d-flex align-items-center">
             <i class="fa-brands fa-instagram me-2"></i>
             <a 
-              href="https://www.instagram.com/salidasgrupalescyn/" 
+              href="https://www.instagram.com/cynthiagarsketurismo/" 
               target="_blank" 
               class="btn-instagram"
             >

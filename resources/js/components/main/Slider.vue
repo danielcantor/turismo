@@ -13,7 +13,7 @@
                                 <div class="row justify-content-center align-middle">
                                     <div class="col-6">
                                         <p class="text-white text-slider-join mb-0">Siguenos en instagram</p>
-                                        <a href="https://www.instagram.com/salidasgrupalescyn">
+                                        <a href="https://www.instagram.com/cynthiagarsketurismo/">
                                             <i class="fa-brands fa-instagram fa-3x" style="color: #8640bf;"></i>
                                         </a>
                                     </div>

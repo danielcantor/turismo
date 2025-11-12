@@ -35,4 +35,23 @@ class Shopping extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    /**
+     * Boot method to handle auto-incrementing code field
+     * Format: 000001-[Database ID]
+     * Example: 000001-5, 000001-6, 000001-100
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($shopping) {
+            if (empty($shopping->code)) {
+                // Format: 000001-[Database ID]
+                $paddedSequential = str_pad(1, 6, '0', STR_PAD_LEFT);
+                $shopping->code = $paddedSequential . '-' . $shopping->id;
+                $shopping->saveQuietly(); // Save without triggering events again
+            }
+        });
+    }
 }

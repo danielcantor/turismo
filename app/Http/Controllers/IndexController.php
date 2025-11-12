@@ -33,7 +33,7 @@ class IndexController extends Controller
         $mail = new ContactQuestion($name, $email, $phone, $message);
         
         try {
-            Mail::to('cynthiaedithgarske@gmail.com')->send($mail);
+            Mail::to('cynthiagarsketurismo@gmail.com')->send($mail);
             return response()->json(['success' => 'Consulta enviada con éxito']);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al enviar la consulta ' . $e->getMessage()]);

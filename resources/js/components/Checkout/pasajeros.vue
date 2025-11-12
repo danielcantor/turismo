@@ -59,28 +59,6 @@
                     Por favor ingrese un celular.
                 </div>
             </div>
-            <h4 class="mb-0">Contacto de emergencia</h4>
-            <div class="col-6">
-                <label  class="form-label">Nombre</label>
-                <input type="text" class="form-control" placeholder="" value="" required v-model="pasajero.emergencia.nombre" :class="[ errors.emergencia.nombre ? 'is-invalid' : '']">
-                <div class="invalid-feedback">
-                    Se necesita el nombre del contacto.
-                </div>
-            </div>
-            <div class="col-6">
-                <label  class="form-label">Apellido</label>
-                <input type="text" class="form-control"  placeholder="" value="" required v-model="pasajero.emergencia.apellido" :class="[ errors.emergencia.apellido ? 'is-invalid' : '']">
-                <div class="invalid-feedback">
-                    Se necesita el apellido del contacto.
-                </div>
-            </div>
-            <div class="col-6">
-                <label  class="form-label">Celular</label>
-                <input type="number" class="form-control"  placeholder="" value="" required v-model="pasajero.emergencia.celular" :class="[ errors.emergencia.celular ? 'is-invalid' : '']">
-                <div class="invalid-feedback">
-                    Se necesita el celular de emergencia.
-                </div>
-            </div>
             <h4 class="mb-0">Si tu reserva es con alojamiento, especifica tu Dieta </h4>
             <div class="col-6">
                 <select name="" id="" class="form-select"  v-model="pasajero.dieta.tipo">
@@ -106,12 +84,7 @@
                         nacionalidad: false,
                         documento: false,
                         email: false,
-                        celular: false,
-                        emergencia:{
-                            nombre: false,
-                            apellido: false,
-                            celular: false
-                        }
+                        celular: false
                     } 
                 
             }
@@ -125,12 +98,7 @@
                         nacionalidad: false,
                         documento: false,
                         email: false,
-                        celular: false,
-                        emergencia:{
-                            nombre: false,
-                            apellido: false,
-                            celular: false
-                        }
+                        celular: false
                     }
             },
             CheckPropData(){

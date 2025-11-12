@@ -57,9 +57,6 @@ class CartController extends Controller
                 $new->nacionalidad = $passenger['nacionalidad'];
                 $new->documento = $passenger['documento'];
                 $new->celular = $passenger['celular'];
-                $new->emergencia_nombre = $passenger['emergencia']['nombre'];
-                $new->emergencia_apellido = $passenger['emergencia']['apellido'];
-                $new->emergencia_celular = $passenger['emergencia']['celular'];
                 $new->dieta_tipo = $passenger['dieta']['tipo'];
                 $new->save();
             }
@@ -136,9 +133,6 @@ class CartController extends Controller
                 $new->nacionalidad = $passenger['nacionalidad'];
                 $new->documento = $passenger['documento'];
                 $new->celular = $passenger['celular'];
-                $new->emergencia_nombre = $passenger['emergencia']['nombre'];
-                $new->emergencia_apellido = $passenger['emergencia']['apellido'];
-                $new->emergencia_celular = $passenger['emergencia']['celular'];
                 $new->dieta_tipo = $passenger['dieta']['tipo'];
                 $new->save();
             }

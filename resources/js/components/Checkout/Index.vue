@@ -240,18 +240,6 @@
               </div>
             </div>
             <hr>
-            <h6 class="card-subtitle mb-3 text-muted">Contacto de emergencia</h6>
-            <div class="row mb-2">
-              <div class="col-md-6">
-                <p class="mb-1"><small class="text-muted">Nombre completo</small></p>
-                <p class="fw-bold">{{ pasajero.emergencia.nombre }} {{ pasajero.emergencia.apellido }}</p>
-              </div>
-              <div class="col-md-6">
-                <p class="mb-1"><small class="text-muted">Celular</small></p>
-                <p class="fw-bold">{{ pasajero.emergencia.celular }}</p>
-              </div>
-            </div>
-            <hr>
             <h6 class="card-subtitle mb-3 text-muted">Preferencias alimentarias</h6>
             <div class="row">
               <div class="col-md-12">
@@ -389,11 +377,6 @@
                     nacionalidad : '',
                     documento: '',
                     celular: '',
-                    emergencia: {
-                      nombre: '',
-                      apellido: '',
-                      celular: ''
-                    },
                     dieta: {
                       tipo: ''
                     }
@@ -414,11 +397,6 @@
                   nacionalidad: '',
                   documento: '',
                   celular: '',
-                  emergencia: {
-                    nombre: '',
-                    apellido: '',
-                    celular: ''
-                  },
                   dieta: {
                     tipo: ''
                   }

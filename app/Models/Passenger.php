@@ -18,9 +18,6 @@ class Passenger extends Model
         'nacionalidad',
         'documento',
         'celular',
-        'emergencia_nombre',
-        'emergencia_apellido',
-        'emergencia_celular',
         'dieta_tipo',
     ];
 

@@ -13,7 +13,6 @@ class Shopping extends Model
 
     protected $fillable = [
         'code',
-        'reservation_number',
         'user_id',
         'product_id',
         'payment_status',
@@ -38,28 +37,32 @@ class Shopping extends Model
     }
 
     /**
-     * Boot method to handle auto-incrementing reservation_number
+     * Boot method to handle auto-incrementing code field
+     * Format: 000001-1, 000002-2, etc.
      */
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($shopping) {
-            if (empty($shopping->reservation_number)) {
+            if (empty($shopping->code)) {
+                // Get the maximum ID to determine the next sequential number
                 // Use lockForUpdate to prevent race conditions
-                $maxNumber = static::lockForUpdate()->max('reservation_number') ?? 0;
-                $shopping->reservation_number = $maxNumber + 1;
+                $maxId = static::lockForUpdate()->max('id') ?? 0;
+                $nextSequential = $maxId + 1;
+                
+                // Temporarily set a placeholder for code (will be updated after save)
+                $shopping->code = 'TEMP_' . $nextSequential;
             }
         });
-    }
 
-    /**
-     * Get formatted reservation number with leading zeros and ID
-     * Format: 000001-1, 000002-2, etc.
-     */
-    public function getFormattedReservationNumberAttribute()
-    {
-        $paddedNumber = str_pad($this->reservation_number, 6, '0', STR_PAD_LEFT);
-        return $paddedNumber . '-' . $this->id;
+        static::created(function ($shopping) {
+            if (strpos($shopping->code, 'TEMP_') === 0) {
+                // Now we have the ID, format the code properly
+                $paddedNumber = str_pad($shopping->id, 6, '0', STR_PAD_LEFT);
+                $shopping->code = $paddedNumber . '-' . $shopping->id;
+                $shopping->saveQuietly(); // Save without triggering events again
+            }
+        });
     }
 }

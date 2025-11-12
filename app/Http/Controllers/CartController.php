@@ -44,10 +44,8 @@ class CartController extends Controller
             $shopping->total_price = (float) $request->input('price');
             $shopping->save();
 
-            // Now we have the reservation number, use it as the code for backward compatibility
-            $purchaseID = $shopping->formatted_reservation_number;
-            $shopping->code = $purchaseID;
-            $shopping->save();
+            // Code is auto-generated in the model boot method with format 000001-ID
+            $purchaseID = $shopping->code;
             
             foreach ($passengers as $passenger) {
                 $new = new Passenger();
@@ -124,10 +122,8 @@ class CartController extends Controller
             $shopping->total_price = (float) $request->input('price');
             $shopping->save();
 
-            // Now we have the reservation number, use it as the code
-            $purchaseID = $shopping->formatted_reservation_number;
-            $shopping->code = $purchaseID;
-            $shopping->save();
+            // Code is auto-generated in the model boot method with format 000001-ID
+            $purchaseID = $shopping->code;
 
             foreach ($passengers as $passenger) {
                 

@@ -38,8 +38,8 @@ class Shopping extends Model
 
     /**
      * Boot method to handle auto-incrementing code field
-     * Format: 000001-ID where first part is sequential counter, second is database ID
-     * Example: 000001-5 (first reservation with database ID 5)
+     * Format: 000001-1, 000002-2, etc. (both parts use sequential reservation number)
+     * Example: 000005-5 (fifth reservation), 000006-6 (sixth reservation)
      */
     protected static function boot()
     {
@@ -62,9 +62,9 @@ class Shopping extends Model
                 // Extract the sequential number from the temp code
                 $sequentialNumber = (int) str_replace('TEMP_', '', $shopping->code);
                 
-                // Format: 000001-[ID] where first part is sequential, second is database ID
+                // Format: 000001-1, 000002-2, etc. (both parts use sequential number)
                 $paddedSequential = str_pad($sequentialNumber, 6, '0', STR_PAD_LEFT);
-                $shopping->code = $paddedSequential . '-' . $shopping->id;
+                $shopping->code = $paddedSequential . '-' . $sequentialNumber;
                 $shopping->saveQuietly(); // Save without triggering events again
             }
         });

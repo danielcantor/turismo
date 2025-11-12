@@ -84,7 +84,7 @@
             <h4 class="mb-0">Si tu reserva es con alojamiento, especifica tu Dieta </h4>
             <div class="col-6">
                 <select name="" id="" class="form-select"  v-model="pasajero.dieta.tipo">
-                    <option value="0">Sin especificar</option>
+                    <option value="0" selected>Sin especificar</option>
                     <option value="1">Vegetariano </option>
                     <option value="2">Celiaco </option>
                     <option value="3">Diabético </option>

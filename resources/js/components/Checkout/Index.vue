@@ -313,7 +313,7 @@
         <p>Numero de reserva # {{cart.purchaseID}}</p>
         <p>En los proximos minutos se estara enviando un correo con la informacion de su compra y/o estado del pago</p>
         <p>Si no recibe el correo en los proximos minutos, por favor revise su bandeja de correo no deseado</p>
-        <p>Si tiene alguna duda o consulta, por favor escribanos a <a href="mailto:cynthiaedithgarske@gmail.com">cynthiaedithgarske@gmail.com</a></p>
+        <p>Si tiene alguna duda o consulta, por favor escribanos a <a href="mailto:cynthiagarsketurismo@gmail.com">cynthiagarsketurismo@gmail.com</a></p>
 
         <div class="mt-5">
             <a href="/" class="btn btn-primary">Volver al inicio</a>

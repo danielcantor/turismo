@@ -46,8 +46,8 @@ class Shopping extends Model
 
         static::creating(function ($shopping) {
             if (empty($shopping->reservation_number)) {
-                // Get the highest reservation_number and increment
-                $maxNumber = static::max('reservation_number') ?? 0;
+                // Use lockForUpdate to prevent race conditions
+                $maxNumber = static::lockForUpdate()->max('reservation_number') ?? 0;
                 $shopping->reservation_number = $maxNumber + 1;
             }
         });

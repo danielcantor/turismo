@@ -11,6 +11,7 @@ use App\Models\Passenger;
 use App\Models\Shopping;
 use App\Models\Facturacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class CartController extends Controller
 {
     public function index(Request $request){
@@ -23,47 +24,59 @@ class CartController extends Controller
         $product = Product::find($request->input('id'));
         $passengers = $request->input('pasajeros');
         
-        $shopping = new Shopping();
-        $shopping->product_id = $product->id;
-        $shopping->quantity = count($passengers);
-        
-        $factura = $request->input('facturacion');
-        $facturacion = new Facturacion();
-        $columns = $facturacion->getFillable();
-        foreach ($factura as $key => $value) {
-            if(!in_array($key, $columns)) continue;
-            $facturacion->$key = $value;
-        }
-        
-        $shopping->payment_status = 'reserved';
-        $shopping->payment_method = 'Reserva';
-        $shopping->total_price = (float) $request->input('price');
-        $shopping->save();
+        // Wrap in transaction to ensure atomicity
+        DB::beginTransaction();
+        try {
+            $shopping = new Shopping();
+            $shopping->product_id = $product->id;
+            $shopping->quantity = count($passengers);
+            
+            $factura = $request->input('facturacion');
+            $facturacion = new Facturacion();
+            $columns = $facturacion->getFillable();
+            foreach ($factura as $key => $value) {
+                if(!in_array($key, $columns)) continue;
+                $facturacion->$key = $value;
+            }
+            
+            $shopping->payment_status = 'reserved';
+            $shopping->payment_method = 'Reserva';
+            $shopping->total_price = (float) $request->input('price');
+            $shopping->save();
 
-        // Now we have the reservation number, use it as the code for backward compatibility
-        $purchaseID = $shopping->formatted_reservation_number;
-        $shopping->code = $purchaseID;
-        $shopping->save();
-        
-        foreach ($passengers as $passenger) {
-            $new = new Passenger();
-            $new->purchase_id = $shopping->id;
-            $new->nombre = $passenger['nombre'];
-            $new->apellido = $passenger['apellido'];
-            $new->nacimiento = $passenger['nacimiento'];
-            $new->email = $passenger['email'];
-            $new->nacionalidad = $passenger['nacionalidad'];
-            $new->documento = $passenger['documento'];
-            $new->celular = $passenger['celular'];
-            $new->emergencia_nombre = $passenger['emergencia']['nombre'];
-            $new->emergencia_apellido = $passenger['emergencia']['apellido'];
-            $new->emergencia_celular = $passenger['emergencia']['celular'];
-            $new->dieta_tipo = $passenger['dieta']['tipo'];
-            $new->save();
-        }
+            // Now we have the reservation number, use it as the code for backward compatibility
+            $purchaseID = $shopping->formatted_reservation_number;
+            $shopping->code = $purchaseID;
+            $shopping->save();
+            
+            foreach ($passengers as $passenger) {
+                $new = new Passenger();
+                $new->purchase_id = $shopping->id;
+                $new->nombre = $passenger['nombre'];
+                $new->apellido = $passenger['apellido'];
+                $new->nacimiento = $passenger['nacimiento'];
+                $new->email = $passenger['email'];
+                $new->nacionalidad = $passenger['nacionalidad'];
+                $new->documento = $passenger['documento'];
+                $new->celular = $passenger['celular'];
+                $new->emergencia_nombre = $passenger['emergencia']['nombre'];
+                $new->emergencia_apellido = $passenger['emergencia']['apellido'];
+                $new->emergencia_celular = $passenger['emergencia']['celular'];
+                $new->dieta_tipo = $passenger['dieta']['tipo'];
+                $new->save();
+            }
 
-        $facturacion->purchase_id = $shopping->id;
-        $facturacion->save();
+            $facturacion->purchase_id = $shopping->id;
+            $facturacion->save();
+            
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'error' => 'Failed to create reservation',
+                'message' => $e->getMessage()
+            ], 500);
+        }
         
         // Send reservation confirmation email to customer and store
         \App\Jobs\SendPurchaseEmail::dispatch(
@@ -93,45 +106,55 @@ class CartController extends Controller
     public function setPayload(Request $request){ 
         $product = Product::find($request->input('id'));
         $passengers = $request->input('pasajeros');
-        $shopping = new Shopping();
-        $shopping->product_id = $product->id;
-        $factura = $request->input('facturacion');
-        $facturacion = new Facturacion();
-        $columns = $facturacion->getFillable();
-        foreach ($factura as $key => $value) {
-            if(!in_array($key, $columns)) continue;
-            $facturacion->$key = $value;
-        }
-        $shopping->payment_status = 'pending';
-        $shopping->payment_method = $request->input('payment');
-        $shopping->total_price = (float) $request->input('price');
-        $shopping->save();
+        
+        // Wrap in transaction to ensure atomicity
+        DB::beginTransaction();
+        try {
+            $shopping = new Shopping();
+            $shopping->product_id = $product->id;
+            $factura = $request->input('facturacion');
+            $facturacion = new Facturacion();
+            $columns = $facturacion->getFillable();
+            foreach ($factura as $key => $value) {
+                if(!in_array($key, $columns)) continue;
+                $facturacion->$key = $value;
+            }
+            $shopping->payment_status = 'pending';
+            $shopping->payment_method = $request->input('payment');
+            $shopping->total_price = (float) $request->input('price');
+            $shopping->save();
 
-        // Now we have the reservation number, use it as the code
-        $purchaseID = $shopping->formatted_reservation_number;
-        $shopping->code = $purchaseID;
-        $shopping->save();
+            // Now we have the reservation number, use it as the code
+            $purchaseID = $shopping->formatted_reservation_number;
+            $shopping->code = $purchaseID;
+            $shopping->save();
 
-        foreach ($passengers as $passenger) {
+            foreach ($passengers as $passenger) {
+                
+                $new = new Passenger();
+                $new->purchase_id = $shopping->id;
+                $new->nombre = $passenger['nombre'];
+                $new->apellido = $passenger['apellido'];
+                $new->nacimiento = $passenger['nacimiento'];
+                $new->email = $passenger['email'];
+                $new->nacionalidad = $passenger['nacionalidad'];
+                $new->documento = $passenger['documento'];
+                $new->celular = $passenger['celular'];
+                $new->emergencia_nombre = $passenger['emergencia']['nombre'];
+                $new->emergencia_apellido = $passenger['emergencia']['apellido'];
+                $new->emergencia_celular = $passenger['emergencia']['celular'];
+                $new->dieta_tipo = $passenger['dieta']['tipo'];
+                $new->save();
+            }
+
+            $facturacion->purchase_id = $shopping->id;
+            $facturacion->save();
             
-            $new = new Passenger();
-            $new->purchase_id = $shopping->id;
-            $new->nombre = $passenger['nombre'];
-            $new->apellido = $passenger['apellido'];
-            $new->nacimiento = $passenger['nacimiento'];
-            $new->email = $passenger['email'];
-            $new->nacionalidad = $passenger['nacionalidad'];
-            $new->documento = $passenger['documento'];
-            $new->celular = $passenger['celular'];
-            $new->emergencia_nombre = $passenger['emergencia']['nombre'];
-            $new->emergencia_apellido = $passenger['emergencia']['apellido'];
-            $new->emergencia_celular = $passenger['emergencia']['celular'];
-            $new->dieta_tipo = $passenger['dieta']['tipo'];
-            $new->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
-
-        $facturacion->purchase_id = $shopping->id;
-        $facturacion->save();
         return [
             'purchaseID' => $purchaseID,
             'product' => $product,

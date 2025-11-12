@@ -30,10 +30,10 @@
 <div class="container">
   <ul class="nav nav-pills mb-3">
     <li class="nav-item">
-      <a class="nav-link" :class="[ cart.step === 1 ? 'active' : 'disabled']" href="#">Información de facturación</a>
+      <a class="nav-link" :class="[ cart.step === 1 ? 'active' : 'disabled']" href="#">Información de Pasajeros</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" :class="[ cart.step === 2 ? 'active' : 'disabled']"  href="#">Información de Pasajeros</a>
+      <a class="nav-link" :class="[ cart.step === 2 ? 'active' : 'disabled']"  href="#">Información de facturación</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" :class="[ cart.step === 3 ? 'active' : 'disabled']"  href="#">Confirmación de compra</a>
@@ -65,6 +65,37 @@
         </ul>
       </div>
       <div class="col-md-7 col-lg-8" v-show="cart.step === 1">
+        <h4 class="mb-3">Seleccionar cantidad de pasajeros</h4>
+          <div class="row g-3">
+            <div class="col-12">
+            <label for="state" class="form-label">Cantidad</label>
+              <select class="form-select" id="state" required v-model.number="quantity">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+                <option value=9>9</option>
+                <option value=10>10</option>
+                <option disabled="true" selected="true" value="">Selecciona</option>              
+              </select>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+        <h4 class="mb-3">Informacion de pasajeros</h4>
+
+        <pasajeros v-for="(qty, index) in quantity" :key="index" :pasajero="pasajeros[index]" :qty="qty" @error="setError" :ref="'pasajero' + index"></pasajeros>
+
+        <hr class="my-4">
+
+        <button class="mx-auto d-block btn btn-success btn-lg" @click="step2">Continuar</button>
+      </div>
+      <div class="col-md-7 col-lg-8" v-show="cart.step === 2">
         <h4 class="mb-3">Informacion de facturación</h4>
           <div class="row g-3">
             <div class="col-sm-6">
@@ -159,39 +190,8 @@
               </div>
             </div>
           </div>
-          <hr class="my-4">
-
-          <h4 class="mb-3">Pasajeros</h4>
-          <div class="row g-3">
-            <div class="col-12">
-            <label for="state" class="form-label">Cantidad</label>
-              <select class="form-select" id="state" required v-model.number="quantity">
-                <option value=1>1</option>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=4>4</option>
-                <option value=5>5</option>
-                <option value=6>6</option>
-                <option value=7>7</option>
-                <option value=8>8</option>
-                <option value=9>9</option>
-                <option value=10>10</option>
-                <option disabled="true" selected="true" value="">Selecciona</option>              
-              </select>
-            </div>
-          </div>
 
           <hr class="my-4">
-
-          <hr class="my-4">
-
-          <button class="mx-auto d-block btn btn-success btn-lg" @click="step2">Continuar</button>
-      </div>
-      <div class="col-md-7 col-lg-8" v-show="cart.step === 2">
-
-        <h4 class="mb-3">Informacion de pasajeros</h4>
-
-        <pasajeros v-for="(qty, index) in quantity" :key="index" :pasajero="pasajeros[index]" :qty="qty" @error="setError" :ref="'pasajero' + index"></pasajeros>
 
         <div class="row mt-3">
           <div class="col-6 text-center">
@@ -433,20 +433,13 @@
         },
         methods: {
           step2(){
-            let keys = Object.keys(this.cart.data);
-            let count = 0;
-              for(let i=0; i< keys.length; i++){
-                let key = keys[i];
-                if(this.cart.data[key] === '') {
-                    this.cart.errors[key] = true;
-                    count++;
-                }
-              }
-              if(count > 0) {
-                  return;
-              }
-              this.resetErrors();
-              this.cart.step = 2;
+            // Validate passengers data before moving to step 2
+            for(let i=0; i< this.quantity ; i++){
+              this.$refs['pasajero' + i][0].CheckPropData();
+            }
+            if(this.error) return;
+            
+            this.cart.step = 2;
           },
           ChangePrice(val) {
             const normalPrice = this.product.product_price * val;
@@ -493,12 +486,21 @@
             this.cart.errors.telefono = false;
           },
           step3 (){
-            for(let i=0; i< this.quantity ; i++){
-              this.$refs['pasajero' + i][0].CheckPropData();
-            }
-            if(this.error) return;
-            
-            this.cart.step = 3;
+            // Validate billing data before moving to step 3
+            let keys = Object.keys(this.cart.data);
+            let count = 0;
+              for(let i=0; i< keys.length; i++){
+                let key = keys[i];
+                if(this.cart.data[key] === '') {
+                    this.cart.errors[key] = true;
+                    count++;
+                }
+              }
+              if(count > 0) {
+                  return;
+              }
+              this.resetErrors();
+              this.cart.step = 3;
           },
           confirmReservation() {
             axios.post('/cart/reserve', {

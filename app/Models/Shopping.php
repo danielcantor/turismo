@@ -13,6 +13,7 @@ class Shopping extends Model
 
     protected $fillable = [
         'code',
+        'reservation_number',
         'user_id',
         'product_id',
         'payment_status',
@@ -34,5 +35,29 @@ class Shopping extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    /**
+     * Boot method to handle auto-incrementing reservation_number
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($shopping) {
+            if (empty($shopping->reservation_number)) {
+                // Get the highest reservation_number and increment
+                $maxNumber = static::max('reservation_number') ?? 0;
+                $shopping->reservation_number = $maxNumber + 1;
+            }
+        });
+    }
+
+    /**
+     * Get formatted reservation number with leading zeros
+     */
+    public function getFormattedReservationNumberAttribute()
+    {
+        return str_pad($this->reservation_number, 6, '0', STR_PAD_LEFT);
     }
 }

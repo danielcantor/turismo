@@ -22,10 +22,8 @@ class CartController extends Controller
     public function reserve(Request $request){
         $product = Product::find($request->input('id'));
         $passengers = $request->input('pasajeros');
-        $purchaseID = rand(1, 1000000) . $product->id;
         
         $shopping = new Shopping();
-        $shopping->code = $purchaseID;
         $shopping->product_id = $product->id;
         $shopping->quantity = count($passengers);
         
@@ -37,9 +35,19 @@ class CartController extends Controller
             $facturacion->$key = $value;
         }
         
+        $shopping->payment_status = 'reserved';
+        $shopping->payment_method = 'Reserva';
+        $shopping->total_price = (float) $request->input('price');
+        $shopping->save();
+
+        // Now we have the reservation number, use it as the code for backward compatibility
+        $purchaseID = $shopping->formatted_reservation_number;
+        $shopping->code = $purchaseID;
+        $shopping->save();
+        
         foreach ($passengers as $passenger) {
             $new = new Passenger();
-            $new->purchase_id = $purchaseID;
+            $new->purchase_id = $shopping->id;
             $new->nombre = $passenger['nombre'];
             $new->apellido = $passenger['apellido'];
             $new->nacimiento = $passenger['nacimiento'];
@@ -53,11 +61,6 @@ class CartController extends Controller
             $new->dieta_tipo = $passenger['dieta']['tipo'];
             $new->save();
         }
-        
-        $shopping->payment_status = 'reserved';
-        $shopping->payment_method = 'Reserva';
-        $shopping->total_price = (float) $request->input('price');
-        $shopping->save();
 
         $facturacion->purchase_id = $shopping->id;
         $facturacion->save();
@@ -90,9 +93,7 @@ class CartController extends Controller
     public function setPayload(Request $request){ 
         $product = Product::find($request->input('id'));
         $passengers = $request->input('pasajeros');
-        $purchaseID = rand(1, 1000000) . $product->id;
         $shopping = new Shopping();
-        $shopping->code = $purchaseID;
         $shopping->product_id = $product->id;
         $factura = $request->input('facturacion');
         $facturacion = new Facturacion();
@@ -101,10 +102,20 @@ class CartController extends Controller
             if(!in_array($key, $columns)) continue;
             $facturacion->$key = $value;
         }
+        $shopping->payment_status = 'pending';
+        $shopping->payment_method = $request->input('payment');
+        $shopping->total_price = (float) $request->input('price');
+        $shopping->save();
+
+        // Now we have the reservation number, use it as the code
+        $purchaseID = $shopping->formatted_reservation_number;
+        $shopping->code = $purchaseID;
+        $shopping->save();
+
         foreach ($passengers as $passenger) {
             
             $new = new Passenger();
-            $new->purchase_id = $purchaseID;
+            $new->purchase_id = $shopping->id;
             $new->nombre = $passenger['nombre'];
             $new->apellido = $passenger['apellido'];
             $new->nacimiento = $passenger['nacimiento'];
@@ -118,10 +129,6 @@ class CartController extends Controller
             $new->dieta_tipo = $passenger['dieta']['tipo'];
             $new->save();
         }
-        $shopping->payment_status = 'pending';
-        $shopping->payment_method = $request->input('payment');
-        $shopping->total_price = (float) $request->input('price');
-        $shopping->save();
 
         $facturacion->purchase_id = $shopping->id;
         $facturacion->save();

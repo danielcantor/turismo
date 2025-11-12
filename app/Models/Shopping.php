@@ -38,7 +38,8 @@ class Shopping extends Model
 
     /**
      * Boot method to handle auto-incrementing code field
-     * Format: 000001-1, 000002-2, etc.
+     * Format: 000001-ID where first part is sequential counter, second is database ID
+     * Example: 000001-5 (first reservation with database ID 5)
      */
     protected static function boot()
     {
@@ -46,10 +47,10 @@ class Shopping extends Model
 
         static::creating(function ($shopping) {
             if (empty($shopping->code)) {
-                // Get the maximum ID to determine the next sequential number
+                // Count existing records to get next sequential number
                 // Use lockForUpdate to prevent race conditions
-                $maxId = static::lockForUpdate()->max('id') ?? 0;
-                $nextSequential = $maxId + 1;
+                $count = static::lockForUpdate()->count();
+                $nextSequential = $count + 1;
                 
                 // Temporarily set a placeholder for code (will be updated after save)
                 $shopping->code = 'TEMP_' . $nextSequential;
@@ -58,9 +59,12 @@ class Shopping extends Model
 
         static::created(function ($shopping) {
             if (strpos($shopping->code, 'TEMP_') === 0) {
-                // Now we have the ID, format the code properly
-                $paddedNumber = str_pad($shopping->id, 6, '0', STR_PAD_LEFT);
-                $shopping->code = $paddedNumber . '-' . $shopping->id;
+                // Extract the sequential number from the temp code
+                $sequentialNumber = (int) str_replace('TEMP_', '', $shopping->code);
+                
+                // Format: 000001-[ID] where first part is sequential, second is database ID
+                $paddedSequential = str_pad($sequentialNumber, 6, '0', STR_PAD_LEFT);
+                $shopping->code = $paddedSequential . '-' . $shopping->id;
                 $shopping->saveQuietly(); // Save without triggering events again
             }
         });

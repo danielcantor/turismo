@@ -54,10 +54,12 @@ class Shopping extends Model
     }
 
     /**
-     * Get formatted reservation number with leading zeros
+     * Get formatted reservation number with leading zeros and ID
+     * Format: 000001-1, 000002-2, etc.
      */
     public function getFormattedReservationNumberAttribute()
     {
-        return str_pad($this->reservation_number, 6, '0', STR_PAD_LEFT);
+        $paddedNumber = str_pad($this->reservation_number, 6, '0', STR_PAD_LEFT);
+        return $paddedNumber . '-' . $this->id;
     }
 }

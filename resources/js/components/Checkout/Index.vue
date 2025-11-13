@@ -87,7 +87,7 @@
 
           <hr class="my-4">
 
-        <h4 class="mb-3">Informacion de pasajeros</h4>
+        <h4 class="mb-3">Datos de los pasajeros</h4>
 
         <pasajeros v-for="(qty, index) in quantity" :key="index" :pasajero="pasajeros[index]" :qty="qty" @error="setError" :ref="'pasajero' + index"></pasajeros>
 

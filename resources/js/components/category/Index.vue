@@ -54,6 +54,11 @@
                   <div v-if="errors.name" class="text-danger">{{ errors.name[0] }}</div>
                 </div>
                 <div class="mb-3">
+                  <label class="form-label">Subtitulo</label>
+                  <input type="text" class="form-control" v-model="category.subtitle" />
+                  <div v-if="errors.subtitle" class="text-danger">{{ errors.subtitle[0] }}</div>
+                </div>
+                <div class="mb-3">
                   <label class="form-label">URL</label>
                   <input type="text" class="form-control" v-model="category.slug" />
                   <div v-if="errors.slug" class="text-danger">{{ errors.slug[0] }}</div>
@@ -114,6 +119,7 @@
           id: null,
           name: '',
           slug: '',
+          subtitle: '',
           description: '',
           image: null,
           home_image: null

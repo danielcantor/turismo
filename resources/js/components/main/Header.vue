@@ -23,7 +23,7 @@
             </li>
             <li class="nav-item dropdown" v-if="categories.length">
               <a class="nav-link dropdown-toggle" :class="currentPage.indexOf('destinos') > -1 ? 'active' : ' '" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Argentina
+                Destinos
               </a>
               <ul class="dropdown-menu">
                 <li v-for="category in categories" :key="category.id">

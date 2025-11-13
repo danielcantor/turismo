@@ -1,7 +1,7 @@
 <template>
     <div>
         <hr class="my-4">
-        <h4 class="mb-3">Informacion del pasajero  {{qty}}</h4>
+        <h4 class="mb-3">Datos del pasajero {{qty}}</h4>
         <div class="row g-3">
             <div class="col-6">
                 <label  class="form-label">Nombre</label>

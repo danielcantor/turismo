@@ -64,4 +64,20 @@ class Product extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    /**
+     * Get the main image for the product
+     */
+    public function getMainImage()
+    {
+        return $this->images()->where('type', 'main')->first();
+    }
+
+    /**
+     * Get all slider images for the product
+     */
+    public function getSliderImages()
+    {
+        return $this->images()->where('type', 'slider')->orderBy('order')->get();
+    }
 }

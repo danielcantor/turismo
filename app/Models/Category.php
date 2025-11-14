@@ -29,6 +29,22 @@ class Category extends Model
     }
 
     /**
+     * Get the main image for the category
+     */
+    public function getMainImage()
+    {
+        return $this->images()->where('type', 'main')->first();
+    }
+
+    /**
+     * Get the home image for the category
+     */
+    public function getHomeImage()
+    {
+        return $this->images()->where('type', 'home')->first();
+    }
+
+    /**
      * Usar el slug para el route model binding
      */
     public function getRouteKeyName()

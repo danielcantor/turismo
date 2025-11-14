@@ -17,11 +17,21 @@ class Image extends Model
         'imageable_type'
     ];
 
+    protected $appends = ['url'];
+
     /**
      * Get the parent imageable model (Category, Product, etc.)
      */
     public function imageable()
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Get the full URL for the image
+     */
+    public function getUrlAttribute()
+    {
+        return \Storage::url($this->path);
     }
 }

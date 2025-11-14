@@ -24,6 +24,7 @@
     <meta name="msapplication-TileImage" content="{{ url('/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
     <title>Inicio</title>
+    @include('partials.google-analytics')
 </head>
 <body>
     <div id="app">

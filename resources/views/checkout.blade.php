@@ -25,6 +25,7 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Checkout</title>
+    @include('partials.google-analytics')
 </head>
 <body>
     <div id="app">

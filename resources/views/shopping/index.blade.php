@@ -26,6 +26,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Compras</title>
+    @include('partials.google-analytics')
 </head>
 <body>
     <div id="app">

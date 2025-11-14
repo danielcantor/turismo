@@ -17,6 +17,7 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="description" content="Detalle del Producto">
     <title>{{ $product->product_name ?? 'Detalle del Producto' }}</title>
+    @include('partials.google-analytics')
 </head>
 <body>
     <div id="app">

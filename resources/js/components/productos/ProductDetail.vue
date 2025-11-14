@@ -77,10 +77,6 @@
                   <span v-if="hasMultipleDepartureDates">Salidas disponibles</span>
                   <span v-else>Fecha de salida: {{ formatDate(product.departure_dates[0].date) }}</span>
                 </div>
-                <div v-else-if="product.departure_date" class="detail-item">
-                  <i class="fas fa-plane-departure me-2"></i>
-                  <span>Fecha de salida: {{ formatDate(product.departure_date) }}</span>
-                </div>
               </div>
             </div>
           </div>

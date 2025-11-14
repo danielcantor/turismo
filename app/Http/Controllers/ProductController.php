@@ -32,7 +32,6 @@ class ProductController extends Controller
             'product_price' => 'required|numeric|min:0',
             'days' => 'required|numeric|min:0',
             'nights' => 'required|numeric|min:0',
-            'departure_date' => 'nullable|date',
             'departure_dates' => 'nullable|array',
             'departure_dates.*' => 'required|date'
         ]);
@@ -54,7 +53,6 @@ class ProductController extends Controller
         $product->product_price = $request->input('product_price');
         $product->days = $request->input('days');
         $product->nights = $request->input('nights');
-        $product->departure_date = $request->input('departure_date');
         
         if ($request->hasFile('product_image')) {
             $imagePath = $request->file('product_image')->store('images', 'public');
@@ -191,7 +189,6 @@ class ProductController extends Controller
             'product_price' => 'required|numeric|min:0',
             'days' => 'required|numeric|min:0',
             'nights' => 'required|numeric|min:0',
-            'departure_date' => 'nullable|date',
             'departure_dates' => 'nullable|array',
             'departure_dates.*' => 'required|date'
         ]);
@@ -228,7 +225,6 @@ class ProductController extends Controller
         $producto->product_price = $request->input('product_price');
         $producto->days = $request->input('days');
         $producto->nights = $request->input('nights');
-        $producto->departure_date = $request->input('departure_date');
     
         $producto->save();
     

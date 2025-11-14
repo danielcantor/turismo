@@ -20,8 +20,7 @@ class Product extends Model
         'product_image',
         'product_activate',
         'days',
-        'nights',
-        'departure_date'
+        'nights'
     ];
 
     /**

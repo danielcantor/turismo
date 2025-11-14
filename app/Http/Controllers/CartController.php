@@ -31,6 +31,11 @@ class CartController extends Controller
             $shopping->product_id = $product->id;
             $shopping->quantity = count($passengers);
             
+            // Store selected departure date if provided
+            if ($request->has('departure_date_id') && $request->input('departure_date_id')) {
+                $shopping->departure_date_id = $request->input('departure_date_id');
+            }
+            
             $factura = $request->input('facturacion');
             $facturacion = new Facturacion();
             $columns = $facturacion->getFillable();
@@ -107,6 +112,12 @@ class CartController extends Controller
         try {
             $shopping = new Shopping();
             $shopping->product_id = $product->id;
+            
+            // Store selected departure date if provided
+            if ($request->has('departure_date_id') && $request->input('departure_date_id')) {
+                $shopping->departure_date_id = $request->input('departure_date_id');
+            }
+            
             $factura = $request->input('facturacion');
             $facturacion = new Facturacion();
             $columns = $facturacion->getFillable();

@@ -20,6 +20,9 @@
       @close-modal="closeModal"
       @update-form="updateForm"
       :categories="categories"
+      :departureDates="departureDates"
+      @add-departure-date="addDepartureDate"
+      @remove-departure-date="removeDepartureDate"
     />
   </div>
 </template>
@@ -51,9 +54,9 @@ export default {
         product_slider: null,
         days: '',
         nights: '',
-        product_type: '',
-        departure_date: ''
+        product_type: ''
       },
+      departureDates: [],
       isEditMode: false,
       currentProductId: null,
       categories: []
@@ -107,9 +110,15 @@ export default {
             product_slider: product.product_slider, // URL del slider actual desde la base de datos
             days: product.days,
             nights: product.nights,
-            product_type: product.product_type,
-            departure_date: product.departure_date
+            product_type: product.product_type
           };
+          
+          // Cargar fechas de salida
+          if (product.departure_dates && product.departure_dates.length > 0) {
+            this.departureDates = product.departure_dates.map(d => d.date);
+          } else {
+            this.departureDates = [];
+          }
     
           new bootstrap.Modal(this.$refs.productModal.$el).show();
         })
@@ -121,6 +130,13 @@ export default {
       const formData = new FormData();
       for (const key in this.form) {
         formData.append(key, this.form[key]);
+      }
+      
+      // Agregar fechas de salida como array
+      if (this.departureDates.length > 0) {
+        this.departureDates.forEach((date, index) => {
+          formData.append(`departure_dates[${index}]`, date);
+        });
       }
 
       const config = {
@@ -167,13 +183,23 @@ export default {
         product_slider: null,
         days: '',
         nights: '',
-        product_type: '',
-        departure_date: ''
+        product_type: ''
       };
+      this.departureDates = [];
       this.currentProductId = null;
     },
     updateForm(field, value) {
       this.form[field] = value;
+    },
+    addDepartureDate(date) {
+      if (date && !this.departureDates.includes(date)) {
+        this.departureDates.push(date);
+        // Ordenar las fechas
+        this.departureDates.sort();
+      }
+    },
+    removeDepartureDate(index) {
+      this.departureDates.splice(index, 1);
     },
     eliminarProducto(id) {
       if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {

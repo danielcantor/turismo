@@ -20,8 +20,7 @@ class Product extends Model
         'product_image',
         'product_activate',
         'days',
-        'nights',
-        'departure_date'
+        'nights'
     ];
 
     /**
@@ -48,5 +47,13 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'product_category', 'id');
+    }
+
+    /**
+     * Relación con DepartureDate - un producto puede tener múltiples fechas de salida
+     */
+    public function departureDates()
+    {
+        return $this->hasMany(DepartureDate::class, 'product_id', 'id');
     }
 }

@@ -32,7 +32,8 @@ class ProductController extends Controller
             'product_price' => 'required|numeric|min:0',
             'days' => 'required|numeric|min:0',
             'nights' => 'required|numeric|min:0',
-            'departure_date' => 'nullable|date'
+            'departure_dates' => 'nullable|array',
+            'departure_dates.*' => 'required|date'
         ]);
     
         // Si la validación falla, devolvemos una respuesta JSON con los errores
@@ -52,7 +53,6 @@ class ProductController extends Controller
         $product->product_price = $request->input('product_price');
         $product->days = $request->input('days');
         $product->nights = $request->input('nights');
-        $product->departure_date = $request->input('departure_date');
         
         if ($request->hasFile('product_image')) {
             $imagePath = $request->file('product_image')->store('images', 'public');
@@ -63,6 +63,16 @@ class ProductController extends Controller
             $product->product_slider = $imagePath;
         }
         $product->save();
+    
+        // Handle multiple departure dates
+        if ($request->has('departure_dates') && is_array($request->input('departure_dates'))) {
+            foreach ($request->input('departure_dates') as $date) {
+                \App\Models\DepartureDate::create([
+                    'product_id' => $product->id,
+                    'date' => $date
+                ]);
+            }
+        }
     
         return response()->json([
             'success' => true,
@@ -158,7 +168,7 @@ class ProductController extends Controller
    }
     public function obtenerProducto($id)
     {
-        $product = Product::find($id);
+        $product = Product::with('departureDates')->find($id);
 
         if (!$product) {
             return response()->json(['error' => 'Producto no encontrado'], 404);
@@ -179,7 +189,8 @@ class ProductController extends Controller
             'product_price' => 'required|numeric|min:0',
             'days' => 'required|numeric|min:0',
             'nights' => 'required|numeric|min:0',
-            'departure_date' => 'nullable|date'
+            'departure_dates' => 'nullable|array',
+            'departure_dates.*' => 'required|date'
         ]);
     
         // Si la validación falla, devolvemos una respuesta JSON con los errores
@@ -214,9 +225,24 @@ class ProductController extends Controller
         $producto->product_price = $request->input('product_price');
         $producto->days = $request->input('days');
         $producto->nights = $request->input('nights');
-        $producto->departure_date = $request->input('departure_date');
     
         $producto->save();
+    
+        // Handle multiple departure dates - delete old ones and create new ones
+        if ($request->has('departure_dates')) {
+            // Delete existing departure dates
+            \App\Models\DepartureDate::where('product_id', $producto->id)->delete();
+            
+            // Create new departure dates
+            if (is_array($request->input('departure_dates'))) {
+                foreach ($request->input('departure_dates') as $date) {
+                    \App\Models\DepartureDate::create([
+                        'product_id' => $producto->id,
+                        'date' => $date
+                    ]);
+                }
+            }
+        }
     
         return response()->json(['message' => 'Producto actualizado con éxito']);
     }

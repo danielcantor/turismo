@@ -109,15 +109,51 @@
               />
             </div>
 
-            <!-- Fecha de salida del producto -->
+            <!-- Fechas de salida del producto -->
             <div class="mb-3">
-              <label for="departure_date" class="form-label">Fecha de salida:</label>
-              <input
-                type="date"
-                class="form-control"
-                id="departure_date"
-                v-model="form.departure_date"
-              />
+              <label class="form-label">Fechas de salida:</label>
+              <div class="mb-2">
+                <input
+                  type="date"
+                  class="form-control"
+                  id="new_departure_date"
+                  v-model="newDepartureDate"
+                  @keyup.enter="addDepartureDate"
+                />
+                <small class="form-text text-muted">Selecciona una fecha y presiona el botón "Agregar" para añadir múltiples fechas</small>
+              </div>
+              <button 
+                type="button" 
+                class="btn btn-sm btn-success mb-2" 
+                @click="addDepartureDate"
+                :disabled="!newDepartureDate"
+              >
+                <i class="fas fa-plus"></i> Agregar Fecha
+              </button>
+              
+              <!-- Lista de fechas agregadas -->
+              <div v-if="departureDates.length > 0" class="mt-2">
+                <div class="d-flex flex-wrap gap-2">
+                  <span 
+                    v-for="(date, index) in departureDates" 
+                    :key="index"
+                    class="badge bg-primary d-flex align-items-center"
+                    style="font-size: 0.9rem; padding: 0.5rem;"
+                  >
+                    {{ formatDate(date) }}
+                    <button 
+                      type="button" 
+                      class="btn-close btn-close-white ms-2" 
+                      style="font-size: 0.6rem;"
+                      @click="removeDepartureDate(index)"
+                      aria-label="Eliminar"
+                    ></button>
+                  </span>
+                </div>
+              </div>
+              <div v-else class="text-muted">
+                <small>No hay fechas de salida agregadas</small>
+              </div>
             </div>
             <!-- Tipo del producto -->
             <div class="mb-3">
@@ -149,7 +185,12 @@
 
 <script>
 export default {
-  props: ['isEditMode', 'form', "categories"],
+  props: ['isEditMode', 'form', 'categories', 'departureDates'],
+  data() {
+    return {
+      newDepartureDate: ''
+    };
+  },
   methods: {
     submitForm() {
       this.$emit('submit-form');
@@ -160,6 +201,26 @@ export default {
     handleFileUpload(field, event) {
       const file = event.target.files[0];
       this.$emit('update-form', field, file);
+    },
+    addDepartureDate() {
+      if (this.newDepartureDate && !this.departureDates.includes(this.newDepartureDate)) {
+        this.$emit('add-departure-date', this.newDepartureDate);
+        this.newDepartureDate = '';
+      }
+    },
+    removeDepartureDate(index) {
+      this.$emit('remove-departure-date', index);
+    },
+    formatDate(dateString) {
+      if (!dateString) return '';
+      const [year, month, day] = dateString.split('-');
+      const date = new Date(year, month - 1, day);
+      return new Intl.DateTimeFormat('es-AR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'America/Argentina/Buenos_Aires'
+      }).format(date);
     }
   }
 };

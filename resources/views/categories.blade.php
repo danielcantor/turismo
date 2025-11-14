@@ -25,6 +25,7 @@
     <meta name="theme-color" content="#ffffff">
     <title>Categorias</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @include('partials.google-analytics')
 </head>
 <body>
     <div id="app">

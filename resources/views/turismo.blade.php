@@ -17,6 +17,7 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="description" content="{{ $description }}">
     <title>{{ $pageName }}</title>
+    @include('partials.google-analytics')
 </head>
 <body>
     <div id="app">

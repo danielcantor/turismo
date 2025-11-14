@@ -54,15 +54,40 @@ class ProductController extends Controller
         $product->days = $request->input('days');
         $product->nights = $request->input('nights');
         
-        if ($request->hasFile('product_image')) {
-            $imagePath = $request->file('product_image')->store('images', 'public');
-            $product->product_image = $imagePath;
-        }
-        if ($request->hasFile('product_slider')) {
-            $imagePath = $request->file('product_slider')->store('images', 'public');
-            $product->product_slider = $imagePath;
-        }
         $product->save();
+
+        // Store main image using polymorphic relationship
+        if ($request->hasFile('product_image')) {
+            $imagePath = $request->file('product_image')->store('products', 'public');
+            $product->images()->create([
+                'path' => $imagePath,
+                'type' => 'main',
+                'order' => 0
+            ]);
+        }
+
+        // Store slider image(s) using polymorphic relationship
+        if ($request->hasFile('product_slider')) {
+            // Handle single file
+            if (!is_array($request->file('product_slider'))) {
+                $sliderPath = $request->file('product_slider')->store('products/slider', 'public');
+                $product->images()->create([
+                    'path' => $sliderPath,
+                    'type' => 'slider',
+                    'order' => 1
+                ]);
+            } else {
+                // Handle multiple files
+                foreach ($request->file('product_slider') as $index => $file) {
+                    $sliderPath = $file->store('products/slider', 'public');
+                    $product->images()->create([
+                        'path' => $sliderPath,
+                        'type' => 'slider',
+                        'order' => $index + 1
+                    ]);
+                }
+            }
+        }
     
         // Handle multiple departure dates
         if ($request->has('departure_dates') && is_array($request->input('departure_dates'))) {
@@ -77,7 +102,7 @@ class ProductController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Producto creado correctamente',
-            'product' => $product
+            'product' => $product->load('images')
         ]);
     }
     public function modificar()
@@ -168,14 +193,20 @@ class ProductController extends Controller
    }
     public function obtenerProducto($id)
     {
-        $product = Product::with('departureDates')->find($id);
+        $product = Product::with(['departureDates', 'images'])->find($id);
 
         if (!$product) {
             return response()->json(['error' => 'Producto no encontrado'], 404);
         }
 
-        $product->product_image = $product->product_image ? Storage::url($product->product_image) : null;
-        $product->product_slider = $product->product_slider ? Storage::url($product->product_slider) : null;
+        // Use polymorphic images if available, fallback to old columns
+        $mainImage = $product->getMainImage();
+        $sliderImages = $product->getSliderImages();
+
+        $product->product_image = $mainImage ? $mainImage->url : ($product->product_image ? Storage::url($product->product_image) : null);
+        $product->product_slider = $sliderImages->isNotEmpty() 
+            ? $sliderImages->pluck('url')->toArray() 
+            : ($product->product_slider ? Storage::url($product->product_slider) : null);
 
         return response()->json($product);
     }
@@ -206,16 +237,51 @@ class ProductController extends Controller
             return response()->json(['error' => 'Producto no encontrado'], 404);
         }
     
+        // Update main image if provided
         if ($request->hasFile('product_image')) {
-            Storage::delete("public/".$producto->product_image);
-            $imagePath = $request->file('product_image')->store('images', 'public');
-            $producto->product_image = $imagePath;
+            // Delete old main image
+            $oldMainImage = $producto->getMainImage();
+            if ($oldMainImage) {
+                Storage::disk('public')->delete($oldMainImage->path);
+                $oldMainImage->delete();
+            }
+            
+            // Create new main image
+            $imagePath = $request->file('product_image')->store('products', 'public');
+            $producto->images()->create([
+                'path' => $imagePath,
+                'type' => 'main',
+                'order' => 0
+            ]);
         }
     
+        // Update slider image(s) if provided
         if ($request->hasFile('product_slider')) {
-            Storage::delete("public/".$producto->product_slider);
-            $imagePath = $request->file('product_slider')->store('images', 'public');
-            $producto->product_slider = $imagePath;
+            // Delete old slider images
+            $oldSliderImages = $producto->getSliderImages();
+            foreach ($oldSliderImages as $image) {
+                Storage::disk('public')->delete($image->path);
+                $image->delete();
+            }
+            
+            // Create new slider images
+            if (!is_array($request->file('product_slider'))) {
+                $sliderPath = $request->file('product_slider')->store('products/slider', 'public');
+                $producto->images()->create([
+                    'path' => $sliderPath,
+                    'type' => 'slider',
+                    'order' => 1
+                ]);
+            } else {
+                foreach ($request->file('product_slider') as $index => $file) {
+                    $sliderPath = $file->store('products/slider', 'public');
+                    $producto->images()->create([
+                        'path' => $sliderPath,
+                        'type' => 'slider',
+                        'order' => $index + 1
+                    ]);
+                }
+            }
         }
     
         $producto->product_name = $request->input('product_name');
@@ -244,7 +310,7 @@ class ProductController extends Controller
             }
         }
     
-        return response()->json(['message' => 'Producto actualizado con éxito']);
+        return response()->json(['message' => 'Producto actualizado con éxito', 'product' => $producto->load('images')]);
     }
 
     public function activarDesactivarProducto($id){

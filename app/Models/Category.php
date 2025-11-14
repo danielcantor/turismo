@@ -21,6 +21,14 @@ class Category extends Model
     }
 
     /**
+     * Get all images for the category
+     */
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    /**
      * Usar el slug para el route model binding
      */
     public function getRouteKeyName()

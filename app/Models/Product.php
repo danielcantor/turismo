@@ -56,4 +56,12 @@ class Product extends Model
     {
         return $this->hasMany(DepartureDate::class, 'product_id', 'id');
     }
+
+    /**
+     * Get all images for the product
+     */
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }

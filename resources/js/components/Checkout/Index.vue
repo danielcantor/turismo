@@ -340,6 +340,7 @@
 <script>
     import axios from 'axios';
     import Pasajeros from './pasajeros.vue';
+    import ga4 from '../../utils/ga4';
     export default {  
       components: { Pasajeros },
       props: ['product'],
@@ -432,6 +433,9 @@
             }
             if(this.error) return;
             
+            // Track add_shipping_info event
+            ga4.trackAddShippingInfo(this.product, this.quantity, this.cart.total);
+            
             this.cart.step = 2;
           },
           ChangePrice(val) {
@@ -493,6 +497,10 @@
                   return;
               }
               this.resetErrors();
+              
+              // Track add_payment_info event
+              ga4.trackAddPaymentInfo(this.product, this.quantity, this.cart.total, this.cart.payment_type);
+              
               this.cart.step = 3;
           },
           confirmReservation() {
@@ -516,6 +524,10 @@
               }).then(response => {
                 if(response.data.purchaseID){
                   this.cart.purchaseID = response.data.purchaseID;
+                  
+                  // Track purchase event
+                  ga4.trackPurchase(this.product, this.quantity, this.cart.total, response.data.purchaseID);
+                  
                   this.cart.step = 4;
                 }else{
                     //modal en caso de error
@@ -556,6 +568,8 @@
         },
         mounted() {
           this.cart.total = this.product.product_price * this.quantity;
+          // Track begin_checkout event when checkout page loads
+          ga4.trackBeginCheckout(this.product, this.quantity, this.cart.total);
         }
     }
 </script>

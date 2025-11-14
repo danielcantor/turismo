@@ -67,6 +67,15 @@
       <div class="col-md-7 col-lg-8" v-show="cart.step === 1">
         <h4 class="mb-3">Seleccionar cantidad de pasajeros</h4>
           <div class="row g-3">
+            <div class="col-12" v-if="hasDepartureDates">
+              <label for="departureDate" class="form-label">Fecha de salida</label>
+              <select class="form-select" id="departureDate" required v-model="selectedDepartureDateId">
+                <option disabled="true" selected="true" value="">Selecciona una fecha</option>
+                <option v-for="date in product.departure_dates" :key="date.id" :value="date.id">
+                  {{ formatDepartureDate(date.date) }}
+                </option>
+              </select>
+            </div>
             <div class="col-12">
             <label for="state" class="form-label">Cantidad</label>
               <select class="form-select" id="state" required v-model.number="quantity">
@@ -368,6 +377,7 @@
                   total: 0
                 },
                 quantity: 1,
+                selectedDepartureDateId: '',
                 pasajeros : [
                   {
                     nombre: '',
@@ -408,6 +418,11 @@
             this.ChangePrice(val);
           },
 
+        },
+        computed: {
+          hasDepartureDates() {
+            return this.product.departure_dates && this.product.departure_dates.length > 0;
+          }
         },
         methods: {
           step2(){
@@ -481,13 +496,20 @@
               this.cart.step = 3;
           },
           confirmReservation() {
-            axios.post('/cart/reserve', {
+            const requestData = {
                 id: this.product.id,
                 price: this.cart.total,
                 payment: this.cart.payment_type,
                 pasajeros: this.pasajeros.slice(0, this.quantity),
                 facturacion : this.cart.data
-              },{
+            };
+            
+            // Add departure date if selected
+            if (this.selectedDepartureDateId) {
+              requestData.departure_date_id = this.selectedDepartureDateId;
+            }
+            
+            axios.post('/cart/reserve', requestData, {
                 headers: {
                   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
@@ -517,6 +539,17 @@
               this.cart.step = this.cart.step - 1;
             }
           },
+          formatDepartureDate(date) {
+            if (!date) return '';
+            const [year, month, day] = date.split('-');
+            const dateObj = new Date(year, month - 1, day);
+            return new Intl.DateTimeFormat('es-AR', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              timeZone: 'America/Argentina/Buenos_Aires'
+            }).format(dateObj);
+          }
         },
         beforeMount() {
           this.product.product_description = this.formatDescription(this.product.product_description);

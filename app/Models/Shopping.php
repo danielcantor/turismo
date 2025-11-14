@@ -15,6 +15,7 @@ class Shopping extends Model
         'code',
         'user_id',
         'product_id',
+        'departure_date_id',
         'payment_status',
         'payment_method',
         'total_price',
@@ -34,6 +35,11 @@ class Shopping extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function departureDate()
+    {
+        return $this->belongsTo(DepartureDate::class);
     }
 
     /**

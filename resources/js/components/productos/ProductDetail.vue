@@ -72,7 +72,12 @@
                   <span v-if="isFullDay">Full day</span>
                   <span v-else>{{ product.days }} {{ daysText }}, {{ product.nights }} {{ nightsText }}</span>
                 </div>
-                <div v-if="product.departure_date" class="detail-item">
+                <div v-if="hasDepartureDates" class="detail-item">
+                  <i class="fas fa-plane-departure me-2"></i>
+                  <span v-if="hasMultipleDepartureDates">Salidas disponibles</span>
+                  <span v-else>Fecha de salida: {{ formatDate(product.departure_dates[0].date) }}</span>
+                </div>
+                <div v-else-if="product.departure_date" class="detail-item">
                   <i class="fas fa-plane-departure me-2"></i>
                   <span>Fecha de salida: {{ formatDate(product.departure_date) }}</span>
                 </div>
@@ -230,6 +235,12 @@ export default {
     },
     nightsText() {
       return this.product.nights === 1 ? 'noche' : 'noches';
+    },
+    hasDepartureDates() {
+      return this.product.departure_dates && this.product.departure_dates.length > 0;
+    },
+    hasMultipleDepartureDates() {
+      return this.product.departure_dates && this.product.departure_dates.length > 1;
     }
   },
   mounted() {

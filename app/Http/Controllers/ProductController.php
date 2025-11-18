@@ -153,19 +153,19 @@ class ProductController extends Controller
         $products = Product::paginate($perPage, ['*'], 'page', $page);    
         return response()->json($products);
     }
-   public function show_product($id)
-   {
-       $product = Product::find($id);
-   
-       if (!$product) {
-           abort(404);
-       }
+    public function show_product($id)
+    {
+        $product = Product::with('departureDates')->find($id);
 
-       // Return the new Vue.js based product detail view
-       return view('productos.product_detail', [
-              'product' => $product
-         ]);
-   }
+        if (!$product) {
+            abort(404);
+        }
+
+        // Return the new Vue.js based product detail view
+        return view('productos.product_detail', [
+            'product' => $product
+        ]);
+    }
     public function obtenerProducto($id)
     {
         $product = Product::with('departureDates')->find($id);

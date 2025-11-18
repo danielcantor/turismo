@@ -74,7 +74,13 @@
                 </div>
                 <div v-if="hasDepartureDates" class="detail-item">
                   <i class="fas fa-plane-departure me-2"></i>
-                  <span v-if="hasMultipleDepartureDates">Salidas disponibles</span>
+                  <span v-if="hasMultipleDepartureDates">Salidas disponibles 
+                  <ul class="mt-2">
+                      <li v-for="(dateObj, index) in product.departure_dates" :key="index">
+                          {{ formatDate(dateObj.date) }}
+                      </li>
+                  </ul>
+                  </span>
                   <span v-else>Fecha de salida: {{ formatDate(product.departure_dates[0].date) }}</span>
                 </div>
               </div>

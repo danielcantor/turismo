@@ -27,7 +27,7 @@ class ShoppingController extends Controller
     public function index($id) : View
     {
         $products = new Product;
-        $product = $products->getProduct($id);
+        $product = $products->with('departureDates')->find($id);
         
         return view('checkout', [
             'product' => $product

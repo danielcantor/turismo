@@ -12,7 +12,7 @@
                         <div class="row">
                             <div class="col-md-6 col-12">
                                 <p class="fw-bolder mb-2" style="font-family:poppins;">Email</p>
-                                <p>cynthiaedithgarske@gmail.com</p> 
+                                <p>cynthiagarsketurismo@gmail.com</p> 
 
                                 <p class="fw-bolder" style="font-family:poppins;">Siguenos en redes sociales</p>
                                 <p> 

@@ -60,27 +60,27 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      categories: [],
       currentPage: window.location.pathname,
       isAdmin: false
     };
   },
+  computed: {
+    // reactive, provisto por app.js
+    categories() {
+      return this.$categories.list;
+    }
+  },
   created() {
-    this.fetchCategories();
+    // ya no fetchCategories(), solo comprobar admin
     this.checkAdminStatus();
   },
   methods: {
-    fetchCategories() {
-      axios.get('/api/categories')
-        .then(response => {
-          this.categories = response.data;
-        });
-    },
     checkAdminStatus() {
       axios.get('/admin/status')
         .then(response => {
           this.isAdmin = response.data.authenticated;
-        });
+        })
+        .catch(() => { this.isAdmin = false; });
     }
   }
 };

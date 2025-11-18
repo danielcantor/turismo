@@ -89,7 +89,6 @@
         data() {
             return {
                 products: window.posts,
-                categories: [],
                 settings: {
                     "dots": true,
                     "infinite": false,
@@ -128,6 +127,10 @@
             }
         },
         computed: {
+            // Reactividad correcta: lee del observable global
+            categories() {
+                return this.$categories.list;
+            },
             // Agrupa 'categories' en subarreglos de 3 elementos
             chunkedCategories() {
             const chunkSize = 3
@@ -139,15 +142,7 @@
             }
         },
         methods: {
-            fetchCategories() {
-            axios.get('/api/categories')
-                .then(response => {
-                this.categories = response.data;
-                });
-            }
-        },
-        created() {
-            this.fetchCategories();
+            
         }
     }
 </script>

@@ -18,17 +18,19 @@
                 <ul class='ps-0'>
                     <li class="list-group-item fw-light"><a href='/' class='text-light text-decoration-none'> Inicio </a></li>
                     <li class="list-group-item fw-light"><a href='/nosotros' class='text-light text-decoration-none'> Nosotros </a></li>
-                    <li class="list-group-item fw-light"><a href='/destinos/nacional' class='text-light text-decoration-none'> Turismo Nacional </a></li>
-                    <li class="list-group-item fw-light"><a href='/destinos/internacional' class='text-light text-decoration-none'> Turismo Internacional </a></li>
-                    <li class="list-group-item fw-light"><a href='/destinos/aereo' class='text-light text-decoration-none'> Pasajes </a></li>
-                    <li class="list-group-item fw-light"><a href='/contacto' class='text-light text-decoration-none'> Contacto </a></li>
+                        <li v-for="cat in localCategories" :key="cat.id" class="list-group-item fw-light">
+                            <a :href="`/destinos/${cat.slug}`" class="text-light text-decoration-none">
+                                {{ cat.name }}
+                            </a>
+                        </li>                    
+                        <li class="list-group-item fw-light"><a href='/contacto' class='text-light text-decoration-none'> Contacto </a></li>
                 </ul>
             </div>
             <div class="col-xl-4 col-6 text-light">
                 <h5 class='fw-bold'>Contacto</h5>
                 <ul class='ps-0'>
                     <li class="list-group-item  align-middle fw-light"><img src="/img/icons/cel.svg" width='6.5%'> +54 9 11 3413-8037</li>
-                    <li class="list-group-item  align-middle fw-light"><img src="/img/icons/mail.svg" width='6.5%'> cynthiaedithgarske@gmail.com </li>
+                    <li class="list-group-item  align-middle fw-light"><img src="/img/icons/mail.svg" width='6.5%'> cynthiagarsketurismo@gmail.com </li>
                 </ul>
             </div>
             <div class="col-xl-4 col-6 text-light">
@@ -70,8 +72,21 @@
      }
 </style>
 <script>
-    export default {
-        mounted() {
-        }
+import axios from 'axios';
+
+export default {
+  props: {
+    categories: {
+      type: Array,
+      default: () => []
     }
+  },
+  computed: {
+    // si el padre pasó categories las usa; sino usa la global
+    localCategories() {
+      return (this.categories && this.categories.length) ? this.categories : this.$categories.list;
+    }
+  }
+  // ya no necesita created ni fetchCategories
+};
 </script>

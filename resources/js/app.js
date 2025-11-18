@@ -1,6 +1,7 @@
 require('./bootstrap');
 
 import Vue from 'vue';
+import axios from 'axios';
 window.bootstrap = require('bootstrap');
 import IndexComponent from './components/home/Index.vue';
 import HeaderComponent from './components/main/Header.vue';
@@ -21,6 +22,18 @@ import ProductosComponent from "./components/productos/Productos.vue";
 import Category from "./components/category/Index.vue";
 import ProductDetailComponent from "./components/productos/ProductDetail.vue";
 
+// reactive container for categories (Vue 2)
+Vue.prototype.$categories = Vue.observable({ list: [] });
+
+// fetch categories once
+axios.get('/api/categories')
+  .then(res => {
+    Vue.prototype.$categories.list = Array.isArray(res.data) ? res.data : (res.data.data || []);
+  })
+  .catch(err => {
+    console.error('Failed to load categories', err);
+    Vue.prototype.$categories.list = [];
+});
 Vue.component('index-component', IndexComponent);
 Vue.component('header-component', HeaderComponent);
 Vue.component('footer-component', FooterComponent);

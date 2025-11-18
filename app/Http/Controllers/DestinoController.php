@@ -17,9 +17,20 @@ class DestinoController extends Controller
         $today = now()->format('Y-m-d');
         $products = $category->products()
             ->where('product_activate', 1)
-            ->orderByRaw("CASE WHEN departure_date >= ? THEN 0 ELSE 1 END", [$today])
-            ->orderByRaw("CASE WHEN departure_date >= ? THEN departure_date END", [$today])
-            ->orderBy('created_at', 'desc')
+            ->with(['departureDates' => function($query) use ($today) {
+                $query->where('date', '>=', $today)
+                      ->orderBy('date', 'asc');
+            }])
+            ->get()
+            ->sortBy(function($product) use ($today) {
+                $nextDate = $product->departureDates->first();
+                // Products with future dates first, ordered by closest date
+                if ($nextDate) {
+                    return $nextDate->date;
+                }
+                // Products without future dates go to the end, ordered by created_at desc
+                return '9999-99-99';
+            })
             ->paginate(12);
 
         return view('turismo')->with([

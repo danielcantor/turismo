@@ -12,14 +12,26 @@ use Illuminate\Support\Facades\Hash;
 class IndexController extends Controller
 {
     public function index() : View {
-        // Order by closest future date first, then by latest created
+        // Order by closest future date from departureDates relationship
         $today = now()->format('Y-m-d');
         $products = Product::where('product_activate', 1)
-            ->orderByRaw("CASE WHEN departure_date >= ? THEN 0 ELSE 1 END", [$today])
-            ->orderByRaw("CASE WHEN departure_date >= ? THEN departure_date END", [$today])
-            ->orderBy('created_at', 'desc')
+            ->with(['departureDates' => function($query) use ($today) {
+                $query->where('date', '>=', $today)
+                      ->orderBy('date', 'asc');
+            }])
+            ->get()
+            ->sortBy(function($product) use ($today) {
+                $nextDate = $product->departureDates->first();
+                // Products with future dates first, ordered by closest date
+                if ($nextDate) {
+                    return $nextDate->date;
+                }
+                // Products without future dates go to the end, ordered by created_at desc
+                return '9999-99-99';
+            })
             ->take(12)
-            ->get();
+            ->values();
+            
         return view('index', [
             'products' => $products
         ]);

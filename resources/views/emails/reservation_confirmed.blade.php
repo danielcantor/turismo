@@ -287,6 +287,81 @@
         </table>
        @endif
        
+       <!-- Payment Methods Section -->
+       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+        <tr>
+         <td style="border-top: 2px solid #D9D9D9; padding: 30px 0 20px 0;">
+          <h2 style="margin: 0 0 20px 0; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #434343; font-weight: bold; text-align: center;">
+           MÉTODOS DE PAGO
+          </h2>
+          
+          <!-- Bank Transfer -->
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; margin-bottom: 20px;">
+           <tr>
+            <td style="background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 20px;">
+             <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343; font-weight: bold;">
+              TRANSFERENCIA BANCARIA
+             </p>
+             <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              <strong>Titular de la cuenta:</strong> Garske Cynthia Edith
+             </p>
+             <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              <strong>Banco:</strong> Santander
+             </p>
+             <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              <strong>Número de cuenta:</strong> Cuentas en Pesos 088-017532/0
+             </p>
+             <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              <strong>Número de CBU:</strong> 0720088588000001753204
+             </p>
+             <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              <strong>Alias:</strong> salidas.turismo.cyn
+             </p>
+            </td>
+           </tr>
+          </table>
+          
+          <!-- Credit Card -->
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; margin-bottom: 20px;">
+           <tr>
+            <td style="background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 20px;">
+             <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343; font-weight: bold;">
+              TARJETA DE CRÉDITO
+             </p>
+             <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              Solicitar link de pago (sumar el gasto de gestión 9% + el interés que adicione la entidad bancaria)
+             </p>
+            </td>
+           </tr>
+          </table>
+          
+         </td>
+        </tr>
+       </table>
+       
+       <!-- Important Notice -->
+       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+        <tr>
+         <td style="padding: 20px 0;">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+           <tr>
+            <td style="background-color: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 20px;">
+             <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #856404; font-weight: bold;">
+              IMPORTANTE:
+             </p>
+             <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #856404; line-height: 1.6;">
+              NOS ESTAREMOS COMUNICANDO DENTRO DE LAS 48 HS PARA CONFIRMARLE LA RESERVA, DE NO RECIBIR CONFIRMACIÓN DENTRO DE ESE PLAZO LE PEDIMOS TENGA A BIEN COMUNICARSE CON NOSOTROS AL SIGUIENTE WHATSAPP 1134138037.
+             </p>
+             <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #856404; font-weight: bold;">
+              MUCHAS GRACIAS POR ELEGIRNOS!!!
+             </p>
+            </td>
+           </tr>
+          </table>
+         </td>
+        </tr>
+       </table>
+       
        <!-- Footer -->
        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
         <tr>

@@ -985,6 +985,50 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
+                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:20px 10px 10px 10px;font-family:arial,helvetica,sans-serif;" align="left">
+                                                            <p style="margin: 0px; color: #ffffff; line-height: 160%; text-align: center; word-wrap: break-word; font-size: 20px; font-weight: 700;">
+                                                                MÉTODOS DE PAGO
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
+                                                            <p style="margin: 0px 0px 10px 0px; color: #ffffff; line-height: 160%; text-align: left; word-wrap: break-word; font-size: 18px; font-weight: 700;">
+                                                                TRANSFERENCIA BANCARIA
+                                                            </p>
+                                                            <p style="margin: 0px; color: #ffffff; line-height: 160%; text-align: left; word-wrap: break-word; font-size: 16px; font-weight: 400;">
+                                                                <strong>Titular de la cuenta:</strong> Garske Cynthia Edith<br>
+                                                                <strong>Banco:</strong> Santander<br>
+                                                                <strong>Número de cuenta:</strong> Cuentas en Pesos 088-017532/0<br>
+                                                                <strong>Número de CBU:</strong> 0720088588000001753204<br>
+                                                                <strong>Alias:</strong> salidas.turismo.cyn
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
+                                                            <p style="margin: 0px 0px 10px 0px; color: #ffffff; line-height: 160%; text-align: left; word-wrap: break-word; font-size: 18px; font-weight: 700;">
+                                                                TARJETA DE CRÉDITO
+                                                            </p>
+                                                            <p style="margin: 0px; color: #ffffff; line-height: 160%; text-align: left; word-wrap: break-word; font-size: 16px; font-weight: 400;">
+                                                                Solicitar link de pago (sumar el gasto de gestión 9% + el interés que adicione la entidad bancaria)
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:20px 10px;font-family:arial,helvetica,sans-serif;background-color:#ffc107;" align="left">
+                                                            <p style="margin: 0px 0px 10px 0px; color: #000000; line-height: 160%; text-align: left; word-wrap: break-word; font-size: 18px; font-weight: 700;">
+                                                                IMPORTANTE:
+                                                            </p>
+                                                            <p style="margin: 0px; color: #000000; line-height: 160%; text-align: left; word-wrap: break-word; font-size: 16px; font-weight: 400;">
+                                                                NOS ESTAREMOS COMUNICANDO DENTRO DE LAS 48 HS PARA CONFIRMARLE LA RESERVA, DE NO RECIBIR CONFIRMACIÓN DENTRO DE ESE PLAZO LE PEDIMOS TENGA A BIEN COMUNICARSE CON NOSOTROS AL SIGUIENTE WHATSAPP 1134138037.
+                                                            </p>
+                                                            <p style="margin: 10px 0px 0px 0px; color: #000000; line-height: 160%; text-align: left; word-wrap: break-word; font-size: 16px; font-weight: 700;">
+                                                                MUCHAS GRACIAS POR ELEGIRNOS!!!
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
                                                         <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
                                                             <p style="margin: 0px; color: #ffffff; line-height: 160%; text-align: center; word-wrap: break-word; font-size: 18px; font-weight: 400;">
                                                                 Su pedido está siendo procesado y le notificaremos cuando esté listo para el envío.

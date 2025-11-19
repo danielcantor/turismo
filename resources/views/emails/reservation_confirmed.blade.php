@@ -142,16 +142,13 @@
         <tr>
          <td style="padding-bottom: 20px;">
           <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #434343; font-weight: 500;">
-           Pedido nro #{{ $orderCode }}
+           Reserva nro #{{ $orderCode }}
           </p>
           <p style="margin: 0 0 15px 0; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #434343;">
            {{ $name }}, felicidades acá está el resumen de tu reserva
           </p>
-          <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           <strong>Fecha de la reserva:</strong> {{ $orderDate ?? date('d-m-Y') }}
-          </p>
           <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           <strong>Total:</strong> ${{ $totalPrice ?? '0' }}
+           Fecha de la reserva: {{ $orderDate ?? date('d/m/Y') }}
           </p>
          </td>
         </tr>
@@ -164,18 +161,58 @@
         </tr>
        </table>
        
-       <!-- Product info -->
+       <!-- Service Details -->
        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
         <tr>
-         <td width="50%" style="padding-right: 20px; vertical-align: top;">
-          <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343; font-weight: bold;">
-           Información del producto:
-          </p>
+         <td style="padding-bottom: 15px;">
+          <h2 style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #434343; font-weight: bold; text-align: left;">
+           DETALLES DEL SERVICIO CONTRATADO
+          </h2>
          </td>
-         <td width="50%" style="vertical-align: top;">
-          <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $productInfo['name'] ?? 'N/A' }}
-          </p>
+        </tr>
+       </table>
+       
+       <!-- Service Details Table -->
+       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; border: 1px solid #D9D9D9;">
+        <tr style="background-color: #f8f9fa;">
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          Destino
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          Fecha
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          Cantidad
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          Precio unitario
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          Total
+         </td>
+        </tr>
+        <tr>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+          {{ $productInfo['name'] ?? 'N/A' }}
+          @if(isset($productInfo['days']) && isset($productInfo['nights']))
+          <br><span style="font-size: 12px; color: #666666;">({{ $productInfo['days'] }} Días {{ $productInfo['nights'] }} Noche{{ $productInfo['nights'] > 1 ? 's' : '' }})</span>
+          @endif
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+          @if(isset($productInfo['departureDate']))
+           {{ \Carbon\Carbon::parse($productInfo['departureDate'])->format('d/m/Y') }}
+          @else
+           N/A
+          @endif
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+          {{ $productInfo['quantity'] ?? 1 }}
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+          ${{ number_format($productInfo['price'] ?? 0, 0, ',', '.') }}
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          ${{ number_format(($productInfo['price'] ?? 0) * ($productInfo['quantity'] ?? 1), 0, ',', '.') }}
          </td>
         </tr>
        </table>
@@ -190,26 +227,16 @@
        <!-- Billing info -->
        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
         <tr>
-         <td width="50%" style="padding-right: 20px; vertical-align: top;">
-          <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343; font-weight: bold;">
-           Datos de facturación:
-          </p>
+         <td style="padding-bottom: 15px;">
+          <h2 style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #434343; font-weight: bold; text-align: left;">
+           DATOS DE FACTURACIÓN
+          </h2>
          </td>
-         <td width="50%" style="vertical-align: top;">
-          <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $billingInfo['payment_method'] ?? 'Tarjeta de crédito' }}
-          </p>
-          <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $billingInfo['name'] ?? 'N/A' }}
-          </p>
-          <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $billingInfo['dni'] ?? 'N/A' }}
-          </p>
-          <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $billingInfo['phone'] ?? 'N/A' }}
-          </p>
+        </tr>
+        <tr>
+         <td>
           <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $billingInfo['email'] ?? 'N/A' }}
+           <strong>Reserva N°:</strong> {{ $orderCode }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>Fecha de emisión:</strong> {{ $orderDate ?? date('d/m/Y') }}
           </p>
          </td>
         </tr>
@@ -286,6 +313,81 @@
          </tr>
         </table>
        @endif
+       
+       <!-- Payment Methods Section -->
+       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+        <tr>
+         <td style="border-top: 2px solid #D9D9D9; padding: 30px 0 20px 0;">
+          <h2 style="margin: 0 0 20px 0; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #434343; font-weight: bold; text-align: center;">
+           MÉTODOS DE PAGO
+          </h2>
+          
+          <!-- Bank Transfer -->
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; margin-bottom: 20px;">
+           <tr>
+            <td style="background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 20px;">
+             <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343; font-weight: bold;">
+              TRANSFERENCIA BANCARIA
+             </p>
+             <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              <strong>Titular de la cuenta:</strong> Garske Cynthia Edith
+             </p>
+             <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              <strong>Banco:</strong> Santander
+             </p>
+             <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              <strong>Número de cuenta:</strong> Cuentas en Pesos 088-017532/0
+             </p>
+             <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              <strong>Número de CBU:</strong> 0720088588000001753204
+             </p>
+             <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              <strong>Alias:</strong> salidas.turismo.cyn
+             </p>
+            </td>
+           </tr>
+          </table>
+          
+          <!-- Credit Card -->
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; margin-bottom: 20px;">
+           <tr>
+            <td style="background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 20px;">
+             <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343; font-weight: bold;">
+              TARJETA DE CRÉDITO
+             </p>
+             <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+              Solicitar link de pago (sumar el gasto de gestión 9% + el interés que adicione la entidad bancaria)
+             </p>
+            </td>
+           </tr>
+          </table>
+          
+         </td>
+        </tr>
+       </table>
+       
+       <!-- Important Notice -->
+       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+        <tr>
+         <td style="padding: 20px 0;">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+           <tr>
+            <td style="background-color: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 20px;">
+             <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #856404; font-weight: bold;">
+              IMPORTANTE:
+             </p>
+             <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #856404; line-height: 1.6;">
+              NOS ESTAREMOS COMUNICANDO DENTRO DE LAS 48 HS PARA CONFIRMARLE LA RESERVA, DE NO RECIBIR CONFIRMACIÓN DENTRO DE ESE PLAZO LE PEDIMOS TENGA A BIEN COMUNICARSE CON NOSOTROS AL SIGUIENTE WHATSAPP 1134138037.
+             </p>
+             <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #856404; font-weight: bold;">
+              MUCHAS GRACIAS POR ELEGIRNOS!!!
+             </p>
+            </td>
+           </tr>
+          </table>
+         </td>
+        </tr>
+       </table>
        
        <!-- Footer -->
        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">

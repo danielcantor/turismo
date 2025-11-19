@@ -78,6 +78,15 @@ class CartController extends Controller
             ], 500);
         }
         
+        // Get departure date if available
+        $departureDate = null;
+        if ($shopping->departure_date_id) {
+            $departureDateModel = \App\Models\DepartureDate::find($shopping->departure_date_id);
+            if ($departureDateModel) {
+                $departureDate = $departureDateModel->date;
+            }
+        }
+        
         // Send reservation confirmation email to customer and store
         \App\Jobs\SendPurchaseEmail::dispatch(
             $facturacion->nombre,
@@ -94,6 +103,9 @@ class CartController extends Controller
                 'productName' => $product->product_name,
                 'productQuantity' => $shopping->quantity,
                 'productPrice' => $product->product_price,
+                'productDays' => $product->days,
+                'productNights' => $product->nights,
+                'departureDate' => $departureDate,
                 'passengers' => $passengers
             ]
         )->onQueue('emails');

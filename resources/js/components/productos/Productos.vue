@@ -1,14 +1,26 @@
 <template>
   <div class="container">
     <h1>Productos</h1>
-    <button class="btn btn-primary mb-2" @click="openCreateModal">Crear Producto</button>
+    <div class="mb-3">
+      <button class="btn btn-primary mb-2 me-2" @click="openCreateModal">Crear Producto</button>
+      <button class="btn btn-success mb-2 me-2" @click="triggerFileUpload">Importar CSV</button>
+      <a href="/products/export-template" class="btn btn-info mb-2">Descargar Plantilla CSV</a>
+      <input 
+        type="file" 
+        ref="fileInput" 
+        @change="handleFileUpload" 
+        accept=".csv,.txt" 
+        style="display: none"
+      />
+    </div>
 
     <ProductList
       :products="products"
       @edit-product="openEditModal"
       @delete-product="eliminarProducto"
       @toggle-product="activarDesactivarProducto"
-      @fetch-products="fetchProducts"
+      @apply-filters="applyFilters"
+      @change-page="fetchProducts"
       :categories="categories"
     />
 
@@ -59,7 +71,8 @@ export default {
       departureDates: [],
       isEditMode: false,
       currentProductId: null,
-      categories: []
+      categories: [],
+      currentFilters: {}
     };
   },
   created() {
@@ -77,14 +90,57 @@ export default {
           console.error(error);
         });
     },
-    fetchProducts(page = 1) {
-      axios.get(`/products/get?page=${page}`).then(response => {
+    fetchProducts(page = 1, filters = {}) {
+      // Merge filters with page parameter
+      const params = {
+        page: page,
+        ...filters
+      };
+      
+      axios.get('/products/get', { params }).then(response => {
         // Asegúrate de que las URLs de imágenes sean correctas
         response.data.data.forEach(product => {
           product.product_image_url = product.product_image_url;
           product.product_slider_url = product.product_slider_url;
         });
         this.products = response.data;
+      });
+    },
+    applyFilters(filters) {
+      this.currentFilters = filters;
+      this.fetchProducts(1, filters);
+    },
+    triggerFileUpload() {
+      this.$refs.fileInput.click();
+    },
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      axios.post('/products/import', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      .then(response => {
+        if (response.data.success) {
+          alert(response.data.message);
+          if (response.data.errors && response.data.errors.length > 0) {
+            console.log('Errores durante la importación:', response.data.errors);
+          }
+          this.fetchProducts();
+        }
+      })
+      .catch(error => {
+        alert('Error al importar el archivo');
+        console.error(error);
+      })
+      .finally(() => {
+        // Reset file input
+        this.$refs.fileInput.value = '';
       });
     },
     openCreateModal() {

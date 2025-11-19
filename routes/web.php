@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth:admin']], function() {
             Route::get('/obtenerProducto/{id}','obtenerProducto');
             Route::post('/update/{id}', 'modificarProducto');
             Route::post('/toggle/{id}','activarDesactivarProducto');
+            Route::post('/import', 'importProducts');
+            Route::get('/export-template', 'exportTemplate');
         });    
     });
     Route::controller(CategoryController::class)->group(function () {

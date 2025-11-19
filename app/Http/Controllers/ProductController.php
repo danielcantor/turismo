@@ -150,7 +150,33 @@ class ProductController extends Controller
     public function get(Request $request){
         $perPage = 10; // Número de productos por página
         $page = $request->input('page', 1);
-        $products = Product::paginate($perPage, ['*'], 'page', $page);    
+        
+        // Build query
+        $query = Product::query();
+        
+        // Filter by category
+        if ($request->has('category') && $request->input('category') !== '') {
+            $query->where('product_category', $request->input('category'));
+        }
+        
+        // Search by product name
+        if ($request->has('search') && $request->input('search') !== '') {
+            $query->where('product_name', 'like', '%' . $request->input('search') . '%');
+        }
+        
+        // Sorting
+        $sortBy = $request->input('sort_by', 'created_at');
+        $sortOrder = $request->input('sort_order', 'desc');
+        
+        // Validate sort fields
+        $allowedSortFields = ['created_at', 'product_category', 'product_price', 'product_name'];
+        if (in_array($sortBy, $allowedSortFields)) {
+            $query->orderBy($sortBy, $sortOrder);
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
+        
+        $products = $query->paginate($perPage, ['*'], 'page', $page);    
         return response()->json($products);
     }
     public function show_product($id)
@@ -259,6 +285,94 @@ class ProductController extends Controller
         $producto->save();
 
         return response()->json(['message' => 'Estado del producto actualizado con éxito']);
+    }
+
+    public function importProducts(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|file|mimes:csv,txt|max:10240'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $file = $request->file('file');
+        $path = $file->getRealPath();
+        
+        $csv = array_map('str_getcsv', file($path));
+        $header = array_shift($csv);
+        
+        $imported = 0;
+        $updated = 0;
+        $errors = [];
+
+        foreach ($csv as $index => $row) {
+            try {
+                if (count($row) !== count($header)) {
+                    $errors[] = "Fila " . ($index + 2) . ": número incorrecto de columnas";
+                    continue;
+                }
+                
+                $data = array_combine($header, $row);
+                
+                // Check if product exists (by name or ID if provided)
+                $product = null;
+                if (isset($data['id']) && !empty($data['id'])) {
+                    $product = Product::find($data['id']);
+                }
+                
+                $productData = [
+                    'product_name' => $data['product_name'] ?? '',
+                    'product_price' => $data['product_price'] ?? 0,
+                    'product_description' => $data['product_description'] ?? '',
+                    'product_type' => $data['product_type'] ?? 1,
+                    'product_category' => $data['product_category'] ?? $data['product_type'] ?? 1,
+                    'days' => $data['days'] ?? 1,
+                    'nights' => $data['nights'] ?? 1,
+                    'product_activate' => isset($data['product_activate']) ? $data['product_activate'] : 1
+                ];
+
+                if ($product) {
+                    $product->update($productData);
+                    $updated++;
+                } else {
+                    Product::create($productData);
+                    $imported++;
+                }
+            } catch (\Exception $e) {
+                $errors[] = "Fila " . ($index + 2) . ": " . $e->getMessage();
+            }
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => "Importación completada. Productos creados: {$imported}, actualizados: {$updated}",
+            'imported' => $imported,
+            'updated' => $updated,
+            'errors' => $errors
+        ]);
+    }
+
+    public function exportTemplate()
+    {
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="plantilla_productos.csv"',
+        ];
+
+        $columns = ['id', 'product_name', 'product_price', 'product_description', 'product_type', 'product_category', 'days', 'nights', 'product_activate'];
+
+        $callback = function() use ($columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 
 }

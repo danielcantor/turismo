@@ -57,6 +57,9 @@ class SendPurchaseEmail implements ShouldQueue
             'name' => $this->additionalData['productName'],
             'quantity' => $this->additionalData['productQuantity'] ?? 1,
             'price' => $this->additionalData['productPrice'] ?? 0,
+            'days' => $this->additionalData['productDays'] ?? null,
+            'nights' => $this->additionalData['productNights'] ?? null,
+            'departureDate' => $this->additionalData['departureDate'] ?? null,
         ] : [];
         
         $passengers = $this->additionalData['passengers'] ?? [];

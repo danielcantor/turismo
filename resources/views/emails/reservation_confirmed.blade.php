@@ -142,16 +142,13 @@
         <tr>
          <td style="padding-bottom: 20px;">
           <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #434343; font-weight: 500;">
-           Pedido nro #{{ $orderCode }}
+           Reserva nro #{{ $orderCode }}
           </p>
           <p style="margin: 0 0 15px 0; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #434343;">
            {{ $name }}, felicidades acá está el resumen de tu reserva
           </p>
-          <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           <strong>Fecha de la reserva:</strong> {{ $orderDate ?? date('d-m-Y') }}
-          </p>
           <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           <strong>Total:</strong> ${{ $totalPrice ?? '0' }}
+           Fecha de la reserva: {{ $orderDate ?? date('d/m/Y') }}
           </p>
          </td>
         </tr>
@@ -164,18 +161,58 @@
         </tr>
        </table>
        
-       <!-- Product info -->
+       <!-- Service Details -->
        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
         <tr>
-         <td width="50%" style="padding-right: 20px; vertical-align: top;">
-          <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343; font-weight: bold;">
-           Información del producto:
-          </p>
+         <td style="padding-bottom: 15px;">
+          <h2 style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #434343; font-weight: bold; text-align: left;">
+           DETALLES DEL SERVICIO CONTRATADO
+          </h2>
          </td>
-         <td width="50%" style="vertical-align: top;">
-          <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $productInfo['name'] ?? 'N/A' }}
-          </p>
+        </tr>
+       </table>
+       
+       <!-- Service Details Table -->
+       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; border: 1px solid #D9D9D9;">
+        <tr style="background-color: #f8f9fa;">
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          Destino
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          Fecha
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          Cantidad
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          Precio unitario
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          Total
+         </td>
+        </tr>
+        <tr>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+          {{ $productInfo['name'] ?? 'N/A' }}
+          @if(isset($productInfo['days']) && isset($productInfo['nights']))
+          <br><span style="font-size: 12px; color: #666666;">({{ $productInfo['days'] }} Días {{ $productInfo['nights'] }} Noche{{ $productInfo['nights'] > 1 ? 's' : '' }})</span>
+          @endif
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+          @if(isset($productInfo['departureDate']))
+           {{ \Carbon\Carbon::parse($productInfo['departureDate'])->format('d/m/Y') }}
+          @else
+           N/A
+          @endif
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+          {{ $productInfo['quantity'] ?? 1 }}
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343;">
+          ${{ number_format($productInfo['price'] ?? 0, 0, ',', '.') }}
+         </td>
+         <td style="padding: 10px; border: 1px solid #D9D9D9; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #434343; font-weight: bold;">
+          ${{ number_format(($productInfo['price'] ?? 0) * ($productInfo['quantity'] ?? 1), 0, ',', '.') }}
          </td>
         </tr>
        </table>
@@ -190,26 +227,16 @@
        <!-- Billing info -->
        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
         <tr>
-         <td width="50%" style="padding-right: 20px; vertical-align: top;">
-          <p style="margin: 0 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343; font-weight: bold;">
-           Datos de facturación:
-          </p>
+         <td style="padding-bottom: 15px;">
+          <h2 style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #434343; font-weight: bold; text-align: left;">
+           DATOS DE FACTURACIÓN
+          </h2>
          </td>
-         <td width="50%" style="vertical-align: top;">
-          <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $billingInfo['payment_method'] ?? 'Tarjeta de crédito' }}
-          </p>
-          <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $billingInfo['name'] ?? 'N/A' }}
-          </p>
-          <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $billingInfo['dni'] ?? 'N/A' }}
-          </p>
-          <p style="margin: 0 0 5px 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $billingInfo['phone'] ?? 'N/A' }}
-          </p>
+        </tr>
+        <tr>
+         <td>
           <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #434343;">
-           {{ $billingInfo['email'] ?? 'N/A' }}
+           <strong>Reserva N°:</strong> {{ $orderCode }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>Fecha de emisión:</strong> {{ $orderDate ?? date('d/m/Y') }}
           </p>
          </td>
         </tr>

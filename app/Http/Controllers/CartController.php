@@ -10,7 +10,9 @@ use App\Models\Product;
 use App\Models\Passenger;
 use App\Models\Shopping;
 use App\Models\Facturacion;
+use App\Models\DepartureDate;
 use Illuminate\Http\Request;
+use App\Jobs\SendPurchaseEmail;
 use Illuminate\Support\Facades\DB;
 class CartController extends Controller
 {
@@ -31,10 +33,12 @@ class CartController extends Controller
             $shopping->product_id = $product->id;
             $shopping->quantity = count($passengers);
             
-            // Store selected departure date if provided
+            // Handle departure date - only save ID if it's from the predefined list
             if ($request->has('departure_date_id') && $request->input('departure_date_id')) {
                 $shopping->departure_date_id = $request->input('departure_date_id');
             }
+            // Note: custom_departure_date is NOT saved to departure_dates table
+            // It will only be used for the email notification
             
             $factura = $request->input('facturacion');
             $facturacion = new Facturacion();
@@ -81,14 +85,17 @@ class CartController extends Controller
         // Get departure date if available
         $departureDate = null;
         if ($shopping->departure_date_id) {
-            $departureDateModel = \App\Models\DepartureDate::find($shopping->departure_date_id);
+            $departureDateModel = DepartureDate::find($shopping->departure_date_id);
             if ($departureDateModel) {
                 $departureDate = $departureDateModel->date;
             }
+        } elseif ($request->has('custom_departure_date') && $request->input('custom_departure_date')) {
+            // Use custom date directly without saving to database
+            $departureDate = $request->input('custom_departure_date');
         }
         
         // Send reservation confirmation email to customer and store
-        \App\Jobs\SendPurchaseEmail::dispatch(
+        SendPurchaseEmail::dispatch(
             $facturacion->nombre,
             $purchaseID,
             now()->format('d-m-Y'),
@@ -125,10 +132,12 @@ class CartController extends Controller
             $shopping = new Shopping();
             $shopping->product_id = $product->id;
             
-            // Store selected departure date if provided
+            // Handle departure date - only save ID if it's from the predefined list
             if ($request->has('departure_date_id') && $request->input('departure_date_id')) {
                 $shopping->departure_date_id = $request->input('departure_date_id');
             }
+            // Note: custom_departure_date is NOT saved to departure_dates table
+            // It will only be used for the email notification
             
             $factura = $request->input('facturacion');
             $facturacion = new Facturacion();

@@ -15,6 +15,10 @@
               </div>
               <strong>${{product.product_price}}</strong>
             </li>
+            <li class="list-group-item d-flex justify-content-between" v-if="selectedDepartureDate">
+              <span>Fecha de salida</span>
+              <strong>{{ formatDepartureDate(selectedDepartureDate) }}</strong>
+            </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Cantidad</span>
               <strong>{{quantity}}</strong>
@@ -54,6 +58,10 @@
             </div>
             <strong>${{product.product_price}}</strong>
           </li>
+          <li class="list-group-item d-flex justify-content-between" v-if="selectedDepartureDate">
+            <span>Fecha de salida</span>
+            <strong>{{ formatDepartureDate(selectedDepartureDate) }}</strong>
+          </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Subtotal (ARS)</span>
             <strong>${{cart.subtotal}}</strong>
@@ -75,6 +83,16 @@
                   {{ formatDepartureDate(date.date) }}
                 </option>
               </select>
+            </div>
+            <div class="col-12" v-else>
+              <label for="customDepartureDate" class="form-label">Fecha de salida</label>
+              <input 
+                type="date" 
+                class="form-control" 
+                id="customDepartureDate" 
+                required 
+                v-model="customDepartureDate"
+                :min="minDate">
             </div>
             <div class="col-12">
             <label for="state" class="form-label">Cantidad</label>
@@ -294,10 +312,13 @@
         </div>
         <div class="row mt-3">
           <div class="col-6 text-center">
-            <button class="btn btn-warning btn-lg" @click="goBack">Volver</button>
+            <button class="btn btn-warning btn-lg" @click="goBack" :disabled="processingReservation">Volver</button>
           </div>
           <div class="col-6 text-center">
-            <button class="btn btn-success btn-lg" @click="confirmReservation">Confirmar Reserva</button>
+            <button class="btn btn-success btn-lg" @click="confirmReservation" :disabled="processingReservation">
+              <span v-if="processingReservation" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              {{ processingReservation ? 'Procesando...' : 'Confirmar Reserva' }}
+            </button>
           </div>
         </div>
       </div>
@@ -378,6 +399,8 @@
                 },
                 quantity: 1,
                 selectedDepartureDateId: '',
+                customDepartureDate: '',
+                processingReservation: false,
                 pasajeros : [
                   {
                     nombre: '',
@@ -422,6 +445,19 @@
         computed: {
           hasDepartureDates() {
             return this.product.departure_dates && this.product.departure_dates.length > 0;
+          },
+          minDate() {
+            // Set minimum date to today
+            const today = new Date();
+            return today.toISOString().split('T')[0];
+          },
+          selectedDepartureDate() {
+            // Return selected date from dropdown or custom calendar input
+            if (this.selectedDepartureDateId) {
+              const selectedDate = this.product.departure_dates.find(d => d.id === this.selectedDepartureDateId);
+              return selectedDate ? selectedDate.date : null;
+            }
+            return this.customDepartureDate || null;
           }
         },
         methods: {
@@ -496,6 +532,10 @@
               this.cart.step = 3;
           },
           confirmReservation() {
+            if (this.processingReservation) return; // Prevent multiple clicks
+            
+            this.processingReservation = true;
+            
             const requestData = {
                 id: this.product.id,
                 price: this.cart.total,
@@ -504,9 +544,11 @@
                 facturacion : this.cart.data
             };
             
-            // Add departure date if selected
+            // Add departure date - either from selection or custom date
             if (this.selectedDepartureDateId) {
               requestData.departure_date_id = this.selectedDepartureDateId;
+            } else if (this.customDepartureDate) {
+              requestData.custom_departure_date = this.customDepartureDate;
             }
             
             axios.post('/cart/reserve', requestData, {
@@ -514,6 +556,7 @@
                   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
               }).then(response => {
+                this.processingReservation = false;
                 if(response.data.purchaseID){
                   this.cart.purchaseID = response.data.purchaseID;
                   this.cart.step = 4;
@@ -523,6 +566,7 @@
                     errorModal.show();
                 }
               }).catch(error => {
+                this.processingReservation = false;
                 var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
                 errorModal.show();
               });

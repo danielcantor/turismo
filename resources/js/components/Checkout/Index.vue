@@ -11,7 +11,7 @@
             <li class="list-group-item d-flex justify-content-between align-items-center lh-sm">
               <div>
                 <h6 class="my-0">{{product.product_name}}</h6>
-                <small class="text-muted" v-html="product.product_description" ></small>
+                <small class="text-muted" >{{product.days}} días - {{ product.nights }} noches</small>
               </div>
               <strong>${{product.product_price}}</strong>
             </li>
@@ -27,6 +27,15 @@
               <span>Total (ARS)</span>
               <strong>${{cart.total}}</strong>
             </li>
+            <li v-if="this.cart.step > 1" class="list-group-item d-flex justify-content-between align-items-center lh-sm">
+                    <div
+          class="alert alert-info"
+          role="alert"
+        >
+          <h4 class="alert-heading">¡Tu reserva está casi lista!</h4>
+          <p class="mb-0">Cuando recibamos tus datos, nos pondremos en contacto con vos para coordinar fechas, horarios y todos los detalles del viaje. No te preocupes, no se realiza ningún pago online: nosotros confirmamos todo de forma directa para tu tranquilidad.</p>
+        </div>
+          </li>
           </ul>
     </div>
   </div>
@@ -54,7 +63,7 @@
           <li class="list-group-item d-flex justify-content-between align-items-center lh-sm">
             <div>
               <h6 class="my-0">{{product.product_name}}</h6>
-              <small class="text-muted" :html="product.product_description"></small>
+              <small class="text-muted" >{{product.days}} días - {{ product.nights }} noches</small>
             </div>
             <strong>${{product.product_price}}</strong>
           </li>
@@ -70,10 +79,26 @@
             <span>Total (ARS)</span>
             <strong>${{cart.total}}</strong>
           </li>
+          <li v-if="this.cart.step > 1" class="list-group-item d-flex justify-content-between align-items-center lh-sm">
+                    <div
+          class="alert alert-info"
+          role="alert"
+        >
+          <h4 class="alert-heading">¡Tu reserva está casi lista!</h4>
+          <p class="mb-0">Cuando recibamos tus datos, nos pondremos en contacto con vos para coordinar fechas, horarios y todos los detalles del viaje. No te preocupes, no se realiza ningún pago online: nosotros confirmamos todo de forma directa para tu tranquilidad.</p>
+        </div>
+          </li>
         </ul>
       </div>
       <div class="col-md-7 col-lg-8" v-show="cart.step === 1">
         <h4 class="mb-3">Seleccionar cantidad de pasajeros</h4>
+                  <div
+          class="alert alert-info"
+          role="alert"
+        >
+          <h4 class="alert-heading">¡Tu reserva está casi lista!</h4>
+          <p class="mb-0">Cuando recibamos tus datos, nos pondremos en contacto con vos para coordinar fechas, horarios y todos los detalles del viaje. No te preocupes, no se realiza ningún pago online: nosotros confirmamos todo de forma directa para tu tranquilidad.</p>
+        </div>
           <div class="row g-3">
             <div class="col-12" v-if="hasDepartureDates">
               <label for="departureDate" class="form-label">Fecha de salida</label>

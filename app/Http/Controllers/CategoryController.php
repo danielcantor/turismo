@@ -15,11 +15,15 @@ class CategoryController extends Controller
 
     public function getCategories()
     {
-        $categories = Category::all();
+        $categories = Category::with('images')->get();
 
         foreach ($categories as $category) {
-            $category->image = $category->image ? Storage::url($category->image) : null;
-            $category->home_image = $category->home_image ? Storage::url($category->home_image) : null;
+            // Use polymorphic images if available, fallback to old columns
+            $mainImage = $category->getMainImage();
+            $homeImage = $category->getHomeImage();
+            
+            $category->image = $mainImage ? $mainImage->url : ($category->image ? Storage::url($category->image) : null);
+            $category->home_image = $homeImage ? $homeImage->url : ($category->home_image ? Storage::url($category->home_image) : null);
         }    
         return $categories;
 
@@ -35,15 +39,31 @@ class CategoryController extends Controller
             'home_image' => 'required|image',
         ]);
 
-        $imagePath = $request->file('image')->store('images', 'public');
-        $homeImagePath = $request->file('home_image')->store('images', 'public');
-
-        $category = new Category($request->all());
-        $category->image = $imagePath;
-        $category->home_image = $homeImagePath;
+        // Create the category
+        $category = new Category($request->except(['image', 'home_image']));
         $category->save();
 
-        return $category;
+        // Store main image using polymorphic relationship
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('categories', 'public');
+            $category->images()->create([
+                'path' => $imagePath,
+                'type' => 'main',
+                'order' => 0
+            ]);
+        }
+
+        // Store home image using polymorphic relationship
+        if ($request->hasFile('home_image')) {
+            $homeImagePath = $request->file('home_image')->store('categories', 'public');
+            $category->images()->create([
+                'path' => $homeImagePath,
+                'type' => 'home',
+                'order' => 1
+            ]);
+        }
+
+        return $category->load('images');
     }
 
     public function show(Category $category)
@@ -66,18 +86,44 @@ class CategoryController extends Controller
             ], 422); // 422 Unprocessable Entity
         }
     
+        // Update main image if provided
         if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($category->image);
-            $category->image = $request->file('image')->store('images', 'public');
+            // Delete old main image
+            $oldMainImage = $category->getMainImage();
+            if ($oldMainImage) {
+                Storage::disk('public')->delete($oldMainImage->path);
+                $oldMainImage->delete();
+            }
+            
+            // Create new main image
+            $imagePath = $request->file('image')->store('categories', 'public');
+            $category->images()->create([
+                'path' => $imagePath,
+                'type' => 'main',
+                'order' => 0
+            ]);
         }
 
+        // Update home image if provided
         if ($request->hasFile('home_image')) {
-            Storage::disk('public')->delete($category->home_image);
-            $category->home_image = $request->file('home_image')->store('images', 'public');
+            // Delete old home image
+            $oldHomeImage = $category->getHomeImage();
+            if ($oldHomeImage) {
+                Storage::disk('public')->delete($oldHomeImage->path);
+                $oldHomeImage->delete();
+            }
+            
+            // Create new home image
+            $homeImagePath = $request->file('home_image')->store('categories', 'public');
+            $category->images()->create([
+                'path' => $homeImagePath,
+                'type' => 'home',
+                'order' => 1
+            ]);
         }
 
         $category->update($request->except(['image', 'home_image']));
-        return $category;
+        return $category->load('images');
     }
 
     public function destroy(Category $category)
